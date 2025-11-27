@@ -3,7 +3,6 @@ import { Search, LayoutGrid, List, Zap, Terminal, Layers } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import coursesData from '../data/courses.json';
 import CourseCard from '../components/CourseCard';
-import heroBg from '../assets/images/backgrounds/hero.png';
 
 export default function Courses() {
     const [search, setSearch] = useState('');
@@ -56,18 +55,6 @@ export default function Courses() {
         <div className="min-h-screen pb-20">
             {/* Dynamic Hero Section */}
             <section className="relative py-32 mb-12 overflow-hidden">
-                {/* Background Effects */}
-                <div
-                    className="absolute inset-0 z-0 opacity-40"
-                    style={{
-                        backgroundImage: `url(${heroBg})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-accent/20 rounded-full blur-[120px] -z-10 opacity-50" />
-                <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-teal-500/10 rounded-full blur-[100px] -z-10 opacity-30" />
-
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

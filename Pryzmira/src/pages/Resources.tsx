@@ -45,9 +45,6 @@ export default function Resources() {
     return (
         <div className="min-h-screen pb-20">
             <div className="relative py-20 mb-12 text-center overflow-hidden">
-                {/* Background Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent/10 rounded-full blur-[100px] -z-10" />
-
                 <h1 className="text-5xl md:text-7xl font-black mb-6 text-text-primary tracking-tight">
                     The <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-teal-400">Vault</span>
                 </h1>
