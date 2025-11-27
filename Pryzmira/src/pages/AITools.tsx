@@ -56,7 +56,7 @@ export default function AITools() {
                                         onClick={() => setFilter(f)}
                                         className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all border ${filter === f
                                             ? 'bg-accent text-white border-accent shadow-lg shadow-accent/20'
-                                            : 'bg-surface/50 text-text-secondary border-white/5 hover:bg-surface hover:text-text-primary hover:border-white/10'
+                                            : 'bg-surface/50 text-text-secondary border-white/5 hover:bg-surface-hover hover:text-text-primary hover:border-white/10'
                                             }`}
                                     >
                                         {f}
@@ -77,7 +77,7 @@ export default function AITools() {
                                         onClick={() => setPricingFilter(p)}
                                         className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all border ${pricingFilter === p
                                             ? 'bg-accent text-white border-accent shadow-lg shadow-accent/20'
-                                            : 'bg-surface/50 text-text-secondary border-white/5 hover:bg-surface hover:text-text-primary hover:border-white/10'
+                                            : 'bg-surface/50 text-text-secondary border-white/5 hover:bg-surface-hover hover:text-text-primary hover:border-white/10'
                                             }`}
                                     >
                                         {p}

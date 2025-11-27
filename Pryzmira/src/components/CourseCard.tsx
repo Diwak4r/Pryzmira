@@ -229,7 +229,7 @@ export default function CourseCard({ course, index, isCompact = false }: CourseC
                             href={course.url}
                             target="_blank"
                             rel="noreferrer"
-                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-text-primary text-background text-xs font-bold uppercase tracking-wide hover:opacity-90 transition-all duration-300 shadow-lg shadow-primary/20"
+                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-white text-xs font-bold uppercase tracking-wide hover:bg-accent-hover transition-all duration-300 shadow-lg shadow-accent/20"
                         >
                             Start <ArrowRight className="w-3 h-3" />
                         </a>

@@ -75,7 +75,7 @@ export default function Newsletter() {
                         </div>
                         <button
                             type="submit"
-                            className="px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
+                            className="px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
                         >
                             Subscribe
                             <Send className="w-4 h-4" />

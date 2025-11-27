@@ -64,7 +64,7 @@ export default function Resources() {
                                 onClick={() => setActiveTab(tab)}
                                 className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${activeTab === tab
                                     ? 'bg-accent text-white shadow-lg shadow-accent/20'
-                                    : 'text-text-secondary hover:text-text-primary hover:bg-surface/50'
+                                    : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover'
                                     }`}
                             >
                                 {tab === 'Resources' && <BookOpen className="w-4 h-4" />}
