@@ -3,39 +3,59 @@
 @tailwind utilities;
 
 :root {
-  /* LIGHT MODE - Slate & Amber Adapted */
-  --background: 255 255 255;
-  --surface: 241 245 249; /* Slate 100 */
-  --surface-hover: 226 232 240; /* Slate 200 */
-  --border: 226 232 240; /* Slate 200 */
+  /* LIGHT MODE - Slate & Teal (Day Toggle) */
+  --background: 250 250 250;
+  /* #FAFAFA */
+  --surface: 243 244 246;
+  /* #F3F4F6 */
+  --surface-hover: 229 231 235;
+  /* #E5E7EB */
+  --border: 226 232 240;
+  /* Slate 200 */
 
-  --primary: 15 23 42; /* Slate 900 */
+  --primary: 15 20 25;
+  /* #0F1419 - Dark Slate */
   --primary-foreground: 255 255 255;
 
-  --accent: 251 191 36; /* Amber 400 */
-  --accent-foreground: 15 23 42; /* Slate 900 */
-  --accent-hover: 245 158 11; /* Amber 500 */
+  --accent: 13 148 136;
+  /* #0D9488 - Darker Teal */
+  --accent-foreground: 255 255 255;
+  --accent-hover: 20 184 166;
+  /* #14B8A6 - Brighter Teal */
 
-  --text-primary: 15 23 42; /* Slate 900 */
-  --text-secondary: 100 116 139; /* Slate 500 */
+  --text-primary: 15 20 25;
+  /* #0F1419 */
+  --text-secondary: 100 116 139;
+  /* #64748B - Muted Gray */
 }
 
 .dark {
-  /* DARK MODE - Slate & Amber Premium */
-  --background: 15 23 42; /* #0F172A - Deep Slate */
-  --surface: 30 41 59; /* #1E293B - Slate */
-  --surface-hover: 51 65 85; /* #334155 - Lighter Slate */
-  --border: 51 65 85; /* #334155 - Slate with opacity */
+  /* DARK MODE - Slate & Teal (Professional Exploration) */
+  --background: 15 20 25;
+  /* #0F1419 - Deep Slate-Navy */
+  --surface: 26 35 50;
+  /* #1A2332 - Container/Card BG */
+  --surface-hover: 35 46 63;
+  /* #232E3F - Elevated States */
+  --border: 51 65 85;
+  /* #334155 - Subtle Slate */
 
-  --primary: 241 245 249; /* #F1F5F9 - Off-white */
-  --primary-foreground: 15 23 42; /* #0F172A */
+  --primary: 240 244 248;
+  /* #F0F4F8 - Cool Off-White */
+  --primary-foreground: 15 20 25;
+  /* #0F1419 */
 
-  --accent: 251 191 36; /* #FBBF24 - Warm Amber */
-  --accent-foreground: 15 23 42; /* #0F172A */
-  --accent-hover: 245 158 11; /* #F59E0B */
+  --accent: 20 184 166;
+  /* #14B8A6 - Vibrant Teal */
+  --accent-foreground: 15 20 25;
+  /* #0F1419 */
+  --accent-hover: 45 212 191;
+  /* #2DD4BF - Lighter Teal */
 
-  --text-primary: 241 245 249; /* #F1F5F9 */
-  --text-secondary: 148 163 184; /* #94A3B8 - Muted Slate */
+  --text-primary: 240 244 248;
+  /* #F0F4F8 */
+  --text-secondary: 148 163 184;
+  /* #94A3B8 - Muted Slate-Gray */
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
@@ -45,8 +65,8 @@
     @apply bg-background text-text-primary font-sans antialiased overflow-x-hidden transition-colors duration-300;
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-image:
-      radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 100% 0%, rgba(245, 158, 11, 0.03) 0%, transparent 30%);
+      radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 100% 0%, rgba(45, 212, 191, 0.03) 0%, transparent 30%);
   }
 }
 
@@ -64,7 +84,7 @@
   }
 
   .text-gradient-accent {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-amber-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-teal-400;
   }
 
   .scrollbar-hide::-webkit-scrollbar {

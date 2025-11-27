@@ -47,7 +47,7 @@ export default function Canvas() {
 
     // Tool State
     const [tool, setTool] = useState<Tool>('pen');
-    const [color, setColor] = useState(theme === 'dark' ? '#00FF41' : '#000000');
+    const [color, setColor] = useState(theme === 'dark' ? '#14B8A6' : '#0F1419');
     const [brushSize, setBrushSize] = useState(4);
     const [fillShape, setFillShape] = useState(false);
     const [showGrid, setShowGrid] = useState(false);

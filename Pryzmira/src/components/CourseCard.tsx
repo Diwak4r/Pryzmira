@@ -31,11 +31,11 @@ interface CourseCardProps {
 
 const categoryColors: Record<string, string> = {
     'Web Dev': 'bg-[#14b8a6]', // Solid Teal
-    'AI': 'bg-[#f97316]',      // Solid Orange
+    'AI': 'bg-[#f43f5e]',      // Solid Rose
     'DSA': 'bg-[#10b981]',     // Solid Emerald
-    'System Design': 'bg-[#f59e0b]', // Solid Amber
-    'Finance': 'bg-[#eab308]', // Solid Yellow
-    'Coding': 'bg-[#84cc16]',  // Solid Lime
+    'System Design': 'bg-[#6366f1]', // Solid Indigo
+    'Finance': 'bg-[#06b6d4]', // Solid Cyan
+    'Coding': 'bg-[#8b5cf6]',  // Solid Violet
     'Default': 'bg-[#64748b]'  // Solid Slate
 };
 
@@ -49,11 +49,11 @@ export default function CourseCard({ course, index, isCompact = false }: CourseC
     const getCategoryIcon = (category: string) => {
         switch (category) {
             case 'Web Dev': return <Code className="w-16 h-16 text-teal-400" />;
-            case 'AI': return <Brain className="w-16 h-16 text-orange-400" />;
+            case 'AI': return <Brain className="w-16 h-16 text-rose-400" />;
             case 'DSA': return <Binary className="w-16 h-16 text-emerald-400" />;
-            case 'System Design': return <Server className="w-16 h-16 text-amber-400" />;
-            case 'Finance': return <TrendingUp className="w-16 h-16 text-yellow-400" />;
-            case 'Coding': return <Terminal className="w-16 h-16 text-lime-400" />;
+            case 'System Design': return <Server className="w-16 h-16 text-indigo-400" />;
+            case 'Finance': return <TrendingUp className="w-16 h-16 text-cyan-400" />;
+            case 'Coding': return <Terminal className="w-16 h-16 text-violet-400" />;
             default: return <Cpu className="w-16 h-16 text-slate-400" />;
         }
     };
@@ -165,7 +165,7 @@ export default function CourseCard({ course, index, isCompact = false }: CourseC
 
                 {/* Vibe Score Badge */}
                 <div className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-1.5 bg-black/60 backdrop-blur-md border border-white/10 text-white rounded-full shadow-lg z-30">
-                    <Zap className="w-3 h-3 text-yellow-400 fill-current" />
+                    <Zap className="w-3 h-3 text-teal-400 fill-current" />
                     <span className="text-xs font-bold">{vibeScore}</span>
                 </div>
             </div>

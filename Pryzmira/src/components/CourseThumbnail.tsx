@@ -30,7 +30,7 @@ export default function CourseThumbnail({ category, className = '' }: CourseThum
                 };
             case 'DSA':
                 return {
-                    gradient: 'from-amber-600 to-orange-400',
+                    gradient: 'from-teal-600 to-cyan-500',
                     icon: GitGraph,
                     pattern: 'radial-gradient(circle at 80% 80%, rgba(255,255,255,0.15) 0%, transparent 40%)'
                 };

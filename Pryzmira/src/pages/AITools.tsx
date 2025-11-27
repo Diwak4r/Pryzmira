@@ -24,7 +24,7 @@ export default function AITools() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent/10 rounded-full blur-[100px] -z-10" />
 
                 <h1 className="text-5xl md:text-7xl font-black mb-6 text-text-primary tracking-tight">
-                    AI Tools <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-lime-500">Directory</span>
+                    AI Tools <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-teal-400">Directory</span>
                 </h1>
                 <p className="text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed font-medium">
                     Discover the best AI tools to supercharge your productivity and creativity.

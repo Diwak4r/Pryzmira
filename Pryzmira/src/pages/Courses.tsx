@@ -66,7 +66,7 @@ export default function Courses() {
                     }}
                 />
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-accent/20 rounded-full blur-[120px] -z-10 opacity-50" />
-                <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-lime-500/10 rounded-full blur-[100px] -z-10 opacity-30" />
+                <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-teal-500/10 rounded-full blur-[100px] -z-10 opacity-30" />
 
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <motion.div
@@ -80,7 +80,7 @@ export default function Courses() {
                         </div>
                         <h1 className="text-6xl md:text-8xl font-black text-text-primary tracking-tight mb-8 leading-tight">
                             Master the Skills <br className="hidden md:block" />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-lime-500">That Matter.</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-teal-400">That Matter.</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
                             Curated paths for Developers, Designers, and Founders. <br />
