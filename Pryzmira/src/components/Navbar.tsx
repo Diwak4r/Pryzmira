@@ -20,12 +20,13 @@ export default function Navbar() {
         <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
             <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                 {/* Logo */}
-                <div className="flex items-center gap-2 group cursor-pointer">
+                {/* Logo */}
+                <NavLink to="/" className="flex items-center gap-2 group cursor-pointer">
                     <div className="p-2 bg-gradient-to-tr from-primary to-accent rounded-lg shadow-lg shadow-accent/20 group-hover:shadow-accent/40 transition-all duration-300">
                         <Zap className="w-5 h-5 text-white fill-current" />
                     </div>
                     <span className="text-xl font-bold tracking-tight text-text-primary group-hover:text-accent transition-colors">Pryzmira</span>
-                </div>
+                </NavLink>
 
                 {/* Search Bar (Desktop) */}
                 <div className="hidden lg:flex items-center relative max-w-xs w-full mx-6 group">
