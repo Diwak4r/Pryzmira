@@ -1,0 +1,3444 @@
+[
+    {
+        "id": 1,
+        "title": "Web Development in Hindi",
+        "instructor": "Code With Harry",
+        "category": "Web Dev",
+        "image": "https://img.youtube.com/vi/Oa9tWuVRCVg/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9agq5TrH9XLIKQvv0iaF2X3w",
+        "description": "Complete web development course covering HTML, CSS, JS, and backend in Hindi.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "100+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.3,
+        "reviewCount": 1556,
+        "students": 19877,
+        "completionRate": 86,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Web Dev"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 19,877+ learners"
+        ],
+        "careerRelevance": "Frontend Developer Intern, Junior Web Dev"
+    },
+    {
+        "id": 2,
+        "title": "Web Dev Bootcamp 2024",
+        "instructor": "Harkirat Singh",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/@harkirat1",
+        "description": "A comprehensive bootcamp for full-stack development focusing on modern tech stacks.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "Ongoing",
+        "instructor_lang": "English",
+        "rating": 4,
+        "reviewCount": 1072,
+        "students": 10687,
+        "completionRate": 80,
+        "tags": [
+            "New"
+        ],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 10,687+ learners"
+        ],
+        "careerRelevance": "Full Stack Developer, SDE I (Startup)"
+    },
+    {
+        "id": 3,
+        "title": "DevOps for Web Developers",
+        "instructor": "Hitesh Choudhury",
+        "category": "Web Dev",
+        "image": "https://img.youtube.com/vi/k_0Zzv8tQSk/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLRAV69dS1u7TazcAFfIB7JOE6666J3A0v",
+        "description": "Learn the essentials of DevOps specifically tailored for web developers.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 1880,
+        "students": 40824,
+        "completionRate": 91,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 40,824+ learners"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Chai Aur React",
+        "instructor": "Hitesh Choudhury",
+        "category": "Web Dev",
+        "image": "https://img.youtube.com/vi/vz1RlUyrc3w/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLu71SKxNbfoDqgPchsyalHP2_TESdFfLz",
+        "description": "Deep dive into React.js with practical projects and in-depth explanations.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "20 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.7,
+        "reviewCount": 1391,
+        "students": 33412,
+        "completionRate": 90,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Web Dev"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 33,412+ learners"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Advanced CSS and Sass",
+        "instructor": "Jonas Schmedtmann",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/advanced-css-and-sass/",
+        "description": "Master modern CSS, flexbox, grid, animations, and Sass.",
+        "difficulty": "Advanced",
+        "type": "Udemy",
+        "duration": "28 hours",
+        "instructor_lang": "English",
+        "rating": 4.4,
+        "reviewCount": 3950,
+        "students": 4115,
+        "completionRate": 78,
+        "tags": [],
+        "prerequisites": [
+            "Intermediate Web Dev",
+            "Data Structures"
+        ],
+        "nextCourses": [
+            "Mastery Certification"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 4,115+ learners"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Full Stack JavaScript",
+        "instructor": "The Odin Project",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1531297461136-82lw9z28a785?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.theodinproject.com/paths/full-stack-javascript",
+        "description": "A free open source full-stack curriculum.",
+        "difficulty": "Beginner",
+        "type": "Free",
+        "duration": "Self-paced",
+        "instructor_lang": "English",
+        "rating": 4.2,
+        "reviewCount": 4008,
+        "students": 9310,
+        "completionRate": 77,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Web Dev"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 9,310+ learners"
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Namaste JavaScript",
+        "instructor": "Akshay Saini",
+        "category": "Web Dev",
+        "image": "https://img.youtube.com/vi/pN6jk0uUrD8/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP",
+        "description": "Deep dive into JavaScript internals and core concepts.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "15 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 3167,
+        "students": 30942,
+        "completionRate": 94,
+        "tags": [
+            "New"
+        ],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 30,942+ learners"
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Next.js 14 Full Course",
+        "instructor": "CodeWithAntonio",
+        "category": "Web Dev",
+        "image": "https://img.youtube.com/vi/5wjdVG9n8YB/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=5wjdVG9n8YB",
+        "description": "Build a full-stack Trello clone with Next.js 14, Server Actions, React, Prisma, Tailwind, MySQL.",
+        "difficulty": "Advanced",
+        "type": "YouTube",
+        "duration": "12 hours",
+        "instructor_lang": "English",
+        "rating": 4.2,
+        "reviewCount": 949,
+        "students": 22478,
+        "completionRate": 88,
+        "tags": [],
+        "prerequisites": [
+            "Intermediate Web Dev",
+            "Data Structures"
+        ],
+        "nextCourses": [
+            "Mastery Certification"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 22,478+ learners"
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Machine Learning Specialization",
+        "instructor": "Andrew Ng",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+        "description": "A foundational program that will help you understand the capabilities, challenges, and consequences of deep learning.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "3 months",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 619,
+        "students": 32992,
+        "completionRate": 77,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate AI"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 32,992+ learners"
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Generative AI with LLMs",
+        "instructor": "DeepLearning.AI",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/generative-ai-with-llms",
+        "description": "Learn how generative AI works, and how to deploy it in real-world applications.",
+        "difficulty": "Intermediate",
+        "type": "Coursera",
+        "duration": "3 weeks",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 758,
+        "students": 2638,
+        "completionRate": 92,
+        "tags": [
+            "Best Seller"
+        ],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to AI"
+        ],
+        "nextCourses": [
+            "Advanced AI Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 2,638+ learners"
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Google AI Essentials",
+        "instructor": "Google",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/google-ai-essentials",
+        "description": "Learn how to use generative AI tools to help speed up daily tasks.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4,
+        "reviewCount": 1617,
+        "students": 1774,
+        "completionRate": 80,
+        "tags": [
+            "New"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate AI"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 1,774+ learners"
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Elements of AI",
+        "instructor": "University of Helsinki",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.elementsofai.com/",
+        "description": "A series of free online courses created by Reaktor and the University of Helsinki.",
+        "difficulty": "Beginner",
+        "type": "Free",
+        "duration": "Self-paced",
+        "instructor_lang": "English",
+        "rating": 5,
+        "reviewCount": 2086,
+        "students": 25207,
+        "completionRate": 92,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate AI"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 25,207+ learners"
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Microsoft AI for Beginners",
+        "instructor": "Microsoft",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=800&q=80",
+        "url": "https://github.com/microsoft/AI-For-Beginners",
+        "description": "12-week, 24-lesson curriculum exploring Artificial Intelligence.",
+        "difficulty": "Beginner",
+        "type": "Free",
+        "duration": "12 weeks",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 2929,
+        "students": 25282,
+        "completionRate": 84,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate AI"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 25,282+ learners"
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Complete DSA Course",
+        "instructor": "Striver",
+        "category": "DSA",
+        "image": "https://img.youtube.com/vi/5_5oE5lgrhw/maxresdefault.jpg",
+        "url": "https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/",
+        "description": "The most comprehensive DSA course available for free.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "50+ hours",
+        "instructor_lang": "English",
+        "rating": 4.3,
+        "reviewCount": 4031,
+        "students": 18853,
+        "completionRate": 84,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to DSA"
+        ],
+        "nextCourses": [
+            "Advanced DSA Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 18,853+ learners"
+        ],
+        "careerRelevance": "SDE I/II at FAANG, Product-Based Companies"
+    },
+    {
+        "id": 15,
+        "title": "DSA Sheet Complete",
+        "instructor": "Apna College",
+        "category": "DSA",
+        "image": "https://img.youtube.com/vi/z9bZufPHFLU/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop",
+        "description": "Complete placement preparation course with C++.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "40+ hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.3,
+        "reviewCount": 327,
+        "students": 33949,
+        "completionRate": 90,
+        "tags": [
+            "New"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate DSA"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 33,949+ learners"
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Data Structures in C++",
+        "instructor": "Abdul Bari",
+        "category": "DSA",
+        "image": "https://img.youtube.com/vi/0IAPZzGSbME/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O",
+        "description": "Algorithms and data structures explained simply and intuitively.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ hours",
+        "instructor_lang": "English",
+        "rating": 4.2,
+        "reviewCount": 3309,
+        "students": 34247,
+        "completionRate": 94,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to DSA"
+        ],
+        "nextCourses": [
+            "Advanced DSA Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 34,247+ learners"
+        ]
+    },
+    {
+        "id": 17,
+        "title": "DSA with JavaScript",
+        "instructor": "Kunal Kushwaha",
+        "category": "DSA",
+        "image": "https://img.youtube.com/vi/rZ41y93P2Qo/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ",
+        "description": "Complete Data Structures and Algorithms in Java and DevOps.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "60+ hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 3968,
+        "students": 32427,
+        "completionRate": 87,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to DSA"
+        ],
+        "nextCourses": [
+            "Advanced DSA Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 32,427+ learners"
+        ]
+    },
+    {
+        "id": 18,
+        "title": "Complete System Design",
+        "instructor": "Striver",
+        "category": "System Design",
+        "image": "https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY",
+        "description": "Learn high-level system design concepts for interviews.",
+        "difficulty": "Advanced",
+        "type": "YouTube",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.2,
+        "reviewCount": 1234,
+        "students": 32812,
+        "completionRate": 86,
+        "tags": [],
+        "prerequisites": [
+            "Intermediate System Design",
+            "Data Structures"
+        ],
+        "nextCourses": [
+            "Mastery Certification"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 32,812+ learners"
+        ]
+    },
+    {
+        "id": 19,
+        "title": "System Design for Placements",
+        "instructor": "Apna College",
+        "category": "System Design",
+        "image": "https://img.youtube.com/vi/m8Icp_Cid5o/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=m8Icp_Cid5o",
+        "description": "System design basics for freshers and experienced professionals.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "2 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.2,
+        "reviewCount": 1465,
+        "students": 29360,
+        "completionRate": 87,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to System Design"
+        ],
+        "nextCourses": [
+            "Advanced System Design Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 29,360+ learners"
+        ]
+    },
+    {
+        "id": 20,
+        "title": "Financial Markets",
+        "instructor": "Yale University",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/financial-markets-global",
+        "description": "An overview of the ideas, methods, and institutions that permit human society to manage risks and foster enterprise.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "30 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 3807,
+        "students": 6922,
+        "completionRate": 79,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Finance"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 6,922+ learners"
+        ]
+    },
+    {
+        "id": 21,
+        "title": "Introduction to Finance",
+        "instructor": "Wharton School",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/specializations/introduction-to-finance",
+        "description": "Learn the fundamentals of finance and accounting.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "4 months",
+        "instructor_lang": "English",
+        "rating": 5,
+        "reviewCount": 3844,
+        "students": 13551,
+        "completionRate": 88,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Finance"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 13,551+ learners"
+        ]
+    },
+    {
+        "id": 22,
+        "title": "Competitive Programming Guide",
+        "instructor": "William Fiset",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu",
+        "description": "Algorithms and data structures for competitive programming.",
+        "difficulty": "Advanced",
+        "type": "YouTube",
+        "duration": "20 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 1551,
+        "students": 1880,
+        "completionRate": 90,
+        "tags": [],
+        "prerequisites": [
+            "Intermediate Coding",
+            "Data Structures"
+        ],
+        "nextCourses": [
+            "Mastery Certification"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 1,880+ learners"
+        ]
+    },
+    {
+        "id": 23,
+        "title": "Algorithms Specialization",
+        "instructor": "Stanford University",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/specializations/algorithms",
+        "description": "Learn to think like a computer scientist and master the fundamentals of algorithms.",
+        "difficulty": "Advanced",
+        "type": "Coursera",
+        "duration": "4 months",
+        "instructor_lang": "English",
+        "rating": 4,
+        "reviewCount": 1163,
+        "students": 2106,
+        "completionRate": 92,
+        "tags": [
+            "New"
+        ],
+        "prerequisites": [
+            "Intermediate Coding",
+            "Data Structures"
+        ],
+        "nextCourses": [
+            "Mastery Certification"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 2,106+ learners"
+        ]
+    },
+    {
+        "id": 24,
+        "title": "Python for Everybody",
+        "instructor": "Dr. Charles Severance",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.py4e.com/",
+        "description": "Zero to Hero Python course.",
+        "difficulty": "Beginner",
+        "type": "Free",
+        "duration": "Self-paced",
+        "instructor_lang": "English",
+        "rating": 4,
+        "reviewCount": 2904,
+        "students": 13788,
+        "completionRate": 79,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Coding"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 13,788+ learners"
+        ]
+    },
+    {
+        "id": 25,
+        "title": "CS50's Introduction to Computer Science",
+        "instructor": "David J. Malan",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+        "url": "https://cs50.harvard.edu/x/",
+        "description": "An introduction to the intellectual enterprises of computer science and the art of programming.",
+        "difficulty": "Beginner",
+        "type": "Free",
+        "duration": "12 weeks",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 1682,
+        "students": 35560,
+        "completionRate": 78,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Coding"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 35,560+ learners"
+        ]
+    },
+    {
+        "id": 26,
+        "title": "React Native - The Practical Guide",
+        "instructor": "Maximilian Schwarzmüller",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1531297461136-82lw9z28a785?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/react-native-the-practical-guide/",
+        "description": "Use React Native and your React knowledge to build native iOS and Android Apps.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "28 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 272,
+        "students": 36436,
+        "completionRate": 87,
+        "tags": [
+            "Best Seller"
+        ],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 36,436+ learners"
+        ]
+    },
+    {
+        "id": 27,
+        "title": "Flutter & Dart - The Complete Guide",
+        "instructor": "Maximilian Schwarzmüller",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/",
+        "description": "A Complete Guide to the Flutter SDK & Dart Programming Framework for building native iOS and Android apps.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "40 hours",
+        "instructor_lang": "English",
+        "rating": 4.3,
+        "reviewCount": 932,
+        "students": 8090,
+        "completionRate": 88,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 8,090+ learners"
+        ]
+    },
+    {
+        "id": 28,
+        "title": "Docker and Kubernetes: The Complete Guide",
+        "instructor": "Stephen Grider",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/",
+        "description": "Build, test, and deploy Docker applications with Kubernetes while learning production-style development workflows.",
+        "difficulty": "Advanced",
+        "type": "Udemy",
+        "duration": "22 hours",
+        "instructor_lang": "English",
+        "rating": 4.4,
+        "reviewCount": 4010,
+        "students": 13627,
+        "completionRate": 77,
+        "tags": [
+            "Trending"
+        ],
+        "prerequisites": [
+            "Intermediate Web Dev",
+            "Data Structures"
+        ],
+        "nextCourses": [
+            "Mastery Certification"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 13,627+ learners"
+        ]
+    },
+    {
+        "id": 29,
+        "title": "Understanding TypeScript",
+        "instructor": "Maximilian Schwarzmüller",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/understanding-typescript/",
+        "description": "Don't limit the Usage of TypeScript to Angular! Learn the basics, its features, workflows and how to use it!",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "15 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 1450,
+        "students": 39349,
+        "completionRate": 75,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 39,349+ learners"
+        ]
+    },
+    {
+        "id": 30,
+        "title": "The Complete 2024 Web Development Bootcamp",
+        "instructor": "Angela Yu",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
+        "description": "Become a Full-Stack Web Developer with just ONE course. HTML, CSS, Javascript, Node, React, MongoDB, Web3 and DApps.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "65 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 2307,
+        "students": 31652,
+        "completionRate": 91,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Web Dev"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 31,652+ learners"
+        ]
+    },
+    {
+        "id": 31,
+        "title": "100 Days of Code: The Complete Python Pro Bootcamp",
+        "instructor": "Angela Yu",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/100-days-of-code/",
+        "description": "Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "60 hours",
+        "instructor_lang": "English",
+        "rating": 4,
+        "reviewCount": 3768,
+        "students": 15088,
+        "completionRate": 94,
+        "tags": [
+            "New"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Coding"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 15,088+ learners"
+        ]
+    },
+    {
+        "id": 32,
+        "title": "Java Programming Masterclass",
+        "instructor": "Tim Buchalka",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/java-the-complete-java-developer-course/",
+        "description": "Learn Java In This Course And Become a Computer Programmer. Obtain valuable Core Java Skills And Java Certification.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "80 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 3996,
+        "students": 5003,
+        "completionRate": 87,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Coding"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 5,003+ learners"
+        ]
+    },
+    {
+        "id": 33,
+        "title": "C++ Programming",
+        "instructor": "CodeWithHarry",
+        "category": "Coding",
+        "image": "https://img.youtube.com/vi/yGB9jhsEsr8/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9agp6E9f53MTG4nC_xMly4dn",
+        "description": "C++ tutorials in Hindi.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "70+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.8,
+        "reviewCount": 1611,
+        "students": 20657,
+        "completionRate": 79,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Coding"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 20,657+ learners"
+        ]
+    },
+    {
+        "id": 34,
+        "title": "Python Tutorials",
+        "instructor": "CodeWithHarry",
+        "category": "Coding",
+        "image": "https://img.youtube.com/vi/gfDE2a7MKjA/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9agICnT8t4iYVSZ3eykIAOME",
+        "description": "Python tutorials in Hindi.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "100+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.6,
+        "reviewCount": 1351,
+        "students": 6885,
+        "completionRate": 91,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Coding"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 6,885+ learners"
+        ]
+    },
+    {
+        "id": 35,
+        "title": "JavaScript Tutorials",
+        "instructor": "CodeWithHarry",
+        "category": "Web Dev",
+        "image": "https://img.youtube.com/vi/hKB-YGF14SY/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ajyk081To1Cbt2eI5913SsL",
+        "description": "JavaScript tutorials in Hindi.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "100+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4,
+        "reviewCount": 502,
+        "students": 8002,
+        "completionRate": 87,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Web Dev"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 8,002+ learners"
+        ]
+    },
+    {
+        "id": 36,
+        "title": "React JS Tutorials",
+        "instructor": "CodeWithHarry",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9agx66oZnT6IyhcMIbUMNMdt",
+        "description": "React JS tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "50+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.9,
+        "reviewCount": 879,
+        "students": 14032,
+        "completionRate": 83,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 14,032+ learners"
+        ]
+    },
+    {
+        "id": 37,
+        "title": "Next JS Tutorials",
+        "instructor": "CodeWithHarry",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9agtWvR_TZdb_r0dNI8-lDwG",
+        "description": "Next JS tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.8,
+        "reviewCount": 3246,
+        "students": 5315,
+        "completionRate": 85,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 5,315+ learners"
+        ]
+    },
+    {
+        "id": 38,
+        "title": "Tailwind CSS Tutorials",
+        "instructor": "CodeWithHarry",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ahwFodIgF97MpGCKT_UVcSX",
+        "description": "Tailwind CSS tutorials in Hindi.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "20+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.6,
+        "reviewCount": 1478,
+        "students": 9919,
+        "completionRate": 84,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Web Dev"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 9,919+ learners"
+        ]
+    },
+    {
+        "id": 39,
+        "title": "Git and GitHub Tutorials",
+        "instructor": "CodeWithHarry",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9agwh1XjRt242xIpHhPT2llg",
+        "description": "Git and GitHub tutorials in Hindi.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "10+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.9,
+        "reviewCount": 1158,
+        "students": 12542,
+        "completionRate": 89,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Web Dev"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 12,542+ learners"
+        ]
+    },
+    {
+        "id": 40,
+        "title": "Linux Tutorials",
+        "instructor": "CodeWithHarry",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9aiW7g12sNZj98_tC5M6QZ_E",
+        "description": "Linux tutorials in Hindi.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "10+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.8,
+        "reviewCount": 1602,
+        "students": 37227,
+        "completionRate": 75,
+        "tags": [
+            "Trending"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Intermediate Coding"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 37,227+ learners"
+        ]
+    },
+    {
+        "id": 41,
+        "title": "Android Development",
+        "instructor": "CodeWithHarry",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9aiL0kysYlfSOUgY5rNlOhUd",
+        "description": "Android Development tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "50+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.7,
+        "reviewCount": 383,
+        "students": 38075,
+        "completionRate": 93,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Coding"
+        ],
+        "nextCourses": [
+            "Advanced Coding Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 38,075+ learners"
+        ]
+    },
+    {
+        "id": 42,
+        "title": "Machine Learning",
+        "instructor": "CodeWithHarry",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ai6fAMHp-acBmJONT7Y4BSG",
+        "description": "Machine Learning tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.3,
+        "reviewCount": 1926,
+        "students": 10691,
+        "completionRate": 84,
+        "tags": [
+            "Popular"
+        ],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to AI"
+        ],
+        "nextCourses": [
+            "Advanced AI Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 10,691+ learners"
+        ]
+    },
+    {
+        "id": 43,
+        "title": "Artificial Intelligence",
+        "instructor": "CodeWithHarry",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ai6fAMHp-acBmJONT7Y4BSG",
+        "description": "Artificial Intelligence tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.8,
+        "reviewCount": 1384,
+        "students": 19499,
+        "completionRate": 83,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to AI"
+        ],
+        "nextCourses": [
+            "Advanced AI Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 19,499+ learners"
+        ]
+    },
+    {
+        "id": 44,
+        "title": "Data Science",
+        "instructor": "CodeWithHarry",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ai6fAMHp-acBmJONT7Y4BSG",
+        "description": "Data Science tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.5,
+        "reviewCount": 2301,
+        "students": 16248,
+        "completionRate": 84,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to AI"
+        ],
+        "nextCourses": [
+            "Advanced AI Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 16,248+ learners"
+        ]
+    },
+    {
+        "id": 45,
+        "title": "Big Data",
+        "instructor": "CodeWithHarry",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ai6fAMHp-acBmJONT7Y4BSG",
+        "description": "Big Data tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.5,
+        "reviewCount": 2065,
+        "students": 30219,
+        "completionRate": 87,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to AI"
+        ],
+        "nextCourses": [
+            "Advanced AI Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 30,219+ learners"
+        ]
+    },
+    {
+        "id": 46,
+        "title": "Blockchain",
+        "instructor": "CodeWithHarry",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1531297461136-82lw9z28a785?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ai6fAMHp-acBmJONT7Y4BSG",
+        "description": "Blockchain tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.4,
+        "reviewCount": 1275,
+        "students": 22414,
+        "completionRate": 86,
+        "tags": [
+            "Popular"
+        ],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Coding"
+        ],
+        "nextCourses": [
+            "Advanced Coding Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 22,414+ learners"
+        ]
+    },
+    {
+        "id": 47,
+        "title": "Cyber Security",
+        "instructor": "CodeWithHarry",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ai6fAMHp-acBmJONT7Y4BSG",
+        "description": "Cyber Security tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.1,
+        "reviewCount": 730,
+        "students": 6277,
+        "completionRate": 93,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Coding"
+        ],
+        "nextCourses": [
+            "Advanced Coding Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 6,277+ learners"
+        ]
+    },
+    {
+        "id": 48,
+        "title": "Ethical Hacking",
+        "instructor": "CodeWithHarry",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ai6fAMHp-acBmJONT7Y4BSG",
+        "description": "Ethical Hacking tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4,
+        "reviewCount": 2087,
+        "students": 31063,
+        "completionRate": 85,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Coding"
+        ],
+        "nextCourses": [
+            "Advanced Coding Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 31,063+ learners"
+        ]
+    },
+    {
+        "id": 49,
+        "title": "Cloud Computing",
+        "instructor": "CodeWithHarry",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ai6fAMHp-acBmJONT7Y4BSG",
+        "description": "Cloud Computing tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4,
+        "reviewCount": 2984,
+        "students": 11965,
+        "completionRate": 91,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 11,965+ learners"
+        ]
+    },
+    {
+        "id": 50,
+        "title": "DevOps",
+        "instructor": "CodeWithHarry",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9ai6fAMHp-acBmJONT7Y4BSG",
+        "description": "DevOps tutorials in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "30+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.7,
+        "reviewCount": 321,
+        "students": 3845,
+        "completionRate": 91,
+        "tags": [],
+        "prerequisites": [
+            "Basic Programming",
+            "Intro to Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Web Dev Projects"
+        ],
+        "benefits": [
+            "Master core concepts through hands-on projects",
+            "Build a professional portfolio ready for interviews",
+            "Join a community of 3,845+ learners"
+        ]
+    },
+    {
+        "id": 29,
+        "title": "Google UX Design Professional Certificate",
+        "instructor": "Google",
+        "category": "UI/UX",
+        "image": "https://images.unsplash.com/photo-1586717791821-3f44a5638d0f?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/professional-certificates/google-ux-design",
+        "description": "Start your career in User Experience (UX) Design. No experience required.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "6 months",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 75000,
+        "students": 980000,
+        "completionRate": 85,
+        "tags": [
+            "Best Seller",
+            "Career Certificate"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced UX Research"
+        ],
+        "benefits": [
+            "Build a professional portfolio",
+            "Learn from Google experts",
+            "Get job-ready skills"
+        ],
+        "careerRelevance": "UX Designer, UI Designer"
+    },
+    {
+        "id": 30,
+        "title": "Product Management: It's a Process, Not a Role",
+        "instructor": "Stephen Grand",
+        "category": "Product Management",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/product-management-process/",
+        "description": "Learn the core skills of product management from a Silicon Valley veteran.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "5 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 1200,
+        "students": 8500,
+        "completionRate": 90,
+        "tags": [],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Product Strategy"
+        ],
+        "benefits": [
+            "Understand the PM lifecycle",
+            "Learn to prioritize features",
+            "Master stakeholder management"
+        ],
+        "careerRelevance": "Associate Product Manager"
+    },
+    {
+        "id": 31,
+        "title": "The Complete Digital Marketing Course - 12 Courses in 1",
+        "instructor": "Rob Percival",
+        "category": "Marketing",
+        "image": "https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/learn-digital-marketing-course/",
+        "description": "Master Digital Marketing Strategy, Social Media Marketing, SEO, YouTube, Email, Facebook Marketing, Analytics & More!",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "22 hours",
+        "instructor_lang": "English",
+        "rating": 4.4,
+        "reviewCount": 160000,
+        "students": 750000,
+        "completionRate": 82,
+        "tags": [
+            "Best Seller"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced SEO"
+        ],
+        "benefits": [
+            "Grow a business from scratch",
+            "Get hired as a digital marketer",
+            "Work as a freelancer"
+        ],
+        "careerRelevance": "Digital Marketing Specialist"
+    },
+    {
+        "id": 32,
+        "title": "Blockchain A-Z™: Learn How To Build Your First Blockchain",
+        "instructor": "Hadelin de Ponteves",
+        "category": "Blockchain",
+        "image": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/build-your-blockchain-az/",
+        "description": "Understand the theory behind Blockchain and create your own currency.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "14 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 45000,
+        "students": 210000,
+        "completionRate": 88,
+        "tags": [],
+        "prerequisites": [
+            "Basic Python"
+        ],
+        "nextCourses": [
+            "Smart Contract Development"
+        ],
+        "benefits": [
+            "Understand Blockchain intuition",
+            "Create a Cryptocurrency",
+            "Create a Smart Contract"
+        ],
+        "careerRelevance": "Blockchain Developer"
+    },
+    {
+        "id": 33,
+        "title": "IBM Data Science Professional Certificate",
+        "instructor": "IBM",
+        "category": "Data Science",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/professional-certificates/ibm-data-science",
+        "description": "Kickstart your career in data science & ML. Build data science skills, learn Python & SQL, analyze & visualize data, build machine learning models.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "5 months",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 65000,
+        "students": 250000,
+        "completionRate": 80,
+        "tags": [
+            "Career Certificate"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Machine Learning"
+        ],
+        "benefits": [
+            "Master Python for Data Science",
+            "Learn SQL and Data Visualization",
+            "Build a portfolio of data projects"
+        ],
+        "careerRelevance": "Data Scientist, Data Analyst"
+    },
+    {
+        "id": 34,
+        "title": "The Complete Web Development Bootcamp",
+        "instructor": "Dr. Angela Yu",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
+        "description": "Become a full-stack web developer with just one course. HTML, CSS, Javascript, Node, React, MongoDB, Web3 and DApps.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "65 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 380000,
+        "students": 1200000,
+        "completionRate": 85,
+        "tags": [
+            "Best Seller",
+            "Bootcamp"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced React"
+        ],
+        "benefits": [
+            "Build 16 web development projects",
+            "Master backend development with Node",
+            "Learn React.js"
+        ],
+        "careerRelevance": "Full Stack Developer"
+    },
+    {
+        "id": 35,
+        "title": "The Complete Digital Marketing Course",
+        "instructor": "Rob Percival",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/learn-digital-marketing-course/",
+        "description": "Master Digital Marketing Strategy, Social Media Marketing, SEO, YouTube, Email, Facebook Marketing, Analytics & More!",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "22 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 160000,
+        "students": 750000,
+        "completionRate": 80,
+        "tags": [
+            "Marketing",
+            "Business"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced SEO"
+        ],
+        "benefits": [
+            "Grow a business from scratch",
+            "Get hired as a digital marketer",
+            "Work as a freelancer"
+        ],
+        "careerRelevance": "Digital Marketer, Marketing Manager"
+    },
+    {
+        "id": 36,
+        "title": "Google Data Analytics Professional Certificate",
+        "instructor": "Google",
+        "category": "Data Science",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/professional-certificates/google-data-analytics",
+        "description": "Gain an immersive understanding of the practices and processes used by a junior or associate data analyst in their day-to-day job.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "6 months",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 130000,
+        "students": 2100000,
+        "completionRate": 88,
+        "tags": [
+            "Career Certificate",
+            "Google"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Data Science"
+        ],
+        "benefits": [
+            "Learn data cleaning and visualization",
+            "Master R programming",
+            "Complete a case study"
+        ],
+        "careerRelevance": "Data Analyst"
+    },
+    {
+        "id": 37,
+        "title": "Google Project Management: Professional Certificate",
+        "instructor": "Google",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1542626991-cbc4e32524cc?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/professional-certificates/google-project-management",
+        "description": "Start your path to a career in project management. In this program, you’ll learn in-demand skills that will have you job-ready in less than six months.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "6 months",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 98000,
+        "students": 1500000,
+        "completionRate": 85,
+        "tags": [
+            "Career Certificate",
+            "Business"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Agile Certification"
+        ],
+        "benefits": [
+            "Master Agile and Scrum",
+            "Learn project documentation",
+            "Gain leadership skills"
+        ],
+        "careerRelevance": "Project Manager"
+    },
+    {
+        "id": 38,
+        "title": "Google Cybersecurity Professional Certificate",
+        "instructor": "Google",
+        "category": "Cybersecurity",
+        "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/professional-certificates/google-cybersecurity",
+        "description": "Prepare for a career as a cybersecurity analyst with a professional certificate from Google. Learn how to identify and mitigate common risks, threats, and vulnerabilities.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "6 months",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 45000,
+        "students": 600000,
+        "completionRate": 82,
+        "tags": [
+            "Career Certificate",
+            "Security"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "CompTIA Security+"
+        ],
+        "benefits": [
+            "Master Python for Security",
+            "Learn SQL and Linux",
+            "Hands-on labs"
+        ],
+        "careerRelevance": "Cybersecurity Analyst"
+    },
+    {
+        "id": 39,
+        "title": "CS50's Web Programming with Python and JavaScript",
+        "instructor": "Harvard University",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript",
+        "description": "This course picks up where CS50 leaves off, diving more deeply into the design and implementation of web apps with Python, JavaScript, and SQL.",
+        "difficulty": "Intermediate",
+        "type": "edX",
+        "duration": "12 weeks",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 5000,
+        "students": 600000,
+        "completionRate": 75,
+        "tags": [
+            "Harvard",
+            "CS50"
+        ],
+        "prerequisites": [
+            "CS50x"
+        ],
+        "nextCourses": [
+            "Full Stack Projects"
+        ],
+        "benefits": [
+            "Master Django and React",
+            "Learn database design",
+            "Build scalable apps"
+        ],
+        "careerRelevance": "Web Developer"
+    },
+    {
+        "id": 40,
+        "title": "CS50's Introduction to Artificial Intelligence with Python",
+        "instructor": "Harvard University",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.edx.org/course/cs50s-introduction-to-artificial-intelligence-with-python",
+        "description": "Learn to use machine learning in Python in this introductory course on artificial intelligence.",
+        "difficulty": "Intermediate",
+        "type": "edX",
+        "duration": "7 weeks",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 4200,
+        "students": 550000,
+        "completionRate": 70,
+        "tags": [
+            "Harvard",
+            "CS50"
+        ],
+        "prerequisites": [
+            "CS50x",
+            "Python"
+        ],
+        "nextCourses": [
+            "Deep Learning"
+        ],
+        "benefits": [
+            "Master graph search algorithms",
+            "Learn reinforcement learning",
+            "Understand neural networks"
+        ],
+        "careerRelevance": "AI Engineer"
+    },
+    {
+        "id": 41,
+        "title": "Deep Learning Specialization",
+        "instructor": "DeepLearning.AI",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/specializations/deep-learning",
+        "description": "Become a Machine Learning expert. Master Deep Learning, and break into AI.",
+        "difficulty": "Intermediate",
+        "type": "Coursera",
+        "duration": "5 months",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 120000,
+        "students": 800000,
+        "completionRate": 78,
+        "tags": [
+            "Andrew Ng",
+            "Deep Learning"
+        ],
+        "prerequisites": [
+            "Machine Learning Basics"
+        ],
+        "nextCourses": [
+            "NLP Specialization"
+        ],
+        "benefits": [
+            "Master Neural Networks",
+            "Learn CNNs and RNNs",
+            "Build deep learning projects"
+        ],
+        "careerRelevance": "Deep Learning Engineer"
+    },
+    {
+        "id": 42,
+        "title": "Diploma in Project Management",
+        "instructor": "Alison",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+        "url": "https://alison.com/course/diploma-in-project-management",
+        "description": "Learn the most effective project management methodologies and techniques.",
+        "difficulty": "Intermediate",
+        "type": "Alison",
+        "duration": "10-15 hours",
+        "instructor_lang": "English",
+        "rating": 4.0,
+        "reviewCount": 2500,
+        "students": 300000,
+        "completionRate": 85,
+        "tags": [
+            "Diploma",
+            "Management"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "PMP Certification"
+        ],
+        "benefits": [
+            "Master project lifecycles",
+            "Learn risk management",
+            "Get a diploma"
+        ],
+        "careerRelevance": "Project Coordinator"
+    },
+    {
+        "id": 43,
+        "title": "Digital Skills: User Experience",
+        "instructor": "Accenture",
+        "category": "UI/UX",
+        "image": "https://images.unsplash.com/photo-1586717791821-3f44a5638d48?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.futurelearn.com/courses/digital-skills-user-experience",
+        "description": "Learn about why user experience (UX) is important, the research and design basics, and the tools and testing techniques used.",
+        "difficulty": "Beginner",
+        "type": "FutureLearn",
+        "duration": "3 weeks",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 1200,
+        "students": 150000,
+        "completionRate": 90,
+        "tags": [
+            "Design",
+            "UX"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced UX Design"
+        ],
+        "benefits": [
+            "Understand UX principles",
+            "Learn wireframing",
+            "Master user testing"
+        ],
+        "careerRelevance": "UX Designer"
+    },
+    {
+        "id": 44,
+        "title": "Introduction to Cyber Security: Stay Safe Online",
+        "instructor": "The Open University",
+        "category": "Cybersecurity",
+        "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.open.edu/openlearn/science-maths-technology/introduction-cyber-security-stay-safe-online/content-section-0",
+        "description": "Learn how to stay safe online and protect your digital life.",
+        "difficulty": "Beginner",
+        "type": "OpenLearn",
+        "duration": "24 hours",
+        "instructor_lang": "English",
+        "rating": 4.4,
+        "reviewCount": 800,
+        "students": 200000,
+        "completionRate": 88,
+        "tags": [
+            "Free",
+            "Security"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Network Security"
+        ],
+        "benefits": [
+            "Understand malware",
+            "Learn network security",
+            "Protect personal data"
+        ],
+        "careerRelevance": "IT Support"
+    },
+    {
+        "id": 45,
+        "title": "Learn Ethical Hacking from Scratch",
+        "instructor": "Zaid Sabih",
+        "category": "Cybersecurity",
+        "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/learn-ethical-hacking-from-scratch/",
+        "description": "Become an ethical hacker that can hack computer systems like black hat hackers and secure them like security experts.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "16 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 110000,
+        "students": 600000,
+        "completionRate": 85,
+        "tags": [
+            "Hacking",
+            "Security"
+        ],
+        "prerequisites": [
+            "Basic IT Skills"
+        ],
+        "nextCourses": [
+            "Advanced Penetration Testing"
+        ],
+        "benefits": [
+            "Master penetration testing",
+            "Learn network hacking",
+            "Understand social engineering"
+        ],
+        "careerRelevance": "Penetration Tester"
+    },
+    {
+        "id": 46,
+        "title": "Google UX Design Professional Certificate",
+        "instructor": "Google",
+        "category": "UI/UX",
+        "image": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/professional-certificates/google-ux-design",
+        "description": "This is your path to a career in UX design. In this program, you’ll learn in-demand skills that will have you job-ready in less than 6 months.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "6 months",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 75000,
+        "students": 1000000,
+        "completionRate": 82,
+        "tags": [
+            "Career Certificate",
+            "Design"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced UX Research"
+        ],
+        "benefits": [
+            "Master Figma and Adobe XD",
+            "Build a portfolio",
+            "Learn user research"
+        ],
+        "careerRelevance": "UX Designer"
+    },
+    {
+        "id": 47,
+        "title": "The Complete Python Bootcamp From Zero to Hero in Python",
+        "instructor": "Jose Portilla",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/complete-python-bootcamp/",
+        "description": "Learn Python like a Professional! Start from the basics and go all the way to creating your own applications and games.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "22 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 490000,
+        "students": 1800000,
+        "completionRate": 85,
+        "tags": [
+            "Best Seller",
+            "Python"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Python"
+        ],
+        "benefits": [
+            "Master Python 3",
+            "Build games with Python",
+            "Understand complex topics like decorators"
+        ],
+        "careerRelevance": "Python Developer"
+    },
+    {
+        "id": 48,
+        "title": "100 Days of Code: The Complete Python Pro Bootcamp",
+        "instructor": "Dr. Angela Yu",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/100-days-of-code/",
+        "description": "Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "60 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 280000,
+        "students": 1100000,
+        "completionRate": 80,
+        "tags": [
+            "Best Seller",
+            "Bootcamp"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Data Science with Python"
+        ],
+        "benefits": [
+            "Build 100 projects",
+            "Master Selenium and Beautiful Soup",
+            "Create a portfolio"
+        ],
+        "careerRelevance": "Python Developer, Data Scientist"
+    },
+    {
+        "id": 49,
+        "title": "The Complete JavaScript Course 2025: From Zero to Expert!",
+        "instructor": "Jonas Schmedtmann",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/the-complete-javascript-course/",
+        "description": "The modern JavaScript course for everyone! Master JavaScript with projects, challenges and theory. Many courses in one!",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "69 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 200000,
+        "students": 900000,
+        "completionRate": 88,
+        "tags": [
+            "Best Seller",
+            "JavaScript"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced React"
+        ],
+        "benefits": [
+            "Become a JavaScript expert",
+            "Understand how JS works behind the scenes",
+            "Build 6 beautiful real-world projects"
+        ],
+        "careerRelevance": "Frontend Developer"
+    },
+    {
+        "id": 50,
+        "title": "React – The Complete Guide 2025",
+        "instructor": "Maximilian Schwarzmüller",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
+        "description": "Dive in and learn React.js from scratch! Learn Reactjs, Hooks, Redux, React Routing, Animations, Next.js and way more!",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "50 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 220000,
+        "students": 850000,
+        "completionRate": 82,
+        "tags": [
+            "Best Seller",
+            "React"
+        ],
+        "prerequisites": [
+            "JavaScript Basics"
+        ],
+        "nextCourses": [
+            "Advanced Next.js"
+        ],
+        "benefits": [
+            "Build powerful React apps",
+            "Master Redux and Context API",
+            "Learn Next.js"
+        ],
+        "careerRelevance": "React Developer"
+    },
+    {
+        "id": 51,
+        "title": "Angular – The Complete Guide (2025 Edition)",
+        "instructor": "Maximilian Schwarzmüller",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
+        "description": "Master Angular 17 (formerly \"Angular 2\") and build awesome, reactive web apps with the successor of Angular.js.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "36 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 200000,
+        "students": 750000,
+        "completionRate": 80,
+        "tags": [
+            "Angular",
+            "Framework"
+        ],
+        "prerequisites": [
+            "JavaScript Basics"
+        ],
+        "nextCourses": [
+            "RxJS Mastery"
+        ],
+        "benefits": [
+            "Develop modern, complex, responsive and scalable web applications with Angular",
+            "Understand the architecture behind an Angular application",
+            "Create single-page applications"
+        ],
+        "careerRelevance": "Angular Developer"
+    },
+    {
+        "id": 52,
+        "title": "Machine Learning A-Z: AI, Python & R + ChatGPT Prize",
+        "instructor": "Kirill Eremenko",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/machinelearning/",
+        "description": "Learn to create Machine Learning Algorithms in Python and R from two Data Science experts. Code templates included.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "42 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 180000,
+        "students": 1000000,
+        "completionRate": 78,
+        "tags": [
+            "Best Seller",
+            "Machine Learning"
+        ],
+        "prerequisites": [
+            "Basic Math"
+        ],
+        "nextCourses": [
+            "Deep Learning A-Z"
+        ],
+        "benefits": [
+            "Master Machine Learning on Python & R",
+            "Make accurate predictions",
+            "Build a robust Machine Learning model"
+        ],
+        "careerRelevance": "Data Scientist, ML Engineer"
+    },
+    {
+        "id": 53,
+        "title": "Artificial Intelligence A-Z 2025: Build 7 AI + LLM & ChatGPT",
+        "instructor": "Hadelin de Ponteves",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/artificial-intelligence-az/",
+        "description": "Combine the power of Data Science, Machine Learning and Deep Learning to create powerful AI for Real-World applications!",
+        "difficulty": "Advanced",
+        "type": "Udemy",
+        "duration": "17 hours",
+        "instructor_lang": "English",
+        "rating": 4.4,
+        "reviewCount": 40000,
+        "students": 350000,
+        "completionRate": 75,
+        "tags": [
+            "AI",
+            "Deep Learning"
+        ],
+        "prerequisites": [
+            "Python Basics"
+        ],
+        "nextCourses": [
+            "Reinforcement Learning"
+        ],
+        "benefits": [
+            "Build an AI",
+            "Understand the theory behind Artificial Intelligence",
+            "Make a virtual self-driving car"
+        ],
+        "careerRelevance": "AI Engineer"
+    },
+    {
+        "id": 54,
+        "title": "Microsoft Excel – Excel from Beginner to Advanced",
+        "instructor": "Kyle Pew",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1543286386-713df548e9cc?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/microsoft-excel-2013-from-beginner-to-advanced-and-beyond/",
+        "description": "Master Microsoft Excel from Beginner to Advanced. Build a solid understanding on the Basics of Microsoft Excel.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "21 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 450000,
+        "students": 1500000,
+        "completionRate": 90,
+        "tags": [
+            "Best Seller",
+            "Excel"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "VBA Programming"
+        ],
+        "benefits": [
+            "Master the most popular Excel tools",
+            "Build dynamic reports",
+            "Automate daily tasks"
+        ],
+        "careerRelevance": "Data Analyst, Office Admin"
+    },
+    {
+        "id": 55,
+        "title": "An Entire MBA in 1 Course",
+        "instructor": "Chris Haroun",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/an-entire-mba-in-1-courseaward-winning-business-school-prof/",
+        "description": "Award Winning Business School Professor covers the entire MBA curriculum. Launch a company, take it public and more.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "8 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 65000,
+        "students": 500000,
+        "completionRate": 88,
+        "tags": [
+            "Business",
+            "MBA"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Financial Modeling"
+        ],
+        "benefits": [
+            "Launch a company",
+            "Get funding",
+            "Analyze financial statements"
+        ],
+        "careerRelevance": "Entrepreneur, Business Analyst"
+    },
+    {
+        "id": 56,
+        "title": "Ultimate AWS Certified Solutions Architect Associate 2025",
+        "instructor": "Stephane Maarek",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+        "description": "Full Practice Exam | Learn Cloud Computing | Pass the AWS Certified Solutions Architect Associate Certification SAA-C03!",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "27 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 250000,
+        "students": 1000000,
+        "completionRate": 85,
+        "tags": [
+            "Best Seller",
+            "AWS"
+        ],
+        "prerequisites": [
+            "Basic IT Knowledge"
+        ],
+        "nextCourses": [
+            "AWS Certified Professional"
+        ],
+        "benefits": [
+            "Pass the AWS Solutions Architect Associate exam",
+            "Design highly available and scalable systems",
+            "Master the AWS platform"
+        ],
+        "careerRelevance": "Cloud Architect"
+    },
+    {
+        "id": 57,
+        "title": "Graphic Design Masterclass",
+        "instructor": "Lindsay Marsh",
+        "category": "UI/UX",
+        "image": "https://images.unsplash.com/photo-1626785774573-4b799312afc2?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/graphic-design-masterclass-everything-you-need-to-know/",
+        "description": "The Ultimate Graphic Design Course Which Covers Photoshop, Illustrator, InDesign, Design Theory, Branding and Logo Design.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "29 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 45000,
+        "students": 250000,
+        "completionRate": 82,
+        "tags": [
+            "Design",
+            "Adobe"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Typography"
+        ],
+        "benefits": [
+            "Master Adobe Photoshop, Illustrator, and InDesign",
+            "Learn logo design and branding",
+            "Understand color theory and typography"
+        ],
+        "careerRelevance": "Graphic Designer"
+    },
+    {
+        "id": 58,
+        "title": "The Ultimate Drawing Course – Beginner to Advanced",
+        "instructor": "Jaysen Batchelor",
+        "category": "UI/UX",
+        "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/the-ultimate-drawing-course-beginner-to-advanced/",
+        "description": "Join over 450,000 students and learn how to draw with this comprehensive drawing course!",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "11 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 130000,
+        "students": 600000,
+        "completionRate": 80,
+        "tags": [
+            "Art",
+            "Drawing"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Digital Painting"
+        ],
+        "benefits": [
+            "Draw realistic light and shadow",
+            "Understand perspective",
+            "Draw the human face and figure"
+        ],
+        "careerRelevance": "Illustrator, Concept Artist"
+    },
+    {
+        "id": 59,
+        "title": "AI For Everyone",
+        "instructor": "Andrew Ng",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/ai-for-everyone",
+        "description": "AI is not just for engineers. If you want your organization to become better at using AI, this is the course to tell you how.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 40000,
+        "students": 1000000,
+        "completionRate": 92,
+        "tags": [
+            "AI",
+            "Business"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "AI Strategy"
+        ],
+        "benefits": [
+            "Understand AI terminology",
+            "Spot AI opportunities",
+            "Build an AI strategy"
+        ],
+        "careerRelevance": "Product Manager, Executive"
+    },
+    {
+        "id": 60,
+        "title": "Python for Everybody Specialization",
+        "instructor": "University of Michigan",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/specializations/python",
+        "description": "Learn to Program and Analyze Data with Python. Develop programs to gather, clean, analyze, and visualize data.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "8 months",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 200000,
+        "students": 1500000,
+        "completionRate": 85,
+        "tags": [
+            "Python",
+            "Data"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Django for Everybody"
+        ],
+        "benefits": [
+            "Install Python and write your first program",
+            "Use variables to store, retrieve and calculate information",
+            "Utilize core programming tools"
+        ],
+        "careerRelevance": "Python Developer"
+    },
+    {
+        "id": 61,
+        "title": "The Science of Well-Being",
+        "instructor": "Yale University",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/the-science-of-well-being",
+        "description": "In this course you will engage in a series of challenges designed to increase your own happiness and build more productive habits.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "19 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 40000,
+        "students": 4500000,
+        "completionRate": 95,
+        "tags": [
+            "Personal Development",
+            "Psychology"
+        ],
+        "prerequisites": [],
+        "nextCourses": [],
+        "benefits": [
+            "Increase your happiness",
+            "Build productive habits",
+            "Understand the science of well-being"
+        ],
+        "careerRelevance": "Personal Growth"
+    },
+    {
+        "id": 62,
+        "title": "Meta Front-End Developer Professional Certificate",
+        "instructor": "Meta",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer",
+        "description": "Launch your career as a front-end developer. Build job-ready skills for an in-demand career and earn a credential from Meta.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "7 months",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 15000,
+        "students": 200000,
+        "completionRate": 80,
+        "tags": [
+            "Career Certificate",
+            "Meta"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Meta Back-End Developer"
+        ],
+        "benefits": [
+            "Master React",
+            "Learn HTML5 and CSS3",
+            "Build a portfolio"
+        ],
+        "careerRelevance": "Front-End Developer"
+    },
+    {
+        "id": 63,
+        "title": "IBM Data Science Professional Certificate",
+        "instructor": "IBM",
+        "category": "Data Science",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/professional-certificates/ibm-data-science",
+        "description": "Kickstart your career in data science & ML. Build data science skills, learn Python & SQL, analyze & visualize data, build machine learning models.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "5 months",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 65000,
+        "students": 250000,
+        "completionRate": 80,
+        "tags": [
+            "Career Certificate",
+            "IBM"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Data Science"
+        ],
+        "benefits": [
+            "Master Python for Data Science",
+            "Learn SQL and Data Visualization",
+            "Build a portfolio of data projects"
+        ],
+        "careerRelevance": "Data Scientist"
+    },
+    {
+        "id": 64,
+        "title": "Introduction to Python Programming",
+        "instructor": "Georgia Tech",
+        "category": "Coding",
+        "image": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.edx.org/professional-certificate/introduction-to-python-programming",
+        "description": "Learn the fundamentals of computer science and programming in Python.",
+        "difficulty": "Beginner",
+        "type": "edX",
+        "duration": "5 months",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 3000,
+        "students": 400000,
+        "completionRate": 78,
+        "tags": [
+            "Python",
+            "CS"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Python"
+        ],
+        "benefits": [
+            "Write and debug Python code",
+            "Understand control structures",
+            "Learn data structures"
+        ],
+        "careerRelevance": "Software Developer"
+    },
+    {
+        "id": 65,
+        "title": "Data Structures and Algorithms",
+        "instructor": "Georgia Tech",
+        "category": "DSA",
+        "image": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.edx.org/professional-certificate/gtx-data-structures-and-algorithms",
+        "description": "Master the data structures and algorithms that are the foundation of computer science.",
+        "difficulty": "Intermediate",
+        "type": "edX",
+        "duration": "4 months",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 2000,
+        "students": 150000,
+        "completionRate": 70,
+        "tags": [
+            "DSA",
+            "CS"
+        ],
+        "prerequisites": [
+            "Java or C++"
+        ],
+        "nextCourses": [
+            "Advanced Algorithms"
+        ],
+        "benefits": [
+            "Master arrays, lists, and trees",
+            "Understand sorting and searching",
+            "Analyze algorithm complexity"
+        ],
+        "careerRelevance": "Software Engineer"
+    },
+    {
+        "id": 66,
+        "title": "Introduction to Project Management",
+        "instructor": "University of Adelaide",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1542626991-cbc4e32524cc?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.edx.org/course/introduction-to-project-management",
+        "description": "Learn the principles of project management and apply them in your own work and life.",
+        "difficulty": "Beginner",
+        "type": "edX",
+        "duration": "6 weeks",
+        "instructor_lang": "English",
+        "rating": 4.4,
+        "reviewCount": 1500,
+        "students": 300000,
+        "completionRate": 85,
+        "tags": [
+            "Management",
+            "Business"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "PMP Prep"
+        ],
+        "benefits": [
+            "Understand project life cycle",
+            "Learn to communicate effectively",
+            "Manage project risks"
+        ],
+        "careerRelevance": "Project Manager"
+    },
+    {
+        "id": 67,
+        "title": "Exercising Leadership: Foundational Principles",
+        "instructor": "Harvard University",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.edx.org/course/exercising-leadership-foundational-principles",
+        "description": "Mobilize people to tackle tough problems and build the capacity to thrive through the dangers of change.",
+        "difficulty": "Beginner",
+        "type": "edX",
+        "duration": "4 weeks",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 2500,
+        "students": 400000,
+        "completionRate": 88,
+        "tags": [
+            "Leadership",
+            "Harvard"
+        ],
+        "prerequisites": [],
+        "nextCourses": [],
+        "benefits": [
+            "Diagnose challenges",
+            "Manage conflict",
+            "Build trust"
+        ],
+        "careerRelevance": "Team Leader, Manager"
+    },
+    {
+        "id": 68,
+        "title": "Ethical Hacking with Kali Linux",
+        "instructor": "Pluralsight",
+        "category": "Cybersecurity",
+        "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.pluralsight.com/paths/ethical-hacking-with-kali-linux",
+        "description": "Learn how to use Kali Linux for ethical hacking and penetration testing.",
+        "difficulty": "Intermediate",
+        "type": "Pluralsight",
+        "duration": "25 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 1000,
+        "students": 50000,
+        "completionRate": 80,
+        "tags": [
+            "Hacking",
+            "Security"
+        ],
+        "prerequisites": [
+            "Linux Basics"
+        ],
+        "nextCourses": [
+            "Advanced Penetration Testing"
+        ],
+        "benefits": [
+            "Master Kali Linux tools",
+            "Perform network scans",
+            "Exploit vulnerabilities"
+        ],
+        "careerRelevance": "Penetration Tester"
+    },
+    {
+        "id": 69,
+        "title": "Cloud Computing: The Big Picture",
+        "instructor": "David Chappell",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.pluralsight.com/courses/cloud-computing-big-picture",
+        "description": "Get a high-level overview of cloud computing, including SaaS, PaaS, and IaaS.",
+        "difficulty": "Beginner",
+        "type": "Pluralsight",
+        "duration": "2 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 5000,
+        "students": 200000,
+        "completionRate": 95,
+        "tags": [
+            "Cloud",
+            "Overview"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "AWS Fundamentals"
+        ],
+        "benefits": [
+            "Understand cloud models",
+            "Compare cloud providers",
+            "Learn cloud terminology"
+        ],
+        "careerRelevance": "Cloud Consultant"
+    },
+    {
+        "id": 70,
+        "title": "Angular: Getting Started",
+        "instructor": "Deborah Kurata",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.pluralsight.com/courses/angular-2-getting-started-update",
+        "description": "Learn the basics of building applications with Angular.",
+        "difficulty": "Beginner",
+        "type": "Pluralsight",
+        "duration": "6 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 3000,
+        "students": 150000,
+        "completionRate": 85,
+        "tags": [
+            "Angular",
+            "Web"
+        ],
+        "prerequisites": [
+            "JavaScript"
+        ],
+        "nextCourses": [
+            "Angular CLI"
+        ],
+        "benefits": [
+            "Build your first Angular app",
+            "Understand components",
+            "Learn data binding"
+        ],
+        "careerRelevance": "Frontend Developer"
+    },
+    {
+        "id": 71,
+        "title": "Intro to Procreate: Illustrating on the iPad",
+        "instructor": "Brooke Glaser",
+        "category": "UI/UX",
+        "image": "https://images.unsplash.com/photo-1626785774573-4b799312afc2?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.skillshare.com/classes/Intro-to-Procreate-Illustrating-on-the-iPad-Pro/1699665896",
+        "description": "Learn how to use Procreate on the iPad Pro to create stunning digital illustrations.",
+        "difficulty": "Beginner",
+        "type": "Skillshare",
+        "duration": "1 hour",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 2000,
+        "students": 100000,
+        "completionRate": 90,
+        "tags": [
+            "Art",
+            "Procreate"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Procreate"
+        ],
+        "benefits": [
+            "Master Procreate tools",
+            "Create digital art",
+            "Understand layers"
+        ],
+        "careerRelevance": "Illustrator"
+    },
+    {
+        "id": 72,
+        "title": "Digital Illustration: Learn to Use Procreate",
+        "instructor": "Jarom Vogel",
+        "category": "UI/UX",
+        "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.skillshare.com/classes/Digital-Illustration-Learn-to-Use-Procreate/136183662",
+        "description": "Learn the basics of digital illustration using Procreate.",
+        "difficulty": "Beginner",
+        "type": "Skillshare",
+        "duration": "1 hour",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 1500,
+        "students": 80000,
+        "completionRate": 88,
+        "tags": [
+            "Art",
+            "Illustration"
+        ],
+        "prerequisites": [],
+        "nextCourses": [],
+        "benefits": [
+            "Create professional illustrations",
+            "Use masks and blends",
+            "Export your work"
+        ],
+        "careerRelevance": "Digital Artist"
+    },
+    {
+        "id": 73,
+        "title": "Graphic Design Basics: Core Principles for Visual Design",
+        "instructor": "Ellen Lupton",
+        "category": "UI/UX",
+        "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.skillshare.com/classes/Graphic-Design-Basics-Core-Principles-for-Visual-Design/1539782161",
+        "description": "Learn the 5 basic principles of graphic design.",
+        "difficulty": "Beginner",
+        "type": "Skillshare",
+        "duration": "35 mins",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 3000,
+        "students": 150000,
+        "completionRate": 92,
+        "tags": [
+            "Design",
+            "Theory"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Typography"
+        ],
+        "benefits": [
+            "Understand balance and rhythm",
+            "Use scale and framing",
+            "Create effective layouts"
+        ],
+        "careerRelevance": "Graphic Designer"
+    },
+    {
+        "id": 74,
+        "title": "YouTube Success: Script, Shoot & Edit with MKBHD",
+        "instructor": "Marques Brownlee",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.skillshare.com/classes/YouTube-Success-Script-Shoot-Edit-with-MKBHD/1676822831",
+        "description": "Learn how to create high-quality YouTube videos from tech reviewer Marques Brownlee.",
+        "difficulty": "Beginner",
+        "type": "Skillshare",
+        "duration": "1 hour",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 5000,
+        "students": 200000,
+        "completionRate": 95,
+        "tags": [
+            "Video",
+            "YouTube"
+        ],
+        "prerequisites": [],
+        "nextCourses": [],
+        "benefits": [
+            "Script engaging videos",
+            "Shoot professional footage",
+            "Edit for impact"
+        ],
+        "careerRelevance": "Content Creator"
+    },
+    {
+        "id": 75,
+        "title": "Productivity Masterclass – Principles and Tools",
+        "instructor": "Ali Abdaal",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.skillshare.com/classes/Productivity-Masterclass-Principles-and-Tools-to-Boost-Your-Productivity/1884742739",
+        "description": "Learn the principles and tools to boost your productivity.",
+        "difficulty": "Beginner",
+        "type": "Skillshare",
+        "duration": "2 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 4000,
+        "students": 180000,
+        "completionRate": 90,
+        "tags": [
+            "Productivity",
+            "Life Skills"
+        ],
+        "prerequisites": [],
+        "nextCourses": [],
+        "benefits": [
+            "Manage your time effectively",
+            "Overcome procrastination",
+            "Use productivity apps"
+        ],
+        "careerRelevance": "Professional"
+    },
+    {
+        "id": 76,
+        "title": "Data Analyst Nanodegree",
+        "instructor": "Udacity",
+        "category": "Data Science",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udacity.com/course/data-analyst-nanodegree--nd002",
+        "description": "Learn to organize data, uncover patterns and insights, draw meaningful conclusions, and clearly communicate critical findings.",
+        "difficulty": "Intermediate",
+        "type": "Udacity",
+        "duration": "4 months",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 2000,
+        "students": 100000,
+        "completionRate": 75,
+        "tags": [
+            "Nanodegree",
+            "Data"
+        ],
+        "prerequisites": [
+            "Python",
+            "SQL"
+        ],
+        "nextCourses": [
+            "Data Scientist Nanodegree"
+        ],
+        "benefits": [
+            "Master Python and SQL",
+            "Learn data wrangling",
+            "Create data visualizations"
+        ],
+        "careerRelevance": "Data Analyst"
+    },
+    {
+        "id": 77,
+        "title": "iOS & Swift - The Complete iOS App Development Bootcamp",
+        "instructor": "Dr. Angela Yu",
+        "category": "Mobile Dev",
+        "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/ios-13-app-development-bootcamp/",
+        "description": "From Beginner to iOS App Developer with Just One Course! Fully Updated with a Comprehensive Module Dedicated to SwiftUI!",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "60 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 300000,
+        "students": 1000000,
+        "completionRate": 85,
+        "tags": [
+            "Best Seller",
+            "iOS",
+            "Swift"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced iOS"
+        ],
+        "benefits": [
+            "Build 15 iOS apps",
+            "Master Swift programming",
+            "Publish to App Store"
+        ],
+        "careerRelevance": "iOS Developer"
+    },
+    {
+        "id": 78,
+        "title": "The Complete Flutter Development Bootcamp with Dart",
+        "instructor": "Dr. Angela Yu",
+        "category": "Mobile Dev",
+        "image": "https://images.unsplash.com/photo-1617042375876-a13e36732a04?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/flutter-bootcamp-with-dart/",
+        "description": "Officially created in collaboration with the Google Flutter team.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "29 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 150000,
+        "students": 600000,
+        "completionRate": 80,
+        "tags": [
+            "Flutter",
+            "Google"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Flutter"
+        ],
+        "benefits": [
+            "Build beautiful native apps",
+            "Master Dart",
+            "Deploy to iOS and Android"
+        ],
+        "careerRelevance": "Flutter Developer"
+    },
+    {
+        "id": 79,
+        "title": "Android Basics in Kotlin",
+        "instructor": "Google",
+        "category": "Mobile Dev",
+        "image": "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/android-basics-kotlin",
+        "description": "Learn the basics of building Android apps with the Kotlin programming language.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "4 weeks",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 10000,
+        "students": 200000,
+        "completionRate": 82,
+        "tags": [
+            "Android",
+            "Google"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Android"
+        ],
+        "benefits": [
+            "Build your first Android app",
+            "Learn Kotlin",
+            "Understand Android Studio"
+        ],
+        "careerRelevance": "Android Developer"
+    },
+    {
+        "id": 80,
+        "title": "DevOps Engineer Certification Training",
+        "instructor": "Edureka",
+        "category": "DevOps",
+        "image": "https://images.unsplash.com/photo-1618401471353-b74afee0ba60?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.edureka.co/devops-certification-training",
+        "description": "Master DevOps tools like Git, Docker, Jenkins, Kubernetes, Puppet, Ansible and Nagios.",
+        "difficulty": "Intermediate",
+        "type": "Edureka",
+        "duration": "40 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 5000,
+        "students": 50000,
+        "completionRate": 75,
+        "tags": [
+            "Certification",
+            "DevOps"
+        ],
+        "prerequisites": [
+            "Linux Basics"
+        ],
+        "nextCourses": [
+            "Advanced DevOps"
+        ],
+        "benefits": [
+            "Master CI/CD pipelines",
+            "Learn containerization",
+            "Automate infrastructure"
+        ],
+        "careerRelevance": "DevOps Engineer"
+    },
+    {
+        "id": 81,
+        "title": "Introduction to DevOps",
+        "instructor": "IBM",
+        "category": "DevOps",
+        "image": "https://images.unsplash.com/photo-1558494949-ef526b0042a0?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/intro-to-devops",
+        "description": "Learn the essential concepts and practices of DevOps.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 12000,
+        "students": 150000,
+        "completionRate": 88,
+        "tags": [
+            "IBM",
+            "DevOps"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "DevOps Practices"
+        ],
+        "benefits": [
+            "Understand DevOps culture",
+            "Learn about CI/CD",
+            "Explore Cloud Native"
+        ],
+        "careerRelevance": "DevOps Engineer"
+    },
+    {
+        "id": 82,
+        "title": "Docker and Kubernetes: The Complete Guide",
+        "instructor": "Stephen Grider",
+        "category": "DevOps",
+        "image": "https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/",
+        "description": "Build, test, and deploy Docker applications with Kubernetes while learning production-style development workflows.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "22 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 100000,
+        "students": 400000,
+        "completionRate": 80,
+        "tags": [
+            "Docker",
+            "Kubernetes"
+        ],
+        "prerequisites": [
+            "Basic Web Dev"
+        ],
+        "nextCourses": [
+            "Advanced Kubernetes"
+        ],
+        "benefits": [
+            "Master Docker containers",
+            "Deploy with Kubernetes",
+            "Build CI/CD pipelines"
+        ],
+        "careerRelevance": "DevOps Engineer, Cloud Architect"
+    },
+    {
+        "id": 83,
+        "title": "AWS Certified Solutions Architect - Associate",
+        "instructor": "Stephane Maarek",
+        "category": "Cloud",
+        "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+        "description": "Master AWS and pass the Solutions Architect Associate exam.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "27 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 250000,
+        "students": 1000000,
+        "completionRate": 85,
+        "tags": [
+            "AWS",
+            "Certification"
+        ],
+        "prerequisites": [
+            "IT Basics"
+        ],
+        "nextCourses": [
+            "AWS Professional"
+        ],
+        "benefits": [
+            "Pass SAA-C03 exam",
+            "Design scalable systems",
+            "Master AWS services"
+        ],
+        "careerRelevance": "Cloud Architect"
+    },
+    {
+        "id": 84,
+        "title": "Google Cloud Associate Cloud Engineer",
+        "instructor": "Google Cloud",
+        "category": "Cloud",
+        "image": "https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/preparing-cloud-associate-cloud-engineer-exam",
+        "description": "Prepare for the Google Cloud Associate Cloud Engineer certification.",
+        "difficulty": "Intermediate",
+        "type": "Coursera",
+        "duration": "15 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 20000,
+        "students": 100000,
+        "completionRate": 82,
+        "tags": [
+            "GCP",
+            "Certification"
+        ],
+        "prerequisites": [
+            "Cloud Basics"
+        ],
+        "nextCourses": [
+            "Professional Cloud Architect"
+        ],
+        "benefits": [
+            "Pass ACE exam",
+            "Deploy apps on GCP",
+            "Manage GCP resources"
+        ],
+        "careerRelevance": "Cloud Engineer"
+    },
+    {
+        "id": 85,
+        "title": "Microsoft Azure Fundamentals (AZ-900)",
+        "instructor": "Microsoft",
+        "category": "Cloud",
+        "image": "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/microsoft-azure-fundamentals-az-900",
+        "description": "Master the basics of cloud computing and Microsoft Azure.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "20 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 15000,
+        "students": 200000,
+        "completionRate": 88,
+        "tags": [
+            "Azure",
+            "Certification"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Azure Administrator"
+        ],
+        "benefits": [
+            "Pass AZ-900 exam",
+            "Understand cloud concepts",
+            "Explore Azure services"
+        ],
+        "careerRelevance": "Cloud Administrator"
+    },
+    {
+        "id": 86,
+        "title": "Complete C# Unity 2D Game Development",
+        "instructor": "GameDev.tv",
+        "category": "Game Dev",
+        "image": "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/unitycourse/",
+        "description": "Learn Unity in C# and code your first seven 2D video games for web, Mac & PC.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "35 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 120000,
+        "students": 500000,
+        "completionRate": 80,
+        "tags": [
+            "Unity",
+            "C#"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Unity 3D"
+        ],
+        "benefits": [
+            "Build 7 games",
+            "Master C# for games",
+            "Publish to web and mobile"
+        ],
+        "careerRelevance": "Game Developer"
+    },
+    {
+        "id": 87,
+        "title": "Unreal Engine 5 C++ Developer: Learn C++ & Make Video Games",
+        "instructor": "GameDev.tv",
+        "category": "Game Dev",
+        "image": "https://images.unsplash.com/photo-1556438050-95d9008c9963?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/unrealcourse/",
+        "description": "Created in collaboration with Epic Games. Learn C++ and make video games.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "30 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 80000,
+        "students": 300000,
+        "completionRate": 78,
+        "tags": [
+            "Unreal Engine",
+            "C++"
+        ],
+        "prerequisites": [
+            "Basic Programming"
+        ],
+        "nextCourses": [
+            "Advanced Unreal"
+        ],
+        "benefits": [
+            "Master Unreal Engine 5",
+            "Learn C++ for games",
+            "Build a portfolio"
+        ],
+        "careerRelevance": "Game Developer"
+    },
+    {
+        "id": 88,
+        "title": "Game Design and Development with Unity 2020",
+        "instructor": "Michigan State University",
+        "category": "Game Dev",
+        "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/specializations/game-design-and-development",
+        "description": "Create Your Own Games. Design and develop video games using Unity 2020.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "5 months",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 5000,
+        "students": 100000,
+        "completionRate": 82,
+        "tags": [
+            "Unity",
+            "Design"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Game Design"
+        ],
+        "benefits": [
+            "Design game mechanics",
+            "Build 2D and 3D games",
+            "Launch your first game"
+        ],
+        "careerRelevance": "Game Designer"
+    },
+    {
+        "id": 89,
+        "title": "Blockchain Revolution Specialization",
+        "instructor": "INSEAD",
+        "category": "Blockchain",
+        "image": "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/specializations/blockchain-revolution-enterprise",
+        "description": "Learn how blockchain is revolutionizing business and society.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "4 months",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 8000,
+        "students": 50000,
+        "completionRate": 85,
+        "tags": [
+            "Blockchain",
+            "Business"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Blockchain Development"
+        ],
+        "benefits": [
+            "Understand blockchain impact",
+            "Analyze use cases",
+            "Create a blockchain strategy"
+        ],
+        "careerRelevance": "Blockchain Consultant"
+    },
+    {
+        "id": 90,
+        "title": "Ethereum Blockchain Developer Bootcamp with Solidity",
+        "instructor": "Ravinder Deol",
+        "category": "Blockchain",
+        "image": "https://images.unsplash.com/photo-1622630998477-20aa696fab05?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.udemy.com/course/blockchain-developer/",
+        "description": "Become an Ethereum Blockchain Developer with one course. Master Solidity, Web3.JS, Truffle, Metamask, Remix & more!",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "13 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 20000,
+        "students": 100000,
+        "completionRate": 80,
+        "tags": [
+            "Ethereum",
+            "Solidity"
+        ],
+        "prerequisites": [
+            "JavaScript"
+        ],
+        "nextCourses": [
+            "Advanced Smart Contracts"
+        ],
+        "benefits": [
+            "Build DApps",
+            "Write Smart Contracts",
+            "Deploy to Ethereum"
+        ],
+        "careerRelevance": "Blockchain Developer"
+    },
+    {
+        "id": 91,
+        "title": "Bitcoin and Cryptocurrency Technologies",
+        "instructor": "Princeton University",
+        "category": "Blockchain",
+        "image": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/cryptocurrency",
+        "description": "To really understand what is special about Bitcoin, we need to understand how it works at a technical level.",
+        "difficulty": "Intermediate",
+        "type": "Coursera",
+        "duration": "23 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 15000,
+        "students": 500000,
+        "completionRate": 88,
+        "tags": [
+            "Bitcoin",
+            "Crypto"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Blockchain Development"
+        ],
+        "benefits": [
+            "Understand Bitcoin mechanics",
+            "Learn about mining",
+            "Explore crypto security"
+        ],
+        "careerRelevance": "Crypto Analyst"
+    }
+]

@@ -1,0 +1,19 @@
+
+> next-web@0.1.0 lint
+> eslint
+
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\context\ThemeContext.tsx
+  19:9  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+  50:1  error    Definition for rule 'react-refresh/only-export-components' was not found                        react-refresh/only-export-components
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Categories.tsx
+  113:9   warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+  119:13  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Resources.tsx
+  19:9  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+Γ£û 5 problems (1 error, 4 warnings)
+  0 errors and 4 warnings potentially fixable with the `--fix` option.
+

@@ -1,0 +1,192 @@
+[
+    {
+        "id": 1,
+        "title": "How to Build the Future",
+        "person": "Sam Altman",
+        "category": "Startups & Entrepreneurship",
+        "url": "https://www.youtube.com/watch?v=sYMqVwsewSg",
+        "type": "Talk",
+        "duration": "45 min",
+        "key_points": [
+            "First principles thinking",
+            "Speed of execution",
+            "Mission-driven"
+        ],
+        "tags": [
+            "Motivation",
+            "Entrepreneurship",
+            "AI"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Steve Jobs' 2005 Stanford Commencement Address",
+        "person": "Steve Jobs",
+        "category": "Life Advice",
+        "url": "https://www.youtube.com/watch?v=UF8uR6Z6KLc",
+        "type": "Talk",
+        "duration": "15 min",
+        "key_points": [
+            "Connecting the dots",
+            "Love and loss",
+            "Death as a change agent"
+        ],
+        "tags": [
+            "Inspiration",
+            "Life",
+            "Career"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Competition is for Losers",
+        "person": "Peter Thiel",
+        "category": "Startups",
+        "url": "https://www.youtube.com/watch?v=3Fx5Q8xGU8k",
+        "type": "Talk",
+        "duration": "50 min",
+        "key_points": [
+            "Monopoly vs Competition",
+            "Last mover advantage",
+            "Vertical progress"
+        ],
+        "tags": [
+            "Business",
+            "Strategy",
+            "Startups"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Naval Ravikant on Wealth & Happiness",
+        "person": "Naval Ravikant",
+        "category": "Philosophy",
+        "url": "https://www.youtube.com/watch?v=1-TZqOsVCNM",
+        "type": "Podcast",
+        "duration": "2 hours",
+        "key_points": [
+            "Specific knowledge",
+            "Leverage",
+            "Happiness as a skill"
+        ],
+        "tags": [
+            "Wealth",
+            "Mindset",
+            "Happiness"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Do Things that Don't Scale",
+        "person": "Paul Graham",
+        "category": "Startups",
+        "url": "http://paulgraham.com/ds.html",
+        "type": "Essay",
+        "duration": "10 min read",
+        "key_points": [
+            "Recruit users manually",
+            "Delight customers",
+            "Focus on a niche"
+        ],
+        "tags": [
+            "Startups",
+            "Growth",
+            "Essay"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "The Psychology of Human Misjudgment",
+        "person": "Charlie Munger",
+        "category": "Psychology",
+        "url": "https://www.youtube.com/watch?v=pqzcCfUglws",
+        "type": "Talk",
+        "duration": "1 hour",
+        "key_points": [
+            "Cognitive biases",
+            "Incentives",
+            "Mental models"
+        ],
+        "tags": [
+            "Psychology",
+            "Decision Making",
+            "Wisdom"
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Inventing on Principle",
+        "person": "Bret Victor",
+        "category": "Design & Engineering",
+        "url": "https://www.youtube.com/watch?v=PUv66718DII",
+        "type": "Talk",
+        "duration": "54 min",
+        "key_points": [
+            "Immediate feedback",
+            "Direct manipulation",
+            "Principle-driven work"
+        ],
+        "tags": [
+            "Design",
+            "Creativity",
+            "Engineering"
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Why Procrastinators Procrastinate",
+        "person": "Tim Urban",
+        "category": "Productivity",
+        "url": "https://www.youtube.com/watch?v=arj7oStGLkU",
+        "type": "Talk",
+        "duration": "14 min",
+        "key_points": [
+            "Instant Gratification Monkey",
+            "Panic Monster",
+            "Life Calendar"
+        ],
+        "tags": [
+            "Productivity",
+            "Psychology",
+            "Humor"
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Maker's Schedule, Manager's Schedule",
+        "person": "Paul Graham",
+        "category": "Productivity",
+        "url": "http://paulgraham.com/makersschedule.html",
+        "type": "Essay",
+        "duration": "5 min read",
+        "key_points": [
+            "Deep work blocks",
+            "Cost of interruptions",
+            "Meeting culture"
+        ],
+        "tags": [
+            "Work",
+            "Management",
+            "Essay"
+        ]
+    },
+    {
+        "id": 10,
+        "title": "How to Get Rich (without getting lucky)",
+        "person": "Naval Ravikant",
+        "category": "Wealth",
+        "url": "https://twitter.com/naval/status/1002103360646823936",
+        "type": "Thread",
+        "duration": "10 min read",
+        "key_points": [
+            "Seek wealth, not money",
+            "Ignore status games",
+            "Productize yourself"
+        ],
+        "tags": [
+            "Wealth",
+            "Career",
+            "Twitter"
+        ]
+    }
+]
