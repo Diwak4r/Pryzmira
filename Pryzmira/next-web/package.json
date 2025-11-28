@@ -1,3 +1,4 @@
+// Fixed: Added @sentry/react and posthog-js dependencies
 {
   "name": "next-web",
   "version": "0.1.0",
