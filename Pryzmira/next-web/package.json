@@ -13,8 +13,7 @@
     "react": "19.2.0",
     "react-dom": "19.2.0"
         "@sentry/react": "^8",
-        "posthog-js": "^1.182",
-  },
+"posthog-js": "^1.183",  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
