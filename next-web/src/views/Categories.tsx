@@ -154,85 +154,154 @@ export default function Categories() {
 
     return (
         <div className="min-h-screen pb-20">
-            {/* Hero Section */}
-            {/* Hero Section (Phase 3 Redesign) */}
-            <section className="relative py-24 mb-16 overflow-hidden">
+            {/* Hero Section - Premium Design with Animated Background */}
+            <section className="relative py-32 mb-20 overflow-hidden">
+                {/* Animated Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-accent-secondary/5 to-background animate-gradient opacity-60" />
+
+                {/* Floating Orbs */}
+                <div className="absolute top-20 left-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float opacity-30" />
+                <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-secondary/20 rounded-full blur-3xl animate-float opacity-20" style={{ animationDelay: '2s' }} />
+
+                {/* Noise Texture Overlay */}
+                <div className="absolute inset-0 noise-texture opacity-50" />
+
                 <div className="container mx-auto px-4 relative z-10">
-                    <div className="flex flex-col lg:flex-row items-center gap-16">
-                        {/* Left: Copy & CTA */}
+                    <div className="flex flex-col lg:flex-row items-center gap-20">
+                        {/* Left: Enhanced Copy & CTA */}
                         <div className="lg:w-1/2 text-left">
                             <motion.div
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 0, y: 40 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                             >
-                                <h1 className="text-6xl md:text-7xl font-black text-primary tracking-tight mb-6 leading-[1.1]">
-                                    Master the <br />
-                                    <span className="text-accent">Future of Tech</span>
-                                </h1>
-                                <p className="text-xl text-text-secondary max-w-lg mb-10 leading-relaxed font-medium">
-                                    Join an elite community of builders. From AI architecture to system design, we curate the path to mastery.
-                                </p>
-                                <RippleButton
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onClick={handleCtaClick}
-                                    className="px-8 py-4 bg-accent text-white text-lg font-bold rounded-full shadow-xl shadow-accent/20 hover:shadow-accent/40 transition-all"
+                                {/* Badge */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6"
                                 >
-                                    {ctaText}
-                                </RippleButton>
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                                    </span>
+                                    <span className="text-sm font-semibold gradient-text">10,000+ Active Learners</span>
+                                </motion.div>
 
-                                {/* Success Stories Micro-section */}
-                                <div className="mt-12 flex items-center gap-8">
-                                    <div>
-                                        <p className="text-3xl font-bold text-primary flex items-center">
+                                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary tracking-tight mb-6 leading-[1.05]">
+                                    Master the{' '}
+                                    <span className="gradient-text animate-gradient">
+                                        Future of Tech
+                                    </span>
+                                </h1>
+
+                                <p className="text-xl md:text-2xl text-text-secondary max-w-lg mb-10 leading-relaxed">
+                                    Join an <span className="text-primary font-semibold">elite community</span> of builders. From AI architecture to system design, we curate the path to mastery.
+                                </p>
+
+                                <div className="flex flex-wrap items-center gap-4">
+                                    <RippleButton
+                                        whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(139, 92, 246, 0.3)' }}
+                                        whileTap={{ scale: 0.98 }}
+                                        onClick={handleCtaClick}
+                                        className="group px-8 py-4 gradient-bg text-white text-lg font-bold rounded-full shadow-premium hover:shadow-premium-lg transition-all relative overflow-hidden"
+                                    >
+                                        <span className="relative z-10">{ctaText}</span>
+                                        <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                                    </RippleButton>
+
+                                    <Link
+                                        href="/roadmap"
+                                        className="px-8 py-4 glass-card text-primary font-bold rounded-full hover:scale-105 transition-all"
+                                    >
+                                        View Roadmap
+                                    </Link>
+                                </div>
+
+                                {/* Premium Stats */}
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.6 }}
+                                    className="mt-14 grid grid-cols-3 gap-6"
+                                >
+                                    <div className="text-center glass-panel p-4 rounded-2xl">
+                                        <p className="text-4xl font-black gradient-text mb-1">
                                             <AnimatedCounter value={10000} suffix="+" />
                                         </p>
-                                        <p className="text-sm text-text-secondary font-medium uppercase tracking-wide">Active Learners</p>
+                                        <p className="text-xs text-text-secondary font-semibold uppercase tracking-wider">Learners</p>
                                     </div>
-                                    <div className="w-px h-10 bg-border/50" />
-                                    <div>
-                                        <p className="text-3xl font-bold text-primary flex items-center">
+                                    <div className="text-center glass-panel p-4 rounded-2xl">
+                                        <p className="text-4xl font-black gradient-text mb-1">
                                             <AnimatedCounter value={85} suffix="%" />
                                         </p>
-                                        <p className="text-sm text-text-secondary font-medium uppercase tracking-wide">Career Growth</p>
+                                        <p className="text-xs text-text-secondary font-semibold uppercase tracking-wider">Career Growth</p>
                                     </div>
-                                </div>
+                                    <div className="text-center glass-panel p-4 rounded-2xl">
+                                        <p className="text-4xl font-black gradient-text mb-1">
+                                            <AnimatedCounter value={200} suffix="+" />
+                                        </p>
+                                        <p className="text-xs text-text-secondary font-semibold uppercase tracking-wider">Courses</p>
+                                    </div>
+                                </motion.div>
                             </motion.div>
                         </div>
 
-                        {/* Right: Split Landing Visuals (Power Features) */}
+                        {/* Right: Premium Feature Cards with Glassmorphism */}
                         <div className="lg:w-1/2 relative">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 gap-6">
                                 <motion.div
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.2 }}
-                                    className="p-6 bg-surface border border-border rounded-2xl shadow-lg"
-                                >
-                                    <Sparkles className="w-8 h-8 text-accent mb-4" />
-                                    <h3 className="text-lg font-bold text-primary mb-2">AI-Powered</h3>
-                                    <p className="text-sm text-text-secondary">Personalized curriculum that adapts to your pace.</p>
-                                </motion.div>
-                                <motion.div
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
-                                    className="p-6 bg-surface border border-border rounded-2xl shadow-lg mt-8"
+                                    className="premium-card p-8 rounded-3xl hover-glow"
                                 >
-                                    <Network className="w-8 h-8 text-secondary mb-4" />
-                                    <h3 className="text-lg font-bold text-primary mb-2">Interactive</h3>
-                                    <p className="text-sm text-text-secondary">Hands-on labs and real-world system design challenges.</p>
+                                    <div className="relative z-10">
+                                        <div className="w-14 h-14 rounded-2xl gradient-bg flex items-center justify-center mb-5 shadow-lg">
+                                            <Sparkles className="w-7 h-7 text-white" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-primary mb-3">AI-Powered</h3>
+                                        <p className="text-sm text-text-secondary leading-relaxed">
+                                            Personalized curriculum that adapts to your learning pace and style.
+                                        </p>
+                                    </div>
                                 </motion.div>
+
                                 <motion.div
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.4 }}
-                                    className="col-span-2 p-6 bg-surface border border-border rounded-2xl shadow-lg"
+                                    className="premium-card p-8 rounded-3xl hover-glow mt-8"
                                 >
-                                    <Database className="w-8 h-8 text-primary mb-4" />
-                                    <h3 className="text-lg font-bold text-primary mb-2">Industry Standard</h3>
-                                    <p className="text-sm text-text-secondary">Curriculum designed by engineers from top tech companies.</p>
+                                    <div className="relative z-10">
+                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-5 shadow-lg">
+                                            <Network className="w-7 h-7 text-white" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-primary mb-3">Interactive</h3>
+                                        <p className="text-sm text-text-secondary leading-relaxed">
+                                            Hands-on labs and real-world challenges to solidify learning.
+                                        </p>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5 }}
+                                    className="col-span-2 premium-card p-8 rounded-3xl hover-glow"
+                                >
+                                    <div className="relative z-10 flex items-start gap-6">
+                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg flex-shrink-0">
+                                            <Database className="w-7 h-7 text-white" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold text-primary mb-3">Industry Standard</h3>
+                                            <p className="text-sm text-text-secondary leading-relaxed">
+                                                Curriculum designed by engineers from FAANG and top tech companies worldwide.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </motion.div>
                             </div>
                         </div>
