@@ -5,21 +5,13 @@ import Link from 'next/link';
 import Navbar from './Navbar';
 import Newsletter from './Newsletter';
 import ExitIntentModal from './ExitIntentModal';
-import InteractiveBackground from './InteractiveBackground';
 import { ArrowUp, ChevronRight, Home } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const [showBackToTop, setShowBackToTop] = useState(false);
-    const { scrollYProgress } = useScroll();
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,12 +29,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
     return (
         <div className="min-h-screen bg-background text-text-primary font-sans selection:bg-primary/20 transition-colors duration-300">
-            <InteractiveBackground />
-            {/* Scroll Progress Bar */}
-            <motion.div
-                className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-accent to-secondary origin-left z-[60]"
-                style={{ scaleX }}
-            />
             <ExitIntentModal />
             <Navbar />
 
@@ -72,17 +58,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                     </div>
                 )}
 
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={pathname}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        {children}
-                    </motion.div>
-                </AnimatePresence>
+                {children}
             </main>
 
             <Newsletter />

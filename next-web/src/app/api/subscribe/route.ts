@@ -26,6 +26,7 @@ export async function POST(request: Request) {
             );
         }
 
+        // 1. Save to local file (Backup)
         const fileContent = fs.readFileSync(SUBSCRIBERS_FILE, 'utf-8');
         const subscribers: string[] = JSON.parse(fileContent);
 
@@ -38,6 +39,44 @@ export async function POST(request: Request) {
 
         subscribers.push(email);
         fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2));
+
+        // 2. Send Welcome Email via Resend (since key is restricted to sending)
+        const API_KEY = process.env.RESEND_API_KEY;
+        const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+
+        if (API_KEY) {
+            try {
+                await fetch('https://api.resend.com/emails', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        from: `Pryzmira <${FROM_EMAIL}>`,
+                        to: [email],
+                        subject: 'Welcome to Pryzmira - AI & Tech Insights',
+                        html: `
+                            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+                                <h1>Welcome to the future.</h1>
+                                <p>Thanks for joining Pryzmira. You're now part of a community of engineers mastering AI, System Design, and the latest in tech.</p>
+                                <p>Expect weekly updates on:</p>
+                                <ul>
+                                    <li>🚀 AI Tools & Leaks</li>
+                                    <li>💻 System Design Case Studies</li>
+                                    <li>🛡️ Cybersecurity Trends</li>
+                                </ul>
+                                <p>Stay tuned.</p>
+                                <p>— The Pryzmira Team</p>
+                            </div>
+                        `
+                    })
+                });
+            } catch (emailError) {
+                console.error('Failed to send welcome email:', emailError);
+                // Don't fail the request if email sending fails, just log it
+            }
+        }
 
         return NextResponse.json(
             { message: 'Successfully subscribed!' },

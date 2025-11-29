@@ -32,7 +32,7 @@
         "title": "Web Dev Bootcamp 2024",
         "instructor": "Harkirat Singh",
         "category": "Web Dev",
-        "image": "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?auto=format&fit=crop&w=800&q=80",
+        "image": "https://img.youtube.com/vi/bMknfKXIFA8/maxresdefault.jpg",
         "url": "https://www.youtube.com/@harkirat1",
         "description": "A comprehensive bootcamp for full-stack development focusing on modern tech stacks.",
         "difficulty": "Intermediate",
@@ -96,7 +96,7 @@
         "instructor": "Hitesh Choudhury",
         "category": "Web Dev",
         "image": "https://img.youtube.com/vi/vz1RlUyrc3w/maxresdefault.jpg",
-        "url": "https://www.youtube.com/playlist?list=PLu71SKxNbfoDqgPchsyalHP2_TESdFfLz",
+        "url": "https://www.youtube.com/playlist?list=PLu71SKxNKqxwz2_Wk2zC9Q9X1k4_j3k6p",
         "description": "Deep dive into React.js with practical projects and in-depth explanations.",
         "difficulty": "Beginner",
         "type": "YouTube",
@@ -1464,7 +1464,7 @@
         ]
     },
     {
-        "id": 29,
+        "id": 51,
         "title": "Google UX Design Professional Certificate",
         "instructor": "Google",
         "category": "UI/UX",
@@ -1495,7 +1495,7 @@
         "careerRelevance": "UX Designer, UI Designer"
     },
     {
-        "id": 30,
+        "id": 52,
         "title": "Product Management: It's a Process, Not a Role",
         "instructor": "Stephen Grand",
         "category": "Product Management",
@@ -1523,7 +1523,7 @@
         "careerRelevance": "Associate Product Manager"
     },
     {
-        "id": 31,
+        "id": 53,
         "title": "The Complete Digital Marketing Course - 12 Courses in 1",
         "instructor": "Rob Percival",
         "category": "Marketing",
@@ -1553,7 +1553,7 @@
         "careerRelevance": "Digital Marketing Specialist"
     },
     {
-        "id": 32,
+        "id": 54,
         "title": "Blockchain A-Z™: Learn How To Build Your First Blockchain",
         "instructor": "Hadelin de Ponteves",
         "category": "Blockchain",
@@ -1583,7 +1583,7 @@
         "careerRelevance": "Blockchain Developer"
     },
     {
-        "id": 33,
+        "id": 55,
         "title": "IBM Data Science Professional Certificate",
         "instructor": "IBM",
         "category": "Data Science",
@@ -1613,7 +1613,7 @@
         "careerRelevance": "Data Scientist, Data Analyst"
     },
     {
-        "id": 34,
+        "id": 56,
         "title": "The Complete Web Development Bootcamp",
         "instructor": "Dr. Angela Yu",
         "category": "Web Dev",
@@ -1644,7 +1644,7 @@
         "careerRelevance": "Full Stack Developer"
     },
     {
-        "id": 35,
+        "id": 57,
         "title": "The Complete Digital Marketing Course",
         "instructor": "Rob Percival",
         "category": "Finance",
@@ -1675,7 +1675,7 @@
         "careerRelevance": "Digital Marketer, Marketing Manager"
     },
     {
-        "id": 36,
+        "id": 58,
         "title": "Google Data Analytics Professional Certificate",
         "instructor": "Google",
         "category": "Data Science",
@@ -1706,7 +1706,7 @@
         "careerRelevance": "Data Analyst"
     },
     {
-        "id": 37,
+        "id": 59,
         "title": "Google Project Management: Professional Certificate",
         "instructor": "Google",
         "category": "Finance",
@@ -1737,7 +1737,7 @@
         "careerRelevance": "Project Manager"
     },
     {
-        "id": 38,
+        "id": 60,
         "title": "Google Cybersecurity Professional Certificate",
         "instructor": "Google",
         "category": "Cybersecurity",
@@ -1768,7 +1768,7 @@
         "careerRelevance": "Cybersecurity Analyst"
     },
     {
-        "id": 39,
+        "id": 61,
         "title": "CS50's Web Programming with Python and JavaScript",
         "instructor": "Harvard University",
         "category": "Web Dev",
@@ -1801,7 +1801,7 @@
         "careerRelevance": "Web Developer"
     },
     {
-        "id": 40,
+        "id": 62,
         "title": "CS50's Introduction to Artificial Intelligence with Python",
         "instructor": "Harvard University",
         "category": "AI",
@@ -1835,7 +1835,7 @@
         "careerRelevance": "AI Engineer"
     },
     {
-        "id": 41,
+        "id": 63,
         "title": "Deep Learning Specialization",
         "instructor": "DeepLearning.AI",
         "category": "AI",
@@ -1868,7 +1868,7 @@
         "careerRelevance": "Deep Learning Engineer"
     },
     {
-        "id": 42,
+        "id": 64,
         "title": "Diploma in Project Management",
         "instructor": "Alison",
         "category": "Finance",
@@ -1879,7 +1879,7 @@
         "type": "Alison",
         "duration": "10-15 hours",
         "instructor_lang": "English",
-        "rating": 4.0,
+        "rating": 4,
         "reviewCount": 2500,
         "students": 300000,
         "completionRate": 85,
@@ -1899,7 +1899,7 @@
         "careerRelevance": "Project Coordinator"
     },
     {
-        "id": 43,
+        "id": 65,
         "title": "Digital Skills: User Experience",
         "instructor": "Accenture",
         "category": "UI/UX",
@@ -1930,7 +1930,7 @@
         "careerRelevance": "UX Designer"
     },
     {
-        "id": 44,
+        "id": 66,
         "title": "Introduction to Cyber Security: Stay Safe Online",
         "instructor": "The Open University",
         "category": "Cybersecurity",
@@ -1961,7 +1961,7 @@
         "careerRelevance": "IT Support"
     },
     {
-        "id": 45,
+        "id": 67,
         "title": "Learn Ethical Hacking from Scratch",
         "instructor": "Zaid Sabih",
         "category": "Cybersecurity",
@@ -1994,7 +1994,7 @@
         "careerRelevance": "Penetration Tester"
     },
     {
-        "id": 46,
+        "id": 68,
         "title": "Google UX Design Professional Certificate",
         "instructor": "Google",
         "category": "UI/UX",
@@ -2025,7 +2025,7 @@
         "careerRelevance": "UX Designer"
     },
     {
-        "id": 47,
+        "id": 69,
         "title": "The Complete Python Bootcamp From Zero to Hero in Python",
         "instructor": "Jose Portilla",
         "category": "Coding",
@@ -2056,7 +2056,7 @@
         "careerRelevance": "Python Developer"
     },
     {
-        "id": 48,
+        "id": 70,
         "title": "100 Days of Code: The Complete Python Pro Bootcamp",
         "instructor": "Dr. Angela Yu",
         "category": "Coding",
@@ -2087,7 +2087,7 @@
         "careerRelevance": "Python Developer, Data Scientist"
     },
     {
-        "id": 49,
+        "id": 71,
         "title": "The Complete JavaScript Course 2025: From Zero to Expert!",
         "instructor": "Jonas Schmedtmann",
         "category": "Web Dev",
@@ -2118,7 +2118,7 @@
         "careerRelevance": "Frontend Developer"
     },
     {
-        "id": 50,
+        "id": 72,
         "title": "React – The Complete Guide 2025",
         "instructor": "Maximilian Schwarzmüller",
         "category": "Web Dev",
@@ -2151,7 +2151,7 @@
         "careerRelevance": "React Developer"
     },
     {
-        "id": 51,
+        "id": 73,
         "title": "Angular – The Complete Guide (2025 Edition)",
         "instructor": "Maximilian Schwarzmüller",
         "category": "Web Dev",
@@ -2184,7 +2184,7 @@
         "careerRelevance": "Angular Developer"
     },
     {
-        "id": 52,
+        "id": 74,
         "title": "Machine Learning A-Z: AI, Python & R + ChatGPT Prize",
         "instructor": "Kirill Eremenko",
         "category": "AI",
@@ -2217,7 +2217,7 @@
         "careerRelevance": "Data Scientist, ML Engineer"
     },
     {
-        "id": 53,
+        "id": 75,
         "title": "Artificial Intelligence A-Z 2025: Build 7 AI + LLM & ChatGPT",
         "instructor": "Hadelin de Ponteves",
         "category": "AI",
@@ -2250,7 +2250,7 @@
         "careerRelevance": "AI Engineer"
     },
     {
-        "id": 54,
+        "id": 76,
         "title": "Microsoft Excel – Excel from Beginner to Advanced",
         "instructor": "Kyle Pew",
         "category": "Finance",
@@ -2281,7 +2281,7 @@
         "careerRelevance": "Data Analyst, Office Admin"
     },
     {
-        "id": 55,
+        "id": 77,
         "title": "An Entire MBA in 1 Course",
         "instructor": "Chris Haroun",
         "category": "Finance",
@@ -2312,7 +2312,7 @@
         "careerRelevance": "Entrepreneur, Business Analyst"
     },
     {
-        "id": 56,
+        "id": 78,
         "title": "Ultimate AWS Certified Solutions Architect Associate 2025",
         "instructor": "Stephane Maarek",
         "category": "Web Dev",
@@ -2345,7 +2345,7 @@
         "careerRelevance": "Cloud Architect"
     },
     {
-        "id": 57,
+        "id": 79,
         "title": "Graphic Design Masterclass",
         "instructor": "Lindsay Marsh",
         "category": "UI/UX",
@@ -2376,7 +2376,7 @@
         "careerRelevance": "Graphic Designer"
     },
     {
-        "id": 58,
+        "id": 80,
         "title": "The Ultimate Drawing Course – Beginner to Advanced",
         "instructor": "Jaysen Batchelor",
         "category": "UI/UX",
@@ -2407,7 +2407,7 @@
         "careerRelevance": "Illustrator, Concept Artist"
     },
     {
-        "id": 59,
+        "id": 81,
         "title": "AI For Everyone",
         "instructor": "Andrew Ng",
         "category": "AI",
@@ -2438,7 +2438,7 @@
         "careerRelevance": "Product Manager, Executive"
     },
     {
-        "id": 60,
+        "id": 82,
         "title": "Python for Everybody Specialization",
         "instructor": "University of Michigan",
         "category": "Coding",
@@ -2469,7 +2469,7 @@
         "careerRelevance": "Python Developer"
     },
     {
-        "id": 61,
+        "id": 83,
         "title": "The Science of Well-Being",
         "instructor": "Yale University",
         "category": "Finance",
@@ -2498,7 +2498,7 @@
         "careerRelevance": "Personal Growth"
     },
     {
-        "id": 62,
+        "id": 84,
         "title": "Meta Front-End Developer Professional Certificate",
         "instructor": "Meta",
         "category": "Web Dev",
@@ -2529,7 +2529,7 @@
         "careerRelevance": "Front-End Developer"
     },
     {
-        "id": 63,
+        "id": 85,
         "title": "IBM Data Science Professional Certificate",
         "instructor": "IBM",
         "category": "Data Science",
@@ -2560,7 +2560,7 @@
         "careerRelevance": "Data Scientist"
     },
     {
-        "id": 64,
+        "id": 86,
         "title": "Introduction to Python Programming",
         "instructor": "Georgia Tech",
         "category": "Coding",
@@ -2591,7 +2591,7 @@
         "careerRelevance": "Software Developer"
     },
     {
-        "id": 65,
+        "id": 87,
         "title": "Data Structures and Algorithms",
         "instructor": "Georgia Tech",
         "category": "DSA",
@@ -2624,7 +2624,7 @@
         "careerRelevance": "Software Engineer"
     },
     {
-        "id": 66,
+        "id": 88,
         "title": "Introduction to Project Management",
         "instructor": "University of Adelaide",
         "category": "Finance",
@@ -2655,7 +2655,7 @@
         "careerRelevance": "Project Manager"
     },
     {
-        "id": 67,
+        "id": 89,
         "title": "Exercising Leadership: Foundational Principles",
         "instructor": "Harvard University",
         "category": "Finance",
@@ -2684,7 +2684,7 @@
         "careerRelevance": "Team Leader, Manager"
     },
     {
-        "id": 68,
+        "id": 90,
         "title": "Ethical Hacking with Kali Linux",
         "instructor": "Pluralsight",
         "category": "Cybersecurity",
@@ -2717,7 +2717,7 @@
         "careerRelevance": "Penetration Tester"
     },
     {
-        "id": 69,
+        "id": 91,
         "title": "Cloud Computing: The Big Picture",
         "instructor": "David Chappell",
         "category": "Web Dev",
@@ -2748,7 +2748,7 @@
         "careerRelevance": "Cloud Consultant"
     },
     {
-        "id": 70,
+        "id": 92,
         "title": "Angular: Getting Started",
         "instructor": "Deborah Kurata",
         "category": "Web Dev",
@@ -2781,7 +2781,7 @@
         "careerRelevance": "Frontend Developer"
     },
     {
-        "id": 71,
+        "id": 93,
         "title": "Intro to Procreate: Illustrating on the iPad",
         "instructor": "Brooke Glaser",
         "category": "UI/UX",
@@ -2812,7 +2812,7 @@
         "careerRelevance": "Illustrator"
     },
     {
-        "id": 72,
+        "id": 94,
         "title": "Digital Illustration: Learn to Use Procreate",
         "instructor": "Jarom Vogel",
         "category": "UI/UX",
@@ -2841,7 +2841,7 @@
         "careerRelevance": "Digital Artist"
     },
     {
-        "id": 73,
+        "id": 95,
         "title": "Graphic Design Basics: Core Principles for Visual Design",
         "instructor": "Ellen Lupton",
         "category": "UI/UX",
@@ -2872,7 +2872,7 @@
         "careerRelevance": "Graphic Designer"
     },
     {
-        "id": 74,
+        "id": 96,
         "title": "YouTube Success: Script, Shoot & Edit with MKBHD",
         "instructor": "Marques Brownlee",
         "category": "Finance",
@@ -2901,7 +2901,7 @@
         "careerRelevance": "Content Creator"
     },
     {
-        "id": 75,
+        "id": 97,
         "title": "Productivity Masterclass – Principles and Tools",
         "instructor": "Ali Abdaal",
         "category": "Finance",
@@ -2930,7 +2930,7 @@
         "careerRelevance": "Professional"
     },
     {
-        "id": 76,
+        "id": 98,
         "title": "Data Analyst Nanodegree",
         "instructor": "Udacity",
         "category": "Data Science",
@@ -2964,7 +2964,7 @@
         "careerRelevance": "Data Analyst"
     },
     {
-        "id": 77,
+        "id": 99,
         "title": "iOS & Swift - The Complete iOS App Development Bootcamp",
         "instructor": "Dr. Angela Yu",
         "category": "Mobile Dev",
@@ -2996,7 +2996,7 @@
         "careerRelevance": "iOS Developer"
     },
     {
-        "id": 78,
+        "id": 100,
         "title": "The Complete Flutter Development Bootcamp with Dart",
         "instructor": "Dr. Angela Yu",
         "category": "Mobile Dev",
@@ -3027,7 +3027,7 @@
         "careerRelevance": "Flutter Developer"
     },
     {
-        "id": 79,
+        "id": 101,
         "title": "Android Basics in Kotlin",
         "instructor": "Google",
         "category": "Mobile Dev",
@@ -3058,7 +3058,7 @@
         "careerRelevance": "Android Developer"
     },
     {
-        "id": 80,
+        "id": 102,
         "title": "DevOps Engineer Certification Training",
         "instructor": "Edureka",
         "category": "DevOps",
@@ -3091,7 +3091,7 @@
         "careerRelevance": "DevOps Engineer"
     },
     {
-        "id": 81,
+        "id": 103,
         "title": "Introduction to DevOps",
         "instructor": "IBM",
         "category": "DevOps",
@@ -3122,7 +3122,7 @@
         "careerRelevance": "DevOps Engineer"
     },
     {
-        "id": 82,
+        "id": 104,
         "title": "Docker and Kubernetes: The Complete Guide",
         "instructor": "Stephen Grider",
         "category": "DevOps",
@@ -3155,7 +3155,7 @@
         "careerRelevance": "DevOps Engineer, Cloud Architect"
     },
     {
-        "id": 83,
+        "id": 105,
         "title": "AWS Certified Solutions Architect - Associate",
         "instructor": "Stephane Maarek",
         "category": "Cloud",
@@ -3188,7 +3188,7 @@
         "careerRelevance": "Cloud Architect"
     },
     {
-        "id": 84,
+        "id": 106,
         "title": "Google Cloud Associate Cloud Engineer",
         "instructor": "Google Cloud",
         "category": "Cloud",
@@ -3221,7 +3221,7 @@
         "careerRelevance": "Cloud Engineer"
     },
     {
-        "id": 85,
+        "id": 107,
         "title": "Microsoft Azure Fundamentals (AZ-900)",
         "instructor": "Microsoft",
         "category": "Cloud",
@@ -3252,7 +3252,7 @@
         "careerRelevance": "Cloud Administrator"
     },
     {
-        "id": 86,
+        "id": 108,
         "title": "Complete C# Unity 2D Game Development",
         "instructor": "GameDev.tv",
         "category": "Game Dev",
@@ -3283,7 +3283,7 @@
         "careerRelevance": "Game Developer"
     },
     {
-        "id": 87,
+        "id": 109,
         "title": "Unreal Engine 5 C++ Developer: Learn C++ & Make Video Games",
         "instructor": "GameDev.tv",
         "category": "Game Dev",
@@ -3316,7 +3316,7 @@
         "careerRelevance": "Game Developer"
     },
     {
-        "id": 88,
+        "id": 110,
         "title": "Game Design and Development with Unity 2020",
         "instructor": "Michigan State University",
         "category": "Game Dev",
@@ -3347,7 +3347,7 @@
         "careerRelevance": "Game Designer"
     },
     {
-        "id": 89,
+        "id": 111,
         "title": "Blockchain Revolution Specialization",
         "instructor": "INSEAD",
         "category": "Blockchain",
@@ -3378,7 +3378,7 @@
         "careerRelevance": "Blockchain Consultant"
     },
     {
-        "id": 90,
+        "id": 112,
         "title": "Ethereum Blockchain Developer Bootcamp with Solidity",
         "instructor": "Ravinder Deol",
         "category": "Blockchain",
@@ -3411,7 +3411,7 @@
         "careerRelevance": "Blockchain Developer"
     },
     {
-        "id": 91,
+        "id": 113,
         "title": "Bitcoin and Cryptocurrency Technologies",
         "instructor": "Princeton University",
         "category": "Blockchain",
@@ -3440,5 +3440,168 @@
             "Explore crypto security"
         ],
         "careerRelevance": "Crypto Analyst"
+    },
+    {
+        "id": 114,
+        "title": "Placement Preparation Course",
+        "instructor": "Love Babbar",
+        "category": "DSA",
+        "image": "https://img.youtube.com/vi/WQoB2z67hvY/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLDzeHZWIZsTryvtXdMr6rPh4apfBFEqNq",
+        "description": "Complete C++ DSA Course for Placements.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "150+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.9,
+        "reviewCount": 5000,
+        "students": 100000,
+        "completionRate": 95,
+        "tags": [
+            "DSA",
+            "C++"
+        ],
+        "prerequisites": [
+            "Basic Math"
+        ],
+        "nextCourses": [
+            "Advanced DSA"
+        ],
+        "benefits": [
+            "Crack FAANG interviews",
+            "Master C++",
+            "Strong logic building"
+        ],
+        "careerRelevance": "SDE at Top Tech Companies"
+    },
+    {
+        "id": 115,
+        "title": "Modern Web Development",
+        "instructor": "Sheryians Coding School",
+        "category": "Web Dev",
+        "image": "https://img.youtube.com/vi/l1EssrLxt7E/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PL5f_M9CM53Zyg3oG6q0kI2_C7FjXN7v9a",
+        "description": "Learn modern web development with a focus on animations and design.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "50+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.8,
+        "reviewCount": 2000,
+        "students": 50000,
+        "completionRate": 90,
+        "tags": [
+            "GSAP",
+            "Animations"
+        ],
+        "prerequisites": [],
+        "nextCourses": [
+            "Advanced Frontend"
+        ],
+        "benefits": [
+            "Build award-winning websites",
+            "Master GSAP",
+            "Creative coding"
+        ],
+        "careerRelevance": "Creative Developer"
+    },
+    {
+        "id": 116,
+        "title": "MERN Stack Course",
+        "instructor": "Thapa Technical",
+        "category": "Web Dev",
+        "image": "https://img.youtube.com/vi/I7FgWRCNfJ4/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLwGdqUZWnOp3t3qT7pvAjiJwndLIoCuTE",
+        "description": "Complete MERN Stack course in Hindi.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "60+ videos",
+        "instructor_lang": "Hindi",
+        "rating": 4.7,
+        "reviewCount": 3000,
+        "students": 75000,
+        "completionRate": 85,
+        "tags": [
+            "MERN",
+            "Full Stack"
+        ],
+        "prerequisites": [
+            "React Basics"
+        ],
+        "nextCourses": [
+            "Advanced MERN Projects"
+        ],
+        "benefits": [
+            "Full Stack mastery",
+            "Real-world projects",
+            "Job ready"
+        ],
+        "careerRelevance": "MERN Stack Developer"
+    },
+    {
+        "id": 117,
+        "title": "React Course 2024",
+        "instructor": "Web Dev Simplified",
+        "category": "Web Dev",
+        "image": "https://img.youtube.com/vi/Rh3tobg7hEo/maxresdefault.jpg",
+        "url": "https://www.youtube.com/playlist?list=PLZlA0Gpn_vH8EtggFGER8x5rF2aqh5kwc",
+        "description": "Learn React from scratch with the best practices.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "20+ videos",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 4000,
+        "students": 120000,
+        "completionRate": 92,
+        "tags": [
+            "React",
+            "Hooks"
+        ],
+        "prerequisites": [
+            "JavaScript"
+        ],
+        "nextCourses": [
+            "Advanced React"
+        ],
+        "benefits": [
+            "Solid React foundation",
+            "Best practices",
+            "Modern hooks"
+        ],
+        "careerRelevance": "Frontend Developer"
+    },
+    {
+        "id": 118,
+        "title": "NeetCode 150",
+        "instructor": "NeetCode",
+        "category": "DSA",
+        "image": "https://img.youtube.com/vi/Qh8pnnuV9dg/maxresdefault.jpg",
+        "url": "https://neetcode.io",
+        "description": "A better way to prepare for coding interviews.",
+        "difficulty": "Advanced",
+        "type": "Platform",
+        "duration": "Self-paced",
+        "instructor_lang": "English",
+        "rating": 5.0,
+        "reviewCount": 10000,
+        "students": 200000,
+        "completionRate": 80,
+        "tags": [
+            "LeetCode",
+            "Interview"
+        ],
+        "prerequisites": [
+            "DSA Basics"
+        ],
+        "nextCourses": [
+            "System Design"
+        ],
+        "benefits": [
+            "Clear interview roadmap",
+            "Video solutions",
+            "Pattern recognition"
+        ],
+        "careerRelevance": "FAANG Engineer"
     }
 ]

@@ -75,268 +75,345 @@ export const courses = [
 
 export const aiTools = [
     {
-        id: "1",
-        name: "ChatGPT",
-        category: "Chatbot",
-        level: "Beginner",
-        description: "The industry standard for natural language processing, coding assistance, and creative writing.",
-        url: "https://openai.com/chat",
-        tags: ["Conversational", "Multimodal", "Productivity"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
+        "id": "1",
+        "name": "ChatGPT",
+        "description": "The leading AI chatbot, now with GPT-4o and o1 reasoning models for complex problem-solving.",
+        "image": "https://logo.clearbit.com/openai.com",
+        "url": "https://chatgpt.com",
+        "category": "Chatbot",
+        "tags": ["Popular", "Free", "Must-Have"],
+        "pricing": "Freemium",
+        "featured": true
     },
     {
-        id: "2",
-        name: "Claude 3.5 Sonnet",
-        category: "Chatbot",
-        level: "Intermediate",
-        description: "Known for safety and high-context processing. Excellent for coding and long-form analysis.",
-        url: "https://anthropic.com",
-        tags: ["Coding", "Analysis", "Safe AI"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1676299081847-824916de030a?auto=format&fit=crop&w=800&q=80"
+        "id": "2",
+        "name": "Claude",
+        "description": "Anthropic's AI, famous for its large context window, coding skills, and 'Artifacts' UI.",
+        "image": "https://logo.clearbit.com/anthropic.com",
+        "url": "https://claude.ai",
+        "category": "Chatbot",
+        "tags": ["Coding", "Writing", "Popular"],
+        "pricing": "Freemium",
+        "featured": true
     },
     {
-        id: "3",
-        name: "Perplexity AI",
-        category: "Search",
-        level: "Beginner",
-        description: "AI-powered search engine delivering real-time, cited answers. Great for research.",
-        url: "https://www.perplexity.ai",
-        tags: ["Research", "Search", "Citations"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1633419461186-7d40a2e50594?auto=format&fit=crop&w=800&q=80"
+        "id": "3",
+        "name": "DeepSeek",
+        "description": "A powerful, open-source reasoning model that rivals top tier AIs at a fraction of the cost.",
+        "image": "https://logo.clearbit.com/deepseek.com",
+        "url": "https://www.deepseek.com",
+        "category": "Chatbot",
+        "tags": ["New", "Open Source", "Coding"],
+        "pricing": "Free",
+        "featured": true
     },
     {
-        id: "4",
-        name: "Cursor",
-        category: "Coding",
-        level: "Advanced",
-        description: "AI-powered IDE fork of VS Code. Features built-in autocompletion and codebase chat.",
-        url: "https://cursor.sh",
-        tags: ["IDE", "Dev Tool", "Autocomplete"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=800&q=80"
+        "id": "4",
+        "name": "Perplexity",
+        "description": "The AI-powered search engine that gives you accurate answers with real-time citations.",
+        "image": "https://logo.clearbit.com/perplexity.ai",
+        "url": "https://www.perplexity.ai",
+        "category": "Search",
+        "tags": ["Search", "Research", "Popular"],
+        "pricing": "Freemium",
+        "featured": true
     },
     {
-        id: "5",
-        name: "Midjourney",
-        category: "Image",
-        level: "Intermediate",
-        description: "High-fidelity image generation known for artistic style and photorealism.",
-        url: "https://www.midjourney.com",
-        tags: ["Art", "Generative", "Creative"],
-        pricing: "Paid",
-        image: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=800&q=80"
+        "id": "5",
+        "name": "Gemini",
+        "description": "Google's multimodal AI ecosystem, integrating deeply with Workspace and the new Nano Banana model.",
+        "image": "https://logo.clearbit.com/google.com",
+        "url": "https://gemini.google.com",
+        "category": "Chatbot",
+        "tags": ["Google", "Multimodal", "Free"],
+        "pricing": "Freemium",
+        "featured": true
     },
     {
-        id: "6",
-        name: "Gamma",
-        category: "Productivity",
-        level: "Beginner",
-        description: "Generates beautiful presentations, decks, and websites from simple text prompts.",
-        url: "https://gamma.app",
-        tags: ["Presentations", "Design", "Work"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80"
+        "id": "6",
+        "name": "Flux.1",
+        "description": "The new king of open-source image generation, known for incredible prompt adherence and text.",
+        "image": "https://logo.clearbit.com/blackforestlabs.ai",
+        "url": "https://blackforestlabs.ai",
+        "category": "Image Gen",
+        "tags": ["New", "Design", "Open Source"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "7",
-        name: "NotebookLM",
-        category: "Research",
-        level: "Intermediate",
-        description: "Google's AI for digesting complex documents and generating audio overviews (podcasts).",
-        url: "https://notebooklm.google",
-        tags: ["Study", "Summarization", "Audio"],
-        pricing: "Free",
-        image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=800&q=80"
+        "id": "7",
+        "name": "Kling AI",
+        "description": "A stunning new video generation tool capable of creating long, realistic clips with complex motion.",
+        "image": "https://logo.clearbit.com/klingai.com",
+        "url": "https://klingai.com",
+        "category": "Video",
+        "tags": ["New", "Video", "Trending"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "8",
-        name: "v0.dev",
-        category: "Coding",
-        level: "Intermediate",
-        description: "Generates UI components (React/Tailwind) from text prompts. Built by Vercel.",
-        url: "https://v0.dev",
-        tags: ["UI/UX", "Frontend", "No-Code"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=800&q=80"
+        "id": "8",
+        "name": "Windsurf",
+        "description": "An 'Agentic IDE' that flows with you, predicting your next coding move before you make it.",
+        "image": "https://logo.clearbit.com/windsurf.com",
+        "url": "https://windsurf.com",
+        "category": "Coding",
+        "tags": ["New", "Dev Tool", "Productivity"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "9",
-        name: "HeyGen",
-        category: "Video",
-        level: "Intermediate",
-        description: "Create professional AI avatar videos for marketing and education.",
-        url: "https://heygen.com",
-        tags: ["Video", "Avatars", "Marketing"],
-        pricing: "Paid",
-        image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=800&q=80"
+        "id": "9",
+        "name": "Hailuo AI",
+        "description": "Also known as MiniMax, this video generator is viral for its hyper-realistic human movement.",
+        "image": "https://logo.clearbit.com/hailuoai.video",
+        "url": "https://hailuoai.video",
+        "category": "Video",
+        "tags": ["New", "Viral", "Free"],
+        "pricing": "Free",
+        "featured": false
     },
     {
-        id: "10",
-        name: "Hugging Face",
-        category: "Dev / Model",
-        level: "Hard",
-        description: "The hub of open-source AI models, datasets, and demos.",
-        url: "https://huggingface.co",
-        tags: ["Open Source", "Machine Learning", "Dev"],
-        pricing: "Free",
-        image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80"
+        "id": "10",
+        "name": "Bolt.new",
+        "description": "Browser-based AI web developer that builds, deploys, and hosts full-stack apps in seconds.",
+        "image": "https://logo.clearbit.com/bolt.new",
+        "url": "https://bolt.new",
+        "category": "Coding",
+        "tags": ["Web Dev", "New", "No-Code"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "11",
-        name: "Blackbox AI",
-        category: "Coding",
-        level: "Intermediate",
-        description: "Coding assistant specialized in answering programming questions and debugging.",
-        url: "https://blackbox.ai",
-        tags: ["Debugging", "Code", "Dev"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
+        "id": "11",
+        "name": "Napkin.ai",
+        "description": "Instantly turns your boring text documents into engaging visual diagrams and charts.",
+        "image": "https://logo.clearbit.com/napkin.ai",
+        "url": "https://napkin.ai",
+        "category": "Design",
+        "tags": ["Productivity", "Visuals", "New"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "12",
-        name: "Bolt.new",
-        category: "Coding",
-        level: "Intermediate",
-        description: "Browser-based AI web developer that can build and deploy full-stack apps.",
-        url: "https://bolt.new",
-        tags: ["Full Stack", "Web Dev", "Prototyping"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1607799275518-d58665d099db?auto=format&fit=crop&w=800&q=80"
+        "id": "12",
+        "name": "NotebookLM",
+        "description": "Google's research assistant that turns your documents into engaging 'Audio Overview' podcasts.",
+        "image": "https://logo.clearbit.com/google.com",
+        "url": "https://notebooklm.google.com",
+        "category": "Productivity",
+        "tags": ["Research", "Audio", "Free"],
+        "pricing": "Free",
+        "featured": false
     },
     {
-        id: "13",
-        name: "DeepSeek",
-        category: "Chatbot",
-        level: "Advanced",
-        description: "Powerful open-source model alternative for coding and reasoning tasks.",
-        url: "https://deepseek.com",
-        tags: ["Open Source", "Coding", "Reasoning"],
-        pricing: "Free",
-        image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80"
+        "id": "13",
+        "name": "Cursor",
+        "description": "The AI code editor that defined the category, letting you chat with your entire codebase.",
+        "image": "https://logo.clearbit.com/cursor.com",
+        "url": "https://cursor.com",
+        "category": "Coding",
+        "tags": ["Popular", "Dev Tool", "Smart"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "14",
-        name: "Leonardo.ai",
-        category: "Image",
-        level: "Intermediate",
-        description: "Comprehensive image generation platform with fine-tuned models for game assets.",
-        url: "https://leonardo.ai",
-        tags: ["Game Assets", "Art", "Design"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+        "id": "14",
+        "name": "Midjourney",
+        "description": "Still the gold standard for artistic AI image generation, now with web editing features.",
+        "image": "https://logo.clearbit.com/midjourney.com",
+        "url": "https://midjourney.com",
+        "category": "Image Gen",
+        "tags": ["Art", "Quality", "Paid"],
+        "pricing": "Paid",
+        "featured": false
     },
     {
-        id: "15",
-        name: "Google Gemini",
-        category: "Chatbot",
-        level: "Beginner",
-        description: "Google's most capable AI model, integrated with Google Workspace.",
-        url: "https://gemini.google.com",
-        tags: ["Google", "Multimodal", "Productivity"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=800&q=80"
+        "id": "15",
+        "name": "Lovable",
+        "description": "A new competitor to Bolt, focusing on building beautiful, production-ready web apps fast.",
+        "image": "https://logo.clearbit.com/lovable.dev",
+        "url": "https://lovable.dev",
+        "category": "Coding",
+        "tags": ["New", "Web Dev", "Design"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "16",
-        name: "Runway",
-        category: "Video",
-        level: "Advanced",
-        description: "Professional video editing and generation suite used by filmmakers.",
-        url: "https://runwayml.com",
-        tags: ["Video", "Creative", "Editing"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=800&q=80"
+        "id": "16",
+        "name": "Suno",
+        "description": "Create radio-quality songs with vocals and lyrics just by describing the vibe.",
+        "image": "https://logo.clearbit.com/suno.com",
+        "url": "https://suno.com",
+        "category": "Audio",
+        "tags": ["Music", "Fun", "Popular"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "17",
-        name: "Jasper",
-        category: "Writing",
-        level: "Intermediate",
-        description: "AI copywriter for marketing teams and enterprise content creation.",
-        url: "https://www.jasper.ai",
-        tags: ["Marketing", "Copywriting", "Business"],
-        pricing: "Paid",
-        image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80"
+        "id": "17",
+        "name": "Grok",
+        "description": "xAI's chatbot on X, known for its 'fun mode', real-time news access, and lack of filter.",
+        "image": "https://logo.clearbit.com/x.com",
+        "url": "https://x.com/i/grok",
+        "category": "Chatbot",
+        "tags": ["Social", "Real-time", "Unfiltered"],
+        "pricing": "Paid",
+        "featured": false
     },
     {
-        id: "18",
-        name: "Synthesia",
-        category: "Video",
-        level: "Beginner",
-        description: "Create AI videos from text with realistic avatars.",
-        url: "https://www.synthesia.io",
-        tags: ["Avatars", "Video", "Presentation"],
-        pricing: "Paid",
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
+        "id": "18",
+        "name": "Runway",
+        "description": "A professional creative suite for video generation, favored by filmmakers and artists.",
+        "image": "https://logo.clearbit.com/runwayml.com",
+        "url": "https://runwayml.com",
+        "category": "Video",
+        "tags": ["Professional", "Cinema", "Edit"],
+        "pricing": "Paid",
+        "featured": false
     },
     {
-        id: "19",
-        name: "Otter.ai",
-        category: "Productivity",
-        level: "Beginner",
-        description: "AI meeting assistant that records, transcribes, and summarizes conversations.",
-        url: "https://otter.ai",
-        tags: ["Meetings", "Transcription", "Notes"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1589254065878-42c9da9e2f58?auto=format&fit=crop&w=800&q=80"
+        "id": "19",
+        "name": "Gamma",
+        "description": "Generates beautiful slide decks, documents, and webpages in seconds from a simple prompt.",
+        "image": "https://logo.clearbit.com/gamma.app",
+        "url": "https://gamma.app",
+        "category": "Productivity",
+        "tags": ["Presentations", "Office", "Design"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "20",
-        name: "GitHub Copilot",
-        category: "Coding",
-        level: "Intermediate",
-        description: "Your AI pair programmer. Turns natural language prompts into coding suggestions.",
-        url: "https://github.com/features/copilot",
-        tags: ["Dev", "Coding", "Productivity"],
-        pricing: "Paid",
-        image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=800&q=80"
+        "id": "20",
+        "name": "ElevenLabs",
+        "description": "The most realistic AI voice generator, perfect for dubbing, audiobooks, and content creation.",
+        "image": "https://logo.clearbit.com/elevenlabs.io",
+        "url": "https://elevenlabs.io",
+        "category": "Audio",
+        "tags": ["Voice", "TTS", "Quality"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "21",
-        name: "Stable Diffusion",
-        category: "Image",
-        level: "Advanced",
-        description: "Open-source latent text-to-image diffusion model.",
-        url: "https://stability.ai",
-        tags: ["Open Source", "Art", "Generative"],
-        pricing: "Free",
-        image: "https://images.unsplash.com/photo-1579783902614-a3fb39279c0f?auto=format&fit=crop&w=800&q=80"
+        "id": "21",
+        "name": "Genspark",
+        "description": "AI-powered search engine and agent for deep research and content creation.",
+        "image": "https://logo.clearbit.com/genspark.ai",
+        "url": "https://genspark.ai",
+        "category": "Search",
+        "tags": ["Search", "Research", "Free"],
+        "pricing": "Free",
+        "featured": false
     },
     {
-        id: "22",
-        name: "ElevenLabs",
-        category: "Audio",
-        level: "Intermediate",
-        description: "The most realistic AI text-to-speech and voice cloning software.",
-        url: "https://elevenlabs.io",
-        tags: ["Voice", "Audio", "Cloning"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1478737270239-2f02b77ac6d5?auto=format&fit=crop&w=800&q=80"
+        "id": "22",
+        "name": "Synthesia",
+        "description": "Create professional videos with AI avatars that speak over 120 languages without cameras.",
+        "image": "https://logo.clearbit.com/synthesia.io",
+        "url": "https://synthesia.io",
+        "category": "Video",
+        "tags": ["Avatar", "Marketing", "Business"],
+        "pricing": "Paid",
+        "featured": false
     },
     {
-        id: "23",
-        name: "Notion AI",
-        category: "Productivity",
-        level: "Beginner",
-        description: "Integrated AI assistant for writing, summarizing, and organizing within Notion.",
-        url: "https://www.notion.so/product/ai",
-        tags: ["Writing", "Organization", "Notes"],
-        pricing: "Paid",
-        image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?auto=format&fit=crop&w=800&q=80"
+        "id": "23",
+        "name": "Copy.ai",
+        "description": "GTM platform for generating marketing copy, blog posts, and documents.",
+        "image": "https://logo.clearbit.com/copy.ai",
+        "url": "https://copy.ai",
+        "category": "Productivity",
+        "tags": ["Writing", "Marketing", "SEO"],
+        "pricing": "Freemium",
+        "featured": false
     },
     {
-        id: "24",
-        name: "Canva Magic Studio",
-        category: "Design",
-        level: "Beginner",
-        description: "Suite of AI design tools for generating images, editing photos, and creating content.",
-        url: "https://www.canva.com/magic-home",
-        tags: ["Design", "Creative", "Social Media"],
-        pricing: "Freemium",
-        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80"
+        "id": "24",
+        "name": "Soundraw",
+        "description": "An AI generator that lets you customize song length and mood for royalty-free music.",
+        "image": "https://logo.clearbit.com/soundraw.io",
+        "url": "https://soundraw.io",
+        "category": "Audio",
+        "tags": ["Music", "Content", "Royalty Free"],
+        "pricing": "Freemium",
+        "featured": false
+    },
+    {
+        "id": "25",
+        "name": "Codeium",
+        "description": "A powerful, free alternative to GitHub Copilot that works in almost any IDE.",
+        "image": "https://logo.clearbit.com/codeium.com",
+        "url": "https://codeium.com",
+        "category": "Coding",
+        "tags": ["Coding", "Free", "IDE"],
+        "pricing": "Free",
+        "featured": false
+    },
+    {
+        "id": "26",
+        "name": "Galileo AI",
+        "description": "Generates UI designs from text prompts in seconds. The Copilot for interface design.",
+        "image": "https://logo.clearbit.com/usegalileo.ai",
+        "url": "https://usegalileo.ai",
+        "category": "Design",
+        "tags": ["UI/UX", "Design", "Figma"],
+        "pricing": "Freemium",
+        "featured": false
+    },
+    {
+        "id": "27",
+        "name": "Krisp",
+        "description": "Removes background noise and echo from your calls using AI.",
+        "image": "https://logo.clearbit.com/krisp.ai",
+        "url": "https://krisp.ai",
+        "category": "Audio",
+        "tags": ["Audio", "Meeting", "Clear"],
+        "pricing": "Freemium",
+        "featured": false
+    },
+    {
+        "id": "28",
+        "name": "Meta AI",
+        "description": "Meta's intelligent assistant capable of complex reasoning, coding, and creative work.",
+        "image": "https://logo.clearbit.com/meta.com",
+        "url": "https://www.meta.ai",
+        "category": "Chatbot",
+        "tags": ["Social", "Chat", "Research"],
+        "pricing": "Free",
+        "featured": false
+    },
+    {
+        "id": "29",
+        "name": "SeaArt",
+        "description": "A powerful, feature-rich AI tool for image generation and editing.",
+        "image": "https://logo.clearbit.com/seaart.ai",
+        "url": "https://seaart.ai",
+        "category": "Image Gen",
+        "tags": ["Art", "Anime", "Generation"],
+        "pricing": "Freemium",
+        "featured": false
+    },
+    {
+        "id": "30",
+        "name": "Tome",
+        "description": "AI-powered storytelling format that turns your ideas into stunning presentations.",
+        "image": "https://logo.clearbit.com/tome.app",
+        "url": "https://tome.app",
+        "category": "Productivity",
+        "tags": ["Slides", "Storytelling", "Design"],
+        "pricing": "Freemium",
+        "featured": false
+    },
+    {
+        "id": "31",
+        "name": "Read.ai",
+        "description": "AI summaries and transcripts for your meetings across Zoom, Teams, and Meet.",
+        "image": "https://logo.clearbit.com/read.ai",
+        "url": "https://read.ai",
+        "category": "Productivity",
+        "tags": ["Meeting", "Summary", "Notes"],
+        "pricing": "Freemium",
+        "featured": false
     }
 ];
 
@@ -347,7 +424,7 @@ export const resources = [
         description: "High-quality tech education in Hindi & English. Covers everything from JS to DevOps.",
         type: "YouTube Channel",
         link: "https://www.youtube.com/c/HiteshChoudhurydotcom",
-        image: "https://yt3.googleusercontent.com/ytc/AIdro_lpwLO9s_hYy6_y9y9y9y9y9y9y9y9y9y9y9y9y=s900-c-k-c0x00ffffff-no-rj"
+        image: "https://ui-avatars.com/api/?name=Hitesh+Choudhury&background=random&size=128"
     },
     {
         id: "2",
@@ -355,7 +432,7 @@ export const resources = [
         description: "Legendary coding tutorials in Hindi for beginners. Best for Python, C++, and Web Dev.",
         type: "YouTube Channel",
         link: "https://www.youtube.com/c/CodeWithHarry",
-        image: "https://yt3.googleusercontent.com/ytc/AIdro_k_9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y=s900-c-k-c0x00ffffff-no-rj"
+        image: "https://ui-avatars.com/api/?name=CodeWithHarry&background=random&size=128"
     },
     {
         id: "3",
@@ -363,7 +440,7 @@ export const resources = [
         description: "Placement preparation and coding courses. Great for DSA and Interview Prep.",
         type: "YouTube Channel",
         link: "https://www.youtube.com/c/ApnaCollege",
-        image: "https://yt3.googleusercontent.com/ytc/AIdro_l_9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y=s900-c-k-c0x00ffffff-no-rj"
+        image: "https://ui-avatars.com/api/?name=Apna+College&background=random&size=128"
     },
     {
         id: "4",
@@ -371,7 +448,7 @@ export const resources = [
         description: "The ultimate DSA and Interview preparation masterclass. SDE Sheet is a must.",
         type: "YouTube Channel",
         link: "https://www.youtube.com/c/takeUforward",
-        image: "https://yt3.googleusercontent.com/ytc/AIdro_m_9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y9y=s900-c-k-c0x00ffffff-no-rj"
+        image: "https://ui-avatars.com/api/?name=Striver&background=random&size=128"
     },
     {
         id: "5",
@@ -379,7 +456,7 @@ export const resources = [
         description: "Introduction to Computer Science. The gold standard for understanding how computers work.",
         type: "Course",
         link: "https://pll.harvard.edu/course/cs50-introduction-computer-science",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=CS50&background=a51c30&color=fff&size=128"
     },
     {
         id: "6",
@@ -387,7 +464,7 @@ export const resources = [
         description: "Deep dive into modern web development (React, Node, GraphQL, TypeScript).",
         type: "Course",
         link: "https://fullstackopen.com/en/",
-        image: "https://fullstackopen.com/static/og-image.png"
+        image: "https://ui-avatars.com/api/?name=FullStackOpen&background=000&color=fff&size=128"
     },
     {
         id: "7",
@@ -395,7 +472,7 @@ export const resources = [
         description: "Interactive roadmaps for developers. Step-by-step guides for every role.",
         type: "Guide",
         link: "https://roadmap.sh",
-        image: "https://roadmap.sh/images/og-img.png"
+        image: "https://ui-avatars.com/api/?name=Roadmap.sh&background=000&color=fff&size=128"
     },
     {
         id: "8",
@@ -403,7 +480,7 @@ export const resources = [
         description: "Learn to code for free. Build projects. Earn certifications. A massive open source community.",
         type: "Platform",
         link: "https://www.freecodecamp.org",
-        image: "https://design-style-guide.freecodecamp.org/downloads/fcc_secondary_small.jpg"
+        image: "https://ui-avatars.com/api/?name=FreeCodeCamp&background=0a0a23&color=fff&size=128"
     },
     {
         id: "9",
@@ -411,7 +488,7 @@ export const resources = [
         description: "Master the art of talking to AI models. Comprehensive strategies and examples.",
         type: "Guide",
         link: "https://www.promptingguide.ai",
-        image: "https://images.unsplash.com/photo-1676299081847-824916de030a?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Prompt+Eng&background=random&size=128"
     },
     {
         id: "10",
@@ -419,7 +496,7 @@ export const resources = [
         description: "Degrees and certificates from top universities like Stanford, Yale, and companies like Google.",
         type: "Platform",
         link: "https://www.coursera.org",
-        image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Coursera&background=0056d2&color=fff&size=128"
     },
     {
         id: "11",
@@ -427,7 +504,7 @@ export const resources = [
         description: "Access 2500+ online courses from 140 top institutions including Harvard and MIT.",
         type: "Platform",
         link: "https://www.edx.org",
-        image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=edX&background=b91c1c&color=fff&size=128"
     },
     {
         id: "12",
@@ -435,7 +512,7 @@ export const resources = [
         description: "Free world-class education for anyone, anywhere. Math, Science, Computing.",
         type: "Platform",
         link: "https://www.khanacademy.org",
-        image: "https://images.unsplash.com/photo-1509062522246-37559cc792f9?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Khan+Academy&background=14b8a6&color=fff&size=128"
     },
     {
         id: "13",
@@ -443,7 +520,7 @@ export const resources = [
         description: "Philosophy, design, and life lessons. A blog about thinking clearly.",
         type: "Blog",
         link: "https://amritwt.me/blog/things-i-believe",
-        image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Amrit+WT&background=000&color=fff&size=128"
     },
     {
         id: "14",
@@ -451,7 +528,7 @@ export const resources = [
         description: "Path to a free self-taught education in Computer Science. A complete curriculum.",
         type: "Curriculum",
         link: "https://github.com/ossu/computer-science",
-        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=OSSU&background=000&color=fff&size=128"
     },
     {
         id: "15",
@@ -459,7 +536,7 @@ export const resources = [
         description: "Free lecture notes, exams, and videos from MIT. No registration required.",
         type: "Platform",
         link: "https://ocw.mit.edu/",
-        image: "https://images.unsplash.com/photo-1592495994685-7809935e466b?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=MIT+OCW&background=a31f34&color=fff&size=128"
     },
     {
         id: "16",
@@ -467,7 +544,7 @@ export const resources = [
         description: "The most popular physics book ever written. Read online for free.",
         type: "Book",
         link: "https://www.feynmanlectures.caltech.edu/",
-        image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Feynman&background=random&size=128"
     },
     {
         id: "17",
@@ -475,7 +552,7 @@ export const resources = [
         description: "Thoughts on startups, life, and programming from the founder of Y Combinator.",
         type: "Blog",
         link: "https://paulgraham.com/articles.html",
-        image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Paul+Graham&background=f97316&color=fff&size=128"
     },
     {
         id: "18",
@@ -483,7 +560,7 @@ export const resources = [
         description: "How to be successful, idea generation, and startups. Insights from OpenAI CEO.",
         type: "Blog",
         link: "https://blog.samaltman.com/how-to-be-successful",
-        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Sam+Altman&background=000&color=fff&size=128"
     },
     {
         id: "19",
@@ -491,7 +568,7 @@ export const resources = [
         description: "Wealth, happiness, and philosophy. The Almanack of Naval Ravikant.",
         type: "Blog",
         link: "https://nav.al/rich",
-        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Naval&background=000&color=fff&size=128"
     },
     {
         id: "20",
@@ -499,7 +576,7 @@ export const resources = [
         description: "The largest open-source open-data library. Search engines for shadow libraries.",
         type: "Platform",
         link: "https://annas-archive.org/",
-        image: "https://images.unsplash.com/photo-1507842217121-9e93c8aaf27c?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Anna's+Archive&background=random&size=128"
     },
     {
         id: "21",
@@ -507,7 +584,7 @@ export const resources = [
         description: "Authentic Vedic literature and wisdom. Bhagavad Gita, Srimad Bhagavatam.",
         type: "Platform",
         link: "https://vedabase.io/en/",
-        image: "https://images.unsplash.com/photo-1605218427368-35b861287e2a?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Vedabase&background=f59e0b&color=fff&size=128"
     },
     {
         id: "22",
@@ -515,7 +592,7 @@ export const resources = [
         description: "Self-learning guides for Physics, Math, and Philosophy. So You Want to Learn Physics...",
         type: "Guide",
         link: "https://www.susanrigetti.com/physics",
-        image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Susan+Rigetti&background=random&size=128"
     },
     {
         id: "23",
@@ -523,7 +600,7 @@ export const resources = [
         description: "Leonard Susskind's courses on modern physics. What you need to know to start doing physics.",
         type: "Course",
         link: "https://theoreticalminimum.com/",
-        image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Theoretical+Min&background=000&color=fff&size=128"
     },
     {
         id: "24",
@@ -531,7 +608,7 @@ export const resources = [
         description: "The most popular AI tools directory. Daily updates on the latest AI news.",
         type: "Directory",
         link: "https://www.rundown.ai/tools?category=Most+Popular",
-        image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=Rundown&background=000&color=fff&size=128"
     },
     {
         id: "25",
@@ -539,6 +616,38 @@ export const resources = [
         description: "Comprehensive list of AI tools. A community-maintained database.",
         type: "Directory",
         link: "https://docs.google.com/spreadsheets/d/1zi5F5YvOm7CUV6xUFYIcshaYXotXwqZmRIK4ugA8W6o/edit?usp=sharing",
-        image: "https://images.unsplash.com/photo-1543286386-713df548e9cc?auto=format&fit=crop&w=800&q=80"
+        image: "https://ui-avatars.com/api/?name=AI+Sheet&background=10b981&color=fff&size=128"
+    },
+    {
+        id: "26",
+        title: "Refactoring.guru",
+        description: "Interactive course on Design Patterns and Refactoring.",
+        type: "Guide",
+        link: "https://refactoring.guru",
+        image: "https://ui-avatars.com/api/?name=Refactoring&background=f43f5e&color=fff&size=128"
+    },
+    {
+        id: "27",
+        title: "System Design Primer",
+        description: "Learn how to design large-scale systems. The ultimate guide.",
+        type: "Guide",
+        link: "https://github.com/donnemartin/system-design-primer",
+        image: "https://ui-avatars.com/api/?name=System+Design&background=000&color=fff&size=128"
+    },
+    {
+        id: "28",
+        title: "MDN Web Docs",
+        description: "Resources for developers, by developers. The official documentation for the web.",
+        type: "Platform",
+        link: "https://developer.mozilla.org",
+        image: "https://ui-avatars.com/api/?name=MDN&background=000&color=fff&size=128"
+    },
+    {
+        id: "29",
+        title: "React Documentation",
+        description: "The library for web and native user interfaces. Learn React the right way.",
+        type: "Guide",
+        link: "https://react.dev",
+        image: "https://ui-avatars.com/api/?name=React&background=61dafb&color=000&size=128"
     }
 ];

@@ -1,0 +1,77 @@
+
+> next-web@0.1.0 lint
+> eslint
+
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\CourseCard.tsx
+  5:41  warning  'CardHeader' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\MotivationCard.tsx
+  3:29  warning  'CardFooter' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\Navbar.tsx
+  10:10  warning  'Input' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  27:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\Navbar.tsx:27:9
+  25 |     // Close mobile menu on route change
+  26 |     useEffect(() => {
+> 27 |         setIsOpen(false);
+     |         ^^^^^^^^^ Avoid calling setState() directly within an effect
+  28 |     }, [pathname]);
+  29 |
+  30 |     return (  react-hooks/set-state-in-effect
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\TipCard.tsx
+  4:10  warning  'Badge' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\AITools.tsx
+   4:18  warning  'ExternalLink' is defined but never used  @typescript-eslint/no-unused-vars
+   6:8   warning  'Image' is defined but never used         @typescript-eslint/no-unused-vars
+  11:10  warning  'Badge' is defined but never used         @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Canvas.tsx
+  45:17  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Canvas.tsx:45:17
+  43 |             try {
+  44 |                 const parsed = JSON.parse(saved);
+> 45 |                 setElements(parsed);
+     |                 ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  46 |                 setHistory([parsed]);
+  47 |                 setHistoryStep(0);
+  48 |             } catch (e) {  react-hooks/set-state-in-effect
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Categories.tsx
+   15:10  warning  'Badge' is defined but never used         @typescript-eslint/no-unused-vars
+  233:78  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\CourseDetail.tsx
+  16:10  warning  'Separator' is defined but never used     @typescript-eslint/no-unused-vars
+  85:70  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Resources.tsx
+  4:10  warning  'Youtube' is defined but never used        @typescript-eslint/no-unused-vars
+  4:19  warning  'ExternalLink' is defined but never used   @typescript-eslint/no-unused-vars
+  4:43  warning  'GraduationCap' is defined but never used  @typescript-eslint/no-unused-vars
+  4:58  warning  'Map' is defined but never used            @typescript-eslint/no-unused-vars
+  6:8   warning  'Image' is defined but never used          @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\tailwind.config.ts
+  77:12  error  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  77:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 20 problems (6 errors, 14 warnings)
+

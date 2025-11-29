@@ -31,24 +31,52 @@ export default function Canvas() {
     const searchParams = useSearchParams();
 
     // Canvas State
-    const [elements, setElements] = useState<Shape[]>(() => {
-        const challenge = searchParams.get('challenge');
-        if (challenge) {
-            return [{
-                id: Math.random().toString(36).substr(2, 9),
-                type: 'text',
-                x: 100,
-                y: 100,
-                text: `Challenge: ${challenge}`,
-                color: '#3B82F6',
-                strokeWidth: 6
-            }];
-        }
-        return [];
-    });
+    const [elements, setElements] = useState<Shape[]>([]);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [history, setHistory] = useState<Shape[][]>([]);
     const [historyStep, setHistoryStep] = useState(-1);
 
+    // Load from local storage
+    useEffect(() => {
+        const saved = localStorage.getItem('pryzmira-canvas');
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                // eslint-disable-next-line react-hooks/set-state-in-effect
+                setElements(parsed);
+                setHistory([parsed]);
+                setHistoryStep(0);
+            } catch (e) {
+                console.error("Failed to load canvas", e);
+            }
+        } else {
+            const challenge = searchParams.get('challenge');
+            if (challenge) {
+                const initial: Shape[] = [{
+                    id: Math.random().toString(36).substr(2, 9),
+                    type: 'text',
+                    x: 100,
+                    y: 100,
+                    text: `Challenge: ${challenge}`,
+                    color: '#3B82F6',
+                    strokeWidth: 6
+                }];
+                setElements(initial);
+                setHistory([initial]);
+                setHistoryStep(0);
+            }
+        }
+        setIsLoaded(true);
+    }, [searchParams]);
+
+    // Save to local storage
+    useEffect(() => {
+        if (!isLoaded) return;
+        const timeout = setTimeout(() => {
+            localStorage.setItem('pryzmira-canvas', JSON.stringify(elements));
+        }, 500);
+        return () => clearTimeout(timeout);
+    }, [elements, isLoaded]);
     // Tool State
     const [tool, setTool] = useState<Tool>('pen');
     const [color, setColor] = useState(theme === 'dark' ? '#E0E0E0' : '#37352F');
@@ -662,7 +690,7 @@ export default function Canvas() {
                             onChange={(e) => setTextInput({ ...textInput, value: e.target.value })}
                             onBlur={handleTextSubmit}
                             onKeyDown={(e) => e.key === 'Enter' && handleTextSubmit()}
-                            className="bg-transparent border-b-2 border-primary text-text-primary outline-none p-1 min-w-[100px] shadow-lg bg-surface/80 backdrop-blur-sm rounded-t-md"
+                            className="bg-surface border border-border text-text-primary outline-none p-2 min-w-[100px] shadow-lg rounded-md"
                             style={{
                                 fontSize: `${brushSize * 4}px`,
                                 color: color,
@@ -674,7 +702,7 @@ export default function Canvas() {
                 )}
 
                 {/* Status Bar */}
-                <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-background/80 backdrop-blur-md text-xs text-text-secondary border border-border flex gap-4 shadow-sm">
+                <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-surface text-xs text-text-secondary border border-border flex gap-4 shadow-sm">
                     <span>{Math.round(scale * 100)}%</span>
                     <span>{elements.length} objects</span>
                     <span>{selectedId ? 'Selected' : 'No Selection'}</span>

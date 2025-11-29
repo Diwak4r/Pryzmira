@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Newsletter() {
     const [email, setEmail] = useState('');
@@ -56,18 +58,18 @@ export default function Newsletter() {
     };
 
     return (
-        <section className="py-20 relative overflow-hidden border-t border-border">
+        <section className="py-20 relative overflow-hidden border-t border-border bg-background">
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-3xl mx-auto text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-text-primary">Stay Ahead of the Curve</h2>
-                    <p className="text-text-secondary mb-8 text-lg">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Stay Ahead of the Curve</h2>
+                    <p className="text-muted-foreground mb-8 text-lg">
                         Join 10,000+ learners getting weekly insights on AI, Tech, and Finance.
                         No spam, just value.
                     </p>
 
                     <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto relative">
                         <div className="flex-grow relative">
-                            <input
+                            <Input
                                 type="email"
                                 placeholder="Enter your email"
                                 value={email}
@@ -75,18 +77,18 @@ export default function Newsletter() {
                                     setEmail(e.target.value);
                                     if (status === 'error') setStatus('idle');
                                 }}
-                                className={`w-full bg-surface border border-border px-6 py-4 rounded-xl outline-none transition-all placeholder:text-text-secondary text-text-primary ${status === 'error' ? 'border-red-500 focus:border-red-500' : 'focus:border-text-primary'
-                                    }`}
+                                className={`w-full ${status === 'error' ? 'border-destructive focus-visible:ring-destructive' : ''}`}
+                                suppressHydrationWarning
                             />
                         </div>
-                        <button
+                        <Button
                             type="submit"
                             disabled={isLoading}
-                            className="px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed"
+                            className="px-6"
                         >
                             {isLoading ? 'Subscribing...' : 'Subscribe'}
-                            {!isLoading && <Send className="w-4 h-4" />}
-                        </button>
+                            {!isLoading && <Send className="w-4 h-4 ml-2" />}
+                        </Button>
                     </form>
 
                     <AnimatePresence mode="wait">
@@ -96,7 +98,7 @@ export default function Newsletter() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
-                                className={`mt-4 flex items-center justify-center gap-2 text-sm font-medium ${status === 'success' ? 'text-emerald-500' : 'text-red-500'
+                                className={`mt-4 flex items-center justify-center gap-2 text-sm font-medium ${status === 'success' ? 'text-emerald-500' : 'text-destructive'
                                     }`}
                             >
                                 {status === 'success' ? <CheckCircle className="w-4 h-4" /> : <AlertCircle className="w-4 h-4" />}

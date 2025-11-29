@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Hexagon, Moon, Sun, Search, Sparkles } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
     { name: 'Categories', path: '/categories' },
@@ -16,101 +18,62 @@ const navItems = [
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
     const { theme, toggleTheme } = useTheme();
     const pathname = usePathname();
 
-    // Handle scroll effect
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    // Close mobile menu  on route change
-    useEffect(() => {
-        setIsOpen(false);
-    }, [pathname]);
-
-    // Prevent body scroll when mobile menu is open
+    // Close mobile menu on route change
     useEffect(() => {
         if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            setIsOpen(false);
         }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [isOpen]);
+    }, [pathname, isOpen]);
 
     return (
-        <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                    ? 'glass-panel shadow-premium'
-                    : 'bg-background/70 backdrop-blur-lg border-b border-border/30'
-                }`}
-        >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex items-center justify-between">
-                {/* Logo with Premium Effect */}
-                <Link href="/" className="flex items-center gap-2.5 group cursor-pointer">
-                    <motion.div
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.6, ease: "easeInOut" }}
-                        className="p-2 rounded-xl glass-card group-hover:gradient-bg transition-all duration-300"
-                    >
-                        <Hexagon className="w-5 h-5 md:w-6 md:h-6 text-primary group-hover:text-white transition-colors" />
-                    </motion.div>
-                    <span className="text-lg md:text-xl font-bold tracking-tight gradient-text font-heading">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border transition-colors duration-300">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                {/* Logo - Minimal */}
+                <Link href="/" className="flex items-center gap-2 group">
+                    <div className="relative w-8 h-8">
+                        <Image
+                            src="/logo.png"
+                            alt="Pryzmira Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                        />
+                    </div>
+                    <span className="text-lg font-bold tracking-tight text-foreground font-heading">
                         Pryzmira
                     </span>
                 </Link>
 
-                {/* Search Bar (Desktop) - Premium Design */}
-                <div className="hidden lg:flex items-center relative max-w-md w-full mx-8 group">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary group-focus-within:gradient-text transition-all" />
-                    <input
-                        type="text"
-                        placeholder="Search courses, tools, resources..."
-                        className="w-full glass-card py-2.5 pl-11 pr-4 text-sm text-primary rounded-full focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all placeholder:text-text-secondary/50"
-                    />
-                </div>
-
-                {/* Desktop Nav with Premium Style */}
-                <div className="hidden md:flex items-center gap-1">
+                {/* Desktop Nav - Simple Text Links */}
+                <div className="hidden md:flex items-center gap-6">
                     {navItems.map((item) => {
                         const isActive = pathname === item.path || (item.path === '/categories' && pathname === '/');
                         return (
                             <Link
                                 key={item.name}
                                 href={item.path}
-                                className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-xl ${isActive
-                                        ? 'text-primary'
-                                        : 'text-text-secondary hover:text-primary'
+                                className={`text-sm font-medium transition-colors relative group ${isActive
+                                    ? 'text-foreground'
+                                    : 'text-muted-foreground hover:text-foreground'
                                     }`}
                             >
                                 {item.name}
-                                {isActive && (
-                                    <motion.div
-                                        layoutId="navbar-indicator"
-                                        className="absolute inset-0 glass-card rounded-xl -z-10"
-                                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                                    />
-                                )}
+                                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                             </Link>
                         );
                     })}
                 </div>
 
-                {/* Right Actions - Premium Buttons */}
+                {/* Right Actions - Functional Buttons */}
                 <div className="hidden md:flex items-center gap-3">
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                    <Button
+                        variant="ghost"
+                        size="icon"
                         onClick={toggleTheme}
-                        className="p-2.5 rounded-xl glass-card hover:gradient-bg hover:text-white transition-all group"
                         aria-label="Toggle Theme"
                     >
                         {(theme || 'dark') === 'dark' ? (
@@ -118,141 +81,77 @@ export default function Navbar() {
                         ) : (
                             <Sun className="w-4 h-4" />
                         )}
-                    </motion.button>
+                    </Button>
 
-                    <Link
-                        href="/categories"
-                        className="px-5 py-2.5 gradient-bg text-white text-sm font-bold rounded-full hover:scale-105 transition-all shadow-premium flex items-center gap-2 group"
-                    >
-                        <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                        <span>Get Started</span>
-                    </Link>
+                    <Button asChild>
+                        <Link href="/categories">
+                            Get Started
+                        </Link>
+                    </Button>
                 </div>
 
-                {/* Mobile Menu Button - Enhanced */}
-                <motion.button
-                    whileTap={{ scale: 0.9 }}
-                    className="md:hidden p-2 rounded-xl glass-card text-primary hover:gradient-bg hover:text-white transition-all"
-                    onClick={() => setIsOpen(!isOpen)}
-                    aria-label="Toggle Menu"
-                >
-                    <AnimatePresence mode="wait">
-                        {isOpen ? (
-                            <motion.div
-                                key="close"
-                                initial={{ rotate: -90, opacity: 0 }}
-                                animate={{ rotate: 0, opacity: 1 }}
-                                exit={{ rotate: 90, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                            >
-                                <X className="w-6 h-6" />
-                            </motion.div>
-                        ) : (
-                            <motion.div
-                                key="menu"
-                                initial={{ rotate: 90, opacity: 0 }}
-                                animate={{ rotate: 0, opacity: 1 }}
-                                exit={{ rotate: -90, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                            >
+                {/* Mobile Menu Button */}
+                <div className="md:hidden">
+                    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                        <SheetTrigger asChild>
+                            <Button variant="ghost" size="icon">
                                 <Menu className="w-6 h-6" />
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </motion.button>
-            </div>
-
-            {/* Premium Mobile Menu */}
-            <AnimatePresence>
-                {isOpen && (
-                    <>
-                        {/* Backdrop with Blur */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="fixed inset-0 bg-background/80 backdrop-blur-xl md:hidden"
-                            style={{ top: '70px' }}
-                            onClick={() => setIsOpen(false)}
-                        />
-
-                        {/* Menu Content */}
-                        <motion.div
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                            className="md:hidden glass-strong border-b border-border/50 shadow-2xl"
-                        >
-                            <div className="px-6 py-6 space-y-4 max-h-[calc(100vh-80px)] overflow-y-auto">
-                                {/* Mobile Search */}
-                                <div className="relative group">
-                                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary" />
-                                    <input
-                                        type="text"
-                                        placeholder="Search..."
-                                        className="w-full glass-card py-3 pl-11 pr-4 text-sm text-primary rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all"
-                                    />
-                                </div>
-
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                            <div className="flex flex-col gap-6 mt-6">
                                 {/* Mobile Nav Links */}
-                                <div className="space-y-2">
-                                    {navItems.map((item, index) => {
+                                <div className="flex flex-col gap-2">
+                                    {navItems.map((item) => {
                                         const isActive = pathname === item.path;
                                         return (
-                                            <motion.div
+                                            <Link
                                                 key={item.name}
-                                                initial={{ opacity: 0, x: -20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                transition={{ delay: index * 0.05 }}
+                                                href={item.path}
+                                                onClick={() => setIsOpen(false)}
+                                                className={`block px-4 py-3 text-base font-medium rounded-md transition-colors ${isActive
+                                                    ? 'bg-accent text-accent-foreground'
+                                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                                                    }`}
                                             >
-                                                <Link
-                                                    href={item.path}
-                                                    onClick={() => setIsOpen(false)}
-                                                    className={`block px-5 py-4 text-lg font-semibold rounded-2xl transition-all ${isActive
-                                                            ? 'gradient-bg text-white shadow-premium'
-                                                            : 'text-text-secondary hover:text-primary glass-card hover:scale-[1.02]'
-                                                        }`}
-                                                >
-                                                    {item.name}
-                                                </Link>
-                                            </motion.div>
+                                                {item.name}
+                                            </Link>
                                         );
                                     })}
                                 </div>
 
                                 {/* Mobile Actions */}
-                                <div className="pt-4 space-y-3 border-t border-border/50">
-                                    <button
+                                <div className="flex flex-col gap-3 pt-4 border-t">
+                                    <Button
+                                        variant="outline"
+                                        className="w-full justify-between"
                                         onClick={() => {
                                             toggleTheme();
-                                            setIsOpen(false);
+                                            // Don't close menu on theme toggle
                                         }}
-                                        className="w-full flex items-center justify-between px-5 py-4 glass-card rounded-2xl text-primary hover:gradient-bg hover:text-white transition-all"
                                     >
-                                        <span className="font-semibold">Toggle Theme</span>
+                                        <span className="font-medium">Theme</span>
                                         {(theme || 'dark') === 'dark' ? (
                                             <Moon className="w-5 h-5" />
                                         ) : (
                                             <Sun className="w-5 h-5" />
                                         )}
-                                    </button>
+                                    </Button>
 
-                                    <Link
-                                        href="/categories"
-                                        onClick={() => setIsOpen(false)}
-                                        className="w-full flex items-center justify-center gap-2 px-5 py-4 gradient-bg text-white font-bold rounded-2xl shadow-premium hover:scale-[1.02] transition-all"
-                                    >
-                                        <Sparkles className="w-5 h-5" />
-                                        <span>Get Started</span>
-                                    </Link>
+                                    <Button asChild className="w-full">
+                                        <Link
+                                            href="/categories"
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            Get Started
+                                        </Link>
+                                    </Button>
                                 </div>
                             </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
+                        </SheetContent>
+                    </Sheet>
+                </div>
+            </div>
         </nav>
     );
 }

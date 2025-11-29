@@ -3,17 +3,13 @@
 > eslint
 
 
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\app\api\cron\send-newsletter\route.ts
-  10:27  warning  'request' is defined but never used  @typescript-eslint/no-unused-vars
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\CourseCard.tsx
+   3:23  warning  'Users' is defined but never used     @typescript-eslint/no-unused-vars
+   3:42  warning  'BookOpen' is defined but never used  @typescript-eslint/no-unused-vars
+  33:5   warning  'index' is defined but never used     @typescript-eslint/no-unused-vars
 
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\ClientLayout.tsx
-  12:10  warning  'ThemeProvider' is defined but never used  @typescript-eslint/no-unused-vars
-
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\ExitIntentModal.tsx
-  108:90  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\context\ThemeContext.tsx
-  19:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\Navbar.tsx
+  23:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
 
 Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
 * Update external systems with the latest state from React.
@@ -21,25 +17,19 @@ Effects are intended to synchronize state between React and external systems suc
 
 Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
 
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\context\ThemeContext.tsx:19:9
-  17 |
-  18 |     useEffect(() => {
-> 19 |         setMounted(true);
-     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
-  20 |         const saved = localStorage.getItem('theme') as Theme;
-  21 |         if (saved) {
-  22 |             setTheme(saved);  react-hooks/set-state-in-effect
-  49:1  error  Definition for rule 'react-refresh/only-export-components' was not found                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         react-refresh/only-export-components
-
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\hooks\useIntersectionObserver.ts
-  18:40  warning  The ref value 'ref.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'ref.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
-
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\utils\analytics.ts
-  29:75  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\Navbar.tsx:23:9
+  21 |     // Close mobile menu on route change
+  22 |     useEffect(() => {
+> 23 |         setIsOpen(false);
+     |         ^^^^^^^^^ Avoid calling setState() directly within an effect
+  24 |     }, [pathname]);
+  25 |
+  26 |     // Prevent body scroll when mobile menu is open  react-hooks/set-state-in-effect
 
 C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Categories.tsx
-   67:13  error  'result' is never reassigned. Use 'const' instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       prefer-const
-  113:9   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+    4:167  warning  'ArrowRight' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+    5:10   warning  'motion' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+   88:9    error    Error: Calling setState synchronously within an effect can trigger cascading renders
 
 Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
 * Update external systems with the latest state from React.
@@ -47,15 +37,15 @@ Effects are intended to synchronize state between React and external systems suc
 
 Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
 
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Categories.tsx:113:9
-  111 |
-  112 |     useEffect(() => {
-> 113 |         setVisibleCount(15);
-      |         ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
-  114 |     }, [search, selectedCategory]);
-  115 |
-  116 |     useEffect(() => {                                                                                                                                                                                                                   react-hooks/set-state-in-effect
-  118:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Categories.tsx:88:9
+  86 |
+  87 |     useEffect(() => {
+> 88 |         setVisibleCount(15);
+     |         ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  89 |     }, [search, selectedCategory]);
+  90 |
+  91 |     useEffect(() => {                                                                                                                                                                                                    react-hooks/set-state-in-effect
+   93:13   error    Error: Calling setState synchronously within an effect can trigger cascading renders
 
 Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
 * Update external systems with the latest state from React.
@@ -63,38 +53,20 @@ Effects are intended to synchronize state between React and external systems suc
 
 Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
 
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Categories.tsx:118:13
-  116 |     useEffect(() => {
-  117 |         if (isIntersecting && !loadingMore && visibleCount < filteredCourses.length) {
-> 118 |             setLoadingMore(true);
-      |             ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
-  119 |             // Simulate network delay for smooth feel
-  120 |             setTimeout(() => {
-  121 |                 setVisibleCount(prev => Math.min(prev + 15, filteredCourses.length));  react-hooks/set-state-in-effect
-  330:26  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/ban-ts-comment
-  332:55  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
-  344:29  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/ban-ts-comment
-  347:59  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
-  375:78  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Categories.tsx:93:13
+  91 |     useEffect(() => {
+  92 |         if (isIntersecting && !loadingMore && visibleCount < filteredCourses.length) {
+> 93 |             setLoadingMore(true);
+     |             ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  94 |             setTimeout(() => {
+  95 |                 setVisibleCount(prev => Math.min(prev + 15, filteredCourses.length));
+  96 |                 setLoadingMore(false);  react-hooks/set-state-in-effect
+  229:78   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-explicit-any
 
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Resources.tsx
-  19:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\CourseDetail.tsx
+   6:10  warning  'motion' is defined but never used      @typescript-eslint/no-unused-vars
+  11:5   warning  'Briefcase' is defined but never used   @typescript-eslint/no-unused-vars
+  11:24  warning  'PlayCircle' is defined but never used  @typescript-eslint/no-unused-vars
 
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Resources.tsx:19:9
-  17 |
-  18 |     useEffect(() => {
-> 19 |         setIsUnlocked(localStorage.getItem('vault_unlocked') === 'true');
-     |         ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
-  20 |     }, []);
-  21 |     const [secretCode, setSecretCode] = useState('');
-  22 |     const [error, setError] = useState('');  react-hooks/set-state-in-effect
-
-Γ£û 16 problems (13 errors, 3 warnings)
-  1 error and 0 warnings potentially fixable with the `--fix` option.
+Γ£û 12 problems (4 errors, 8 warnings)
 

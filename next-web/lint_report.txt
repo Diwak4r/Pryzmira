@@ -1,0 +1,107 @@
+
+> next-web@0.1.0 lint
+> eslint
+
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\ClientLayout.tsx
+  10:10  warning  'motion' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\CourseCard.tsx
+   5:41  warning  'CardHeader' is defined but never used                     @typescript-eslint/no-unused-vars
+  41:11  warning  'getDifficultyVariant' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\MotivationCard.tsx
+  3:29  warning  'CardFooter' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\Navbar.tsx
+   7:16  warning  'X' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  27:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\Navbar.tsx:27:9
+  25 |     // Close mobile menu on route change
+  26 |     useEffect(() => {
+> 27 |         setIsOpen(false);
+     |         ^^^^^^^^^ Avoid calling setState() directly within an effect
+  28 |     }, [pathname]);
+  29 |
+  30 |     return (  react-hooks/set-state-in-effect
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\components\TipCard.tsx
+  4:10  warning  'Badge' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\AITools.tsx
+   4:18  warning  'ExternalLink' is defined but never used  @typescript-eslint/no-unused-vars
+   6:8   warning  'Image' is defined but never used         @typescript-eslint/no-unused-vars
+  11:10  warning  'Badge' is defined but never used         @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Canvas.tsx
+  44:17  error  Error: Cannot access variable before it is declared
+
+`setHistory` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Canvas.tsx:44:17
+  42 |                 const parsed = JSON.parse(saved);
+  43 |                 setElements(parsed);
+> 44 |                 setHistory([parsed]);
+     |                 ^^^^^^^^^^ `setHistory` accessed before it is declared
+  45 |                 setHistoryStep(0);
+  46 |             } catch (e) {
+  47 |                 console.error("Failed to load canvas", e);
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Canvas.tsx:77:21
+  75 |         return () => clearTimeout(timeout);
+  76 |     }, [elements, isLoaded]);
+> 77 |     const [history, setHistory] = useState<Shape[][]>([]);
+     |                     ^^^^^^^^^^ `setHistory` is declared here
+  78 |     const [historyStep, setHistoryStep] = useState(-1);
+  79 |
+  80 |     // Tool State  react-hooks/immutability
+  45:17  error  Error: Cannot access variable before it is declared
+
+`setHistoryStep` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Canvas.tsx:45:17
+  43 |                 setElements(parsed);
+  44 |                 setHistory([parsed]);
+> 45 |                 setHistoryStep(0);
+     |                 ^^^^^^^^^^^^^^ `setHistoryStep` accessed before it is declared
+  46 |             } catch (e) {
+  47 |                 console.error("Failed to load canvas", e);
+  48 |             }
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Canvas.tsx:78:25
+  76 |     }, [elements, isLoaded]);
+  77 |     const [history, setHistory] = useState<Shape[][]>([]);
+> 78 |     const [historyStep, setHistoryStep] = useState(-1);
+     |                         ^^^^^^^^^^^^^^ `setHistoryStep` is declared here
+  79 |
+  80 |     // Tool State
+  81 |     const [tool, setTool] = useState<Tool>('pen');       react-hooks/immutability
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Categories.tsx
+   15:10  warning  'Badge' is defined but never used         @typescript-eslint/no-unused-vars
+  233:78  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\CourseDetail.tsx
+  16:10  warning  'Separator' is defined but never used     @typescript-eslint/no-unused-vars
+  85:70  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Resources.tsx
+  4:10  warning  'Youtube' is defined but never used        @typescript-eslint/no-unused-vars
+  4:19  warning  'ExternalLink' is defined but never used   @typescript-eslint/no-unused-vars
+  4:43  warning  'GraduationCap' is defined but never used  @typescript-eslint/no-unused-vars
+  4:58  warning  'Map' is defined but never used            @typescript-eslint/no-unused-vars
+  6:8   warning  'Image' is defined but never used          @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\tailwind.config.ts
+  77:12  error  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  77:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 23 problems (7 errors, 16 warnings)
+

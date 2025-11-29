@@ -32,6 +32,22 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'ui-avatars.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'refactoring.guru',
+      },
+      {
+        protocol: 'https',
+        hostname: 'developer.mozilla.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'react.dev',
+      },
+      {
+        protocol: 'https',
+        hostname: 'logo.clearbit.com',
+      },
     ],
   },
 };

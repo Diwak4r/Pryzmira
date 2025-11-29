@@ -1,0 +1,36 @@
+
+> next-web@0.1.0 lint
+> eslint
+
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\AITools.tsx
+   4:18  warning  'ExternalLink' is defined but never used  @typescript-eslint/no-unused-vars
+   6:8   warning  'Image' is defined but never used         @typescript-eslint/no-unused-vars
+  11:10  warning  'Badge' is defined but never used         @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Canvas.tsx
+  47:17  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/set-state-in-effect')
+  49:17  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/set-state-in-effect')
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Categories.tsx
+   15:10  warning  'Badge' is defined but never used         @typescript-eslint/no-unused-vars
+  233:78  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\CourseDetail.tsx
+  16:10  warning  'Separator' is defined but never used     @typescript-eslint/no-unused-vars
+  85:70  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\src\views\Resources.tsx
+  4:10  warning  'Youtube' is defined but never used        @typescript-eslint/no-unused-vars
+  4:19  warning  'ExternalLink' is defined but never used   @typescript-eslint/no-unused-vars
+  4:43  warning  'GraduationCap' is defined but never used  @typescript-eslint/no-unused-vars
+  4:58  warning  'Map' is defined but never used            @typescript-eslint/no-unused-vars
+  6:8   warning  'Image' is defined but never used          @typescript-eslint/no-unused-vars
+
+C:\Users\acer\Desktop\Diwakar Nitro\trying stuffs\Pryzmira\next-web\tailwind.config.ts
+  77:12  error  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  77:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 16 problems (4 errors, 12 warnings)
+  0 errors and 2 warnings potentially fixable with the `--fix` option.
+
