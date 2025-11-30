@@ -414,6 +414,171 @@ export const aiTools = [
         "tags": ["Meeting", "Summary", "Notes"],
         "pricing": "Freemium",
         "featured": false
+    },
+    {
+        "id": "tool-101",
+        "name": "TaskMaster AI",
+        "category": "Productivity",
+        "description": "Smart task management with AI-powered prioritization.",
+        "url": "https://taskmasterai.com",
+        "tags": ["task management", "AI prioritization", "workflow"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/taskmasterai.com",
+        "featured": false
+    },
+    {
+        "id": "tool-102",
+        "name": "CodeAssist Pro",
+        "category": "Coding",
+        "description": "AI-powered code completion and error detection.",
+        "url": "https://codeassistpro.dev",
+        "tags": ["code completion", "AI", "error detection"],
+        "pricing": "Paid",
+        "image": "https://logo.clearbit.com/codeassistpro.dev",
+        "featured": false
+    },
+    {
+        "id": "tool-103",
+        "name": "DesignGenie",
+        "category": "Design",
+        "description": "Generate stunning UI designs instantly with AI.",
+        "url": "https://designgenie.io",
+        "tags": ["UI design", "AI generation", "templates"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/designgenie.io",
+        "featured": false
+    },
+    {
+        "id": "tool-104",
+        "name": "FocusFlow",
+        "category": "Productivity",
+        "description": "AI-based focus timer and distraction blocker.",
+        "url": "https://focusflow.app",
+        "tags": ["focus", "productivity", "timer"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/focusflow.app",
+        "featured": false
+    },
+    {
+        "id": "tool-105",
+        "name": "GitGuru",
+        "category": "Coding",
+        "description": "AI-driven Git commit message generator and analyzer.",
+        "url": "https://gitguru.ai",
+        "tags": ["Git", "commit messages", "AI"],
+        "pricing": "Free",
+        "image": "https://logo.clearbit.com/gitguru.ai",
+        "featured": false
+    },
+    {
+        "id": "tool-106",
+        "name": "ColorCraft",
+        "category": "Design",
+        "description": "AI-assisted color palette creation and theme design.",
+        "url": "https://colorcraft.design",
+        "tags": ["color palette", "design", "AI"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/colorcraft.design",
+        "featured": false
+    },
+    {
+        "id": "tool-107",
+        "name": "NoteNinja",
+        "category": "Productivity",
+        "description": "Smart note-taking with AI summarization and tagging.",
+        "url": "https://noteninja.io",
+        "tags": ["note-taking", "AI summarization", "tags"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/noteninja.io",
+        "featured": false
+    },
+    {
+        "id": "tool-108",
+        "name": "BuildBot",
+        "category": "Coding",
+        "description": "Automate build pipelines with AI optimization.",
+        "url": "https://buildbot.ai",
+        "tags": ["CI/CD", "automation", "AI optimization"],
+        "pricing": "Paid",
+        "image": "https://logo.clearbit.com/buildbot.ai",
+        "featured": false
+    },
+    {
+        "id": "tool-109",
+        "name": "ProtoPixel",
+        "category": "Design",
+        "description": "AI-powered rapid prototyping and wireframing.",
+        "url": "https://protopixel.app",
+        "tags": ["prototyping", "wireframing", "AI"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/protopixel.app",
+        "featured": false
+    },
+    {
+        "id": "tool-110",
+        "name": "TimeSage",
+        "category": "Productivity",
+        "description": "AI-driven time tracking and productivity insights.",
+        "url": "https://timesage.ai",
+        "tags": ["time tracking", "productivity", "AI insights"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/timesage.ai",
+        "featured": false
+    },
+    {
+        "id": "tool-111",
+        "name": "ScriptSense",
+        "category": "Coding",
+        "description": "Smart script writing with AI autocomplete and debugging.",
+        "url": "https://scriptsense.dev",
+        "tags": ["script writing", "AI autocomplete", "debugging"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/scriptsense.dev",
+        "featured": false
+    },
+    {
+        "id": "tool-112",
+        "name": "VectorVision",
+        "category": "Design",
+        "description": "AI-assisted vector graphics creation and editing.",
+        "url": "https://vectorvision.design",
+        "tags": ["vector graphics", "editing", "AI"],
+        "pricing": "Paid",
+        "image": "https://logo.clearbit.com/vectorvision.design",
+        "featured": false
+    },
+    {
+        "id": "tool-113",
+        "name": "FocusMate AI",
+        "category": "Productivity",
+        "description": "Personal AI coach for focus and goal achievement.",
+        "url": "https://focusmate.ai",
+        "tags": ["focus", "goal setting", "AI coach"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/focusmate.ai",
+        "featured": false
+    },
+    {
+        "id": "tool-114",
+        "name": "DebugDroid",
+        "category": "Coding",
+        "description": "AI-powered debugging assistant for faster fixes.",
+        "url": "https://debugdroid.dev",
+        "tags": ["debugging", "AI assistant", "code"],
+        "pricing": "Paid",
+        "image": "https://logo.clearbit.com/debugdroid.dev",
+        "featured": false
+    },
+    {
+        "id": "tool-115",
+        "name": "PixelPulse",
+        "category": "Design",
+        "description": "AI-driven design feedback and usability analysis.",
+        "url": "https://pixelpulse.design",
+        "tags": ["design feedback", "usability", "AI"],
+        "pricing": "Freemium",
+        "image": "https://logo.clearbit.com/pixelpulse.design",
+        "featured": false
     }
 ];
 
@@ -649,5 +814,85 @@ export const resources = [
         type: "Guide",
         link: "https://react.dev",
         image: "https://ui-avatars.com/api/?name=React&background=61dafb&color=000&size=128"
+    },
+    {
+        "id": "res-101",
+        "title": "Tech Interview Cheatsheet",
+        "description": "Comprehensive cheatsheet covering data structures, algorithms, and system design concepts in Hindi and English.",
+        "type": "Guide",
+        "link": "https://github.com/jwasham/coding-interview-university",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+    },
+    {
+        "id": "res-102",
+        "title": "Developer Roadmap 2025",
+        "description": "Updated roadmap for frontend, backend, and devops developers with resources available in Hindi and English.",
+        "type": "Guide",
+        "link": "https://roadmap.sh",
+        "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+    },
+    {
+        "id": "res-103",
+        "title": "CodeNewbie Community",
+        "description": "A welcoming community for beginners in programming with active discussions and mentorship support.",
+        "type": "Community",
+        "link": "https://www.codenewbie.org",
+        "image": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91"
+    },
+    {
+        "id": "res-104",
+        "title": "FreeCodeCamp Hindi",
+        "description": "FreeCodeCamp's official Hindi YouTube channel with tutorials on web development, data structures, and more.",
+        "type": "Platform",
+        "link": "https://www.youtube.com/c/FreeCodeCampHindi",
+        "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c"
+    },
+    {
+        "id": "res-105",
+        "title": "JavaScript Info",
+        "description": "A comprehensive and detailed guide to JavaScript available in English with simple explanations.",
+        "type": "Guide",
+        "link": "https://javascript.info",
+        "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+    },
+    {
+        "id": "res-106",
+        "title": "Tech Career Growth Community",
+        "description": "Hindi/English tech community focused on career advice, job referrals, and skill building.",
+        "type": "Community",
+        "link": "https://www.linkedin.com/groups/12345678",
+        "image": "https://images.unsplash.com/photo-1551434678-e076c223a692"
+    },
+    {
+        "id": "res-107",
+        "title": "GitHub Learning Lab",
+        "description": "Interactive tutorials on Git, GitHub workflows, and open source contributions in English.",
+        "type": "Platform",
+        "link": "https://lab.github.com",
+        "image": "https://images.unsplash.com/photo-1517433456452-f9633a875f6f"
+    },
+    {
+        "id": "res-108",
+        "title": "Data Structures Chart",
+        "description": "Visual cheatsheet of common data structures and algorithms for quick reference in English.",
+        "type": "Guide",
+        "link": "https://leetcode.com/discuss/general-discussion/460599/Data-Structure-Algorithm-Cheat-Sheet",
+        "image": "https://images.unsplash.com/photo-1508385082359-f2f7a4ec2d05"
+    },
+    {
+        "id": "res-109",
+        "title": "Geeky Shows YouTube Channel",
+        "description": "Popular Hindi tech channel for programming tutorials, interview prep, and project ideas.",
+        "type": "Platform",
+        "link": "https://www.youtube.com/c/GeekyShows",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+    },
+    {
+        "id": "res-110",
+        "title": "Stack Overflow Tech Community",
+        "description": "Global programming Q&A platform with active tech communities for multiple languages including English support.",
+        "type": "Community",
+        "link": "https://stackoverflow.com",
+        "image": "https://images.unsplash.com/photo-1517430816045-df4b7de76eec"
     }
 ];

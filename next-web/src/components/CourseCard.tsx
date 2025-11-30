@@ -32,7 +32,6 @@ interface CourseCardProps {
 
 const CourseCard = ({
     course,
-    // index,
     isCompact = false,
 }: CourseCardProps) => {
     const [imgSrc, setImgSrc] = useState(course.image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80');

@@ -2,11 +2,13 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Navbar from './Navbar';
-import Newsletter from './Newsletter';
-import ExitIntentModal from './ExitIntentModal';
 import { ArrowUp, ChevronRight, Home } from 'lucide-react';
 import { useState, useEffect } from 'react';
+
+const Newsletter = dynamic(() => import('./Newsletter'), { ssr: false });
+const ExitIntentModal = dynamic(() => import('./ExitIntentModal'), { ssr: false });
 
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {

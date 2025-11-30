@@ -3603,5 +3603,650 @@
             "Pattern recognition"
         ],
         "careerRelevance": "FAANG Engineer"
+    },
+    {
+        "id": 101,
+        "title": "Blockchain Fundamentals for Developers",
+        "instructor": "Dr. Ananya Sharma",
+        "category": "Blockchain",
+        "image": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d",
+        "url": "https://www.example.com/courses/blockchain-fundamentals-developers",
+        "description": "Learn core blockchain concepts, consensus mechanisms, and how to build production-ready smart contract solutions with hands-on projects.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "8 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 230,
+        "students": 5200,
+        "completionRate": 88,
+        "tags": [
+            "Blockchain",
+            "Smart Contracts",
+            "Web3"
+        ],
+        "prerequisites": [
+            "Basic programming in JavaScript or Python"
+        ],
+        "nextCourses": [
+            "Advanced Smart Contract Security"
+        ],
+        "benefits": [
+            "Build and deploy real smart contracts",
+            "Understand token standards and DeFi primitives"
+        ],
+        "careerRelevance": "Blockchain Developer"
+    },
+    {
+        "id": 102,
+        "title": "Solidity Smart Contracts Bootcamp",
+        "instructor": "Michael Chen",
+        "category": "Blockchain",
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+        "url": "https://www.example.com/courses/solidity-smart-contracts-bootcamp",
+        "description": "Learn core blockchain concepts, consensus mechanisms, and how to build production-ready smart contract solutions with hands-on projects.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "9 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 180,
+        "students": 4600,
+        "completionRate": 84,
+        "tags": [
+            "Blockchain",
+            "Smart Contracts",
+            "Web3"
+        ],
+        "prerequisites": [
+            "Basic programming in JavaScript or Python"
+        ],
+        "nextCourses": [
+            "Advanced Smart Contract Security"
+        ],
+        "benefits": [
+            "Build and deploy real smart contracts",
+            "Understand token standards and DeFi primitives"
+        ],
+        "careerRelevance": "Blockchain Developer"
+    },
+    {
+        "id": 103,
+        "title": "DeFi and Web3 DApps in Practice",
+        "instructor": "Priya Desai",
+        "category": "Blockchain",
+        "image": "https://images.unsplash.com/photo-1642104704073-979a8e0b3f4b",
+        "url": "https://www.example.com/courses/defi-web3-dapps-practice",
+        "description": "Learn core blockchain concepts, consensus mechanisms, and how to build production-ready smart contract solutions with hands-on projects.",
+        "difficulty": "Intermediate",
+        "type": "Coursera",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 150,
+        "students": 3900,
+        "completionRate": 82,
+        "tags": [
+            "Blockchain",
+            "Smart Contracts",
+            "Web3"
+        ],
+        "prerequisites": [
+            "Basic programming in JavaScript or Python"
+        ],
+        "nextCourses": [
+            "Advanced Smart Contract Security"
+        ],
+        "benefits": [
+            "Build and deploy real smart contracts",
+            "Understand token standards and DeFi primitives"
+        ],
+        "careerRelevance": "Blockchain Developer"
+    },
+    {
+        "id": 104,
+        "title": "Ethereum Layer 2 Scaling Deep Dive",
+        "instructor": "Lucas Rodriguez",
+        "category": "Blockchain",
+        "image": "https://images.unsplash.com/photo-1620121684840-edffcfc4b878",
+        "url": "https://www.example.com/courses/ethereum-layer2-scaling",
+        "description": "Learn core blockchain concepts, consensus mechanisms, and how to build production-ready smart contract solutions with hands-on projects.",
+        "difficulty": "Advanced",
+        "type": "Udemy",
+        "duration": "11 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 320,
+        "students": 8100,
+        "completionRate": 90,
+        "tags": [
+            "Blockchain",
+            "Smart Contracts",
+            "Web3"
+        ],
+        "prerequisites": [
+            "Basic programming in JavaScript or Python"
+        ],
+        "nextCourses": [
+            "Advanced Smart Contract Security"
+        ],
+        "benefits": [
+            "Build and deploy real smart contracts",
+            "Understand token standards and DeFi primitives"
+        ],
+        "careerRelevance": "Blockchain Developer"
+    },
+    {
+        "id": 105,
+        "title": "Intro to Game Development with Unity",
+        "instructor": "Sarah Johnson",
+        "category": "Game Development",
+        "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420",
+        "url": "https://www.example.com/courses/unity-game-development-intro",
+        "description": "Build complete games from scratch while mastering industry-standard engines, game loops, physics, and performance optimization techniques.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "12 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 95,
+        "students": 2500,
+        "completionRate": 80,
+        "tags": [
+            "Game Dev",
+            "Unity"
+        ],
+        "prerequisites": [
+            "Basic C# or C++ programming"
+        ],
+        "nextCourses": [
+            "Advanced Game Optimization Techniques"
+        ],
+        "benefits": [
+            "Create playable prototypes from scratch",
+            "Publish games to desktop or mobile stores"
+        ],
+        "careerRelevance": "Game Developer"
+    },
+    {
+        "id": 106,
+        "title": "Unreal Engine 5 Game Dev Essentials",
+        "instructor": "David Kim",
+        "category": "Game Development",
+        "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc",
+        "url": "https://www.example.com/courses/unreal-engine5-essentials",
+        "description": "Build complete games from scratch while mastering industry-standard engines, game loops, physics, and performance optimization techniques.",
+        "difficulty": "Intermediate",
+        "type": "Udemy",
+        "duration": "8 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 210,
+        "students": 5400,
+        "completionRate": 86,
+        "tags": [
+            "Game Dev",
+            "Unreal"
+        ],
+        "prerequisites": [
+            "Basic C# or C++ programming"
+        ],
+        "nextCourses": [
+            "Advanced Game Optimization Techniques"
+        ],
+        "benefits": [
+            "Create playable prototypes from scratch",
+            "Publish games to desktop or mobile stores"
+        ],
+        "careerRelevance": "Game Developer"
+    },
+    {
+        "id": 107,
+        "title": "2D Pixel Art Game Development",
+        "instructor": "Haruki Tanaka",
+        "category": "Game Development",
+        "image": "https://images.unsplash.com/photo-1522509585149-2de9f4f8710f",
+        "url": "https://www.example.com/courses/2d-pixel-art-game-dev",
+        "description": "Build complete games from scratch while mastering industry-standard engines, game loops, physics, and performance optimization techniques.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "9 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 130,
+        "students": 3100,
+        "completionRate": 81,
+        "tags": [
+            "Game Dev",
+            "Game Design"
+        ],
+        "prerequisites": [
+            "Basic C# or C++ programming"
+        ],
+        "nextCourses": [
+            "Advanced Game Optimization Techniques"
+        ],
+        "benefits": [
+            "Create playable prototypes from scratch",
+            "Publish games to desktop or mobile stores"
+        ],
+        "careerRelevance": "Game Developer"
+    },
+    {
+        "id": 108,
+        "title": "Multiplayer Game Networking Basics",
+        "instructor": "Elena Petrova",
+        "category": "Game Development",
+        "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420",
+        "url": "https://www.example.com/courses/multiplayer-game-networking-basics",
+        "description": "Build complete games from scratch while mastering industry-standard engines, game loops, physics, and performance optimization techniques.",
+        "difficulty": "Advanced",
+        "type": "Udemy",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 160,
+        "students": 3600,
+        "completionRate": 83,
+        "tags": [
+            "Game Dev",
+            "Game Design"
+        ],
+        "prerequisites": [
+            "Basic C# or C++ programming"
+        ],
+        "nextCourses": [
+            "Advanced Game Optimization Techniques"
+        ],
+        "benefits": [
+            "Create playable prototypes from scratch",
+            "Publish games to desktop or mobile stores"
+        ],
+        "careerRelevance": "Game Developer"
+    },
+    {
+        "id": 109,
+        "title": "Ethical Hacking and Penetration Testing",
+        "instructor": "Rahul Mehta",
+        "category": "Cyber Security",
+        "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb",
+        "url": "https://www.example.com/courses/ethical-hacking-pentesting",
+        "description": "Develop practical cyber security skills from reconnaissance to defense, focusing on real-world attack vectors and mitigation strategies.",
+        "difficulty": "Beginner",
+        "type": "Udemy",
+        "duration": "11 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 400,
+        "students": 9800,
+        "completionRate": 87,
+        "tags": [
+            "Cyber Security",
+            "Ethical Hacking"
+        ],
+        "prerequisites": [
+            "Basic networking and Linux commands"
+        ],
+        "nextCourses": [
+            "Advanced Red Team Operations"
+        ],
+        "benefits": [
+            "Practice with real-world security lab environments",
+            "Prepare for popular security certifications"
+        ],
+        "careerRelevance": "Cyber Security Analyst"
+    },
+    {
+        "id": 110,
+        "title": "Network Security and Firewalls",
+        "instructor": "Emma Wilson",
+        "category": "Cyber Security",
+        "image": "https://images.unsplash.com/photo-1556157382-97eda2d62296",
+        "url": "https://www.example.com/courses/network-security-firewalls",
+        "description": "Develop practical cyber security skills from reconnaissance to defense, focusing on real-world attack vectors and mitigation strategies.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "12 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 220,
+        "students": 6200,
+        "completionRate": 82,
+        "tags": [
+            "Cyber Security",
+            "Network Security"
+        ],
+        "prerequisites": [
+            "Basic networking and Linux commands"
+        ],
+        "nextCourses": [
+            "Advanced Red Team Operations"
+        ],
+        "benefits": [
+            "Practice with real-world security lab environments",
+            "Prepare for popular security certifications"
+        ],
+        "careerRelevance": "Cyber Security Analyst"
+    },
+    {
+        "id": 111,
+        "title": "Web Application Security with OWASP",
+        "instructor": "Carlos Alvarez",
+        "category": "Cyber Security",
+        "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8",
+        "url": "https://www.example.com/courses/web-application-security-owasp",
+        "description": "Develop practical cyber security skills from reconnaissance to defense, focusing on real-world attack vectors and mitigation strategies.",
+        "difficulty": "Intermediate",
+        "type": "Coursera",
+        "duration": "8 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 195,
+        "students": 5700,
+        "completionRate": 84,
+        "tags": [
+            "Cyber Security",
+            "Network Security"
+        ],
+        "prerequisites": [
+            "Basic networking and Linux commands"
+        ],
+        "nextCourses": [
+            "Advanced Red Team Operations"
+        ],
+        "benefits": [
+            "Practice with real-world security lab environments",
+            "Prepare for popular security certifications"
+        ],
+        "careerRelevance": "Cyber Security Analyst"
+    },
+    {
+        "id": 112,
+        "title": "Blue Team Security Operations",
+        "instructor": "Nina Schmidt",
+        "category": "Cyber Security",
+        "image": "https://images.unsplash.com/photo-1510511459019-5dda7724fd87",
+        "url": "https://www.example.com/courses/blue-team-security-operations",
+        "description": "Develop practical cyber security skills from reconnaissance to defense, focusing on real-world attack vectors and mitigation strategies.",
+        "difficulty": "Advanced",
+        "type": "Udemy",
+        "duration": "9 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 310,
+        "students": 8400,
+        "completionRate": 89,
+        "tags": [
+            "Cyber Security",
+            "Network Security"
+        ],
+        "prerequisites": [
+            "Basic networking and Linux commands"
+        ],
+        "nextCourses": [
+            "Advanced Red Team Operations"
+        ],
+        "benefits": [
+            "Practice with real-world security lab environments",
+            "Prepare for popular security certifications"
+        ],
+        "careerRelevance": "Cyber Security Analyst"
+    },
+    {
+        "id": 113,
+        "title": "AWS Cloud Practitioner Hands-on",
+        "instructor": "James Anderson",
+        "category": "Cloud Computing",
+        "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2",
+        "url": "https://www.example.com/courses/aws-cloud-practitioner-hands-on",
+        "description": "Gain cloud computing skills by deploying, securing, and scaling modern applications across leading cloud platforms with guided labs.",
+        "difficulty": "Beginner",
+        "type": "Coursera",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 260,
+        "students": 7600,
+        "completionRate": 85,
+        "tags": [
+            "Cloud",
+            "AWS"
+        ],
+        "prerequisites": [
+            "Basic understanding of web applications"
+        ],
+        "nextCourses": [
+            "Cloud Architect Professional Path"
+        ],
+        "benefits": [
+            "Deploy scalable applications on the cloud",
+            "Optimize cloud costs and improve reliability"
+        ],
+        "careerRelevance": "Cloud Engineer"
+    },
+    {
+        "id": 114,
+        "title": "Azure Fundamentals for Students",
+        "instructor": "Aditi Verma",
+        "category": "Cloud Computing",
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+        "url": "https://www.example.com/courses/azure-fundamentals-students",
+        "description": "Gain cloud computing skills by deploying, securing, and scaling modern applications across leading cloud platforms with guided labs.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "11 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 140,
+        "students": 4300,
+        "completionRate": 80,
+        "tags": [
+            "Cloud",
+            "Azure"
+        ],
+        "prerequisites": [
+            "Basic understanding of web applications"
+        ],
+        "nextCourses": [
+            "Cloud Architect Professional Path"
+        ],
+        "benefits": [
+            "Deploy scalable applications on the cloud",
+            "Optimize cloud costs and improve reliability"
+        ],
+        "careerRelevance": "Cloud Engineer"
+    },
+    {
+        "id": 115,
+        "title": "Google Cloud for Developers",
+        "instructor": "Tom Harris",
+        "category": "Cloud Computing",
+        "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2",
+        "url": "https://www.example.com/courses/google-cloud-for-developers",
+        "description": "Gain cloud computing skills by deploying, securing, and scaling modern applications across leading cloud platforms with guided labs.",
+        "difficulty": "Intermediate",
+        "type": "Coursera",
+        "duration": "12 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 170,
+        "students": 5100,
+        "completionRate": 83,
+        "tags": [
+            "Cloud",
+            "GCP"
+        ],
+        "prerequisites": [
+            "Basic understanding of web applications"
+        ],
+        "nextCourses": [
+            "Cloud Architect Professional Path"
+        ],
+        "benefits": [
+            "Deploy scalable applications on the cloud",
+            "Optimize cloud costs and improve reliability"
+        ],
+        "careerRelevance": "Cloud Engineer"
+    },
+    {
+        "id": 116,
+        "title": "Kubernetes and Docker on the Cloud",
+        "instructor": "Sofia Martinez",
+        "category": "Cloud Computing",
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+        "url": "https://www.example.com/courses/kubernetes-docker-on-cloud",
+        "description": "Gain cloud computing skills by deploying, securing, and scaling modern applications across leading cloud platforms with guided labs.",
+        "difficulty": "Advanced",
+        "type": "Udemy",
+        "duration": "8 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 280,
+        "students": 6900,
+        "completionRate": 88,
+        "tags": [
+            "Cloud",
+            "Kubernetes"
+        ],
+        "prerequisites": [
+            "Basic understanding of web applications"
+        ],
+        "nextCourses": [
+            "Cloud Architect Professional Path"
+        ],
+        "benefits": [
+            "Deploy scalable applications on the cloud",
+            "Optimize cloud costs and improve reliability"
+        ],
+        "careerRelevance": "Cloud Engineer"
+    },
+    {
+        "id": 117,
+        "title": "Blockchain for Cloud Architects",
+        "instructor": "Victor Nguyen",
+        "category": "Blockchain",
+        "image": "https://images.unsplash.com/photo-1642104704073-979a8e0b3f4b",
+        "url": "https://www.example.com/courses/blockchain-for-cloud-architects",
+        "description": "Learn core blockchain concepts, consensus mechanisms, and how to build production-ready smart contract solutions with hands-on projects.",
+        "difficulty": "Advanced",
+        "type": "Udemy",
+        "duration": "9 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 145,
+        "students": 3700,
+        "completionRate": 86,
+        "tags": [
+            "Blockchain",
+            "Smart Contracts",
+            "Web3"
+        ],
+        "prerequisites": [
+            "Basic programming in JavaScript or Python"
+        ],
+        "nextCourses": [
+            "Advanced Smart Contract Security"
+        ],
+        "benefits": [
+            "Build and deploy real smart contracts",
+            "Understand token standards and DeFi primitives"
+        ],
+        "careerRelevance": "Blockchain Developer"
+    },
+    {
+        "id": 118,
+        "title": "Game Backend Architecture on AWS",
+        "instructor": "Arjun Rao",
+        "category": "Game Development",
+        "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f",
+        "url": "https://www.example.com/courses/game-backend-architecture-aws",
+        "description": "Build complete games from scratch while mastering industry-standard engines, game loops, physics, and performance optimization techniques.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 125,
+        "students": 2900,
+        "completionRate": 82,
+        "tags": [
+            "Game Dev",
+            "Game Design"
+        ],
+        "prerequisites": [
+            "Basic C# or C++ programming"
+        ],
+        "nextCourses": [
+            "Advanced Game Optimization Techniques"
+        ],
+        "benefits": [
+            "Create playable prototypes from scratch",
+            "Publish games to desktop or mobile stores"
+        ],
+        "careerRelevance": "Game Developer"
+    },
+    {
+        "id": 119,
+        "title": "Cloud Security Best Practices",
+        "instructor": "Maria Rossi",
+        "category": "Cloud Computing",
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+        "url": "https://www.example.com/courses/cloud-security-best-practices",
+        "description": "Gain cloud computing skills by deploying, securing, and scaling modern applications across leading cloud platforms with guided labs.",
+        "difficulty": "Advanced",
+        "type": "Coursera",
+        "duration": "11 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 190,
+        "students": 5600,
+        "completionRate": 87,
+        "tags": [
+            "Cloud",
+            "Kubernetes"
+        ],
+        "prerequisites": [
+            "Basic understanding of web applications"
+        ],
+        "nextCourses": [
+            "Cloud Architect Professional Path"
+        ],
+        "benefits": [
+            "Deploy scalable applications on the cloud",
+            "Optimize cloud costs and improve reliability"
+        ],
+        "careerRelevance": "Cloud Engineer"
+    },
+    {
+        "id": 120,
+        "title": "Incident Response and Digital Forensics",
+        "instructor": "Daniel Lee",
+        "category": "Cyber Security",
+        "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb",
+        "url": "https://www.example.com/courses/incident-response-digital-forensics",
+        "description": "Develop practical cyber security skills from reconnaissance to defense, focusing on real-world attack vectors and mitigation strategies.",
+        "difficulty": "Advanced",
+        "type": "Udemy",
+        "duration": "12 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 205,
+        "students": 6000,
+        "completionRate": 90,
+        "tags": [
+            "Cyber Security",
+            "Network Security"
+        ],
+        "prerequisites": [
+            "Basic networking and Linux commands"
+        ],
+        "nextCourses": [
+            "Advanced Red Team Operations"
+        ],
+        "benefits": [
+            "Practice with real-world security lab environments",
+            "Prepare for popular security certifications"
+        ],
+        "careerRelevance": "Cyber Security Analyst"
     }
 ]
