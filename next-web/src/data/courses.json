@@ -4248,5 +4248,1767 @@
             "Prepare for popular security certifications"
         ],
         "careerRelevance": "Cyber Security Analyst"
+    },
+    {
+        "id": 121,
+        "title": "HTML & CSS Full Course for Beginners",
+        "instructor": "SuperSimpleDev",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=G3e-cpL7ofc",
+        "description": "The most comprehensive and beginner-friendly guide to learning HTML and CSS from scratch. It covers modern layouts, Flexbox, and Grid.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "6.5 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 15200,
+        "students": 450000,
+        "completionRate": 65,
+        "tags": [
+            "HTML",
+            "CSS",
+            "Web Design",
+            "Frontend"
+        ],
+        "prerequisites": [
+            "Basic Computer Literacy",
+            "A Code Editor (VS Code)"
+        ],
+        "nextCourses": [
+            "JavaScript Mastery",
+            "Responsive Web Design Certification"
+        ],
+        "benefits": [
+            "Build real-world landing pages",
+            "Understand the box model and positioning",
+            "Learn industry-standard best practices for clean code"
+        ]
+    },
+    {
+        "id": 122,
+        "title": "Sigma Web Development Course",
+        "instructor": "CodeWithHarry (Haris Khan)",
+        "category": "Full Stack",
+        "image": "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9agq5TrH9XLIKQvv0iaF2Xv8",
+        "description": "A massive, project-based Hindi course covering HTML, CSS, JS, React, Node.js, and MongoDB. Perfect for students in India seeking jobs.",
+        "difficulty": "Beginner to Intermediate",
+        "type": "YouTube",
+        "duration": "105 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.8,
+        "reviewCount": 85000,
+        "students": 1200000,
+        "completionRate": 42,
+        "tags": [
+            "MERN Stack",
+            "Web Development",
+            "Hindi",
+            "JavaScript"
+        ],
+        "prerequisites": [
+            "None (Starts from zero)"
+        ],
+        "nextCourses": [
+            "Next.js Advanced Projects",
+            "System Design for Interviews"
+        ],
+        "benefits": [
+            "Complete roadmap from zero to job-ready",
+            "Access to source code and handwritten notes",
+            "Learn in your native language with practical examples"
+        ]
+    },
+    {
+        "id": 123,
+        "title": "JavaScript Tutorial for Beginners",
+        "instructor": "Programming with Mosh",
+        "category": "Programming",
+        "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+        "description": "A concise and high-quality introduction to JavaScript. Focuses on the core fundamentals needed for modern web development.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "1 hour",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 42000,
+        "students": 800000,
+        "completionRate": 85,
+        "tags": [
+            "JS",
+            "Programming",
+            "Logic",
+            "Web Dev"
+        ],
+        "prerequisites": [
+            "Basic HTML"
+        ],
+        "nextCourses": [
+            "ES6 JavaScript Certification",
+            "React.js Crash Course"
+        ],
+        "benefits": [
+            "Master variables, types, and functions quickly",
+            "Understand how to manipulate the DOM",
+            "High-quality production and clear explanations"
+        ]
+    },
+    {
+        "id": 124,
+        "title": "Python for Data Science",
+        "instructor": "FreeCodeCamp (Keith Galli)",
+        "category": "Data Science",
+        "image": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=vmEHCJofslg",
+        "description": "Learn how to use Python for data analysis using libraries like Pandas, NumPy, and Matplotlib. Includes a real-world sales analysis project.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "12 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 12500,
+        "students": 320000,
+        "completionRate": 55,
+        "tags": [
+            "Python",
+            "Data Analysis",
+            "Pandas",
+            "Matplotlib"
+        ],
+        "prerequisites": [
+            "Basic Python Syntax",
+            "Understanding of Spreadsheets"
+        ],
+        "nextCourses": [
+            "Machine Learning Specialization",
+            "Tableau for Data Visualization"
+        ],
+        "benefits": [
+            "Solve real-world business problems with code",
+            "Learn to clean and visualize messy data",
+            "Build a portfolio-worthy data project"
+        ]
+    },
+    {
+        "id": 125,
+        "title": "UI/UX Design Full Course",
+        "instructor": "GFXMentor (Imran Ali Dina)",
+        "category": "Design",
+        "image": "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLW-zSkAdqcS_S9_Wp7G0B-yvYv_f02MhU",
+        "description": "The most famous Hindi/Urdu course for Graphic Design and UI/UX. Covers Adobe Illustrator, Photoshop, and Design Principles.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "45 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.9,
+        "reviewCount": 210000,
+        "students": 2500000,
+        "completionRate": 38,
+        "tags": [
+            "Graphic Design",
+            "UI UX",
+            "Figma",
+            "Illustrator"
+        ],
+        "prerequisites": [
+            "Creative mindset",
+            "A PC capable of running design software"
+        ],
+        "nextCourses": [
+            "Figma for UI Designers",
+            "Advanced Typography Masterclass"
+        ],
+        "benefits": [
+            "Learn from a veteran industry professional",
+            "Master design theory alongside software skills",
+            "In-depth explanation of color theory and layout"
+        ]
+    },
+    {
+        "id": 126,
+        "title": "Complete React JS Course",
+        "instructor": "Thapa Technical",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLwGdqUZWnOp3aROg4wypcRhZqJG3ajZWJ",
+        "description": "Learn React JS from absolute scratch in Hindi. Includes Hooks, Redux, and building multiple projects like a weather app.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "25 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.8,
+        "reviewCount": 18000,
+        "students": 500000,
+        "completionRate": 50,
+        "tags": [
+            "React",
+            "JavaScript",
+            "Frontend",
+            "Hindi"
+        ],
+        "prerequisites": [
+            "Intermediate JavaScript",
+            "ES6 Concepts"
+        ],
+        "nextCourses": [
+            "Next.js Full Course",
+            "React Native for Mobile Apps"
+        ],
+        "benefits": [
+            "Learn state management effectively",
+            "Hands-on project building experience",
+            "Simplified explanation of complex hooks"
+        ]
+    },
+    {
+        "id": 127,
+        "title": "Google Data Analytics Professional Certificate",
+        "instructor": "Google Career Certificates",
+        "category": "Data Science",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/professional-certificates/google-data-analytics",
+        "description": "Gain an immersive understanding of the practices and processes used by a junior or associate data analyst in their day-to-day job.",
+        "difficulty": "Beginner",
+        "type": "Coursera (Free Audit)",
+        "duration": "180 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 110000,
+        "students": 1500000,
+        "completionRate": 20,
+        "tags": [
+            "Data Analytics",
+            "SQL",
+            "R Programming",
+            "Tableau"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Advanced Data Analytics Certificate",
+            "Business Intelligence Professional Certificate"
+        ],
+        "benefits": [
+            "Learn from Google employees",
+            "Practical knowledge of SQL and Tableau",
+            "Job-ready skills for the data industry"
+        ]
+    },
+    {
+        "id": 128,
+        "title": "Machine Learning Zoomcamp",
+        "instructor": "Alexey Grigorev",
+        "category": "AI/ML",
+        "image": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80",
+        "url": "https://github.com/alexeygrigorev/mlbookcamp-code/tree/master/course",
+        "description": "A free, project-based machine learning course focusing on practical engineering skills rather than just theory.",
+        "difficulty": "Intermediate",
+        "type": "Community/GitHub",
+        "duration": "40 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 5000,
+        "students": 25000,
+        "completionRate": 30,
+        "tags": [
+            "Machine Learning",
+            "MLOps",
+            "Python",
+            "Scikit-Learn"
+        ],
+        "prerequisites": [
+            "Python basics",
+            "High School Math"
+        ],
+        "nextCourses": [
+            "Deep Learning Specialization",
+            "MLOps Zoomcamp"
+        ],
+        "benefits": [
+            "Learn to deploy models to production",
+            "Work with real-world datasets",
+            "Strong focus on career and engineering"
+        ]
+    },
+    {
+        "id": 129,
+        "title": "SQL Tutorial for Beginners",
+        "instructor": "Alex The Analyst",
+        "category": "Data Science",
+        "image": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLUaB-1hjhk8G7V63Sxv686_7U-pTDQvN6",
+        "description": "Complete SQL roadmap covering basic queries to advanced joins and subqueries. Essential for any data-related role.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "8 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 9200,
+        "students": 210000,
+        "completionRate": 72,
+        "tags": [
+            "SQL",
+            "Database",
+            "Data Analysis",
+            "MySQL"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Data Modeling Masterclass",
+            "Python for Automation"
+        ],
+        "benefits": [
+            "Master database querying",
+            "Prepare for technical data interviews",
+            "Clear, no-nonsense teaching style"
+        ]
+    },
+    {
+        "id": 130,
+        "title": "Digital Marketing Full Course",
+        "instructor": "WSCube Tech",
+        "category": "Marketing",
+        "image": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLjVLYmrlmjGfIdZ6pEisW_W7S5S_u0_m7",
+        "description": "Comprehensive Hindi course covering SEO, SEM, Social Media Marketing, and Email Marketing with practical projects.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "50 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.7,
+        "reviewCount": 45000,
+        "students": 900000,
+        "completionRate": 35,
+        "tags": [
+            "SEO",
+            "SMM",
+            "Ads",
+            "Marketing"
+        ],
+        "prerequisites": [
+            "Basic Internet knowledge"
+        ],
+        "nextCourses": [
+            "Google Ads Mastery",
+            "Content Strategy Certification"
+        ],
+        "benefits": [
+            "Learn to rank websites on Google",
+            "Create high-converting social media ads",
+            "Job-oriented practical training"
+        ]
+    },
+    {
+        "id": 131,
+        "title": "Java Placement Course",
+        "instructor": "Apna College (Shradha Khapra)",
+        "category": "Programming",
+        "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLfqMhTWBBm00E26-mU1D6f9L5-mXhLhS2",
+        "description": "A high-intensity Hindi course focused on Java, Data Structures, and Algorithms for FAANG placements.",
+        "difficulty": "Beginner to Advanced",
+        "type": "YouTube",
+        "duration": "80 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.9,
+        "reviewCount": 120000,
+        "students": 2500000,
+        "completionRate": 45,
+        "tags": [
+            "Java",
+            "DSA",
+            "Placements",
+            "Programming"
+        ],
+        "prerequisites": [
+            "Logical thinking"
+        ],
+        "nextCourses": [
+            "Competitive Programming",
+            "System Design"
+        ],
+        "benefits": [
+            "Complete DSA coverage for interviews",
+            "Solved examples of top company questions",
+            "Highly engaging teaching style"
+        ]
+    },
+    {
+        "id": 132,
+        "title": "CS50: Introduction to Computer Science",
+        "instructor": "David J. Malan",
+        "category": "Computer Science",
+        "image": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.edx.org/course/introduction-computer-science-harvard-cs50",
+        "description": "Harvard's legendary introductory course. Covers C, Python, SQL, and Web Dev while teaching you how to think like a programmer.",
+        "difficulty": "Beginner",
+        "type": "edX (Free Audit)",
+        "duration": "120 hours",
+        "instructor_lang": "English",
+        "rating": 5.0,
+        "reviewCount": 500000,
+        "students": 5000000,
+        "completionRate": 15,
+        "tags": [
+            "C",
+            "Python",
+            "Algorithms",
+            "Basics"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "CS50 Web Programming",
+            "CS50 AI with Python"
+        ],
+        "benefits": [
+            "Elite Harvard education for free",
+            "Deep understanding of how computers work",
+            "Challenging but rewarding problem sets"
+        ]
+    },
+    {
+        "id": 133,
+        "title": "Node.js and Express.js Tutorial",
+        "instructor": "John Smilga",
+        "category": "Backend",
+        "image": "https://images.unsplash.com/photo-1502945015378-0e28404938fd?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=Oe421EPjeBE",
+        "description": "Comprehensive English tutorial on building scalable backend applications using Node and Express. Heavy focus on APIs.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 6500,
+        "students": 150000,
+        "completionRate": 60,
+        "tags": [
+            "Node.js",
+            "Express",
+            "Backend",
+            "APIs"
+        ],
+        "prerequisites": [
+            "JavaScript Basics"
+        ],
+        "nextCourses": [
+            "Microservices Architecture",
+            "MongoDB University Courses"
+        ],
+        "benefits": [
+            "Build a production-ready API",
+            "Understand middleware and routing",
+            "Free source code and project examples"
+        ]
+    },
+    {
+        "id": 134,
+        "title": "Figma UI/UX Design Tutorial",
+        "instructor": "Flux Academy",
+        "category": "Design",
+        "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=FTFaQWZBqQ8",
+        "description": "Learn Figma from scratch. This course covers everything from basic shapes to advanced prototyping and design systems.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "3 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 11000,
+        "students": 280000,
+        "completionRate": 80,
+        "tags": [
+            "Figma",
+            "UI Design",
+            "Prototyping",
+            "UX"
+        ],
+        "prerequisites": [
+            "Basic computer skills"
+        ],
+        "nextCourses": [
+            "Advanced Prototyping in Figma",
+            "Webflow for Designers"
+        ],
+        "benefits": [
+            "Master the #1 design tool",
+            "Create interactive prototypes",
+            "Learn to design for web and mobile"
+        ]
+    },
+    {
+        "id": 135,
+        "title": "Prompt Engineering for Beginners",
+        "instructor": "DeepLearning.AI",
+        "category": "AI",
+        "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
+        "description": "Learn how to effectively prompt LLMs like ChatGPT for development, content creation, and problem-solving.",
+        "difficulty": "Beginner",
+        "type": "Special Platform",
+        "duration": "1.5 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 25000,
+        "students": 600000,
+        "completionRate": 95,
+        "tags": [
+            "AI",
+            "ChatGPT",
+            "Prompt Engineering",
+            "LLM"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Generative AI with LLMs",
+            "LangChain for AI Apps"
+        ],
+        "benefits": [
+            "Learn from Andrew Ng",
+            "Improve productivity with AI",
+            "Stay ahead in the AI revolution"
+        ]
+    },
+    {
+        "id": 136,
+        "title": "WordPress for Beginners",
+        "instructor": "Ferdy Korpershoek",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=8AZ8GqW5iak",
+        "description": "Build a professional website without coding. Covers domains, hosting, Elementor, and WooCommerce.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "2.5 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 14000,
+        "students": 400000,
+        "completionRate": 70,
+        "tags": [
+            "WordPress",
+            "CMS",
+            "No Code",
+            "Freelancing"
+        ],
+        "prerequisites": [
+            "Internet Access"
+        ],
+        "nextCourses": [
+            "Elementor Pro Mastery",
+            "WordPress Security"
+        ],
+        "benefits": [
+            "Launch a website in one day",
+            "Learn to build e-commerce stores",
+            "Start a freelancing business"
+        ]
+    },
+    {
+        "id": 137,
+        "title": "C++ Tutorial in Hindi",
+        "instructor": "Love Babbar",
+        "category": "Programming",
+        "image": "https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLDzeHZWIZsTryvtXdMr6DlOTuJKEZn-89",
+        "description": "Comprehensive C++ roadmap covering basic syntax to advanced DSA. Designed for engineering students aiming for job interviews.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "75 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.9,
+        "reviewCount": 95000,
+        "students": 1800000,
+        "completionRate": 40,
+        "tags": [
+            "C++",
+            "DSA",
+            "Logic",
+            "Coding"
+        ],
+        "prerequisites": [
+            "Willingness to learn"
+        ],
+        "nextCourses": [
+            "Competitive Programming",
+            "Operating Systems"
+        ],
+        "benefits": [
+            "Foundation for logic building",
+            "Crack coding rounds of top companies",
+            "Simplified Hindi explanations"
+        ]
+    },
+    {
+        "id": 138,
+        "title": "SEO for Beginners 2024",
+        "instructor": "Ahrefs Academy",
+        "category": "Marketing",
+        "image": "https://images.unsplash.com/photo-1571721795195-a2cb2d33e00d?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=xsVTqzratPs",
+        "description": "Learn Search Engine Optimization from the experts. Covers keyword research, on-page SEO, and link building.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "2 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 8200,
+        "students": 250000,
+        "completionRate": 88,
+        "tags": [
+            "SEO",
+            "Ahrefs",
+            "Google Ranking",
+            "Content"
+        ],
+        "prerequisites": [
+            "Basic blog or website access"
+        ],
+        "nextCourses": [
+            "Technical SEO Audit",
+            "Content Marketing Certification"
+        ],
+        "benefits": [
+            "Learn industry-leading SEO tactics",
+            "Understand how Google search works",
+            "Actionable steps for organic growth"
+        ]
+    },
+    {
+        "id": 139,
+        "title": "Tableau Full Course",
+        "instructor": "Edureka",
+        "category": "Data Science",
+        "image": "https://images.unsplash.com/photo-1599658880436-c61792e70672?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=aHaofQCis0U",
+        "description": "Learn data visualization using Tableau. Covers dashboards, stories, and connecting to various data sources.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "12 hours",
+        "instructor_lang": "English",
+        "rating": 4.5,
+        "reviewCount": 5400,
+        "students": 180000,
+        "completionRate": 48,
+        "tags": [
+            "Tableau",
+            "BI",
+            "Data Viz",
+            "Analytics"
+        ],
+        "prerequisites": [
+            "Basic Excel knowledge"
+        ],
+        "nextCourses": [
+            "Power BI Mastery",
+            "Data Science with Python"
+        ],
+        "benefits": [
+            "Build interactive business dashboards",
+            "Tell stories with data",
+            "In-demand skill for Analysts"
+        ]
+    },
+    {
+        "id": 140,
+        "title": "Photoshop for Beginners",
+        "instructor": "Envato Tuts+",
+        "category": "Design",
+        "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=IyR_uYsRdPs",
+        "description": "A comprehensive guide to Adobe Photoshop. Learn layers, masks, selections, and photo retouching from scratch.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "3 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 12500,
+        "students": 350000,
+        "completionRate": 75,
+        "tags": [
+            "Photoshop",
+            "Editing",
+            "Design",
+            "Graphics"
+        ],
+        "prerequisites": [
+            "Adobe Photoshop installed"
+        ],
+        "nextCourses": [
+            "Advanced Photo Manipulation",
+            "Digital Illustration"
+        ],
+        "benefits": [
+            "Master the industry-standard photo editor",
+            "Create professional social media graphics",
+            "High-quality tutorial with exercises"
+        ]
+    },
+    {
+        "id": 141,
+        "title": "Machine Learning with Python",
+        "instructor": "CampusX (Nitish Singh)",
+        "category": "AI/ML",
+        "image": "https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLKnIAq6uabeY_I6G2DqS-rkaG-oY8q8Vj",
+        "description": "In-depth Hindi course covering math, statistics, and machine learning algorithms with real-world datasets.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "150 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.9,
+        "reviewCount": 15000,
+        "students": 250000,
+        "completionRate": 25,
+        "tags": [
+            "Machine Learning",
+            "Data Science",
+            "Hindi",
+            "AI"
+        ],
+        "prerequisites": [
+            "Basic Python",
+            "Mathematical mindset"
+        ],
+        "nextCourses": [
+            "Deep Learning Roadmap",
+            "NLP Masterclass"
+        ],
+        "benefits": [
+            "Learn the math behind algorithms",
+            "Industry-level project experience",
+            "Direct student-mentor style teaching"
+        ]
+    },
+    {
+        "id": 142,
+        "title": "The Odin Project",
+        "instructor": "Community Driven",
+        "category": "Full Stack",
+        "image": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.theodinproject.com/",
+        "description": "A free, full-stack curriculum that provides a hands-on path to learning web development. Highly respected in the industry.",
+        "difficulty": "Intermediate",
+        "type": "Open Source",
+        "duration": "1000 hours",
+        "instructor_lang": "English",
+        "rating": 5.0,
+        "reviewCount": 50000,
+        "students": 1000000,
+        "completionRate": 10,
+        "tags": [
+            "Ruby on Rails",
+            "JavaScript",
+            "Full Stack",
+            "Open Source"
+        ],
+        "prerequisites": [
+            "High commitment"
+        ],
+        "nextCourses": [
+            "Freelance Web Dev",
+            "Open Source Contribution"
+        ],
+        "benefits": [
+            "Learn by doing projects",
+            "Strong focus on Git and command line",
+            "Community support via Discord"
+        ]
+    },
+    {
+        "id": 143,
+        "title": "Complete Cyber Security Course",
+        "instructor": "NetworkChuck",
+        "category": "Cybersecurity",
+        "image": "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLIhvC56v6w8e2C9H_m36S8XG0G2YyRj2z",
+        "description": "Start your journey in Cybersecurity. Covers networking, hacking tools, and defense strategies in an entertaining style.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "20 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 35000,
+        "students": 800000,
+        "completionRate": 55,
+        "tags": [
+            "Cybersecurity",
+            "Hacking",
+            "Linux",
+            "Networking"
+        ],
+        "prerequisites": [
+            "Curiosity"
+        ],
+        "nextCourses": [
+            "CompTIA Security+",
+            "Ethical Hacking Certification"
+        ],
+        "benefits": [
+            "Entertaining and visual learning",
+            "Practical home lab setups",
+            "Understand modern security threats"
+        ]
+    },
+    {
+        "id": 144,
+        "title": "Tailwind CSS Full Course",
+        "instructor": "Net Ninja",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PL4cUxeGkcC9gpXORlEHjc5bSI7z1lZUt1",
+        "description": "Master the utility-first CSS framework. Learn to build modern, responsive interfaces quickly and efficiently.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "4 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 4200,
+        "students": 120000,
+        "completionRate": 82,
+        "tags": [
+            "Tailwind CSS",
+            "Frontend",
+            "CSS",
+            "UI"
+        ],
+        "prerequisites": [
+            "Basic CSS"
+        ],
+        "nextCourses": [
+            "Next.js and Tailwind Integration",
+            "Advanced UI Components"
+        ],
+        "benefits": [
+            "Speed up your styling workflow",
+            "Build mobile-first designs",
+            "Understand the utility-first mindset"
+        ]
+    },
+    {
+        "id": 145,
+        "title": "AWS Cloud Practitioner Training",
+        "instructor": "AWS Training & Certification",
+        "category": "Cloud Computing",
+        "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "url": "https://explore.skillbuilder.aws/learn/course/external/view/elearning/134/aws-cloud-practitioner-essentials",
+        "description": "The official free AWS course to understand the fundamentals of the cloud. Prepares you for the CCP exam.",
+        "difficulty": "Beginner",
+        "type": "AWS Skill Builder",
+        "duration": "6 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 15000,
+        "students": 400000,
+        "completionRate": 70,
+        "tags": [
+            "AWS",
+            "Cloud",
+            "Infrastructure",
+            "DevOps"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "AWS Solutions Architect Associate",
+            "AWS SysOps Administrator"
+        ],
+        "benefits": [
+            "Official curriculum from Amazon",
+            "Solid foundation for cloud careers",
+            "Preparation for professional certification"
+        ]
+    },
+    {
+        "id": 146,
+        "title": "Copywriting for Beginners",
+        "instructor": "Tyson 4D",
+        "category": "Marketing",
+        "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=8V425hY_yWk",
+        "description": "Learn the art of persuasive writing to sell products and services online. Excellent for freelancers.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "1.5 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 3500,
+        "students": 110000,
+        "completionRate": 90,
+        "tags": [
+            "Copywriting",
+            "Sales",
+            "Writing",
+            "Freelancing"
+        ],
+        "prerequisites": [
+            "Good English writing skills"
+        ],
+        "nextCourses": [
+            "Email Marketing Mastery",
+            "Direct Response Copywriting"
+        ],
+        "benefits": [
+            "Learn to write high-converting ads",
+            "Understand human psychology and buying triggers",
+            "Actionable exercises to build a portfolio"
+        ]
+    },
+    {
+        "id": 147,
+        "title": "Stock Market for Beginners (Hindi)",
+        "instructor": "Pranjal Kamra",
+        "category": "Finance",
+        "image": "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLy8XFzP9S9_XzF5xV59O6U9SIdGjW1yI-",
+        "description": "Everything about investing in the Indian stock market. Covers demat accounts, mutual funds, and fundamental analysis.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "15 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.9,
+        "reviewCount": 500000,
+        "students": 6000000,
+        "completionRate": 45,
+        "tags": [
+            "Finance",
+            "Investing",
+            "Stock Market",
+            "Hindi"
+        ],
+        "prerequisites": [
+            "Basic math",
+            "Desire for financial literacy"
+        ],
+        "nextCourses": [
+            "Advanced Technical Analysis",
+            "Options Trading Course"
+        ],
+        "benefits": [
+            "Understand how money works",
+            "Start your investment journey safely",
+            "Avoid common scams and mistakes"
+        ]
+    },
+    {
+        "id": 148,
+        "title": "Android App Development with Kotlin",
+        "instructor": "Philipp Lackner",
+        "category": "Mobile Dev",
+        "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLQkwcJG4YTCSpJ2TcFmjLiS7L9S3i4Pr4",
+        "description": "Master modern Android development using Jetpack Compose and Kotlin. Very practical and project-oriented.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "40 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 12000,
+        "students": 200000,
+        "completionRate": 32,
+        "tags": [
+            "Android",
+            "Kotlin",
+            "Jetpack Compose",
+            "App Dev"
+        ],
+        "prerequisites": [
+            "Basic programming logic"
+        ],
+        "nextCourses": [
+            "MVVM Architecture on Android",
+            "Firebase for Android"
+        ],
+        "benefits": [
+            "Build professional Android apps",
+            "Master the latest UI framework from Google",
+            "Understand clean architecture principles"
+        ]
+    },
+    {
+        "id": 149,
+        "title": "Excel Full Course for Professionals",
+        "instructor": "Leila Gharani",
+        "category": "Productivity",
+        "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=Vl0GVm_S8T4",
+        "description": "Learn advanced Excel formulas, pivot tables, and data cleaning techniques used in professional settings.",
+        "difficulty": "Beginner to Intermediate",
+        "type": "YouTube",
+        "duration": "5 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 25000,
+        "students": 1200000,
+        "completionRate": 78,
+        "tags": [
+            "Excel",
+            "Data",
+            "Office",
+            "Productivity"
+        ],
+        "prerequisites": [
+            "Microsoft Excel installed"
+        ],
+        "nextCourses": [
+            "Excel VBA and Macros",
+            "Power Query Mastery"
+        ],
+        "benefits": [
+            "Save hours of work with automation",
+            "Become the Excel Guru in your office",
+            "Visualize complex data clearly"
+        ]
+    },
+    {
+        "id": 150,
+        "title": "Golang Crash Course",
+        "instructor": "Traversy Media",
+        "category": "Programming",
+        "image": "https://images.unsplash.com/photo-1662026911591-335639b11db6?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=SqrbIlUwR0U",
+        "description": "A quick and efficient guide to the Go programming language. Covers syntax, concurrency, and types.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "2 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 8900,
+        "students": 310000,
+        "completionRate": 85,
+        "tags": [
+            "Go",
+            "Backend",
+            "Golang",
+            "Concurrency"
+        ],
+        "prerequisites": [
+            "General programming knowledge"
+        ],
+        "nextCourses": [
+            "Go Microservices with gRPC",
+            "Docker and Kubernetes"
+        ],
+        "benefits": [
+            "Learn a high-performance language",
+            "Get ready for modern backend roles",
+            "Concise and fast-paced learning"
+        ]
+    },
+    {
+        "id": 151,
+        "title": "Machine Learning by Andrew Ng",
+        "instructor": "Andrew Ng",
+        "category": "AI/ML",
+        "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+        "description": "The most famous Machine Learning course in the world. Completely updated with Python implementations.",
+        "difficulty": "Beginner",
+        "type": "Coursera (Free Audit)",
+        "duration": "60 hours",
+        "instructor_lang": "English",
+        "rating": 5.0,
+        "reviewCount": 300000,
+        "students": 4500000,
+        "completionRate": 22,
+        "tags": [
+            "ML",
+            "AI",
+            "Mathematics",
+            "Python"
+        ],
+        "prerequisites": [
+            "Basic Linear Algebra",
+            "Basic Calculus"
+        ],
+        "nextCourses": [
+            "Deep Learning Specialization",
+            "AI for Good Specialization"
+        ],
+        "benefits": [
+            "Learn from the master of AI",
+            "World-recognized foundational knowledge",
+            "Build ML models from scratch"
+        ]
+    },
+    {
+        "id": 152,
+        "title": "Graphic Design Theory",
+        "instructor": "Lindsay Marsh",
+        "category": "Design",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=uKAs53-h5iI",
+        "description": "Understand the why behind design. Learn about typography, color theory, and composition rules.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "2 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 4500,
+        "students": 150000,
+        "completionRate": 80,
+        "tags": [
+            "Design Theory",
+            "Visuals",
+            "Typography",
+            "Art"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Brand Design Masterclass",
+            "Logo Design Workshop"
+        ],
+        "benefits": [
+            "Improve your visual taste",
+            "Communicate better through design",
+            "Applicable to any design software"
+        ]
+    },
+    {
+        "id": 153,
+        "title": "Ethical Hacking Full Course (Hindi)",
+        "instructor": "Technical Sagar",
+        "category": "Cybersecurity",
+        "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLlU_fX-O20isvj_O69qW8SOn_3S9eY_6T",
+        "description": "Learn the basics of cybersecurity and ethical hacking in Hindi. Covers Kali Linux, WiFi hacking, and protection tips.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "30 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.6,
+        "reviewCount": 62000,
+        "students": 1200000,
+        "completionRate": 30,
+        "tags": [
+            "Hacking",
+            "Cybersecurity",
+            "Hindi",
+            "Security"
+        ],
+        "prerequisites": [
+            "Interest in computers",
+            "Ethics"
+        ],
+        "nextCourses": [
+            "CEH Certification Prep",
+            "Web App Pentesting"
+        ],
+        "benefits": [
+            "Understand how hackers think",
+            "Secure your own digital life",
+            "Fun and easy to follow lessons"
+        ]
+    },
+    {
+        "id": 154,
+        "title": "TypeScript Tutorial for Beginners",
+        "instructor": "Stephan Grider",
+        "category": "Programming",
+        "image": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=rAy_3SIqZr8",
+        "description": "Learn why TypeScript is taking over the web and how to use types to write safer, cleaner JavaScript code.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "3 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 3800,
+        "students": 95000,
+        "completionRate": 75,
+        "tags": [
+            "TypeScript",
+            "JavaScript",
+            "Typing",
+            "Web Dev"
+        ],
+        "prerequisites": [
+            "Basic JavaScript"
+        ],
+        "nextCourses": [
+            "React with TypeScript",
+            "Enterprise Node.js Patterns"
+        ],
+        "benefits": [
+            "Reduce bugs in your code",
+            "Better developer experience with IDEs",
+            "Essential for modern web jobs"
+        ]
+    },
+    {
+        "id": 155,
+        "title": "Solidity & Blockchain Development",
+        "instructor": "Patrick Collins",
+        "category": "Web3",
+        "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=gyMwXuJrbJQ",
+        "description": "The definitive guide to becoming a Web3 developer. Build smart contracts and decentralized applications (dApps).",
+        "difficulty": "Advanced",
+        "type": "YouTube",
+        "duration": "32 hours",
+        "instructor_lang": "English",
+        "rating": 5.0,
+        "reviewCount": 18000,
+        "students": 400000,
+        "completionRate": 18,
+        "tags": [
+            "Solidity",
+            "Blockchain",
+            "Web3",
+            "Ethereum"
+        ],
+        "prerequisites": [
+            "JavaScript Proficiency"
+        ],
+        "nextCourses": [
+            "Full Stack dApp Development",
+            "Smart Contract Security Audit"
+        ],
+        "benefits": [
+            "Master high-paying Web3 skills",
+            "Build and deploy your own NFT or Token",
+            "Learn from a top industry engineer"
+        ]
+    },
+    {
+        "id": 156,
+        "title": "Public Speaking Masterclass",
+        "instructor": "Chris Anderson (TED)",
+        "category": "Soft Skills",
+        "image": "https://images.unsplash.com/photo-1475721027785-f74dea327912?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=-FOCpMAww28",
+        "description": "Learn the secrets of delivering a great talk from the curator of TED. Improve your communication and confidence.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "1 hour",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 12000,
+        "students": 500000,
+        "completionRate": 95,
+        "tags": [
+            "Soft Skills",
+            "Speaking",
+            "TED",
+            "Confidence"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Storytelling for Business",
+            "Leadership Communication"
+        ],
+        "benefits": [
+            "Speak with more authority",
+            "Structure your ideas effectively",
+            "Overcome stage fright"
+        ]
+    },
+    {
+        "id": 157,
+        "title": "Deep Learning Specialization",
+        "instructor": "DeepLearning.AI",
+        "category": "AI/ML",
+        "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/specializations/deep-learning",
+        "description": "Learn the foundations of Deep Learning, build Neural Networks, and understand CNNs and RNNs.",
+        "difficulty": "Advanced",
+        "type": "Coursera (Free Audit)",
+        "duration": "100 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 150000,
+        "students": 1200000,
+        "completionRate": 12,
+        "tags": [
+            "Deep Learning",
+            "Neural Networks",
+            "AI",
+            "Keras"
+        ],
+        "prerequisites": [
+            "Intermediate Machine Learning",
+            "Linear Algebra"
+        ],
+        "nextCourses": [
+            "Natural Language Processing",
+            "GANs Specialization"
+        ],
+        "benefits": [
+            "Industry-leading AI education",
+            "Understand the tech behind ChatGPT",
+            "Prestigious certificate option"
+        ]
+    },
+    {
+        "id": 158,
+        "title": "Laravel PHP Framework Tutorial",
+        "instructor": "Punit Vashisth (Learn Code Online)",
+        "category": "Backend",
+        "image": "https://images.unsplash.com/photo-1599507593499-a3f7f7d9a2cc?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLRAV69dS1uWQpMv-0oF86fS8-LAsiV4eT",
+        "description": "Learn Laravel, the most popular PHP framework, in Hindi. Covers MVC architecture, Eloquent ORM, and Blade templates.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "15 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.7,
+        "reviewCount": 5500,
+        "students": 120000,
+        "completionRate": 40,
+        "tags": [
+            "Laravel",
+            "PHP",
+            "Backend",
+            "Hindi"
+        ],
+        "prerequisites": [
+            "Basic PHP"
+        ],
+        "nextCourses": [
+            "Advanced Laravel API Design",
+            "Vue.js with Laravel"
+        ],
+        "benefits": [
+            "Build robust web applications fast",
+            "Understand modern backend standards",
+            "Practical project building"
+        ]
+    },
+    {
+        "id": 159,
+        "title": "Flutter Full Course 2024",
+        "instructor": "Academind (Max Schwarzmuller)",
+        "category": "Mobile Dev",
+        "image": "https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=VPvVD8t02U8",
+        "description": "Build high-performance cross-platform apps for iOS and Android with a single codebase.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "8 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 9800,
+        "students": 250000,
+        "completionRate": 55,
+        "tags": [
+            "Flutter",
+            "Dart",
+            "Mobile",
+            "Cross-Platform"
+        ],
+        "prerequisites": [
+            "Basic Programming Knowledge"
+        ],
+        "nextCourses": [
+            "Flutter Riverpod State Management",
+            "Dart for Professionals"
+        ],
+        "benefits": [
+            "Single codebase for multiple platforms",
+            "Beautiful native-like UI",
+            "Extremely fast development cycle"
+        ]
+    },
+    {
+        "id": 160,
+        "title": "Social Media Marketing (SMM)",
+        "instructor": "HubSpot Academy",
+        "category": "Marketing",
+        "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+        "url": "https://academy.hubspot.com/courses/social-media",
+        "description": "Build an inbound social media strategy that helps you grow your business and your career.",
+        "difficulty": "Beginner",
+        "type": "HubSpot",
+        "duration": "5 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 20000,
+        "students": 500000,
+        "completionRate": 65,
+        "tags": [
+            "SMM",
+            "HubSpot",
+            "Strategy",
+            "Marketing"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Inbound Marketing Certification",
+            "Facebook Ads Mastery"
+        ],
+        "benefits": [
+            "Earn a free certificate",
+            "Learn to manage social media for brands",
+            "Master content strategy and listening"
+        ]
+    },
+    {
+        "id": 161,
+        "title": "Docker and Kubernetes Crash Course",
+        "instructor": "Kunwar Kushwaha",
+        "category": "DevOps",
+        "image": "https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PL9gnSGHSqcnq_p5u8uYfH790L9SjO7i09",
+        "description": "The best Hindi roadmap for DevOps. Learn containerization, orchestration, and CI/CD pipelines.",
+        "difficulty": "Advanced",
+        "type": "YouTube",
+        "duration": "25 hours",
+        "instructor_lang": "Hindi",
+        "rating": 4.9,
+        "reviewCount": 14000,
+        "students": 300000,
+        "completionRate": 30,
+        "tags": [
+            "DevOps",
+            "Docker",
+            "Kubernetes",
+            "Cloud"
+        ],
+        "prerequisites": [
+            "Linux Basics",
+            "Web App Development"
+        ],
+        "nextCourses": [
+            "Terraform Mastery",
+            "Jenkins and CI/CD"
+        ],
+        "benefits": [
+            "Transition into DevOps roles",
+            "Understand modern infrastructure",
+            "Heavy emphasis on practical lab work"
+        ]
+    },
+    {
+        "id": 162,
+        "title": "Project Management Foundations",
+        "instructor": "Google Career Certificates",
+        "category": "Business",
+        "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.coursera.org/learn/project-management-foundations",
+        "description": "Learn the basics of project management, including Agile, Scrum, and Waterfall methodologies.",
+        "difficulty": "Beginner",
+        "type": "Coursera (Free Audit)",
+        "duration": "20 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 45000,
+        "students": 650000,
+        "completionRate": 40,
+        "tags": [
+            "Agile",
+            "Scrum",
+            "Management",
+            "Business"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Scrum Master Certification",
+            "PMP Prep Course"
+        ],
+        "benefits": [
+            "Gain essential organizational skills",
+            "Learn industry-standard tools",
+            "Valuable for any professional career"
+        ]
+    },
+    {
+        "id": 163,
+        "title": "Unity Game Development for Beginners",
+        "instructor": "Brackeys",
+        "category": "Game Dev",
+        "image": "https://images.unsplash.com/photo-1552824801-0428613af89d?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLPV2KyIb3jR53Jce9hP7G5BeJyFe6UXle",
+        "description": "Learn to make games from one of the most beloved game dev instructors. Covers C# and the Unity Engine.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "10 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 150000,
+        "students": 3000000,
+        "completionRate": 45,
+        "tags": [
+            "Unity",
+            "C#",
+            "Game Design",
+            "3D"
+        ],
+        "prerequisites": [
+            "Unity installed"
+        ],
+        "nextCourses": [
+            "Advanced 3D Game Mechanics",
+            "Unreal Engine 5 Intro"
+        ],
+        "benefits": [
+            "Build your first 3D game",
+            "Understand physics and scripting",
+            "Access to an amazing community"
+        ]
+    },
+    {
+        "id": 164,
+        "title": "Natural Language Processing (NLP)",
+        "instructor": "Krish Naik",
+        "category": "AI/ML",
+        "image": "https://images.unsplash.com/photo-1646617747567-728fda019e58?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLZoTAELRMXVMdJ5sq9ZrM92W7YPKuUXOm",
+        "description": "Learn text preprocessing, word embeddings, and transformers to build AI that understands human language.",
+        "difficulty": "Advanced",
+        "type": "YouTube",
+        "duration": "18 hours",
+        "instructor_lang": "Hindi/English",
+        "rating": 4.8,
+        "reviewCount": 9500,
+        "students": 220000,
+        "completionRate": 38,
+        "tags": [
+            "NLP",
+            "Transformers",
+            "Bert",
+            "Python"
+        ],
+        "prerequisites": [
+            "Basic Machine Learning",
+            "Deep Learning Basics"
+        ],
+        "nextCourses": [
+            "Large Language Model Engineering",
+            "Speech Recognition Systems"
+        ],
+        "benefits": [
+            "Build chatbots and sentiment analyzers",
+            "Work with cutting-edge AI models",
+            "Practical coding tutorials"
+        ]
+    },
+    {
+        "id": 165,
+        "title": "Productivity and Time Management",
+        "instructor": "Ali Abdaal",
+        "category": "Self Improvement",
+        "image": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=iONDebHX9qk",
+        "description": "Learn systems to get more done in less time without feeling burnt out. Focused on evidence-based productivity.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "1 hour",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 30000,
+        "students": 1500000,
+        "completionRate": 98,
+        "tags": [
+            "Productivity",
+            "Habits",
+            "Time Management",
+            "Study"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Building a Second Brain",
+            "Mindfulness for High Performance"
+        ],
+        "benefits": [
+            "Double your daily output",
+            "Reduce stress and procrastination",
+            "Create sustainable study/work habits"
+        ]
+    },
+    {
+        "id": 166,
+        "title": "Data Science with R",
+        "instructor": "MarinStatsLectures",
+        "category": "Data Science",
+        "image": "https://images.unsplash.com/photo-1543286386-2e659306cd6c?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLqzoL9aRW0He6f7S_u46U86mE-i9YmRSc",
+        "description": "A classic course on statistics and data science using the R programming language. Very strong on fundamentals.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "25 hours",
+        "instructor_lang": "English",
+        "rating": 4.6,
+        "reviewCount": 4200,
+        "students": 130000,
+        "completionRate": 42,
+        "tags": [
+            "R",
+            "Statistics",
+            "Data Science",
+            "Research"
+        ],
+        "prerequisites": [
+            "Basic Statistics"
+        ],
+        "nextCourses": [
+            "Advanced Biostatistics",
+            "Machine Learning in R"
+        ],
+        "benefits": [
+            "Master statistical computing",
+            "Professional data visualization with ggplot2",
+            "Deep understanding of p-values and testing"
+        ]
+    },
+    {
+        "id": 167,
+        "title": "Linux Command Line for Beginners",
+        "instructor": "The Linux Foundation",
+        "category": "IT",
+        "image": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.edx.org/course/introduction-to-linux",
+        "description": "The official introduction to Linux. Learn the CLI, file systems, and system administration basics.",
+        "difficulty": "Beginner",
+        "type": "edX (Free Audit)",
+        "duration": "18 hours",
+        "instructor_lang": "English",
+        "rating": 4.8,
+        "reviewCount": 85000,
+        "students": 1000000,
+        "completionRate": 55,
+        "tags": [
+            "Linux",
+            "CLI",
+            "SysAdmin",
+            "Open Source"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Linux System Administration Specialization",
+            "Shell Scripting Mastery"
+        ],
+        "benefits": [
+            "Master the terminal",
+            "Foundational skill for Cloud/DevOps",
+            "Learn from the creators of Linux"
+        ]
+    },
+    {
+        "id": 168,
+        "title": "Next.js 14 Full Course",
+        "instructor": "JavaScript Mastery (Adrian Twarog)",
+        "category": "Web Dev",
+        "image": "https://images.unsplash.com/photo-1618477388954-7852f32655ec?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=wm5gMKuwSYk",
+        "description": "Build modern, fast full-stack applications with Next.js 14, including Server Actions and the App Router.",
+        "difficulty": "Intermediate",
+        "type": "YouTube",
+        "duration": "5 hours",
+        "instructor_lang": "English",
+        "rating": 4.9,
+        "reviewCount": 12000,
+        "students": 280000,
+        "completionRate": 48,
+        "tags": [
+            "Next.js",
+            "React",
+            "Server Components",
+            "Tailwind"
+        ],
+        "prerequisites": [
+            "React.js Proficiency"
+        ],
+        "nextCourses": [
+            "SaaS App Construction",
+            "Enterprise Architecture"
+        ],
+        "benefits": [
+            "Learn the latest features of Next.js",
+            "Master Server-Side Rendering (SSR)",
+            "Build a production-ready web application"
+        ]
+    },
+    {
+        "id": 169,
+        "title": "Canva Graphic Design for Beginners",
+        "instructor": "Ronny Hermosa",
+        "category": "Design",
+        "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/watch?v=un50Bs4BvZ8",
+        "description": "Learn to create beautiful social media graphics, presentations, and documents using Canva. No design experience needed.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "2 hours",
+        "instructor_lang": "English",
+        "rating": 4.7,
+        "reviewCount": 6500,
+        "students": 320000,
+        "completionRate": 92,
+        "tags": [
+            "Canva",
+            "Graphic Design",
+            "No-Code Design",
+            "Social Media"
+        ],
+        "prerequisites": [
+            "None"
+        ],
+        "nextCourses": [
+            "Canva Pro for Business",
+            "Visual Branding Basics"
+        ],
+        "benefits": [
+            "Design professional content instantly",
+            "Master Canva magic AI tools",
+            "Perfect for small business owners"
+        ]
+    },
+    {
+        "id": 170,
+        "title": "English Speaking & Communication",
+        "instructor": "LearnEx",
+        "category": "Language",
+        "image": "https://images.unsplash.com/photo-1543167664-c9215cde9834?auto=format&fit=crop&w=800&q=80",
+        "url": "https://www.youtube.com/playlist?list=PLv_75E8-S7h3p6qR_hNq9766Ym_A09hH9",
+        "description": "Improve your spoken English for interviews and daily communication. Focuses on fluency, pronunciation, and confidence.",
+        "difficulty": "Beginner",
+        "type": "YouTube",
+        "duration": "50 hours",
+        "instructor_lang": "Hindi/English",
+        "rating": 4.8,
+        "reviewCount": 150000,
+        "students": 3500000,
+        "completionRate": 35,
+        "tags": [
+            "English",
+            "Communication",
+            "Fluency",
+            "Interviews"
+        ],
+        "prerequisites": [
+            "Basic understanding of English"
+        ],
+        "nextCourses": [
+            "Business English Writing",
+            "Advanced Public Speaking"
+        ],
+        "benefits": [
+            "Speak English more naturally",
+            "Crack job interviews with confidence",
+            "Learn common idioms and phrases"
+        ]
     }
 ]

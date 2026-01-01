@@ -30,9 +30,9 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    /* Custom Font Variables */
-    --font-sans: var(--font-jakarta);
-    --font-display: var(--font-syne);
+    /* Custom Font Variables - Google Sans Flex */
+    --font-sans: "Google Sans Flex", sans-serif;
+    --font-display: "Google Sans Flex", sans-serif;
   }
 
   .dark {
