@@ -61,11 +61,11 @@ const config: Config = {
 			},
 			fontFamily: {
 				sans: [
-					'var(--font-jakarta)',
+					'"Google Sans Flex"',
 					'sans-serif'
 				],
 				heading: [
-					'var(--font-syne)',
+					'"Google Sans Flex"',
 					'sans-serif'
 				]
 			},

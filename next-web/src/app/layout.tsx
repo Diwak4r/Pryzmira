@@ -1,17 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Syne } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
-
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
-});
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Pryzmira",
@@ -30,8 +19,6 @@ export const viewport: Viewport = {
 
 import { Providers } from "@/components/Providers";
 
-// ...
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,8 +26,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,100..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${jakarta.variable} ${syne.variable} antialiased`}
+        className="font-sans antialiased"
         suppressHydrationWarning
       >
         <Providers>
