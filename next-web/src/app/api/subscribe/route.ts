@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 
-// In-memory store for edge/serverless (resets on redeploy, but works for demo)
-// For production, use: Vercel KV, Upstash Redis, or a database like Supabase/Planetscale
+// TODO: Replace with Vercel KV or Upstash Redis for production persistence
+// npm install @vercel/kv  → then use kv.sadd('subscribers', email)
+// Current in-memory store resets on every deploy/cold start
 const subscribers = new Set<string>();
 
 // Rate limiting store
@@ -73,6 +74,7 @@ export async function POST(request: Request) {
         // Send Welcome Email via Resend
         const API_KEY = process.env.RESEND_API_KEY;
         const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+        const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pryzmira.vercel.app';
 
         if (API_KEY) {
             try {
@@ -85,7 +87,7 @@ export async function POST(request: Request) {
                     body: JSON.stringify({
                         from: `Pryzmira <${FROM_EMAIL}>`,
                         to: [normalizedEmail],
-                        subject: '🎉 Welcome to Pryzmira - Your AI & Tech Journey Begins!',
+                        subject: 'Welcome to Pryzmira - Your AI & Tech Journey Begins!',
                         html: `
                             <!DOCTYPE html>
                             <html>
@@ -98,19 +100,19 @@ export async function POST(request: Request) {
                                     <!-- Header -->
                                     <div style="text-align: center; margin-bottom: 40px;">
                                         <h1 style="color: #ffffff; font-size: 32px; margin: 0; font-weight: 700;">
-                                            ✨ Pryzmira
+                                            Pryzmira
                                         </h1>
                                         <p style="color: #888; font-size: 14px; margin-top: 8px;">
                                             AI, Tech & Learning Hub
                                         </p>
                                     </div>
-                                    
+
                                     <!-- Main Content -->
                                     <div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 16px; padding: 40px; border: 1px solid #333;">
                                         <h2 style="color: #ffffff; font-size: 24px; margin: 0 0 20px 0;">
-                                            Welcome to the future. 🚀
+                                            Welcome to the future.
                                         </h2>
-                                        
+
                                         <p style="color: #cccccc; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
                                             You've just joined an exclusive community of engineers, developers, and tech enthusiasts who are staying ahead of the curve.
                                         </p>
@@ -122,36 +124,36 @@ export async function POST(request: Request) {
                                         <!-- Features List -->
                                         <div style="margin-bottom: 30px;">
                                             <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                                                <span style="color: #00d4ff; font-size: 20px; margin-right: 12px;">🤖</span>
+                                                <span style="color: #00d4ff; font-size: 20px; margin-right: 12px;">*</span>
                                                 <span style="color: #ffffff; font-size: 15px;">Latest AI Tools & Breakthroughs</span>
                                             </div>
                                             <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                                                <span style="color: #00d4ff; font-size: 20px; margin-right: 12px;">💻</span>
+                                                <span style="color: #00d4ff; font-size: 20px; margin-right: 12px;">*</span>
                                                 <span style="color: #ffffff; font-size: 15px;">System Design Case Studies</span>
                                             </div>
                                             <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                                                <span style="color: #00d4ff; font-size: 20px; margin-right: 12px;">🛡️</span>
+                                                <span style="color: #00d4ff; font-size: 20px; margin-right: 12px;">*</span>
                                                 <span style="color: #ffffff; font-size: 15px;">Cybersecurity Insights</span>
                                             </div>
                                             <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                                                <span style="color: #00d4ff; font-size: 20px; margin-right: 12px;">📚</span>
+                                                <span style="color: #00d4ff; font-size: 20px; margin-right: 12px;">*</span>
                                                 <span style="color: #ffffff; font-size: 15px;">Curated Learning Resources</span>
                                             </div>
                                         </div>
 
                                         <!-- CTA Button -->
-                                        <a href="https://pryzmira.vercel.app" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 16px;">
-                                            Explore Pryzmira →
+                                        <a href="${SITE_URL}" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 16px;">
+                                            Explore Pryzmira
                                         </a>
                                     </div>
 
                                     <!-- Footer -->
                                     <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #333;">
                                         <p style="color: #666; font-size: 13px; margin: 0;">
-                                            You're receiving this because you subscribed at pryzmira.vercel.app
+                                            You're receiving this because you subscribed at Pryzmira
                                         </p>
                                         <p style="color: #666; font-size: 13px; margin-top: 8px;">
-                                            © ${new Date().getFullYear()} Pryzmira. All rights reserved.
+                                            &copy; ${new Date().getFullYear()} Pryzmira. All rights reserved.
                                         </p>
                                     </div>
                                 </div>
@@ -185,18 +187,17 @@ export async function POST(request: Request) {
     }
 }
 
-// GET endpoint to check subscriber count (for admin purposes)
+// GET endpoint to check subscriber count (admin only, no email leak)
 export async function GET(request: Request) {
     const authHeader = request.headers.get('authorization');
     const cronSecret = process.env.CRON_SECRET;
 
-    // Simple auth check for admin access
-    if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+    // Require auth — reject if no CRON_SECRET is set or auth doesn't match
+    if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     return NextResponse.json({
-        subscriberCount: subscribers.size,
-        subscribers: Array.from(subscribers)
+        subscriberCount: subscribers.size
     });
 }

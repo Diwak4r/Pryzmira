@@ -158,7 +158,7 @@ export async function POST(request: Request) {
 
         // Get subscribers from request body or use default test list
         const body = await request.json().catch(() => ({}));
-        let subscribers: string[] = body.subscribers || [];
+        const subscribers: string[] = body.subscribers || [];
 
         // If no subscribers provided, use the test/production list
         if (subscribers.length === 0) {
