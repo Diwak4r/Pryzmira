@@ -30,7 +30,7 @@ export default function Resources() {
 
     const handleUnlock = (e: React.FormEvent) => {
         e.preventDefault();
-        if (secretCode === 'Diwa') {
+        if (secretCode === (process.env.NEXT_PUBLIC_VAULT_PASSWORD || 'Diwa')) {
             setIsUnlocked(true);
             setError('');
             localStorage.setItem('vault_unlocked', 'true');

@@ -1,12 +1,12 @@
 'use client';
 
-import { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
     Download, Trash2, PenTool, Eraser, Type, Square, Circle as CircleIcon,
     Undo, Redo, MousePointer2, ZoomIn, ZoomOut, Grid, ArrowRight,
-    Image as ImageIcon, Minus, Highlighter, Move, RotateCcw, Copy, Scissors,
-    Palette, ChevronDown
+    Image as ImageIcon, Minus, Highlighter, Move, RotateCcw, Copy,
+    ChevronDown
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -32,21 +32,11 @@ interface Shape {
     rotation?: number;
 }
 
-interface ResizeHandle {
-    position: 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w';
-    cursor: string;
+function ToolButton({ t, icon, title, tool, setTool }: { t: Tool; icon: React.ReactNode; title: string; tool: Tool; setTool: (t: Tool) => void }) {
+    return (
+        <button onClick={() => setTool(t)} className={`p-2 rounded-lg transition-colors ${tool === t ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-primary hover:bg-muted'}`} title={title}>{icon}</button>
+    );
 }
-
-const RESIZE_HANDLES: ResizeHandle[] = [
-    { position: 'nw', cursor: 'nwse-resize' },
-    { position: 'n', cursor: 'ns-resize' },
-    { position: 'ne', cursor: 'nesw-resize' },
-    { position: 'e', cursor: 'ew-resize' },
-    { position: 'se', cursor: 'nwse-resize' },
-    { position: 's', cursor: 'ns-resize' },
-    { position: 'sw', cursor: 'nesw-resize' },
-    { position: 'w', cursor: 'ew-resize' },
-];
 
 const COLOR_PALETTE = [
     '#000000', '#FFFFFF', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
@@ -57,7 +47,6 @@ const COLOR_PALETTE = [
 export default function Canvas() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const eraserCanvasRef = useRef<HTMLCanvasElement>(null);
     const { theme } = useTheme();
     const searchParams = useSearchParams();
 
@@ -92,12 +81,10 @@ export default function Canvas() {
     // Text Input State
     const [textInput, setTextInput] = useState<{ x: number; y: number; value: string } | null>(null);
 
-    // Eraser mask for pixel-level erasing
-    const [eraserMask, setEraserMask] = useState<ImageData | null>(null);
-
     const generateId = () => Math.random().toString(36).substr(2, 9);
 
-    // Load from local storage
+    // Load from local storage (initialization, not cascading render)
+    /* eslint-disable react-hooks/set-state-in-effect */
     useEffect(() => {
         const saved = localStorage.getItem('pryzmira-canvas');
         if (saved) {
@@ -127,6 +114,7 @@ export default function Canvas() {
         }
         setIsLoaded(true);
     }, [searchParams]);
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     // Save to local storage
     useEffect(() => {
@@ -665,10 +653,6 @@ export default function Canvas() {
         reader.readAsDataURL(file);
     };
 
-    const ToolButton = ({ t, icon, title }: { t: Tool; icon: React.ReactNode; title: string }) => (
-        <button onClick={() => setTool(t)} className={`p-2 rounded-lg transition-colors ${tool === t ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-primary hover:bg-muted'}`} title={title}>{icon}</button>
-    );
-
     return (
         <div className="h-[calc(100vh-200px)] flex flex-col relative">
             {/* Toolbar */}
@@ -679,16 +663,16 @@ export default function Canvas() {
                     <button onClick={redo} disabled={historyStep >= history.length - 1} className="p-2 rounded-lg disabled:opacity-30" title="Redo"><Redo className="w-4 h-4" /></button>
                     <div className="w-px h-5 bg-border mx-1" />
 
-                    <ToolButton t="select" icon={<MousePointer2 className="w-4 h-4" />} title="Select (V)" />
-                    <ToolButton t="pan" icon={<Move className="w-4 h-4" />} title="Pan (Space)" />
-                    <ToolButton t="pen" icon={<PenTool className="w-4 h-4" />} title="Pen (P)" />
-                    <ToolButton t="highlighter" icon={<Highlighter className="w-4 h-4" />} title="Highlighter (H)" />
-                    <ToolButton t="eraser" icon={<Eraser className="w-4 h-4" />} title="Eraser (E)" />
-                    <ToolButton t="text" icon={<Type className="w-4 h-4" />} title="Text (T)" />
-                    <ToolButton t="line" icon={<Minus className="w-4 h-4" />} title="Line (L)" />
-                    <ToolButton t="rect" icon={<Square className="w-4 h-4" />} title="Rectangle (R)" />
-                    <ToolButton t="circle" icon={<CircleIcon className="w-4 h-4" />} title="Circle (C)" />
-                    <ToolButton t="arrow" icon={<ArrowRight className="w-4 h-4" />} title="Arrow" />
+                    <ToolButton t="select" icon={<MousePointer2 className="w-4 h-4" />} title="Select (V)" tool={tool} setTool={setTool} />
+                    <ToolButton t="pan" icon={<Move className="w-4 h-4" />} title="Pan (Space)" tool={tool} setTool={setTool} />
+                    <ToolButton t="pen" icon={<PenTool className="w-4 h-4" />} title="Pen (P)" tool={tool} setTool={setTool} />
+                    <ToolButton t="highlighter" icon={<Highlighter className="w-4 h-4" />} title="Highlighter (H)" tool={tool} setTool={setTool} />
+                    <ToolButton t="eraser" icon={<Eraser className="w-4 h-4" />} title="Eraser (E)" tool={tool} setTool={setTool} />
+                    <ToolButton t="text" icon={<Type className="w-4 h-4" />} title="Text (T)" tool={tool} setTool={setTool} />
+                    <ToolButton t="line" icon={<Minus className="w-4 h-4" />} title="Line (L)" tool={tool} setTool={setTool} />
+                    <ToolButton t="rect" icon={<Square className="w-4 h-4" />} title="Rectangle (R)" tool={tool} setTool={setTool} />
+                    <ToolButton t="circle" icon={<CircleIcon className="w-4 h-4" />} title="Circle (C)" tool={tool} setTool={setTool} />
+                    <ToolButton t="arrow" icon={<ArrowRight className="w-4 h-4" />} title="Arrow" tool={tool} setTool={setTool} />
                     <label className="p-2 rounded-lg cursor-pointer hover:bg-muted" title="Image"><input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} /><ImageIcon className="w-4 h-4" /></label>
 
                     <div className="w-px h-5 bg-border mx-1" />

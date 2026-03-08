@@ -1,5 +1,3 @@
-import { NextResponse } from 'next/server';
-
 interface RateLimitStore {
     [key: string]: {
         count: number;
