@@ -29,9 +29,6 @@ export default function ExitIntentModal() {
         setIsLoading(true);
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -98,8 +95,8 @@ export default function ExitIntentModal() {
             <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
                     <div className="flex items-center gap-3 mb-2">
-                        <div className="p-3 bg-accent/10 rounded-xl">
-                            <Sparkles className="w-6 h-6 text-accent" />
+                        <div className="p-3 bg-primary/10 rounded-xl">
+                            <Sparkles className="w-6 h-6 text-primary" />
                         </div>
                         <DialogTitle className="text-2xl font-bold">Wait! Don&apos;t miss out.</DialogTitle>
                     </div>

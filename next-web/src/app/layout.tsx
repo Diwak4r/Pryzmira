@@ -3,9 +3,32 @@ import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
 
 export const metadata: Metadata = {
-  title: "Pryzmira",
-  description: "A premium learning platform",
+  title: {
+    default: "Pryzmira — Curated AI Tools, Courses & Resources",
+    template: "%s | Pryzmira",
+  },
+  description: "Stop drowning in choice. 64 hand-picked AI tools, 130+ tech courses, and curated resources — filtered by a CS student for CS students.",
+  keywords: ["AI tools", "tech courses", "learning resources", "AI directory", "student", "computer science", "programming"],
+  authors: [{ name: "Diwakar Ray Yadav" }],
+  creator: "Diwakar Ray Yadav",
   manifest: "/manifest.json",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://pryzmira.vercel.app",
+    siteName: "Pryzmira",
+    title: "Pryzmira — Curated AI Tools, Courses & Resources",
+    description: "Stop drowning in choice. 64 hand-picked AI tools, 130+ tech courses, and curated resources for students.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pryzmira — Curated AI Tools & Courses",
+    description: "64 hand-picked AI tools, 130+ courses, curated by a student for students.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export const viewport: Viewport = {

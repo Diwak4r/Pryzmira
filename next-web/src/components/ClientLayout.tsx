@@ -30,15 +30,15 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     const pathnames = pathname.split('/').filter((x) => x);
 
     return (
-        <div className="min-h-screen bg-background text-text-primary font-sans selection:bg-primary/20 transition-colors duration-300">
+        <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/20 transition-colors duration-300">
             <ExitIntentModal />
             <Navbar />
 
-            <main className="container mx-auto px-4 pt-24 pb-12">
+            <main>
                 {/* Breadcrumbs */}
                 {pathnames.length > 0 && (
-                    <div className="flex items-center gap-2 text-sm text-text-secondary mb-6">
-                        <Link href="/" className="hover:text-text-primary transition-colors">
+                    <div className="container mx-auto px-4 pt-24 pb-2 flex items-center gap-2 text-sm text-muted-foreground">
+                        <Link href="/" className="hover:text-foreground transition-colors">
                             <Home className="w-4 h-4" />
                         </Link>
                         {pathnames.map((name, index) => {
@@ -48,9 +48,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                                 <div key={name} className="flex items-center gap-2">
                                     <ChevronRight className="w-4 h-4" />
                                     {isLast ? (
-                                        <span className="text-text-primary capitalize">{name.replace('-', ' ')}</span>
+                                        <span className="text-foreground capitalize">{name.replace('-', ' ')}</span>
                                     ) : (
-                                        <Link href={routeTo} className="hover:text-text-primary transition-colors capitalize">
+                                        <Link href={routeTo} className="hover:text-foreground transition-colors capitalize">
                                             {name.replace('-', ' ')}
                                         </Link>
                                     )}
@@ -66,7 +66,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             <Newsletter />
 
             <footer className="border-t border-border py-8 mt-12 transition-colors duration-300">
-                <div className="container mx-auto px-4 text-center text-text-secondary text-sm">
+                <div className="container mx-auto px-4 text-center text-muted-foreground text-sm space-y-2">
+                    <p className="text-xs font-medium text-primary/70">Built by a student, for students.</p>
                     <p>&copy; {new Date().getFullYear()} Pryzmira. All rights reserved.</p>
                 </div>
             </footer>

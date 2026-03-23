@@ -81,7 +81,7 @@ export default function Canvas() {
     // Text Input State
     const [textInput, setTextInput] = useState<{ x: number; y: number; value: string } | null>(null);
 
-    const generateId = () => Math.random().toString(36).substr(2, 9);
+    const generateId = () => Math.random().toString(36).slice(2, 11);
 
     // Load from local storage (initialization, not cascading render)
     /* eslint-disable react-hooks/set-state-in-effect */
@@ -756,15 +756,6 @@ export default function Canvas() {
                     <span className="text-muted-foreground">Space: Pan | Del: Delete | Ctrl+Z: Undo</span>
                 </div>
             </div>
-
-            {/* Mobile eraser cursor follow */}
-            <script dangerouslySetInnerHTML={{
-                __html: `
-                document.addEventListener('mousemove', (e) => {
-                    const cursor = document.getElementById('eraser-cursor');
-                    if (cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
-                });
-            `}} />
         </div>
     );
 }
