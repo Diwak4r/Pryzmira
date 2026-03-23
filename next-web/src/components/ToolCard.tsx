@@ -16,6 +16,7 @@ interface Tool {
     pricing: string;
     image: string;
     featured?: boolean;
+    affiliateUrl?: string;
 }
 
 interface ToolCardProps {
@@ -24,6 +25,10 @@ interface ToolCardProps {
 
 export default function ToolCard({ tool }: ToolCardProps) {
     const [imgSrc, setImgSrc] = useState(tool.image);
+
+    // Use affiliate URL if available, otherwise track via click API
+    const visitUrl = tool.affiliateUrl
+        || `/api/tools/click?url=${encodeURIComponent(tool.url)}&id=${encodeURIComponent(tool.id)}`;
 
     return (
         <motion.div
@@ -41,7 +46,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
                         src={imgSrc}
                         alt={tool.name}
                         fill
-                        className={`${tool.image.includes('logo.clearbit.com') ? 'object-contain p-8 bg-white' : 'object-cover'} transition-transform duration-500 group-hover:scale-105`}
+                        className={`${tool.image.includes('s2/favicons') ? 'object-contain p-8 bg-white rounded-lg' : 'object-cover'} transition-transform duration-500 group-hover:scale-105`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         onError={() => setImgSrc('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80')}
                     />
@@ -86,7 +91,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
                 <CardFooter className="p-5 pt-0 mt-auto">
                     <Button asChild className="w-full" variant="outline">
                         <a
-                            href={tool.url}
+                            href={visitUrl}
                             target="_blank"
                             rel="noreferrer"
                             className="flex items-center justify-center gap-2"

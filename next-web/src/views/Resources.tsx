@@ -28,19 +28,36 @@ export default function Resources() {
     const [error, setError] = useState('');
     const [failedAttempts, setFailedAttempts] = useState(0);
 
-    const handleUnlock = (e: React.FormEvent) => {
+    const [isVerifying, setIsVerifying] = useState(false);
+
+    const handleUnlock = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (secretCode === (process.env.NEXT_PUBLIC_VAULT_PASSWORD || 'Diwa')) {
-            setIsUnlocked(true);
-            setError('');
-            localStorage.setItem('vault_unlocked', 'true');
-        } else {
-            if (failedAttempts >= 1) {
-                window.location.href = 'https://youtu.be/dQw4w9WgXcQ?si=Kmovl8tb_hAMgoRA';
+        setIsVerifying(true);
+        try {
+            const res = await fetch('/api/vault/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: secretCode }),
+            });
+
+            if (res.ok) {
+                setIsUnlocked(true);
+                setError('');
+                localStorage.setItem('vault_unlocked', 'true');
+            } else if (res.status === 429) {
+                setError('Too many attempts. Please wait a moment.');
             } else {
-                setFailedAttempts(prev => prev + 1);
-                setError('Access Denied. Invalid Clearance Code.');
+                if (failedAttempts >= 1) {
+                    window.location.href = 'https://youtu.be/dQw4w9WgXcQ?si=Kmovl8tb_hAMgoRA';
+                } else {
+                    setFailedAttempts(prev => prev + 1);
+                    setError('Access Denied. Invalid Clearance Code.');
+                }
             }
+        } catch {
+            setError('Network error. Try again.');
+        } finally {
+            setIsVerifying(false);
         }
     };
 
@@ -114,8 +131,9 @@ export default function Resources() {
                                 type="submit"
                                 className="w-full text-lg font-bold py-6"
                                 size="lg"
+                                disabled={isVerifying}
                             >
-                                Unlock Vault <ArrowRight className="w-5 h-5 ml-2" />
+                                {isVerifying ? 'Verifying...' : 'Unlock Vault'} {!isVerifying && <ArrowRight className="w-5 h-5 ml-2" />}
                             </Button>
                         </form>
                     </Card>

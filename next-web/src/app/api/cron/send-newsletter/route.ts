@@ -158,7 +158,11 @@ export async function POST(request: Request) {
 
         // Get subscribers from request body or use default test list
         const body = await request.json().catch(() => ({}));
-        const subscribers: string[] = body.subscribers || [];
+        const rawSubscribers: string[] = body.subscribers || [];
+
+        // Validate emails
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const subscribers = rawSubscribers.filter(e => typeof e === 'string' && emailRegex.test(e.trim()));
 
         // If no subscribers provided, use the test/production list
         if (subscribers.length === 0) {
