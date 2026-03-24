@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Send, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { AnimatePresence, motion } from 'framer-motion';
+import { AlertCircle, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function Newsletter() {
     const [email, setEmail] = useState('');
@@ -12,23 +12,23 @@ export default function Newsletter() {
     const [message, setMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
 
-        if (!email) {
+        if (!email.trim()) {
             setStatus('error');
-            setMessage('Please enter your email address.');
+            setMessage('Enter an email address to join the weekly dispatch.');
             return;
         }
 
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             setStatus('error');
-            setMessage('Please enter a valid email address.');
+            setMessage('Use a valid email address.');
             return;
         }
 
-        setStatus('idle');
         setIsLoading(true);
+        setStatus('idle');
 
         try {
             const response = await fetch('/api/subscribe', {
@@ -37,94 +37,79 @@ export default function Newsletter() {
                 body: JSON.stringify({ email }),
             });
 
-            const data = await response.json();
-
+            const payload = await response.json();
             if (!response.ok) {
-                throw new Error(data.error || 'Failed to subscribe');
+                throw new Error(payload.error || 'Subscription failed');
             }
 
             setStatus('success');
-            setMessage('Welcome aboard! Check your inbox soon.');
+            setMessage('You are in. Expect one sharp email a week.');
             setEmail('');
         } catch (error) {
             setStatus('error');
-            const errorMessage = error instanceof Error ? error.message : 'Failed to subscribe. Please try again.';
-            setMessage(errorMessage);
+            setMessage(
+                error instanceof Error ? error.message : 'Subscription failed. Try again.'
+            );
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <section className="relative overflow-hidden py-24">
-            {/* Gradient mesh background */}
-            <div className="absolute inset-0 bg-gradient-subtle" />
-            <div className="floating-orb floating-orb-cyan w-80 h-80 -top-40 left-10 opacity-10" />
-            <div className="floating-orb floating-orb-violet w-96 h-96 -bottom-40 right-10 opacity-10" />
+        <section className="border-t border-border/70 py-20">
+            <div className="page-shell">
+                <motion.div
+                    initial={{ opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-120px' }}
+                    transition={{ duration: 0.5 }}
+                    className="paper-panel poster-shadow grid gap-10 rounded-[2rem] px-6 py-8 md:grid-cols-[1.25fr_1fr] md:px-10 md:py-10"
+                >
+                    <div className="space-y-5">
+                        <p className="section-kicker">Weekly dispatch</p>
+                        <h2 className="max-w-2xl text-4xl text-display text-balance md:text-6xl">
+                            One useful email each week. No synthetic hype, no spammy funnels.
+                        </h2>
+                        <p className="max-w-xl text-base leading-8 text-muted-foreground">
+                            Pryzmira sends a compact briefing on standout tools, worthwhile courses,
+                            and practical ideas that deserve your attention.
+                        </p>
+                    </div>
 
-            {/* Top gradient line */}
-            <div className="gradient-line absolute top-0 left-0 right-0" />
-
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-2xl mx-auto text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-background/50 backdrop-blur-sm text-sm font-medium text-muted-foreground mb-6">
-                            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                            Free weekly newsletter
+                    <div className="space-y-5 rounded-[1.6rem] border border-border bg-background/70 p-6">
+                        <div className="space-y-2">
+                            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                                Join the list
+                            </p>
+                            <div className="ink-rule" />
                         </div>
 
-                        <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                            <span className="text-foreground">Stay Ahead of </span>
-                            <span className="text-gradient">the Curve</span>
-                        </h2>
-                        <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
-                            Join engineers and tech enthusiasts getting weekly insights on AI tools, learning resources, and industry trends. No spam, just value.
-                        </p>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.15 }}
-                    >
                         {status === 'success' ? (
-                            <motion.div
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                className="p-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-sm max-w-md mx-auto"
-                            >
-                                <CheckCircle className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
-                                <p className="text-emerald-400 font-bold text-lg">You&apos;re in!</p>
-                                <p className="text-emerald-400/70 text-sm mt-1">Check your inbox for a welcome email.</p>
-                            </motion.div>
+                            <div className="space-y-3 rounded-[1.4rem] bg-primary/8 p-5 text-primary">
+                                <CheckCircle2 className="h-6 w-6" />
+                                <p className="text-lg font-semibold">{message}</p>
+                            </div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                                <div className="flex-grow relative">
-                                    <Input
-                                        type="email"
-                                        placeholder="Enter your email"
-                                        value={email}
-                                        onChange={(e) => {
-                                            setEmail(e.target.value);
-                                            if (status === 'error') setStatus('idle');
-                                        }}
-                                        className={`w-full h-12 bg-background/80 backdrop-blur-sm ${status === 'error' ? 'border-destructive focus-visible:ring-destructive' : 'border-border'}`}
-                                        suppressHydrationWarning
-                                    />
-                                </div>
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                <Input
+                                    type="email"
+                                    placeholder="name@email.com"
+                                    value={email}
+                                    onChange={(event) => {
+                                        setEmail(event.target.value);
+                                        if (status === 'error') {
+                                            setStatus('idle');
+                                        }
+                                    }}
+                                    className="h-12 rounded-full border-border bg-card px-5"
+                                />
                                 <Button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="h-12 px-6 bg-gradient-brand hover:opacity-90 transition-opacity text-white border-0"
+                                    className="w-full rounded-full text-sm font-semibold"
                                 >
-                                    {isLoading ? 'Joining...' : 'Subscribe'}
-                                    {!isLoading && <Send className="w-4 h-4 ml-2" />}
+                                    {isLoading ? 'Joining...' : 'Get the weekly note'}
+                                    {!isLoading && <ArrowUpRight className="ml-2 h-4 w-4" />}
                                 </Button>
                             </form>
                         )}
@@ -132,23 +117,23 @@ export default function Newsletter() {
                         <AnimatePresence mode="wait">
                             {status === 'error' && (
                                 <motion.div
-                                    key="error"
-                                    initial={{ opacity: 0, y: 10 }}
+                                    key="newsletter-error"
+                                    initial={{ opacity: 0, y: 6 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    className="mt-3 flex items-center justify-center gap-2 text-sm font-medium text-destructive"
+                                    exit={{ opacity: 0, y: -6 }}
+                                    className="flex items-center gap-2 text-sm text-destructive"
                                 >
-                                    <AlertCircle className="w-4 h-4" />
-                                    {message}
+                                    <AlertCircle className="h-4 w-4" />
+                                    <span>{message}</span>
                                 </motion.div>
                             )}
                         </AnimatePresence>
 
-                        <p className="text-xs text-muted-foreground/60 mt-4">
-                            No spam. Unsubscribe anytime. We respect your inbox.
+                        <p className="text-sm leading-6 text-muted-foreground">
+                            The promise is simple: less noise, more signal, and a rhythm you can keep up with.
                         </p>
-                    </motion.div>
-                </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

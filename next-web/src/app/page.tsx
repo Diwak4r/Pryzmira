@@ -1,5 +1,5 @@
-import Categories from '@/views/Categories';
+import Home from '@/views/Home';
 
-export default function Home() {
-  return <Categories />;
+export default function HomePage() {
+  return <Home />;
 }

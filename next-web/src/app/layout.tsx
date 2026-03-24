@@ -1,30 +1,59 @@
-/* eslint-disable @next/next/no-page-custom-font -- Google Sans Flex is not available via next/font/google. */
-import type { Metadata, Viewport } from "next";
-import "./globals.css";
-import ClientLayout from "@/components/ClientLayout";
+import type { Metadata, Viewport } from 'next';
+import { Manrope, Newsreader } from 'next/font/google';
+import Script from 'next/script';
+import './globals.css';
+import ClientLayout from '@/components/ClientLayout';
+import { Providers } from '@/components/Providers';
+
+const displayFont = Newsreader({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  weight: ['400', '500', '600', '700'],
+});
+
+const bodyFont = Manrope({
+  subsets: ['latin'],
+  variable: '--font-plex-sans',
+  weight: ['400', '500', '600', '700', '800'],
+});
 
 export const metadata: Metadata = {
   title: {
-    default: "Pryzmira — Curated AI Tools, Courses & Resources",
-    template: "%s | Pryzmira",
+    default: 'Pryzmira | Curated AI tools, courses, and field notes',
+    template: '%s | Pryzmira',
   },
-  description: "Stop drowning in choice. 64 hand-picked AI tools, 130+ tech courses, and curated resources — filtered by a CS student for CS students.",
-  keywords: ["AI tools", "tech courses", "learning resources", "AI directory", "student", "computer science", "programming"],
-  authors: [{ name: "Diwakar Ray Yadav" }],
-  creator: "Diwakar Ray Yadav",
-  manifest: "/manifest.json",
+  description:
+    'Pryzmira is a curated atlas for ambitious builders: standout AI tools, serious courses, practical resources, and a cleaner path through modern tech.',
+  keywords: [
+    'AI tools',
+    'tech courses',
+    'learning resources',
+    'developer roadmap',
+    'computer science',
+    'engineering students',
+    'curated tech learning',
+  ],
+  authors: [{ name: 'Diwakar Ray Yadav' }],
+  creator: 'Diwakar Ray Yadav',
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/logo.png',
+    apple: '/android-chrome-192x192.png',
+  },
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://pryzmira.vercel.app",
-    siteName: "Pryzmira",
-    title: "Pryzmira — Curated AI Tools, Courses & Resources",
-    description: "Stop drowning in choice. 64 hand-picked AI tools, 130+ tech courses, and curated resources for students.",
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://pryzmira.diwakaryadav.com.np',
+    siteName: 'Pryzmira',
+    title: 'Pryzmira | Curated AI tools, courses, and field notes',
+    description:
+      'A distinctive learning hub for builders who want signal over noise across AI, systems, design, and engineering.',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Pryzmira — Curated AI Tools & Courses",
-    description: "64 hand-picked AI tools, 130+ courses, curated by a student for students.",
+    card: 'summary_large_image',
+    title: 'Pryzmira | Curated AI tools, courses, and field notes',
+    description:
+      'Signal-first discovery for builders: curated AI tools, sharp learning paths, and field-tested resources.',
   },
   robots: {
     index: true,
@@ -34,14 +63,23 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+    { media: '(prefers-color-scheme: light)', color: '#f4efe5' },
+    { media: '(prefers-color-scheme: dark)', color: '#181410' },
   ],
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
 };
 
-import { Providers } from "@/components/Providers";
+const themeInitScript = `
+  try {
+    var savedTheme = localStorage.getItem('theme');
+    var theme = savedTheme === 'dark' ? 'dark' : 'light';
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+  } catch (error) {
+    document.documentElement.classList.add('light');
+  }
+`;
 
 export default function RootLayout({
   children,
@@ -49,24 +87,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Google Sans Flex is not exposed via next/font, so this project loads it explicitly. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,100..900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body
-        className="font-sans antialiased"
-        suppressHydrationWarning
-      >
+    <html
+      lang="en"
+      className={`${bodyFont.variable} ${displayFont.variable}`}
+      suppressHydrationWarning
+    >
+      <body suppressHydrationWarning>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         <Providers>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
+          <ClientLayout>{children}</ClientLayout>
         </Providers>
       </body>
     </html>

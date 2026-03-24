@@ -1,208 +1,267 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Code2, BrainCircuit, Cloud, Server, Shield, Globe, Rocket, Heart } from 'lucide-react';
+import {
+    ArrowRight,
+    BrainCircuit,
+    Cloud,
+    Code2,
+    Globe,
+    Heart,
+    Rocket,
+    Server,
+    Shield,
+} from 'lucide-react';
 import Link from 'next/link';
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Button } from '@/components/ui/button';
 
 const roadmapData = [
     {
         id: 1,
-        title: "Foundations of Computer Science",
-        description: "Where every great engineer begins. Master the fundamentals that separate good developers from great ones.",
+        title: 'Foundations of computer science',
+        description:
+            'Where every strong technical path begins: syntax, thinking, debugging, and core data structures.',
         icon: Code2,
-        status: "completed" as const,
-        topics: ["Python / C++", "Data Structures", "Algorithms", "Git & GitHub"],
-        emotion: "You'll feel the click when recursion suddenly makes sense.",
-        link: "/categories?cat=Coding"
+        status: 'completed' as const,
+        topics: ['Python or C++', 'Data structures', 'Algorithms', 'Git and GitHub'],
+        emotion: 'This is where the fog lifts and computing starts to feel legible.',
+        link: '/categories?cat=Coding',
     },
     {
         id: 2,
-        title: "Web Development",
-        description: "Build things people can see and use. There's nothing like shipping your first website.",
+        title: 'Web development',
+        description:
+            'Learn how interfaces, state, APIs, and product decisions come together in something people can actually use.',
         icon: Globe,
-        status: "in-progress" as const,
-        topics: ["HTML / CSS / JS", "React & Next.js", "Tailwind CSS", "Responsive Design"],
-        emotion: "The moment your creation goes live â€” that rush never gets old.",
-        link: "/categories?cat=Web+Dev"
+        status: 'in-progress' as const,
+        topics: ['HTML, CSS, and JavaScript', 'React and Next.js', 'Responsive systems', 'Shipping to production'],
+        emotion: 'Shipping something public changes how you think forever.',
+        link: '/categories?cat=Web Dev',
     },
     {
         id: 3,
-        title: "Backend & Databases",
-        description: "The invisible engine behind every app. Learn to build systems that scale.",
+        title: 'Backend and data',
+        description:
+            'Move from screens to systems: storage, authentication, APIs, reliability, and the shape of production software.',
         icon: Server,
-        status: "locked" as const,
-        topics: ["Node.js / Express", "PostgreSQL / MongoDB", "REST & GraphQL APIs", "Authentication & Security"],
-        emotion: "You'll start seeing the world as systems talking to systems.",
-        link: "/categories"
+        status: 'locked' as const,
+        topics: ['Node.js', 'PostgreSQL', 'APIs', 'Auth and security'],
+        emotion: 'You start seeing every product as flows, contracts, and state.',
+        link: '/categories',
     },
     {
         id: 4,
-        title: "AI & Machine Learning",
-        description: "The most transformative technology of our generation. Don't just use AI â€” understand it.",
+        title: 'AI and machine learning',
+        description:
+            'Go beyond using tools and learn the foundations behind models, agents, language systems, and evaluation.',
         icon: BrainCircuit,
-        status: "locked" as const,
-        topics: ["Python for ML", "Neural Networks", "NLP & LLMs", "Computer Vision"],
-        emotion: "Training your first model feels like teaching something to think.",
-        link: "/categories?cat=AI"
+        status: 'locked' as const,
+        topics: ['Python for ML', 'Neural networks', 'NLP and LLMs', 'Model evaluation'],
+        emotion: 'This is when the black box turns back into engineering.',
+        link: '/categories?cat=AI',
     },
     {
         id: 5,
-        title: "Cloud & DevOps",
-        description: "Deploy at scale. The bridge between writing code and running production systems.",
+        title: 'Cloud and DevOps',
+        description:
+            'Deployment, infrastructure, observability, and the systems work that keeps useful software alive.',
         icon: Cloud,
-        status: "locked" as const,
-        topics: ["AWS / Azure / GCP", "Docker & Kubernetes", "CI/CD Pipelines", "Monitoring & Observability"],
-        emotion: "When your app handles 10,000 users without breaking a sweat.",
-        link: "/categories?cat=Cloud"
+        status: 'locked' as const,
+        topics: ['AWS and cloud basics', 'Docker', 'CI/CD', 'Monitoring'],
+        emotion: 'You stop treating uptime and reliability like somebody else’s job.',
+        link: '/categories?cat=Cloud',
     },
     {
         id: 6,
-        title: "Cybersecurity & Ethics",
-        description: "With great power comes great responsibility. Learn to protect what you build.",
+        title: 'Security and engineering ethics',
+        description:
+            'Understand the responsibility that comes with building systems people trust and rely on.',
         icon: Shield,
-        status: "locked" as const,
-        topics: ["Network Security", "Penetration Testing", "Responsible AI", "Privacy & Compliance"],
-        emotion: "You'll never look at a login form the same way again.",
-        link: "/categories?cat=Cybersecurity"
-    }
+        status: 'locked' as const,
+        topics: ['Threat awareness', 'Secure design', 'Privacy', 'Responsible systems'],
+        emotion: 'You begin designing for consequences, not only functionality.',
+        link: '/categories?cat=Cybersecurity',
+    },
 ];
 
 export default function Roadmap() {
     return (
-        <div className="min-h-screen bg-background pb-20 pt-24">
-            <div className="container mx-auto px-4">
-                {/* Hero */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-20"
-                >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-                        <Rocket className="w-4 h-4" />
-                        Your path from zero to engineer
+        <div className="space-y-16 pb-16">
+            <section className="page-shell">
+                <div className="grid gap-8 lg:grid-cols-[0.96fr_1.04fr]">
+                    <div className="space-y-6">
+                        <span className="brand-chip">
+                            <span className="brand-chip-dot" />
+                            Learning route
+                        </span>
+                        <div className="space-y-4">
+                            <p className="section-kicker">From zero to working engineer</p>
+                            <h1 className="max-w-4xl text-5xl text-display text-balance md:text-7xl">
+                                A path built for consistency, not burnout.
+                            </h1>
+                            <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+                                The roadmap is opinionated on purpose. Each stage has a job, a mindset shift,
+                                and a reason it sits where it does.
+                            </p>
+                        </div>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
-                        The Learning Roadmap
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                        A structured path to mastery. Each step builds on the last.
-                        You don&apos;t need to rush â€” consistency beats speed every time.
-                    </p>
-                </motion.div>
 
-                {/* Timeline */}
-                <div className="relative max-w-4xl mx-auto">
-                    {/* Vertical Line */}
-                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2" />
+                    <div className="paper-panel poster-shadow rounded-[2rem] p-6 md:p-8">
+                        <div className="grid gap-4 md:grid-cols-3">
+                            <div className="rounded-[1.4rem] border border-border bg-background/72 p-5">
+                                <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                    Stages
+                                </p>
+                                <p className="mt-3 text-3xl font-semibold text-foreground">
+                                    {roadmapData.length}
+                                </p>
+                                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                                    Chapters in the route.
+                                </p>
+                            </div>
+                            <div className="rounded-[1.4rem] border border-border bg-background/72 p-5">
+                                <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                    Open now
+                                </p>
+                                <p className="mt-3 text-3xl font-semibold text-foreground">
+                                    {roadmapData.filter((step) => step.status !== 'locked').length}
+                                </p>
+                                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                                    Stages currently actionable.
+                                </p>
+                            </div>
+                            <div className="rounded-[1.4rem] border border-border bg-background/72 p-5">
+                                <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                    Principle
+                                </p>
+                                <p className="mt-3 text-3xl font-semibold text-foreground">Depth</p>
+                                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                                    Before decoration.
+                                </p>
+                            </div>
+                        </div>
 
-                    <div className="space-y-12">
-                        {roadmapData.map((step, index) => (
-                            <motion.div
-                                key={step.id}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
-                                className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
-                            >
-                                {/* Timeline Node */}
-                                <div className={`absolute left-8 md:left-1/2 top-8 w-8 h-8 -translate-x-1/2 rounded-full z-10 flex items-center justify-center border-4 ${
-                                    step.status === 'completed' ? 'bg-green-500 border-green-500/30' :
-                                    step.status === 'in-progress' ? 'bg-primary border-primary/30 animate-pulse' :
-                                    'bg-muted border-border'
-                                }`}>
-                                    {step.status === 'completed' && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
-                                    {step.status === 'in-progress' && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+                        <div className="mt-5 rounded-[1.6rem] border border-border bg-background/68 p-5">
+                            <div className="flex items-center gap-3">
+                                <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] bg-primary/10 text-primary">
+                                    <Rocket className="h-5 w-5" />
                                 </div>
+                                <div>
+                                    <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                        Guiding principle
+                                    </p>
+                                    <p className="text-lg font-semibold text-foreground">
+                                        Depth before decoration
+                                    </p>
+                                </div>
+                            </div>
+                            <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                                The route rewards consistency: foundations first, visible building second, then
+                                production systems, then specialization. Each phase should unlock confidence,
+                                not just another checklist.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                                {/* Content Card */}
-                                <div className="ml-20 md:ml-0 md:w-1/2">
-                                    <Card className={`p-6 ${
-                                        step.status === 'locked'
-                                            ? 'opacity-60 border-dashed'
-                                            : 'hover:shadow-lg hover:border-primary/30'
-                                    } transition-all duration-300 group`}>
-                                        <div className="flex items-start justify-between mb-4">
-                                            <div className={`p-3 rounded-xl ${
-                                                step.status === 'locked' ? 'bg-muted text-muted-foreground' :
-                                                step.status === 'completed' ? 'bg-green-500/10 text-green-500' :
-                                                'bg-primary/10 text-primary'
-                                            }`}>
-                                                <step.icon className="w-6 h-6" />
-                                            </div>
-                                            <Badge variant={
-                                                step.status === 'completed' ? 'default' :
-                                                step.status === 'in-progress' ? 'secondary' :
-                                                'outline'
-                                            } className={
-                                                step.status === 'completed' ? 'bg-green-500/10 text-green-500 border-green-500/20' :
-                                                step.status === 'in-progress' ? 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20' :
-                                                ''
-                                            }>
-                                                {step.status === 'completed' ? 'Completed' :
-                                                 step.status === 'in-progress' ? 'In Progress' :
-                                                 'Coming Soon'}
-                                            </Badge>
+            <section className="page-shell">
+                <div className="space-y-6">
+                    {roadmapData.map((step, index) => {
+                        const isOpen = step.status !== 'locked';
+                        const statusLabel =
+                            step.status === 'completed'
+                                ? 'Completed'
+                                : step.status === 'in-progress'
+                                  ? 'In progress'
+                                  : 'Locked';
+
+                        return (
+                            <motion.article
+                                key={step.id}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-120px' }}
+                                transition={{ duration: 0.4, delay: index * 0.04 }}
+                                className="paper-panel rounded-[2rem] p-6 md:p-8"
+                            >
+                                <div className="grid gap-8 lg:grid-cols-[120px_1fr_0.72fr]">
+                                    <div className="space-y-3">
+                                        <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                                            Stage {String(step.id).padStart(2, '0')}
+                                        </p>
+                                        <div
+                                            className={`flex h-16 w-16 items-center justify-center rounded-[1.5rem] ${
+                                                step.status === 'completed'
+                                                    ? 'bg-[hsl(var(--brand-olive)/0.12)] text-[hsl(var(--brand-olive))]'
+                                                    : step.status === 'in-progress'
+                                                      ? 'bg-primary/10 text-primary'
+                                                      : 'bg-muted text-muted-foreground'
+                                            }`}
+                                        >
+                                            <step.icon className="h-7 w-7" />
                                         </div>
+                                    </div>
 
-                                        <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                                            {step.title}
-                                        </h3>
-                                        <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                                            {step.description}
-                                        </p>
-
-                                        {/* Emotional hook */}
-                                        <p className="text-xs text-primary/80 italic mb-5 flex items-start gap-2">
-                                            <Heart className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
-                                            {step.emotion}
-                                        </p>
-
+                                    <div className="space-y-5">
                                         <div className="space-y-3">
-                                            <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Key Topics</h4>
-                                            <div className="flex flex-wrap gap-2">
-                                                {step.topics.map((topic, i) => (
-                                                    <Badge key={i} variant="outline" className="text-xs font-medium">
-                                                        {topic}
-                                                    </Badge>
-                                                ))}
+                                            <div className="flex flex-wrap items-center gap-3">
+                                                <span
+                                                    className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${
+                                                        step.status === 'completed'
+                                                            ? 'bg-[hsl(var(--brand-olive)/0.12)] text-[hsl(var(--brand-olive))]'
+                                                            : step.status === 'in-progress'
+                                                              ? 'bg-primary/10 text-primary'
+                                                              : 'bg-muted text-muted-foreground'
+                                                    }`}
+                                                >
+                                                    {statusLabel}
+                                                </span>
                                             </div>
+                                            <h2 className="text-4xl text-display">{step.title}</h2>
+                                            <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
+                                                {step.description}
+                                            </p>
                                         </div>
 
-                                        {step.status !== 'locked' && (
-                                            <Button asChild variant="outline" className="w-full mt-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                                                <Link href={step.link}>
-                                                    {step.status === 'completed' ? 'Review Module' : 'Continue Learning'}
-                                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                        <div className="grid gap-3 md:grid-cols-2">
+                                            {step.topics.map((topic) => (
+                                                <div
+                                                    key={topic}
+                                                    className="rounded-[1.2rem] border border-border bg-background/70 px-4 py-3 text-sm text-foreground"
+                                                >
+                                                    {topic}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-5">
+                                        <div className="rounded-[1.5rem] border border-border bg-background/70 p-5">
+                                            <div className="flex items-start gap-3">
+                                                <Heart className="mt-1 h-4 w-4 text-primary" />
+                                                <p className="text-sm leading-7 text-muted-foreground">
+                                                    {step.emotion}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        {isOpen && (
+                                            <Button asChild className="w-full rounded-full">
+                                                <Link href={step.link} className="editorial-link">
+                                                    {step.status === 'completed'
+                                                        ? 'Review this stage'
+                                                        : 'Continue this stage'}
+                                                    <ArrowRight className="h-4 w-4" />
                                                 </Link>
                                             </Button>
                                         )}
-                                    </Card>
+                                    </div>
                                 </div>
-
-                                {/* Spacer for the other side */}
-                                <div className="hidden md:block md:w-1/2" />
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* End marker */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="text-center mt-16 pt-8"
-                    >
-                        <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 text-primary font-medium">
-                            <Rocket className="w-5 h-5" />
-                            This is just the beginning. Keep building.
-                        </div>
-                    </motion.div>
+                            </motion.article>
+                        );
+                    })}
                 </div>
-            </div>
+            </section>
         </div>
     );
 }

@@ -1,0 +1,24 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" rx="48" fill="#0F172A"/>
+  <rect x="48" y="48" width="1104" height="704" rx="40" fill="url(#bg)"/>
+  <circle cx="967" cy="171" r="118" fill="#22D3EE" fill-opacity="0.16"/>
+  <circle cx="220" cy="627" r="148" fill="#8B5CF6" fill-opacity="0.18"/>
+  <rect x="176" y="244" width="848" height="312" rx="52" fill="#0F172A" fill-opacity="0.72" stroke="#38BDF8" stroke-opacity="0.35" stroke-width="4"/>
+  <path d="M376 400C376 342.562 422.562 296 480 296H720C777.438 296 824 342.562 824 400C824 457.438 777.438 504 720 504H480C422.562 504 376 457.438 376 400Z" fill="#111827"/>
+  <path d="M480 372H560" stroke="#22D3EE" stroke-width="28" stroke-linecap="round"/>
+  <path d="M520 332V412" stroke="#22D3EE" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="680" cy="360" r="24" fill="#A78BFA"/>
+  <circle cx="748" cy="436" r="24" fill="#F472B6"/>
+  <circle cx="816" cy="360" r="24" fill="#FBBF24"/>
+  <rect x="448" y="564" width="304" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.72"/>
+  <rect x="516" y="606" width="168" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.44"/>
+  <text x="176" y="168" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="72" font-weight="700">Game Development</text>
+  <text x="176" y="686" fill="#BAE6FD" font-family="Arial, sans-serif" font-size="34" font-weight="600">Unity • C# • Interactive Systems</text>
+  <defs>
+    <linearGradient id="bg" x1="79" y1="63" x2="1116" y2="743" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.5" stop-color="#111827"/>
+      <stop offset="1" stop-color="#312E81"/>
+    </linearGradient>
+  </defs>
+</svg>
