@@ -1,11 +1,12 @@
 'use client';
 
-import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ExternalLink, Globe, Search, Sparkles } from 'lucide-react';
-import { aiTools } from '@/data/mockData';
 import ToolCard from '@/components/ToolCard';
-import { RecentTool, getRecentTools } from '@/lib/recentlyViewed';
+import { type ToolPricingFilter, type ToolRecord } from '@/lib/catalog';
+import { type RecentTool, getRecentTools } from '@/lib/recentlyViewed';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -16,41 +17,63 @@ interface TavilyResult {
     snippet: string;
 }
 
-export default function AITools() {
-    const [search, setSearch] = useState('');
-    const [categoryFilter, setCategoryFilter] = useState('All');
-    const [pricingFilter, setPricingFilter] = useState<'All' | 'Free' | 'Freemium' | 'Paid'>('All');
+interface AIToolsProps {
+    categories: string[];
+    displayedTools: ToolRecord[];
+    featuredTools: ToolRecord[];
+    initialCategory: string;
+    initialPricing: ToolPricingFilter;
+    initialQuery: string;
+    totalMatches: number;
+    visibleCount: number;
+}
+
+export default function AITools({
+    categories,
+    displayedTools,
+    featuredTools,
+    initialCategory,
+    initialPricing,
+    initialQuery,
+    totalMatches,
+    visibleCount,
+}: AIToolsProps) {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const [isPending, startTransition] = useTransition();
+    const [searchDraft, setSearchDraft] = useState(initialQuery);
     const [liveResults, setLiveResults] = useState<TavilyResult[]>([]);
     const [liveAnswer, setLiveAnswer] = useState('');
     const [isSearching, setIsSearching] = useState(false);
     const [hasSearched, setHasSearched] = useState(false);
     const [recentTools, setRecentTools] = useState<RecentTool[]>([]);
     const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
-    const deferredSearch = useDeferredValue(search);
 
-    const categories = useMemo(
-        () => ['All', ...Array.from(new Set(aiTools.map((tool) => tool.category))).sort()],
-        []
-    );
+    useEffect(() => {
+        setSearchDraft(initialQuery);
+    }, [initialQuery]);
 
-    const filteredTools = useMemo(
-        () =>
-            aiTools.filter((tool) => {
-                const matchesSearch =
-                    tool.name.toLowerCase().includes(deferredSearch.toLowerCase()) ||
-                    tool.description.toLowerCase().includes(deferredSearch.toLowerCase()) ||
-                    tool.tags.some((tag) =>
-                        tag.toLowerCase().includes(deferredSearch.toLowerCase())
-                    );
+    const updateParams = useCallback(
+        (updates: Record<string, string | null>) => {
+            const params = new URLSearchParams(searchParams.toString());
 
-                const matchesCategory =
-                    categoryFilter === 'All' || tool.category === categoryFilter;
-                const matchesPricing =
-                    pricingFilter === 'All' || tool.pricing === pricingFilter;
+            Object.entries(updates).forEach(([key, value]) => {
+                if (!value || value === 'All') {
+                    params.delete(key);
+                } else {
+                    params.set(key, value);
+                }
+            });
 
-                return matchesSearch && matchesCategory && matchesPricing;
-            }),
-        [categoryFilter, deferredSearch, pricingFilter]
+            const queryString = params.toString();
+            startTransition(() => {
+                router.replace(queryString ? `${pathname}?${queryString}` : pathname, {
+                    scroll: false,
+                });
+            });
+        },
+        [pathname, router, searchParams]
     );
 
     const searchLive = useCallback(async (query: string) => {
@@ -80,30 +103,30 @@ export default function AITools() {
         }
     }, []);
 
-    const handleSearch = (value: string) => {
-        setSearch(value);
-
+    useEffect(() => {
         if (debounceRef.current) {
             clearTimeout(debounceRef.current);
         }
 
         debounceRef.current = setTimeout(() => {
-            void searchLive(value);
-        }, 600);
-    };
+            if (searchDraft !== initialQuery) {
+                updateParams({
+                    q: searchDraft || null,
+                    limit: '12',
+                });
+            }
+            void searchLive(searchDraft.trim());
+        }, 260);
 
-    const featuredTools = aiTools.filter((tool) => tool.featured).slice(0, 4);
-
-    useEffect(() => {
-        setRecentTools(getRecentTools());
-    }, []);
-
-    useEffect(() => {
         return () => {
             if (debounceRef.current) {
                 clearTimeout(debounceRef.current);
             }
         };
+    }, [initialQuery, searchDraft, searchLive, updateParams]);
+
+    useEffect(() => {
+        setRecentTools(getRecentTools());
     }, []);
 
     return (
@@ -120,8 +143,7 @@ export default function AITools() {
                             Useful tooling, filtered through actual judgment instead of launch-day hype.
                         </h1>
                         <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-                            Browse the catalog by category, pricing, or live web search. The goal is
-                            faster judgment, not more chaos.
+                            Browse the catalog by category, pricing, or live web search. The route now scales through URL-driven filtering instead of a fully client-owned directory.
                         </p>
                     </div>
                     <div className="grid gap-4 md:grid-cols-3">
@@ -129,20 +151,16 @@ export default function AITools() {
                             <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
                                 Directory
                             </p>
-                            <p className="mt-3 text-3xl font-semibold text-foreground">
-                                {aiTools.length}+
-                            </p>
+                            <p className="mt-3 text-3xl font-semibold text-foreground">{totalMatches}</p>
                             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                                Curated tools in the working list.
+                                Matching tools in the current view.
                             </p>
                         </div>
                         <div className="paper-soft rounded-[1.6rem] p-5">
                             <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
                                 Categories
                             </p>
-                            <p className="mt-3 text-3xl font-semibold text-foreground">
-                                {categories.length - 1}
-                            </p>
+                            <p className="mt-3 text-3xl font-semibold text-foreground">{categories.length - 1}</p>
                             <p className="mt-2 text-sm leading-6 text-muted-foreground">
                                 Tracked product buckets.
                             </p>
@@ -171,8 +189,8 @@ export default function AITools() {
                             <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                             <Input
                                 type="text"
-                                value={search}
-                                onChange={(event) => handleSearch(event.target.value)}
+                                value={searchDraft}
+                                onChange={(event) => setSearchDraft(event.target.value)}
                                 placeholder="Search tools, categories, or use cases"
                                 className="h-12 rounded-full border-border bg-card pl-11 pr-5"
                             />
@@ -182,9 +200,14 @@ export default function AITools() {
                                 <button
                                     key={category}
                                     type="button"
-                                    onClick={() => setCategoryFilter(category)}
+                                    onClick={() =>
+                                        updateParams({
+                                            cat: category === 'All' ? null : category,
+                                            limit: '12',
+                                        })
+                                    }
                                     className={`rounded-full px-4 py-2 text-sm transition-colors ${
-                                        categoryFilter === category
+                                        initialCategory === category
                                             ? 'bg-primary text-primary-foreground'
                                             : 'border border-border bg-background/70 text-muted-foreground'
                                     }`}
@@ -198,9 +221,14 @@ export default function AITools() {
                                 <button
                                     key={pricing}
                                     type="button"
-                                    onClick={() => setPricingFilter(pricing)}
+                                    onClick={() =>
+                                        updateParams({
+                                            price: pricing === 'All' ? null : pricing,
+                                            limit: '12',
+                                        })
+                                    }
                                     className={`rounded-full px-4 py-2 text-sm transition-colors ${
-                                        pricingFilter === pricing
+                                        initialPricing === pricing
                                             ? 'bg-primary text-primary-foreground'
                                             : 'border border-border bg-background/70 text-muted-foreground'
                                     }`}
@@ -215,7 +243,10 @@ export default function AITools() {
                             </p>
                             <div className="mt-4 space-y-4">
                                 {featuredTools.slice(0, 3).map((tool) => (
-                                    <div key={tool.id} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
+                                    <div
+                                        key={tool.id}
+                                        className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0"
+                                    >
                                         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
                                             {tool.category}
                                         </p>
@@ -232,7 +263,9 @@ export default function AITools() {
                         <p className="text-sm leading-7 text-muted-foreground">
                             {isSearching
                                 ? 'Searching the live web...'
-                                : `${filteredTools.length} curated tools currently match your filters.`}
+                                : isPending
+                                  ? 'Updating directory...'
+                                  : `${totalMatches} curated tools currently match your filters.`}
                         </p>
                     </div>
                 </div>
@@ -316,20 +349,20 @@ export default function AITools() {
                         <h2 className="text-4xl text-display">Browse the catalog</h2>
                     </div>
                     <div className="rounded-full border border-border bg-card/70 px-4 py-2 text-sm text-muted-foreground">
-                        {filteredTools.length} tools
+                        {totalMatches} tools
                     </div>
                 </div>
 
                 <motion.div layout className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                     <AnimatePresence mode="popLayout">
-                        {filteredTools.map((tool) => (
+                        {displayedTools.map((tool) => (
                             <motion.div
                                 key={tool.id}
                                 layout
-                                initial={{ opacity: 0, y: 22 }}
+                                initial={false}
                                 animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -12 }}
-                                transition={{ duration: 0.22 }}
+                                exit={{ opacity: 0.98, y: -4 }}
+                                transition={{ duration: 0.18 }}
                             >
                                 <ToolCard tool={tool} />
                             </motion.div>
@@ -337,7 +370,7 @@ export default function AITools() {
                     </AnimatePresence>
                 </motion.div>
 
-                {filteredTools.length === 0 && !isSearching && (
+                {totalMatches === 0 && !isSearching && (
                     <div className="paper-panel rounded-[1.8rem] px-6 py-12 text-center">
                         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
                             <Sparkles className="h-6 w-6" />
@@ -350,16 +383,29 @@ export default function AITools() {
                             type="button"
                             variant="outline"
                             className="mt-6 rounded-full"
-                            onClick={() => {
-                                setSearch('');
-                                setCategoryFilter('All');
-                                setPricingFilter('All');
-                                setLiveResults([]);
-                                setLiveAnswer('');
-                                setHasSearched(false);
-                            }}
+                            onClick={() =>
+                                updateParams({
+                                    q: null,
+                                    cat: null,
+                                    price: null,
+                                    limit: '12',
+                                })
+                            }
                         >
                             Reset filters
+                        </Button>
+                    </div>
+                )}
+
+                {visibleCount < totalMatches && (
+                    <div className="flex justify-center">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            className="rounded-full px-6"
+                            onClick={() => updateParams({ limit: String(visibleCount + 12) })}
+                        >
+                            Load more
                         </Button>
                     </div>
                 )}
