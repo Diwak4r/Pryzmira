@@ -21,19 +21,19 @@ const bodyFont = Manrope({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Pryzmira | Curated AI tools, courses, and field notes',
+    default: 'Pryzmira | Your weekly AI edge workspace',
     template: '%s | Pryzmira',
   },
   description:
-    'Pryzmira is a curated atlas for ambitious builders: standout AI tools, serious courses, practical resources, and a cleaner path through modern tech.',
+    'Pryzmira turns AI anxiety into a weekly action plan: a sharper stack, a working brief, and a clearer next move for builders who do not want to fall behind.',
   keywords: [
-    'AI tools',
-    'tech courses',
-    'learning resources',
-    'developer roadmap',
-    'computer science',
-    'engineering students',
-    'curated tech learning',
+    'AI workspace',
+    'AI strategy brief',
+    'AI learning plan',
+    'AI tool stack',
+    'builder workflow',
+    'AI operator',
+    'weekly AI brief',
   ],
   authors: [{ name: 'Diwakar Ray Yadav' }],
   creator: 'Diwakar Ray Yadav',
@@ -47,15 +47,15 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://pryzmira.diwakaryadav.com.np',
     siteName: 'Pryzmira',
-    title: 'Pryzmira | Curated AI tools, courses, and field notes',
+    title: 'Pryzmira | Your weekly AI edge workspace',
     description:
-      'A distinctive learning hub for builders who want signal over noise across AI, systems, design, and engineering.',
+      'A strategy-first AI workspace that turns changing tools and trends into one weekly plan you can actually act on.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pryzmira | Curated AI tools, courses, and field notes',
+    title: 'Pryzmira | Your weekly AI edge workspace',
     description:
-      'Signal-first discovery for builders: curated AI tools, sharp learning paths, and field-tested resources.',
+      'Stay ahead of AI change with a weekly brief, a sharper stack, and a workspace built for momentum.',
   },
   robots: {
     index: true,
@@ -83,6 +83,9 @@ const themeInitScript = `
   }
 `;
 
+const enableVercelTelemetry =
+  process.env.NODE_ENV === 'production' && process.env.VERCEL === '1';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -101,8 +104,8 @@ export default function RootLayout({
         <Providers>
           <ClientLayout>{children}</ClientLayout>
         </Providers>
-        <Analytics />
-        <SpeedInsights />
+        {enableVercelTelemetry ? <Analytics /> : null}
+        {enableVercelTelemetry ? <SpeedInsights /> : null}
       </body>
     </html>
   );

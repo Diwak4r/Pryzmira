@@ -2,9 +2,13 @@ import { NextResponse } from 'next/server';
 import {
     buildStrategyBrief,
     buildStrategyPlan,
+    type StrategyWorkspaceResponse,
     sanitizeStrategyProfileInput,
 } from '@/lib/strategy';
+import { getSiteUrl } from '@/lib/siteUrl';
+import { getStrategyResumeUrl, verifyStrategyResumeToken } from '@/lib/strategyAccess';
 import {
+    captureStrategyPremiumLead,
     getLatestStrategyBrief,
     getStrategyProfileByEmail,
     getStrategyProfileById,
@@ -14,6 +18,18 @@ import {
 
 function isConfigurationError(error: unknown): boolean {
     return error instanceof Error && error.message.toLowerCase().includes('not configured');
+}
+
+function buildWorkspaceResponse(
+    profile: StrategyWorkspaceResponse['profile'],
+    brief: StrategyWorkspaceResponse['brief'],
+    request: Request
+): StrategyWorkspaceResponse {
+    return {
+        profile,
+        brief,
+        resumeUrl: getStrategyResumeUrl(profile.id, getSiteUrl(request)),
+    };
 }
 
 export async function POST(request: Request) {
@@ -34,17 +50,24 @@ export async function POST(request: Request) {
         const profile = await upsertStrategyProfile(input);
         const plan = buildStrategyPlan(profile);
         const draftBrief = buildStrategyBrief(profile, plan);
-        const brief = await saveStrategyBrief(
+        const savedBrief = await saveStrategyBrief(
             profile.id,
             draftBrief.subject,
             draftBrief.preview,
             draftBrief.plan
         );
+        const result =
+            input.premiumInterest
+                ? await captureStrategyPremiumLead({
+                      profileId: profile.id,
+                      surface: 'home',
+                      offer: 'pro_waitlist',
+                  })
+                : null;
 
-        return NextResponse.json({
-            profile,
-            brief,
-        });
+        const nextProfile = result?.profile ?? profile;
+
+        return NextResponse.json(buildWorkspaceResponse(nextProfile, savedBrief, request));
     } catch (error) {
         if (isConfigurationError(error)) {
             return NextResponse.json(
@@ -63,14 +86,20 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
-    const profileId = searchParams.get('profileId');
+    const token = searchParams.get('token');
+    const tokenProfileId = token ? verifyStrategyResumeToken(token) : null;
+    const profileId = searchParams.get('profileId') || tokenProfileId;
     const email = searchParams.get('email');
 
     if (!profileId && !email) {
         return NextResponse.json(
-            { error: 'Provide profileId or email to load a strategy brief.' },
+            { error: 'Provide profileId, token, or email to load a strategy brief.' },
             { status: 400 }
         );
+    }
+
+    if (token && !tokenProfileId) {
+        return NextResponse.json({ error: 'Workspace link is invalid or expired.' }, { status: 400 });
     }
 
     try {
@@ -95,10 +124,7 @@ export async function GET(request: Request) {
             );
         }
 
-        return NextResponse.json({
-            profile,
-            brief,
-        });
+        return NextResponse.json(buildWorkspaceResponse(profile, brief, request));
     } catch (error) {
         if (isConfigurationError(error)) {
             return NextResponse.json(

@@ -14,9 +14,7 @@ function base64UrlDecode(value: string): string {
 function getStrategyAccessSecret(): string {
     const secret =
         process.env.STRATEGY_ACCESS_SECRET ||
-        process.env.CRON_SECRET ||
-        process.env.POSTGRES_URL_NON_POOLING ||
-        process.env.POSTGRES_URL;
+        process.env.CRON_SECRET;
 
     if (secret) {
         return secret;

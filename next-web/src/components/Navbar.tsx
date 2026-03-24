@@ -125,6 +125,7 @@ export default function Navbar() {
                             alt="Pryzmira"
                             fill
                             priority
+                            sizes="40px"
                             className="object-cover"
                         />
                     </div>

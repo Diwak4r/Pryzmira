@@ -12,6 +12,15 @@ export type ExperienceLevel = 'starter' | 'working' | 'advanced';
 export type MonetizationPath = 'career' | 'freelance' | 'saas';
 export type StrategyBriefDeliveryChannel = 'web' | 'email';
 export type StrategyBriefSendStatus = 'draft' | 'sent' | 'failed';
+export type StrategyPremiumStage =
+    | 'none'
+    | 'interested'
+    | 'lead'
+    | 'contacted'
+    | 'converted';
+export type StrategyLeadSurface = 'home' | 'desk' | 'email' | 'roadmap';
+export type StrategyLeadOffer = 'pro_waitlist' | 'weekly_reviews' | 'launch_reviews';
+export type StrategyLeadStatus = 'new' | 'contacted' | 'qualified' | 'won' | 'lost';
 
 export interface StrategyProfileInput {
     email: string;
@@ -26,6 +35,8 @@ export interface StrategyProfileInput {
 
 export interface StrategyProfileRecord extends StrategyProfileInput {
     id: string;
+    lastBriefSentAt: string | null;
+    premiumStage: StrategyPremiumStage;
     createdAt: string;
     updatedAt: string;
 }
@@ -73,6 +84,31 @@ export interface StrategyBriefRecord {
     sentAt: string | null;
     emailProviderId: string | null;
     createdAt: string;
+}
+
+export interface StrategyPremiumLeadInput {
+    notes?: string;
+    offer: StrategyLeadOffer;
+    profileId: string;
+    surface: StrategyLeadSurface;
+}
+
+export interface StrategyPremiumLeadRecord {
+    id: string;
+    profileId: string;
+    email: string;
+    offer: StrategyLeadOffer;
+    surface: StrategyLeadSurface;
+    status: StrategyLeadStatus;
+    notes: string | null;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface StrategyWorkspaceResponse {
+    profile: StrategyProfileRecord;
+    brief: StrategyBriefRecord;
+    resumeUrl: string;
 }
 
 interface ResourceRecord {
@@ -206,6 +242,41 @@ function normalizeText(value: string): string {
 
 function normalizeCourseCategory(category: string): string {
     return COURSE_CATEGORY_ALIASES[category] ?? category;
+}
+
+function sanitizePremiumStage(value: unknown, premiumInterest = false): StrategyPremiumStage {
+    switch (value) {
+        case 'interested':
+        case 'lead':
+        case 'contacted':
+        case 'converted':
+            return value;
+        default:
+            return premiumInterest ? 'interested' : 'none';
+    }
+}
+
+function sanitizeLeadSurface(value: unknown): StrategyLeadSurface | null {
+    switch (value) {
+        case 'home':
+        case 'desk':
+        case 'email':
+        case 'roadmap':
+            return value;
+        default:
+            return null;
+    }
+}
+
+function sanitizeLeadOffer(value: unknown): StrategyLeadOffer | null {
+    switch (value) {
+        case 'pro_waitlist':
+        case 'weekly_reviews':
+        case 'launch_reviews':
+            return value;
+        default:
+            return null;
+    }
 }
 
 function getDifficultyLevel(value: string): ExperienceLevel {
@@ -539,6 +610,35 @@ export function sanitizeStrategyProfileInput(
     };
 }
 
+export function sanitizeStrategyPremiumLeadInput(
+    value: unknown
+): StrategyPremiumLeadInput | null {
+    if (!value || typeof value !== 'object') {
+        return null;
+    }
+
+    const candidate = value as Partial<StrategyPremiumLeadInput>;
+    const profileId =
+        typeof candidate.profileId === 'string' ? candidate.profileId.trim() : '';
+    const surface = sanitizeLeadSurface(candidate.surface);
+    const offer = sanitizeLeadOffer(candidate.offer);
+    const notes =
+        typeof candidate.notes === 'string' && candidate.notes.trim().length > 0
+            ? candidate.notes.trim().slice(0, 500)
+            : undefined;
+
+    if (!profileId || !surface || !offer) {
+        return null;
+    }
+
+    return {
+        profileId,
+        surface,
+        offer,
+        notes,
+    };
+}
+
 export function buildStrategyPlan(profile: StrategyProfileInput): StrategyPlan {
     const goal = GOAL_COPY[profile.goal];
     const courses = getTopCourses(profile);
@@ -571,10 +671,12 @@ export function buildStrategyBrief(
     profile: StrategyProfileRecord,
     plan: StrategyPlan
 ): Omit<StrategyBriefRecord, 'id' | 'createdAt'> {
+    const firstName = profile.fullName.split(' ')[0];
+
     return {
         profileId: profile.id,
-        subject: `Pryzmira Weekly Brief for ${profile.fullName.split(' ')[0]}`,
-        preview: `${plan.sprintFocus} Your first move this week: ${plan.nextActions[0]}`,
+        subject: `${firstName}, stay ahead this week with Pryzmira`,
+        preview: `${plan.sprintFocus} First move: ${plan.nextActions[0]}`,
         plan,
         weekKey: getStrategyWeekKey(),
         deliveryChannel: 'web',
@@ -582,4 +684,11 @@ export function buildStrategyBrief(
         sentAt: null,
         emailProviderId: null,
     };
+}
+
+export function getStrategyPremiumStage(
+    premiumInterest: boolean,
+    currentStage?: unknown
+): StrategyPremiumStage {
+    return sanitizePremiumStage(currentStage, premiumInterest);
 }
