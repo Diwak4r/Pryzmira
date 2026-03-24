@@ -39,7 +39,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
             transition={{ duration: 0.2 }}
             className="h-full"
         >
-            <Card className="group overflow-hidden flex flex-col h-full border-border hover:shadow-lg transition-all duration-300 hover:border-primary/50">
+            <Card className="group overflow-hidden flex flex-col h-full border-border hover:shadow-lg transition-all duration-300 glow-border">
                 {/* Tool Image */}
                 <div className="h-48 overflow-hidden relative border-b border-border">
                     <Image
@@ -50,12 +50,14 @@ export default function ToolCard({ tool }: ToolCardProps) {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         onError={() => setImgSrc('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80')}
                     />
+                    {/* Gradient overlay at bottom for readability */}
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
                     <div className="absolute top-3 left-3 flex gap-2">
                         <Badge variant="outline" className="bg-background/90 backdrop-blur-sm">
                             {tool.pricing}
                         </Badge>
                         {tool.featured && (
-                            <Badge className="bg-yellow-500/90 hover:bg-yellow-500 text-white border-none backdrop-blur-sm">
+                            <Badge className="bg-gradient-brand text-white border-none backdrop-blur-sm">
                                 Featured
                             </Badge>
                         )}

@@ -105,84 +105,133 @@ export default function Categories() {
 
     return (
         <div className="min-h-screen bg-background text-foreground">
-            {/* Minimal Hero Section */}
-            <section className="pt-32 pb-20 border-b border-border">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Hero Section — Neo-Academic Glow */}
+            <section className="pt-32 pb-20 border-b border-border relative overflow-hidden">
+                {/* Floating orbs */}
+                <div className="floating-orb floating-orb-cyan w-72 h-72 -top-20 -left-20" />
+                <div className="floating-orb floating-orb-violet w-96 h-96 top-10 right-0" />
+                <div className="floating-orb floating-orb-blue w-64 h-64 bottom-0 left-1/3" />
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="max-w-3xl">
-                        <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
-                            Master the <br />
-                            Future of Tech.
-                        </h1>
-                        <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+                                <span className="text-foreground">Master the</span> <br />
+                                <span className="text-gradient-animated">Future of Tech.</span>
+                            </h1>
+                        </motion.div>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.15 }}
+                            className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl"
+                        >
                             Join an elite community of builders. From AI architecture to system design, we curate the path to mastery with industry-standard resources.
-                        </p>
-                        <div className="flex flex-wrap items-center gap-4">
-                            <Button onClick={handleCtaClick} size="lg" className="text-lg px-8 py-6">
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="flex flex-wrap items-center gap-4"
+                        >
+                            <Button onClick={handleCtaClick} size="lg" className="text-lg px-8 py-6 bg-gradient-brand hover:opacity-90 transition-opacity text-white border-0">
                                 {ctaText}
                             </Button>
-                            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6">
+                            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6 glow-border">
                                 <Link href="/roadmap">
                                     View Roadmap
                                 </Link>
                             </Button>
-                        </div>
+                        </motion.div>
 
-                        {/* Minimal Stats */}
-                        <div className="mt-16 grid grid-cols-3 gap-12 border-t border-border pt-8 max-w-lg">
-                            <div>
+                        {/* Animated Stats */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.5 }}
+                            className="mt-16 grid grid-cols-3 gap-12 pt-8 max-w-lg"
+                        >
+                            <div className="relative">
+                                <div className="gradient-line mb-6 rounded-full" />
                                 <p className="text-3xl font-bold text-foreground mb-1">
                                     <AnimatedCounter value={10000} suffix="+" />
                                 </p>
                                 <p className="text-sm text-muted-foreground font-medium">Learners</p>
                             </div>
-                            <div>
+                            <div className="relative">
+                                <div className="gradient-line mb-6 rounded-full" />
                                 <p className="text-3xl font-bold text-foreground mb-1">
-                                    <AnimatedCounter value={85} suffix="%" />
+                                    <AnimatedCounter value={64} suffix="+" />
                                 </p>
-                                <p className="text-sm text-muted-foreground font-medium">Growth</p>
+                                <p className="text-sm text-muted-foreground font-medium">AI Tools</p>
                             </div>
-                            <div>
+                            <div className="relative">
+                                <div className="gradient-line mb-6 rounded-full" />
                                 <p className="text-3xl font-bold text-foreground mb-1">
-                                    <AnimatedCounter value={200} suffix="+" />
+                                    <AnimatedCounter value={130} suffix="+" />
                                 </p>
                                 <p className="text-sm text-muted-foreground font-medium">Courses</p>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Minimal Features Section */}
-            <section className="py-20 border-b border-border bg-accent/5">
+            {/* Features Section — Glass Cards */}
+            <section className="py-20 border-b border-border bg-gradient-subtle">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="p-6 border border-border bg-background rounded-lg">
-                            <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center mb-4">
-                                <Sparkles className="w-5 h-5 text-primary" />
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
+                            className="p-6 border border-border bg-background rounded-lg glow-border"
+                        >
+                            <div className="w-10 h-10 rounded-md bg-gradient-brand flex items-center justify-center mb-4">
+                                <Sparkles className="w-5 h-5 text-white" />
                             </div>
                             <h3 className="text-lg font-bold text-foreground mb-2">AI-Powered</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">
                                 Personalized curriculum that adapts to your learning pace and style using advanced algorithms.
                             </p>
-                        </div>
-                        <div className="p-6 border border-border bg-background rounded-lg">
-                            <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center mb-4">
-                                <Network className="w-5 h-5 text-primary" />
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="p-6 border border-border bg-background rounded-lg glow-border"
+                        >
+                            <div className="w-10 h-10 rounded-md bg-gradient-brand flex items-center justify-center mb-4">
+                                <Network className="w-5 h-5 text-white" />
                             </div>
                             <h3 className="text-lg font-bold text-foreground mb-2">Interactive</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">
                                 Hands-on labs and real-world challenges to solidify learning through doing.
                             </p>
-                        </div>
-                        <div className="p-6 border border-border bg-background rounded-lg">
-                            <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center mb-4">
-                                <Database className="w-5 h-5 text-primary" />
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="p-6 border border-border bg-background rounded-lg glow-border"
+                        >
+                            <div className="w-10 h-10 rounded-md bg-gradient-brand flex items-center justify-center mb-4">
+                                <Database className="w-5 h-5 text-white" />
                             </div>
                             <h3 className="text-lg font-bold text-foreground mb-2">Industry Standard</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">
                                 Curriculum designed by engineers from top tech companies to ensure relevance.
                             </p>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>

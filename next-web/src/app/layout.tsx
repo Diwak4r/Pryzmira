@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font -- Google Sans Flex is not available via next/font/google. */
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
@@ -50,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Sans Flex is not exposed via next/font, so this project loads it explicitly. */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

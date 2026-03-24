@@ -65,9 +65,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
             <Newsletter />
 
-            <footer className="border-t border-border py-8 mt-12 transition-colors duration-300">
+            <footer className="border-t border-border py-8 mt-12 transition-colors duration-300 relative">
+                <div className="gradient-line absolute top-0 left-0 right-0" />
                 <div className="container mx-auto px-4 text-center text-muted-foreground text-sm space-y-2">
-                    <p className="text-xs font-medium text-primary/70">Built by a student, for students.</p>
+                    <p className="text-xs font-medium text-gradient">Built by a student, for students.</p>
                     <p>&copy; {new Date().getFullYear()} Pryzmira. All rights reserved.</p>
                 </div>
             </footer>

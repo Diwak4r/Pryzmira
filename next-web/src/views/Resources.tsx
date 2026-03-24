@@ -21,7 +21,6 @@ export default function Resources() {
     const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsUnlocked(localStorage.getItem('vault_unlocked') === 'true');
     }, []);
     const [secretCode, setSecretCode] = useState('');

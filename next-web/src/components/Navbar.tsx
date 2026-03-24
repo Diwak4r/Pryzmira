@@ -22,9 +22,9 @@ export default function Navbar() {
     const pathname = usePathname();
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border transition-colors duration-300">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border/50 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                {/* Logo - Minimal */}
+                {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group">
                     <div className="relative w-8 h-8">
                         <Image
@@ -35,12 +35,12 @@ export default function Navbar() {
                             priority
                         />
                     </div>
-                    <span className="text-lg font-bold tracking-tight text-foreground font-heading">
+                    <span className="text-lg font-bold tracking-tight text-foreground font-heading group-hover:text-gradient transition-all duration-300">
                         Pryzmira
                     </span>
                 </Link>
 
-                {/* Desktop Nav - Simple Text Links */}
+                {/* Desktop Nav */}
                 <div className="hidden md:flex items-center gap-6">
                     {navItems.map((item) => {
                         const isActive = pathname === item.path || (item.path === '/categories' && pathname === '/');
@@ -54,13 +54,13 @@ export default function Navbar() {
                                     }`}
                             >
                                 {item.name}
-                                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                                <span className={`absolute -bottom-1 left-0 h-0.5 rounded-full transition-all duration-300 ${isActive ? 'w-full bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500' : 'w-0 group-hover:w-full bg-primary'}`} />
                             </Link>
                         );
                     })}
                 </div>
 
-                {/* Right Actions - Functional Buttons */}
+                {/* Right Actions */}
                 <div className="hidden md:flex items-center gap-3">
                     <Button
                         variant="ghost"
@@ -75,7 +75,7 @@ export default function Navbar() {
                         )}
                     </Button>
 
-                    <Button asChild>
+                    <Button asChild className="bg-gradient-brand hover:opacity-90 transition-opacity text-white border-0">
                         <Link href="/categories">
                             Get Started
                         </Link>

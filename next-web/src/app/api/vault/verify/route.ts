@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+
 const WINDOW_MS = 60 * 1000;
 const MAX_ATTEMPTS = 10;
 

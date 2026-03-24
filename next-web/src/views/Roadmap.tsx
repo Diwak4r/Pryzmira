@@ -25,7 +25,7 @@ const roadmapData = [
         icon: Globe,
         status: "in-progress" as const,
         topics: ["HTML / CSS / JS", "React & Next.js", "Tailwind CSS", "Responsive Design"],
-        emotion: "The moment your creation goes live — that rush never gets old.",
+        emotion: "The moment your creation goes live â€” that rush never gets old.",
         link: "/categories?cat=Web+Dev"
     },
     {
@@ -41,7 +41,7 @@ const roadmapData = [
     {
         id: 4,
         title: "AI & Machine Learning",
-        description: "The most transformative technology of our generation. Don't just use AI — understand it.",
+        description: "The most transformative technology of our generation. Don't just use AI â€” understand it.",
         icon: BrainCircuit,
         status: "locked" as const,
         topics: ["Python for ML", "Neural Networks", "NLP & LLMs", "Computer Vision"],
@@ -89,7 +89,7 @@ export default function Roadmap() {
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                         A structured path to mastery. Each step builds on the last.
-                        You don't need to rush — consistency beats speed every time.
+                        You don&apos;t need to rush â€” consistency beats speed every time.
                     </p>
                 </motion.div>
 
