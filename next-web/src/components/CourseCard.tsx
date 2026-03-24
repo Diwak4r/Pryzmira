@@ -1,139 +1,235 @@
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Star, Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight, Bookmark, BookmarkCheck, Clock3, Star, Users } from 'lucide-react';
+import {
+    isCourseSaved,
+    subscribeToPersonalDataUpdates,
+    toggleSavedCourse,
+} from '@/lib/personalDesk';
+import { Badge } from '@/components/ui/badge';
 
 interface Course {
     id: number;
     title: string;
     instructor: string;
     category: string;
-    url: string;
     description: string;
     difficulty: string;
-    type: string;
     duration: string;
-    instructor_lang: string;
     image?: string;
     rating?: number;
-    reviewCount?: number;
     students?: number;
     tags?: string[];
-    careerRelevance?: string;
 }
 
 interface CourseCardProps {
     course: Course;
-    index?: number;
     isCompact?: boolean;
 }
 
-const CourseCard = ({
-    course,
-    isCompact = false,
-}: CourseCardProps) => {
-    const [imgSrc, setImgSrc] = useState(course.image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80');
+function normalizeCourseImage(image: string | undefined): string {
+    if (!image) {
+        return '/logo.png';
+    }
+
+    if (image.includes('img.youtube.com') && image.includes('maxresdefault.jpg')) {
+        return image
+            .replace('img.youtube.com', 'i.ytimg.com')
+            .replace('maxresdefault.jpg', 'hqdefault.jpg');
+    }
+
+    return image;
+}
+
+function formatStudents(value: number | undefined): string {
+    if (!value) {
+        return 'New';
+    }
+
+    if (value >= 1_000_000) {
+        return `${(value / 1_000_000).toFixed(1)}M learners`;
+    }
+
+    if (value >= 1_000) {
+        return `${(value / 1_000).toFixed(1)}k learners`;
+    }
+
+    return `${value} learners`;
+}
+
+function CourseCard({ course, isCompact = false }: CourseCardProps) {
+    const [imgSrc, setImgSrc] = useState(normalizeCourseImage(course.image));
+    const [saved, setSaved] = useState(false);
+
+    useEffect(() => {
+        const syncSavedState = () => {
+            setSaved(isCourseSaved(course.id));
+        };
+
+        syncSavedState();
+        return subscribeToPersonalDataUpdates(syncSavedState);
+    }, [course.id]);
+
+    const handleSave = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        toggleSavedCourse({
+            id: course.id,
+            title: course.title,
+            category: course.category,
+            instructor: course.instructor,
+            image: imgSrc,
+        });
+    };
 
     if (isCompact) {
         return (
-            <Link href={`/course/${course.id}`} className="block h-full">
-                <Card className="group flex gap-3 p-2 hover:bg-accent/50 transition-colors h-full border-border">
-                    <div className="relative w-24 h-20 flex-shrink-0 overflow-hidden rounded-md border border-border">
+            <Link href={`/course/${course.id}`} className="group block">
+                <article className="paper-panel hover-rise grid gap-4 rounded-[1.6rem] p-4 md:grid-cols-[168px_1fr] md:items-center">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-[1.2rem] border border-border/80 bg-card">
                         <Image
                             src={imgSrc}
                             alt={course.title}
                             fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            sizes="96px"
-                            onError={() => setImgSrc('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80')}
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            sizes="168px"
+                            onError={() => setImgSrc('/logo.png')}
                         />
                     </div>
-                    <div className="flex flex-col justify-between flex-1 min-w-0">
-                        <div>
-                            <div className="flex items-center gap-2 mb-1">
-                                <Badge variant="secondary" className="text-[10px] px-1.5 py-0 font-medium h-5">
-                                    {course.difficulty}
+                    <div className="space-y-3">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                            <div className="flex flex-wrap items-center gap-2">
+                                <Badge className="rounded-full bg-primary/10 text-primary hover:bg-primary/10">
+                                    {course.category}
                                 </Badge>
-                                <span className="text-[10px] text-muted-foreground flex items-center gap-1">
-                                    <Star className="w-3 h-3 fill-current text-yellow-500" />
-                                    {course.rating?.toFixed(1) || 'N/A'}
+                                <span className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                    {course.difficulty}
                                 </span>
                             </div>
-                            <h3 className="font-semibold text-sm text-foreground truncate group-hover:text-primary transition-colors">
+                            <button
+                                type="button"
+                                onClick={handleSave}
+                                aria-label={saved ? 'Remove course from desk' : 'Save course to desk'}
+                                className="rounded-full border border-border bg-background/80 p-2 text-muted-foreground transition-colors hover:text-foreground"
+                            >
+                                {saved ? (
+                                    <BookmarkCheck className="h-4 w-4 text-primary" />
+                                ) : (
+                                    <Bookmark className="h-4 w-4" />
+                                )}
+                            </button>
+                        </div>
+                        <div>
+                            <h3 className="text-2xl font-semibold leading-tight text-foreground">
                                 {course.title}
                             </h3>
+                            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                {course.description}
+                            </p>
                         </div>
-                        <div className="flex items-center justify-between mt-1">
-                            <span className="text-xs font-medium text-foreground">View</span>
-                            <ArrowRight className="w-3 h-3 text-muted-foreground group-hover:translate-x-1 transition-transform" />
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                            <span>{course.instructor}</span>
+                            <span className="flex items-center gap-1">
+                                <Star className="h-4 w-4 fill-current text-primary" />
+                                {course.rating?.toFixed(1) || 'N/A'}
+                            </span>
+                            <span className="flex items-center gap-1">
+                                <Clock3 className="h-4 w-4" />
+                                {course.duration}
+                            </span>
+                            <span className="editorial-link text-foreground">
+                                Open course
+                                <ArrowUpRight className="h-4 w-4" />
+                            </span>
                         </div>
                     </div>
-                </Card>
+                </article>
             </Link>
         );
     }
 
     return (
-        <Link href={`/course/${course.id}`} className="block h-full">
-            <Card className="group flex flex-col h-full overflow-hidden border-border hover:shadow-lg transition-all duration-300 hover:border-primary/50">
-                {/* Image Section */}
-                <div className="relative aspect-video w-full overflow-hidden border-b border-border">
+        <Link href={`/course/${course.id}`} className="group block h-full">
+            <article className="paper-panel hover-rise flex h-full flex-col overflow-hidden rounded-[1.8rem]">
+                <div className="relative aspect-[4/3] overflow-hidden border-b border-border/80 bg-card">
                     <Image
                         src={imgSrc}
                         alt={course.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        loading="lazy"
-                        onError={() => setImgSrc('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80')}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        onError={() => setImgSrc('/logo.png')}
                     />
-                    <div className="absolute top-2 left-2">
-                        <Badge variant="secondary" className="backdrop-blur-sm bg-background/90 text-foreground shadow-sm text-xs px-2 py-0.5">
+                </div>
+                <div className="flex flex-1 flex-col gap-4 p-5">
+                    <div className="flex items-center justify-between gap-4">
+                        <Badge className="rounded-full bg-primary/10 text-primary hover:bg-primary/10">
                             {course.category}
                         </Badge>
+                        <div className="flex items-center gap-3">
+                            <span className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                {course.difficulty}
+                            </span>
+                            <button
+                                type="button"
+                                onClick={handleSave}
+                                aria-label={saved ? 'Remove course from desk' : 'Save course to desk'}
+                                className="rounded-full border border-border bg-background/80 p-2 text-muted-foreground transition-colors hover:text-foreground"
+                            >
+                                {saved ? (
+                                    <BookmarkCheck className="h-4 w-4 text-primary" />
+                                ) : (
+                                    <Bookmark className="h-4 w-4" />
+                                )}
+                            </button>
+                        </div>
                     </div>
-                </div>
-
-                {/* Content Section */}
-                <CardContent className="flex flex-col flex-1 p-4">
-                    <div className="flex items-center justify-between mb-2">
-                        <Badge variant="outline" className="text-[10px] font-medium px-1.5 py-0 h-5">
-                            {course.difficulty}
-                        </Badge>
-                        <div className="flex items-center gap-1 text-xs font-medium text-foreground">
-                            <Star className="w-3 h-3 fill-current text-yellow-500" />
-                            <span>{course.rating?.toFixed(1) || 'N/A'}</span>
-                            <span className="text-muted-foreground font-normal">
-                                ({course.students ? (course.students > 1000 ? `${(course.students / 1000).toFixed(1)}k` : course.students) : 'N/A'})
+                    <div className="space-y-2">
+                        <h3 className="text-2xl font-semibold leading-tight text-foreground">
+                            {course.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">{course.instructor}</p>
+                    </div>
+                    <p className="flex-1 text-sm leading-7 text-muted-foreground">
+                        {course.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                        {(course.tags || []).slice(0, 3).map((tag) => (
+                            <span
+                                key={tag}
+                                className="rounded-full border border-border bg-background/75 px-3 py-1 text-xs text-muted-foreground"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                    <div className="ink-rule" />
+                    <div className="flex items-center justify-between gap-4 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-3">
+                            <span className="flex items-center gap-1">
+                                <Star className="h-4 w-4 fill-current text-primary" />
+                                {course.rating?.toFixed(1) || 'N/A'}
+                            </span>
+                            <span className="flex items-center gap-1">
+                                <Users className="h-4 w-4" />
+                                {formatStudents(course.students)}
                             </span>
                         </div>
+                        <span className="flex items-center gap-1">
+                            <Clock3 className="h-4 w-4" />
+                            {course.duration}
+                        </span>
                     </div>
-
-                    <h3 className="text-base font-bold text-foreground mb-1 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
-                        {course.title}
-                    </h3>
-
-                    <p className="text-xs text-muted-foreground line-clamp-1 mb-3">
-                        by {course.instructor}
-                    </p>
-                </CardContent>
-
-                <CardFooter className="p-4 pt-0 mt-auto flex items-center justify-between border-t border-border/50 pt-3">
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            <span>{course.duration}</span>
-                        </div>
+                    <div className="editorial-link text-sm text-foreground">
+                        Open course
+                        <ArrowUpRight className="h-4 w-4" />
                     </div>
-                    <span className="text-xs font-bold text-foreground flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                        View <ArrowRight className="w-3 h-3" />
-                    </span>
-                </CardFooter>
-            </Card>
+                </div>
+            </article>
         </Link>
     );
-};
+}
 
 export default memo(CourseCard);

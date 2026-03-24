@@ -1,0 +1,23 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" rx="48" fill="#111827"/>
+  <rect x="48" y="48" width="1104" height="704" rx="40" fill="url(#bg)"/>
+  <circle cx="930" cy="186" r="120" fill="#06B6D4" fill-opacity="0.14"/>
+  <circle cx="256" cy="616" r="164" fill="#F59E0B" fill-opacity="0.14"/>
+  <rect x="174" y="230" width="852" height="356" rx="52" fill="#0F172A" fill-opacity="0.68" stroke="#FDE68A" stroke-opacity="0.4" stroke-width="4"/>
+  <path d="M316 512C360.412 454.357 420.157 423.451 495.234 419.281C529.051 417.402 560.919 423.62 590.838 437.938C597.199 440.984 603.786 443.538 610.836 445.693C669.359 391.879 738.903 366.979 819.469 370.992" stroke="#FDE68A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M353 341H520C540.987 341 558 358.013 558 379V381C558 401.987 540.987 419 520 419H353C332.013 419 315 401.987 315 381V379C315 358.013 332.013 341 353 341Z" fill="#1F2937"/>
+  <path d="M682 341H849C869.987 341 887 358.013 887 379V381C887 401.987 869.987 419 849 419H682C661.013 419 644 401.987 644 381V379C644 358.013 661.013 341 682 341Z" fill="#1F2937"/>
+  <text x="368" y="392" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="48" font-weight="700">Speak</text>
+  <text x="690" y="392" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="48" font-weight="700">Connect</text>
+  <rect x="422" y="623" width="356" height="18" rx="9" fill="#FDE68A" fill-opacity="0.7"/>
+  <rect x="490" y="664" width="220" height="18" rx="9" fill="#F8FAFC" fill-opacity="0.42"/>
+  <text x="174" y="168" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="72" font-weight="700">Communication Skills</text>
+  <text x="174" y="706" fill="#FEF3C7" font-family="Arial, sans-serif" font-size="34" font-weight="600">Fluency • Confidence • Everyday English</text>
+  <defs>
+    <linearGradient id="bg" x1="89" y1="65" x2="1117" y2="733" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="0.45" stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#78350F"/>
+    </linearGradient>
+  </defs>
+</svg>

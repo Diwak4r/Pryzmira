@@ -4,6 +4,8 @@ import {
     isSubscriberStoreConfigurationError,
 } from '@/lib/db';
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const getNewsletterContent = (siteUrl: string) => {
     const date = new Date().toLocaleDateString('en-US', {
         weekday: 'long',
@@ -69,7 +71,44 @@ const getNewsletterContent = (siteUrl: string) => {
     };
 };
 
-async function sendEmail(to: string, subject: string, html: string, apiKey: string, fromEmail: string) {
+function normalizeSubscribers(value: unknown): string[] {
+    if (!Array.isArray(value)) {
+        return [];
+    }
+
+    const normalized = value
+        .filter((entry): entry is string => typeof entry === 'string')
+        .map((email) => email.trim().toLowerCase())
+        .filter((email) => EMAIL_REGEX.test(email));
+
+    return Array.from(new Set(normalized));
+}
+
+function getAuthorizationError(request: Request): NextResponse | null {
+    const cronSecret = process.env.CRON_SECRET;
+    const authHeader = request.headers.get('authorization');
+
+    if (!cronSecret) {
+        return NextResponse.json(
+            { error: 'CRON_SECRET not configured' },
+            { status: 503 }
+        );
+    }
+
+    if (authHeader !== `Bearer ${cronSecret}`) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    return null;
+}
+
+async function sendEmail(
+    to: string,
+    subject: string,
+    html: string,
+    apiKey: string,
+    fromEmail: string
+) {
     const response = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -93,91 +132,94 @@ async function sendEmail(to: string, subject: string, html: string, apiKey: stri
     return result;
 }
 
-export async function POST(request: Request) {
-    const authHeader = request.headers.get('authorization');
-    const cronSecret = process.env.CRON_SECRET;
-    const isVercelCron = request.headers.get('x-vercel-cron') === '1';
+async function dispatchNewsletter(subscribers: string[]) {
+    const apiKey = process.env.RESEND_API_KEY;
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pryzmira.vercel.app';
 
-    if (!isVercelCron && cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!apiKey) {
+        return NextResponse.json(
+            { error: 'RESEND_API_KEY not configured' },
+            { status: 500 }
+        );
+    }
+
+    if (subscribers.length === 0) {
+        return NextResponse.json(
+            {
+                error:
+                    'No subscribers found. Add subscribers via the newsletter signup or POST with { "subscribers": [...] }',
+            },
+            { status: 400 }
+        );
+    }
+
+    const newsletter = getNewsletterContent(siteUrl);
+    const results: { email: string; status: string; error?: string; id?: string }[] = [];
+
+    for (const email of subscribers) {
+        try {
+            const result = await sendEmail(
+                email,
+                newsletter.subject,
+                newsletter.html,
+                apiKey,
+                fromEmail
+            );
+
+            results.push({
+                email,
+                status: 'sent',
+                id: result.id,
+            });
+
+            console.log(`[Newsletter] Sent to: ${email}`);
+            await new Promise((resolve) => setTimeout(resolve, 200));
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+            results.push({
+                email,
+                status: 'failed',
+                error: errorMessage,
+            });
+            console.error(`[Newsletter] Failed for ${email}:`, errorMessage);
+        }
+    }
+
+    const successCount = results.filter((result) => result.status === 'sent').length;
+    const failedCount = results.filter((result) => result.status === 'failed').length;
+
+    return NextResponse.json({
+        success: failedCount === 0,
+        message: `Newsletter sent to ${successCount}/${subscribers.length} subscribers`,
+        stats: {
+            total: subscribers.length,
+            sent: successCount,
+            failed: failedCount,
+        },
+        details: results,
+    });
+}
+
+async function handleSend(request: Request, body?: unknown) {
+    const authError = getAuthorizationError(request);
+    if (authError) {
+        return authError;
     }
 
     try {
-        const apiKey = process.env.RESEND_API_KEY;
-        const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pryzmira.vercel.app';
-
-        if (!apiKey) {
-            return NextResponse.json(
-                { error: 'RESEND_API_KEY not configured' },
-                { status: 500 }
-            );
-        }
-
-        const body = await request.json().catch(() => ({}));
-        const rawSubscribers: string[] = body.subscribers || [];
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        let subscribers = rawSubscribers.filter(
-            (email) => typeof email === 'string' && emailRegex.test(email.trim())
+        const providedSubscribers = normalizeSubscribers(
+            typeof body === 'object' && body !== null && 'subscribers' in body
+                ? (body as { subscribers?: unknown }).subscribers
+                : undefined
         );
 
-        if (subscribers.length === 0) {
-            subscribers = await getSubscribers();
-        }
+        const subscribers =
+            providedSubscribers.length > 0
+                ? providedSubscribers
+                : await getSubscribers();
 
-        if (subscribers.length === 0) {
-            return NextResponse.json(
-                { error: 'No subscribers found. Add subscribers via the newsletter signup or POST with { "subscribers": [...] }' },
-                { status: 400 }
-            );
-        }
-
-        const newsletter = getNewsletterContent(siteUrl);
-        const results: { email: string; status: string; error?: string; id?: string }[] = [];
-
-        for (const email of subscribers) {
-            try {
-                const result = await sendEmail(
-                    email,
-                    newsletter.subject,
-                    newsletter.html,
-                    apiKey,
-                    fromEmail
-                );
-
-                results.push({
-                    email,
-                    status: 'sent',
-                    id: result.id,
-                });
-
-                console.log(`[Newsletter] Sent to: ${email}`);
-                await new Promise((resolve) => setTimeout(resolve, 200));
-            } catch (error) {
-                const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-                results.push({
-                    email,
-                    status: 'failed',
-                    error: errorMessage,
-                });
-                console.error(`[Newsletter] Failed for ${email}:`, errorMessage);
-            }
-        }
-
-        const successCount = results.filter((result) => result.status === 'sent').length;
-        const failedCount = results.filter((result) => result.status === 'failed').length;
-
-        return NextResponse.json({
-            success: true,
-            message: `Newsletter sent to ${successCount}/${subscribers.length} subscribers`,
-            stats: {
-                total: subscribers.length,
-                sent: successCount,
-                failed: failedCount,
-            },
-            details: results,
-        });
+        return await dispatchNewsletter(subscribers);
     } catch (error) {
         if (isSubscriberStoreConfigurationError(error)) {
             console.error('[Newsletter] Subscriber store unavailable:', error.message);
@@ -195,10 +237,11 @@ export async function POST(request: Request) {
     }
 }
 
-export async function GET() {
-    return NextResponse.json({
-        status: 'ok',
-        message: 'Newsletter cron endpoint is active. Use POST to send newsletters.',
-        usage: 'POST with body: { "subscribers": ["email1@example.com", "email2@example.com"] }',
-    });
+export async function POST(request: Request) {
+    const body = await request.json().catch(() => ({}));
+    return handleSend(request, body);
+}
+
+export async function GET(request: Request) {
+    return handleSend(request);
 }

@@ -1,86 +1,266 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import Navbar from './Navbar';
-import { ArrowUp, ChevronRight, Home } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ArrowUp, Dot } from 'lucide-react';
+import Navbar from '@/components/Navbar';
+import { getRouteMeta, normalizeRoute, siteNavigation } from '@/lib/siteNavigation';
 
-const Newsletter = dynamic(() => import('./Newsletter'), { ssr: false });
-const ExitIntentModal = dynamic(() => import('./ExitIntentModal'), { ssr: false });
+const Newsletter = dynamic(() => import('@/components/Newsletter'), { ssr: false });
 
+const footerLinks = [
+    { label: 'Atlas', href: '/categories' },
+    { label: 'Desk', href: '/desk' },
+    { label: 'AI Tools', href: '/ai-tools' },
+    { label: 'Resources', href: '/resources' },
+    { label: 'Roadmap', href: '/roadmap' },
+];
+
+const shellEase = [0.22, 1, 0.36, 1] as const;
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
+    const shouldReduceMotion = useReducedMotion();
     const [showBackToTop, setShowBackToTop] = useState(false);
+    const [scrollProgress, setScrollProgress] = useState(0);
+    const currentPath = useMemo(() => normalizeRoute(pathname), [pathname]);
+    const routeMeta = useMemo(() => getRouteMeta(pathname), [pathname]);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setShowBackToTop(window.scrollY > 400);
+        let frame = 0;
+
+        const updateBackToTop = () => {
+            frame = 0;
+            const nextVisible = window.scrollY > 520;
+            setShowBackToTop((current) =>
+                current === nextVisible ? current : nextVisible
+            );
         };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        const handleScroll = () => {
+            if (frame) {
+                return;
+            }
+
+            frame = window.requestAnimationFrame(updateBackToTop);
+        };
+
+        updateBackToTop();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            if (frame) {
+                window.cancelAnimationFrame(frame);
+            }
+
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+    useEffect(() => {
+        const handleProgress = () => {
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const nextProgress = maxScroll <= 0 ? 0 : Math.min(window.scrollY / maxScroll, 1);
+            setScrollProgress(nextProgress);
+        };
 
-    const pathnames = pathname.split('/').filter((x) => x);
+        handleProgress();
+        window.addEventListener('scroll', handleProgress, { passive: true });
+        window.addEventListener('resize', handleProgress);
+
+        return () => {
+            window.removeEventListener('scroll', handleProgress);
+            window.removeEventListener('resize', handleProgress);
+        };
+    }, []);
+
+    const siblingLinks = useMemo(
+        () =>
+            siteNavigation
+                .filter((item) => item.href !== currentPath)
+                .slice(0, 3),
+        [currentPath]
+    );
+
+    const showNewsletter =
+        !pathname.startsWith('/admin') &&
+        !pathname.startsWith('/canvas') &&
+        routeMeta.showNewsletter !== false;
 
     return (
-        <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/20 transition-colors duration-300">
-            <ExitIntentModal />
+        <div className="site-shell relative min-h-screen bg-background text-foreground">
+            <div
+                className="shell-progress"
+                style={{ transform: `scaleX(${Math.max(scrollProgress, 0.02)})` }}
+            />
+            <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-0 h-[26rem] overflow-hidden">
+                <div className="ambient-orb ambient-orb-primary absolute left-[8%] top-[-3rem] h-48 w-48 opacity-90 md:h-72 md:w-72" />
+                <div className="ambient-orb ambient-orb-secondary absolute right-[6%] top-20 h-56 w-56 opacity-80 md:h-80 md:w-80" />
+            </div>
+
             <Navbar />
 
-            <main>
-                {/* Breadcrumbs */}
-                {pathnames.length > 0 && (
-                    <div className="container mx-auto px-4 pt-24 pb-2 flex items-center gap-2 text-sm text-muted-foreground">
-                        <Link href="/" className="hover:text-foreground transition-colors">
-                            <Home className="w-4 h-4" />
-                        </Link>
-                        {pathnames.map((name, index) => {
-                            const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
-                            const isLast = index === pathnames.length - 1;
-                            return (
-                                <div key={name} className="flex items-center gap-2">
-                                    <ChevronRight className="w-4 h-4" />
-                                    {isLast ? (
-                                        <span className="text-foreground capitalize">{name.replace('-', ' ')}</span>
-                                    ) : (
-                                        <Link href={routeTo} className="hover:text-foreground transition-colors capitalize">
-                                            {name.replace('-', ' ')}
-                                        </Link>
-                                    )}
+            <main className="relative z-10 pt-24 md:pt-28">
+                <AnimatePresence initial={false} mode="wait">
+                    {routeMeta.showContextStrip !== false ? (
+                        <motion.div
+                            key={`path-${pathname}`}
+                            initial={false}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={shouldReduceMotion ? undefined : { opacity: 0, y: -6 }}
+                            transition={
+                                shouldReduceMotion
+                                    ? { duration: 0 }
+                                    : { duration: 0.24, ease: shellEase }
+                            }
+                            className="page-shell mb-5 md:mb-7"
+                        >
+                            <div className="context-strip route-shell rounded-[1.8rem] px-5 py-5 md:px-6">
+                                <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
+                                    <div className="space-y-3">
+                                        <span className="route-pill">{routeMeta.label}</span>
+                                        <p className="section-kicker">{routeMeta.eyebrow}</p>
+                                        <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
+                                            {routeMeta.summary}
+                                        </p>
+                                    </div>
+                                    <div className="grid gap-3 sm:grid-cols-3">
+                                        {siblingLinks.map((link) => (
+                                            <Link
+                                                key={link.href}
+                                                href={link.href}
+                                                className="rounded-[1.2rem] border border-border bg-background/70 px-4 py-4 transition-colors hover:border-primary/25 hover:bg-background"
+                                            >
+                                                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                                    {link.eyebrow}
+                                                </p>
+                                                <p className="mt-2 font-semibold text-foreground">
+                                                    {link.label}
+                                                </p>
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
-                            );
-                        })}
-                    </div>
-                )}
+                            </div>
+                        </motion.div>
+                    ) : null}
+                </AnimatePresence>
 
-                {children}
+                <AnimatePresence initial={false} mode="wait">
+                    <motion.div
+                        key={pathname}
+                        initial={false}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                            filter: 'none',
+                        }}
+                        exit={
+                            shouldReduceMotion
+                                ? undefined
+                                : { opacity: 0.98, y: -4, filter: 'none' }
+                        }
+                        transition={
+                            shouldReduceMotion
+                                ? { duration: 0 }
+                                : { duration: 0.38, ease: shellEase }
+                        }
+                        className="route-shell relative z-10"
+                    >
+                        {children}
+                    </motion.div>
+                </AnimatePresence>
             </main>
 
-            <Newsletter />
+            {showNewsletter && <Newsletter />}
 
-            <footer className="border-t border-border py-8 mt-12 transition-colors duration-300 relative">
-                <div className="gradient-line absolute top-0 left-0 right-0" />
-                <div className="container mx-auto px-4 text-center text-muted-foreground text-sm space-y-2">
-                    <p className="text-xs font-medium text-gradient">Built by a student, for students.</p>
-                    <p>&copy; {new Date().getFullYear()} Pryzmira. All rights reserved.</p>
+            <footer className="relative border-t border-border/80 py-12 md:py-14">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                <div className="page-shell">
+                    <div className="shell-surface rounded-[1.75rem] p-6 md:p-8">
+                        <div className="grid gap-8 md:grid-cols-[1.3fr_0.7fr]">
+                            <div className="space-y-4">
+                                <span className="brand-chip">
+                                    <span className="brand-chip-dot" />
+                                    Pryzmira
+                                </span>
+                                <div className="space-y-3">
+                                    <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-foreground md:text-[2.4rem]">
+                                        A calmer way to keep good tools, courses, and references in
+                                        reach.
+                                    </h2>
+                                    <p className="max-w-2xl text-sm leading-7 text-muted-foreground md:text-[0.95rem]">
+                                        Pryzmira brings together serious resources with less noise,
+                                        less chrome, and a clearer path back into focused learning.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="grid gap-8 text-sm md:grid-cols-2">
+                                <div className="space-y-3">
+                                    <p className="font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                        Explore
+                                    </p>
+                                    {footerLinks.map((link) => (
+                                        <Link
+                                            key={link.href}
+                                            href={link.href}
+                                            className="block font-medium text-foreground/88 hover:text-foreground"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    ))}
+                                </div>
+
+                                <div className="space-y-3">
+                                    <p className="font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                        Notes
+                                    </p>
+                                    <p className="leading-6 text-muted-foreground">
+                                        Built by a student, tuned for focused learners, and refined
+                                        to feel like a dependable product instead of a demo.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-8 border-t border-border/70 pt-5">
+                            <div className="flex flex-col gap-3 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+                                <p>&copy; {new Date().getFullYear()} Pryzmira. All rights reserved.</p>
+                                <div className="flex items-center gap-2">
+                                    <span>Designed for clarity</span>
+                                    <Dot className="h-4 w-4" />
+                                    <span>Built for momentum</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </footer>
 
-            {/* Back to Top Button */}
-            <button
-                onClick={scrollToTop}
-                className={`fixed bottom-8 right-8 p-3 rounded-full bg-primary text-primary-foreground shadow-lg shadow-black/10 transition-all duration-300 z-50 ${showBackToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-                    }`}
-            >
-                <ArrowUp className="w-5 h-5" />
-            </button>
+            <AnimatePresence>
+                {showBackToTop ? (
+                    <motion.button
+                        type="button"
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        initial={shouldReduceMotion ? false : { opacity: 0, y: 18, scale: 0.92 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={shouldReduceMotion ? undefined : { opacity: 0, y: 18, scale: 0.92 }}
+                        transition={
+                            shouldReduceMotion
+                                ? { duration: 0 }
+                                : { duration: 0.22, ease: shellEase }
+                        }
+                        className="shell-surface fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full text-foreground shadow-[0_18px_42px_hsl(var(--foreground)/0.16)] hover:-translate-y-0.5"
+                        aria-label="Back to top"
+                    >
+                        <ArrowUp className="h-4 w-4" />
+                    </motion.button>
+                ) : null}
+            </AnimatePresence>
         </div>
     );
 }
