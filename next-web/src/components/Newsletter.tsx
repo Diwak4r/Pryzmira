@@ -1,37 +1,35 @@
 'use client';
 
 import { useState } from 'react';
-import { Send, CheckCircle, AlertCircle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { AnimatePresence, motion } from 'framer-motion';
+import { AlertCircle, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function Newsletter() {
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
-
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
 
-        if (!email) {
+        if (!email.trim()) {
             setStatus('error');
-            setMessage('Please enter your email address.');
+            setMessage('Enter an email address to receive the weekly workspace brief.');
             return;
         }
 
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             setStatus('error');
-            setMessage('Please enter a valid email address.');
+            setMessage('Use a valid email address.');
             return;
         }
 
-        setStatus('idle');
         setIsLoading(true);
+        setStatus('idle');
 
-        // Simulate API call
         try {
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
@@ -39,74 +37,103 @@ export default function Newsletter() {
                 body: JSON.stringify({ email }),
             });
 
-            const data = await response.json();
-
+            const payload = await response.json();
             if (!response.ok) {
-                throw new Error(data.error || 'Failed to subscribe');
+                throw new Error(payload.error || 'Subscription failed');
             }
 
             setStatus('success');
-            setMessage('Thanks for subscribing! Check your inbox soon.');
+            setMessage('You are in. Expect one sharp workspace brief each week.');
             setEmail('');
         } catch (error) {
             setStatus('error');
-            const errorMessage = error instanceof Error ? error.message : 'Failed to subscribe. Please try again.';
-            setMessage(errorMessage);
+            setMessage(
+                error instanceof Error ? error.message : 'Subscription failed. Try again.'
+            );
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <section className="py-20 relative overflow-hidden border-t border-border bg-background">
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-3xl mx-auto text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Stay Ahead of the Curve</h2>
-                    <p className="text-muted-foreground mb-8 text-lg">
-                        Join 10,000+ learners getting weekly insights on AI, Tech, and Finance.
-                        No spam, just value.
-                    </p>
+        <section className="border-t border-border/70 py-20">
+            <div className="page-shell">
+                <motion.div
+                    initial={{ opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-120px' }}
+                    transition={{ duration: 0.5 }}
+                    className="paper-panel poster-shadow grid gap-10 rounded-[2rem] px-6 py-8 md:grid-cols-[1.25fr_1fr] md:px-10 md:py-10"
+                >
+                    <div className="space-y-5">
+                        <p className="section-kicker">Weekly workspace brief</p>
+                        <h2 className="max-w-2xl text-4xl text-display text-balance md:text-6xl">
+                            One clear AI brief each week, built to keep people moving.
+                        </h2>
+                        <p className="max-w-xl text-base leading-8 text-muted-foreground">
+                            Pryzmira sends a compact operator note with sharper next steps, useful AI
+                            tools, and learning depth worth reopening.
+                        </p>
+                    </div>
 
-                    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto relative">
-                        <div className="flex-grow relative">
-                            <Input
-                                type="email"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => {
-                                    setEmail(e.target.value);
-                                    if (status === 'error') setStatus('idle');
-                                }}
-                                className={`w-full ${status === 'error' ? 'border-destructive focus-visible:ring-destructive' : ''}`}
-                                suppressHydrationWarning
-                            />
+                    <div className="space-y-5 rounded-[1.6rem] border border-border bg-background/70 p-6">
+                        <div className="space-y-2">
+                            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                                Join the list
+                            </p>
+                            <div className="ink-rule" />
                         </div>
-                        <Button
-                            type="submit"
-                            disabled={isLoading}
-                            className="px-6"
-                        >
-                            {isLoading ? 'Subscribing...' : 'Subscribe'}
-                            {!isLoading && <Send className="w-4 h-4 ml-2" />}
-                        </Button>
-                    </form>
 
-                    <AnimatePresence mode="wait">
-                        {status !== 'idle' && (
-                            <motion.div
-                                key={status}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                className={`mt-4 flex items-center justify-center gap-2 text-sm font-medium ${status === 'success' ? 'text-emerald-500' : 'text-destructive'
-                                    }`}
-                            >
-                                {status === 'success' ? <CheckCircle className="w-4 h-4" /> : <AlertCircle className="w-4 h-4" />}
-                                {message}
-                            </motion.div>
+                        {status === 'success' ? (
+                            <div className="space-y-3 rounded-[1.4rem] bg-primary/8 p-5 text-primary">
+                                <CheckCircle2 className="h-6 w-6" />
+                                <p className="text-lg font-semibold">{message}</p>
+                            </div>
+                        ) : (
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                <Input
+                                    type="email"
+                                    placeholder="name@email.com"
+                                    value={email}
+                                    onChange={(event) => {
+                                        setEmail(event.target.value);
+                                        if (status === 'error') {
+                                            setStatus('idle');
+                                        }
+                                    }}
+                                    className="h-12 rounded-full border-border bg-card px-5"
+                                />
+                                <Button
+                                    type="submit"
+                                    disabled={isLoading}
+                                    className="w-full rounded-full text-sm font-semibold"
+                                >
+                                    {isLoading ? 'Joining...' : 'Get the weekly brief'}
+                                    {!isLoading && <ArrowUpRight className="ml-2 h-4 w-4" />}
+                                </Button>
+                            </form>
                         )}
-                    </AnimatePresence>
-                </div>
+
+                        <AnimatePresence mode="wait">
+                            {status === 'error' && (
+                                <motion.div
+                                    key="newsletter-error"
+                                    initial={{ opacity: 0, y: 6 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -6 }}
+                                    className="flex items-center gap-2 text-sm text-destructive"
+                                >
+                                    <AlertCircle className="h-4 w-4" />
+                                    <span>{message}</span>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        <p className="text-sm leading-6 text-muted-foreground">
+                            Less noise, better direction, and a cadence people can actually keep.
+                        </p>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

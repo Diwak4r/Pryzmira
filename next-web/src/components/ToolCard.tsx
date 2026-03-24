@@ -1,10 +1,14 @@
-import { useState } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight, Bookmark, BookmarkCheck } from 'lucide-react';
+import {
+    isToolSaved,
+    subscribeToPersonalDataUpdates,
+    toggleSavedTool,
+} from '@/lib/personalDesk';
+import { saveRecentTool } from '@/lib/recentlyViewed';
 
 interface Tool {
     id: string;
@@ -16,86 +20,119 @@ interface Tool {
     pricing: string;
     image: string;
     featured?: boolean;
+    affiliateUrl?: string;
 }
 
-interface ToolCardProps {
-    tool: Tool;
-}
-
-export default function ToolCard({ tool }: ToolCardProps) {
+export default function ToolCard({ tool }: { tool: Tool }) {
     const [imgSrc, setImgSrc] = useState(tool.image);
+    const [saved, setSaved] = useState(false);
+
+    const visitUrl =
+        tool.affiliateUrl ||
+        `/api/tools/click?url=${encodeURIComponent(tool.url)}&id=${encodeURIComponent(tool.id)}`;
+
+    useEffect(() => {
+        const syncSavedState = () => {
+            setSaved(isToolSaved(tool.id));
+        };
+
+        syncSavedState();
+        return subscribeToPersonalDataUpdates(syncSavedState);
+    }, [tool.id]);
+
+    const handleSave = () => {
+        toggleSavedTool({
+            id: tool.id,
+            name: tool.name,
+            category: tool.category,
+            url: tool.url,
+            description: tool.description,
+            pricing: tool.pricing,
+        });
+    };
 
     return (
-        <motion.div
-            layout
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="h-full"
-        >
-            <Card className="group overflow-hidden flex flex-col h-full border-border hover:shadow-lg transition-all duration-300 hover:border-primary/50">
-                {/* Tool Image */}
-                <div className="h-48 overflow-hidden relative border-b border-border">
-                    <Image
-                        src={imgSrc}
-                        alt={tool.name}
-                        fill
-                        className={`${tool.image.includes('logo.clearbit.com') ? 'object-contain p-8 bg-white' : 'object-cover'} transition-transform duration-500 group-hover:scale-105`}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        onError={() => setImgSrc('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80')}
-                    />
-                    <div className="absolute top-3 left-3 flex gap-2">
-                        <Badge variant="outline" className="bg-background/90 backdrop-blur-sm">
-                            {tool.pricing}
-                        </Badge>
-                        {tool.featured && (
-                            <Badge className="bg-yellow-500/90 hover:bg-yellow-500 text-white border-none backdrop-blur-sm">
-                                Featured
-                            </Badge>
-                        )}
+        <article className="paper-panel hover-rise group flex h-full flex-col overflow-hidden rounded-[1.8rem]">
+            <div className="relative flex items-start justify-between gap-4 border-b border-border/70 p-5">
+                <div className="flex items-center gap-4">
+                    <div className="relative h-16 w-16 overflow-hidden rounded-[1.2rem] border border-border bg-card">
+                        <Image
+                            src={imgSrc}
+                            alt={tool.name}
+                            fill
+                            className={`${
+                                tool.image.includes('s2/favicons')
+                                    ? 'object-contain bg-white p-3'
+                                    : 'object-cover'
+                            }`}
+                            sizes="64px"
+                            onError={() => setImgSrc('/logo.png')}
+                        />
                     </div>
-
-                    <div className="absolute bottom-3 left-3">
-                        <Badge className="bg-primary text-primary-foreground">
+                    <div className="space-y-1">
+                        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                             {tool.category}
-                        </Badge>
-                    </div>
-                </div>
-
-                <CardContent className="p-5 flex flex-col flex-grow">
-                    <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+                        </p>
+                        <h3 className="text-2xl font-semibold leading-tight text-foreground">
                             {tool.name}
                         </h3>
                     </div>
+                </div>
+                <div className="flex items-center gap-2">
+                    <span className="rounded-full border border-border bg-background/75 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                        {tool.pricing}
+                    </span>
+                    <button
+                        type="button"
+                        onClick={handleSave}
+                        aria-label={saved ? 'Remove tool from desk' : 'Save tool to desk'}
+                        className="rounded-full border border-border bg-background/80 p-2 text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                        {saved ? (
+                            <BookmarkCheck className="h-4 w-4 text-primary" />
+                        ) : (
+                            <Bookmark className="h-4 w-4" />
+                        )}
+                    </button>
+                </div>
+            </div>
 
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-grow leading-relaxed">
-                        {tool.description}
-                    </p>
+            <div className="flex flex-1 flex-col gap-4 p-5">
+                <p className="flex-1 text-sm leading-7 text-muted-foreground">
+                    {tool.description}
+                </p>
 
-                    <div className="flex flex-wrap gap-2 mb-6">
-                        {tool.tags.slice(0, 3).map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-[10px] font-bold">
-                                #{tag}
-                            </Badge>
-                        ))}
-                    </div>
-                </CardContent>
-
-                <CardFooter className="p-5 pt-0 mt-auto">
-                    <Button asChild className="w-full" variant="outline">
-                        <a
-                            href={tool.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center justify-center gap-2"
+                <div className="flex flex-wrap gap-2">
+                    {tool.tags.slice(0, 3).map((tag) => (
+                        <span
+                            key={tag}
+                            className="rounded-full bg-primary/8 px-3 py-1 text-xs font-medium text-primary"
                         >
-                            Visit Tool <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                    </Button>
-                </CardFooter>
-            </Card>
-        </motion.div>
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+
+                <div className="ink-rule" />
+
+                <a
+                    href={visitUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="editorial-link text-sm text-foreground"
+                    onClick={() =>
+                        saveRecentTool({
+                            id: tool.id,
+                            name: tool.name,
+                            category: tool.category,
+                            url: tool.url,
+                        })
+                    }
+                >
+                    Visit tool
+                    <ArrowUpRight className="h-4 w-4" />
+                </a>
+            </div>
+        </article>
     );
 }

@@ -1,7 +1,4 @@
-import { motion } from 'framer-motion';
-import { Play, FileText, Clock, ExternalLink, Mic } from 'lucide-react';
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { ExternalLink, FileText, Mic, Play } from 'lucide-react';
 
 interface MotivationItem {
     id: number;
@@ -12,66 +9,63 @@ interface MotivationItem {
     type: string;
     duration: string;
     key_points: string[];
-    tags: string[];
 }
 
-export default function MotivationCard({ item, index }: { item: MotivationItem; index: number }) {
-    const getIcon = (type: string) => {
-        switch (type) {
-            case 'Talk': return <Play className="w-4 h-4" />;
-            case 'Essay': return <FileText className="w-4 h-4" />;
-            case 'Podcast': return <Mic className="w-4 h-4" />;
-            default: return <ExternalLink className="w-4 h-4" />;
-        }
-    };
+function getTypeIcon(type: string) {
+    switch (type) {
+        case 'Talk':
+            return <Play className="h-4 w-4" />;
+        case 'Essay':
+            return <FileText className="h-4 w-4" />;
+        case 'Podcast':
+            return <Mic className="h-4 w-4" />;
+        default:
+            return <ExternalLink className="h-4 w-4" />;
+    }
+}
 
+export default function MotivationCard({ item }: { item: MotivationItem; index: number }) {
     return (
-        <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.05 }}
-            className="h-full"
+        <a
+            href={item.url}
+            target="_blank"
+            rel="noreferrer"
+            className="group block h-full"
         >
-            <a
-                href={item.url}
-                target="_blank"
-                rel="noreferrer"
-                className="block h-full group"
-            >
-                <Card className="h-full flex flex-col hover:border-primary/50 transition-all hover:shadow-lg">
-                    <CardHeader className="pb-2">
-                        <div className="flex justify-between items-start mb-3">
-                            <Badge variant="secondary" className="text-xs font-medium">
-                                {item.category}
-                            </Badge>
-                            <div className="p-2 rounded-full bg-accent text-accent-foreground">
-                                {getIcon(item.type)}
-                            </div>
-                        </div>
-
-                        <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
+            <article className="paper-panel hover-rise flex h-full flex-col gap-5 rounded-[1.7rem] p-5">
+                <div className="flex items-start justify-between gap-4">
+                    <div>
+                        <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                            {item.category}
+                        </p>
+                        <h3 className="mt-2 text-2xl font-semibold leading-tight text-foreground">
                             {item.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground">{item.person}</p>
-                    </CardHeader>
-
-                    <CardContent>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
-                            <Clock className="w-3 h-3" />
-                            <span>{item.duration}</span>
+                    </div>
+                    <span className="rounded-full bg-primary/8 p-2 text-primary">
+                        {getTypeIcon(item.type)}
+                    </span>
+                </div>
+                <p className="text-sm font-medium text-foreground">{item.person}</p>
+                <div className="space-y-3">
+                    {item.key_points.slice(0, 2).map((point) => (
+                        <div key={point} className="flex gap-3 text-sm leading-7 text-muted-foreground">
+                            <span className="mt-[0.78rem] h-1.5 w-1.5 rounded-full bg-primary" />
+                            <span>{point}</span>
                         </div>
-
-                        <div className="space-y-2">
-                            {item.key_points.slice(0, 2).map((point, i) => (
-                                <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
-                                    <span className="w-1 h-1 rounded-full bg-primary mt-1.5 shrink-0" />
-                                    <span>{point}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </CardContent>
-                </Card>
-            </a>
-        </motion.div>
+                    ))}
+                </div>
+                <div className="mt-auto">
+                    <div className="ink-rule" />
+                    <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
+                        <span>{item.duration}</span>
+                        <span className="editorial-link text-foreground">
+                            Open
+                            <ExternalLink className="h-4 w-4" />
+                        </span>
+                    </div>
+                </div>
+            </article>
+        </a>
     );
 }

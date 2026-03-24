@@ -1,127 +1,160 @@
 import { NextResponse } from 'next/server';
+import { getSubscribers, isSubscriberStoreConfigurationError } from '@/lib/db';
+import {
+    buildStrategyBrief,
+    buildStrategyPlan,
+    type StrategyBriefRecord,
+    type StrategyProfileRecord,
+} from '@/lib/strategy';
+import { listStrategyProfilesForBriefs, saveStrategyBrief } from '@/lib/strategyStore';
 
-// Newsletter content template
-const getNewsletterContent = () => {
-    const date = new Date().toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+interface EmailContent {
+    html: string;
+    subject: string;
+}
+
+interface CampaignRecipient {
+    content: EmailContent;
+    email: string;
+    type: 'generic' | 'strategy';
+}
+
+function normalizeSubscribers(value: unknown): string[] {
+    if (!Array.isArray(value)) {
+        return [];
+    }
+
+    const normalized = value
+        .filter((entry): entry is string => typeof entry === 'string')
+        .map((email) => email.trim().toLowerCase())
+        .filter((email) => EMAIL_REGEX.test(email));
+
+    return Array.from(new Set(normalized));
+}
+
+function isStrategyConfigurationError(error: unknown): boolean {
+    return error instanceof Error && error.message.toLowerCase().includes('not configured');
+}
+
+function getAuthorizationError(request: Request): NextResponse | null {
+    const cronSecret = process.env.CRON_SECRET;
+    const authHeader = request.headers.get('authorization');
+
+    if (!cronSecret) {
+        return NextResponse.json({ error: 'CRON_SECRET not configured' }, { status: 503 });
+    }
+
+    if (authHeader !== `Bearer ${cronSecret}`) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    return null;
+}
+
+function getBaseEmailLayout(title: string, body: string): string {
+    return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0;padding:0;background:#f7f2e8;font-family:Inter,Arial,sans-serif;color:#1f1a17;">
+  <div style="max-width:640px;margin:0 auto;padding:32px 18px;">
+    <div style="padding:28px;border-radius:24px;background:#fff8ef;border:1px solid #eadfce;">
+      <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">Pryzmira</p>
+      <h1 style="margin:0 0 16px;font-size:32px;line-height:1.1;">${title}</h1>
+      ${body}
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+function getGenericBriefContent(siteUrl: string): EmailContent {
+    return {
+        subject: 'Pryzmira Weekly Workspace Brief',
+        html: getBaseEmailLayout(
+            'A sharper AI workspace note for this week.',
+            `<p style="margin:0 0 16px;line-height:1.7;color:#4d433a;">Pryzmira is evolving into an AI workspace platform built around clearer execution, better tool judgment, and weekly momentum.</p>
+             <p style="margin:0 0 16px;line-height:1.7;color:#4d433a;">This week, use the workspace to decide one AI outcome, tighten your stack, and spend time only where the signal is high.</p>
+             <div style="margin:24px 0;padding:18px;border-radius:18px;background:#f3eadc;">
+               <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">Suggested loop</p>
+               <p style="margin:0 0 8px;line-height:1.7;">1. Open the workspace and define one AI mission.</p>
+               <p style="margin:0 0 8px;line-height:1.7;">2. Pull one course or tool from the atlas that directly supports it.</p>
+               <p style="margin:0;line-height:1.7;">3. Produce one visible output before the week ends.</p>
+             </div>
+             <a href="${siteUrl}" style="display:inline-block;margin-top:8px;padding:14px 22px;border-radius:999px;background:#1f1a17;color:#fff8ef;text-decoration:none;font-weight:600;">Open Pryzmira</a>`
+        ),
+    };
+}
+
+function getStrategyBriefContent(
+    profile: StrategyProfileRecord,
+    brief: StrategyBriefRecord,
+    siteUrl: string
+): EmailContent {
+    const firstName = profile.fullName.split(' ')[0];
+    const actions = brief.plan.nextActions
+        .slice(0, 3)
+        .map(
+            (action, index) =>
+                `<p style="margin:0 0 10px;line-height:1.7;color:#4d433a;">${index + 1}. ${action}</p>`
+        )
+        .join('');
+    const picks = [
+        ...brief.plan.recommendations.courses.slice(0, 1),
+        ...brief.plan.recommendations.tools.slice(0, 1),
+        ...brief.plan.recommendations.resources.slice(0, 1),
+    ]
+        .map(
+            (item) =>
+                `<p style="margin:0 0 10px;line-height:1.7;color:#4d433a;"><strong>${item.title}</strong> — ${item.reason}</p>`
+        )
+        .join('');
 
     return {
-        subject: `🚀 Pryzmira Weekly: AI & Tech Insights - ${date}`,
-        html: `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            </head>
-            <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #0a0a0a;">
-                <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
-                    <!-- Header -->
-                    <div style="text-align: center; margin-bottom: 40px;">
-                        <h1 style="color: #ffffff; font-size: 32px; margin: 0; font-weight: 700;">
-                            ✨ Pryzmira Weekly
-                        </h1>
-                        <p style="color: #888; font-size: 14px; margin-top: 8px;">
-                            ${date}
-                        </p>
-                    </div>
-                    
-                    <!-- Main Content -->
-                    <div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 16px; padding: 40px; border: 1px solid #333; margin-bottom: 24px;">
-                        <h2 style="color: #ffffff; font-size: 24px; margin: 0 0 20px 0;">
-                            This Week in AI & Tech 🔥
-                        </h2>
-                        
-                        <p style="color: #cccccc; font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
-                            Here's your curated roundup of the most exciting developments in AI, technology, and engineering this week.
-                        </p>
-
-                        <!-- Section 1: AI Updates -->
-                        <div style="margin-bottom: 30px; padding: 20px; background: rgba(0, 212, 255, 0.05); border-radius: 12px; border-left: 4px solid #00d4ff;">
-                            <h3 style="color: #00d4ff; font-size: 18px; margin: 0 0 12px 0;">
-                                🤖 AI Spotlight
-                            </h3>
-                            <p style="color: #cccccc; font-size: 15px; line-height: 1.6; margin: 0;">
-                                Explore the latest AI tools and breakthroughs on our platform. From cutting-edge language models to revolutionary image generators - we've curated the best for you.
-                            </p>
-                        </div>
-
-                        <!-- Section 2: New Courses -->
-                        <div style="margin-bottom: 30px; padding: 20px; background: rgba(102, 126, 234, 0.05); border-radius: 12px; border-left: 4px solid #667eea;">
-                            <h3 style="color: #667eea; font-size: 18px; margin: 0 0 12px 0;">
-                                📚 Featured Learning
-                            </h3>
-                            <p style="color: #cccccc; font-size: 15px; line-height: 1.6; margin: 0;">
-                                New courses added! Level up your skills with our hand-picked selection covering System Design, DSA, Web Development, and more.
-                            </p>
-                        </div>
-
-                        <!-- Section 3: Community -->
-                        <div style="margin-bottom: 30px; padding: 20px; background: rgba(118, 75, 162, 0.05); border-radius: 12px; border-left: 4px solid #764ba2;">
-                            <h3 style="color: #764ba2; font-size: 18px; margin: 0 0 12px 0;">
-                                🛠️ Pro Tip of the Week
-                            </h3>
-                            <p style="color: #cccccc; font-size: 15px; line-height: 1.6; margin: 0;">
-                                Check out our Canvas tool - a free, powerful drawing and brainstorming tool built right into Pryzmira. Perfect for system design interviews!
-                            </p>
-                        </div>
-
-                        <!-- CTA Button -->
-                        <div style="text-align: center; margin-top: 30px;">
-                            <a href="https://pryzmira.vercel.app" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 16px 40px; border-radius: 8px; font-weight: 600; font-size: 16px;">
-                                Explore Pryzmira →
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Quick Links -->
-                    <div style="background: #1a1a1a; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
-                        <h3 style="color: #ffffff; font-size: 16px; margin: 0 0 16px 0;">Quick Links</h3>
-                        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-                            <a href="https://pryzmira.vercel.app/courses" style="color: #00d4ff; text-decoration: none; font-size: 14px;">📖 Courses</a>
-                            <span style="color: #333;">|</span>
-                            <a href="https://pryzmira.vercel.app/ai-tools" style="color: #00d4ff; text-decoration: none; font-size: 14px;">🤖 AI Tools</a>
-                            <span style="color: #333;">|</span>
-                            <a href="https://pryzmira.vercel.app/resources" style="color: #00d4ff; text-decoration: none; font-size: 14px;">📚 Resources</a>
-                            <span style="color: #333;">|</span>
-                            <a href="https://pryzmira.vercel.app/canvas" style="color: #00d4ff; text-decoration: none; font-size: 14px;">🎨 Canvas</a>
-                        </div>
-                    </div>
-
-                    <!-- Footer -->
-                    <div style="text-align: center; padding-top: 20px; border-top: 1px solid #333;">
-                        <p style="color: #666; font-size: 13px; margin: 0 0 8px 0;">
-                            You're receiving this because you subscribed to Pryzmira newsletter.
-                        </p>
-                        <p style="color: #666; font-size: 13px; margin: 0;">
-                            © ${new Date().getFullYear()} Pryzmira. All rights reserved.
-                        </p>
-                    </div>
-                </div>
-            </body>
-            </html>
-        `
+        subject: brief.subject,
+        html: getBaseEmailLayout(
+            `${firstName}, here is your Pryzmira workspace brief.`,
+            `<p style="margin:0 0 16px;line-height:1.7;color:#4d433a;">${brief.plan.summary}</p>
+             <div style="margin:24px 0;padding:18px;border-radius:18px;background:#f3eadc;">
+               <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">Sprint focus</p>
+               <p style="margin:0;line-height:1.7;color:#1f1a17;">${brief.plan.sprintFocus}</p>
+             </div>
+             <div style="margin:24px 0;">
+               <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">Next actions</p>
+               ${actions}
+             </div>
+             <div style="margin:24px 0;">
+               <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">Key picks</p>
+               ${picks}
+             </div>
+             <p style="margin:0 0 18px;line-height:1.7;color:#4d433a;">${brief.plan.monetizationHook}</p>
+             <a href="${siteUrl}/desk?profileId=${encodeURIComponent(profile.id)}" style="display:inline-block;padding:14px 22px;border-radius:999px;background:#1f1a17;color:#fff8ef;text-decoration:none;font-weight:600;">Open your workspace</a>`
+        ),
     };
-};
+}
 
-// Send email to a single recipient
-async function sendEmail(to: string, subject: string, html: string, apiKey: string, fromEmail: string) {
+async function sendEmail(
+    to: string,
+    content: EmailContent,
+    apiKey: string,
+    fromEmail: string
+) {
     const response = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
+            Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-            from: `Pryzmira Newsletter <${fromEmail}>`,
+            from: `Pryzmira <${fromEmail}>`,
             to: [to],
-            subject,
-            html
-        })
+            subject: content.subject,
+            html: content.html,
+        }),
     });
 
     const result = await response.json();
@@ -133,106 +166,157 @@ async function sendEmail(to: string, subject: string, html: string, apiKey: stri
     return result;
 }
 
-export async function POST(request: Request) {
-    // Verify authorization
-    const authHeader = request.headers.get('authorization');
-    const cronSecret = process.env.CRON_SECRET;
+async function buildStrategyRecipients(siteUrl: string): Promise<CampaignRecipient[]> {
+    const profiles = await listStrategyProfilesForBriefs();
+    const recipients: CampaignRecipient[] = [];
 
-    // Allow requests from Vercel Cron or with valid secret
-    const isVercelCron = request.headers.get('x-vercel-cron') === '1';
+    for (const profile of profiles) {
+        const plan = buildStrategyPlan(profile);
+        const draft = buildStrategyBrief(profile, plan);
+        const brief = await saveStrategyBrief(
+            profile.id,
+            draft.subject,
+            draft.preview,
+            draft.plan
+        );
 
-    if (!isVercelCron && cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        recipients.push({
+            email: profile.email,
+            content: getStrategyBriefContent(profile, brief, siteUrl),
+            type: 'strategy',
+        });
     }
 
+    return recipients;
+}
+
+async function dispatchCampaign(recipients: CampaignRecipient[]) {
+    const apiKey = process.env.RESEND_API_KEY;
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+
+    if (!apiKey) {
+        return NextResponse.json({ error: 'RESEND_API_KEY not configured' }, { status: 500 });
+    }
+
+    if (recipients.length === 0) {
+        return NextResponse.json(
+            { error: 'No recipients available for this campaign.' },
+            { status: 400 }
+        );
+    }
+
+    const results: Array<{
+        email: string;
+        status: 'failed' | 'sent';
+        type: 'generic' | 'strategy';
+        error?: string;
+        id?: string;
+    }> = [];
+
+    for (const recipient of recipients) {
+        try {
+            const result = await sendEmail(
+                recipient.email,
+                recipient.content,
+                apiKey,
+                fromEmail
+            );
+            results.push({
+                email: recipient.email,
+                id: result.id,
+                status: 'sent',
+                type: recipient.type,
+            });
+        } catch (error) {
+            results.push({
+                email: recipient.email,
+                error: error instanceof Error ? error.message : 'Unknown error',
+                status: 'failed',
+                type: recipient.type,
+            });
+        }
+    }
+
+    const sent = results.filter((result) => result.status === 'sent').length;
+    const failed = results.length - sent;
+
+    return NextResponse.json({
+        success: failed === 0,
+        message: `Workspace brief campaign sent to ${sent}/${results.length} recipients`,
+        stats: {
+            total: results.length,
+            sent,
+            failed,
+        },
+        details: results,
+    });
+}
+
+async function handleSend(request: Request, body?: unknown) {
+    const authError = getAuthorizationError(request);
+    if (authError) {
+        return authError;
+    }
+
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pryzmira.vercel.app';
+
     try {
-        const API_KEY = process.env.RESEND_API_KEY;
-        const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+        const manualSubscribers = normalizeSubscribers(
+            typeof body === 'object' && body !== null && 'subscribers' in body
+                ? (body as { subscribers?: unknown }).subscribers
+                : undefined
+        );
 
-        if (!API_KEY) {
-            return NextResponse.json(
-                { error: 'RESEND_API_KEY not configured' },
-                { status: 500 }
+        if (manualSubscribers.length > 0) {
+            return dispatchCampaign(
+                manualSubscribers.map((email) => ({
+                    email,
+                    content: getGenericBriefContent(siteUrl),
+                    type: 'generic',
+                }))
             );
         }
 
-        // Get subscribers from request body or use default test list
-        const body = await request.json().catch(() => ({}));
-        const subscribers: string[] = body.subscribers || [];
+        const strategyRecipients = await buildStrategyRecipients(siteUrl);
+        const strategyEmails = new Set(strategyRecipients.map((recipient) => recipient.email));
 
-        // If no subscribers provided, use the test/production list
-        if (subscribers.length === 0) {
-            // You can manually add subscribers here or fetch from a database
-            // For now, we'll return an error if no subscribers provided
-            return NextResponse.json(
-                { error: 'No subscribers provided. Send a POST request with { "subscribers": ["email1", "email2", ...] }' },
-                { status: 400 }
-            );
-        }
+        let genericRecipients: CampaignRecipient[] = [];
 
-        const newsletter = getNewsletterContent();
-        const results: { email: string; status: string; error?: string; id?: string }[] = [];
-
-        // Send to each subscriber (with rate limiting for Resend free tier: 100 emails/day)
-        for (const email of subscribers) {
-            try {
-                const result = await sendEmail(
+        try {
+            genericRecipients = (await getSubscribers())
+                .filter((email) => !strategyEmails.has(email))
+                .map((email) => ({
                     email,
-                    newsletter.subject,
-                    newsletter.html,
-                    API_KEY,
-                    FROM_EMAIL
-                );
-
-                results.push({
-                    email,
-                    status: 'sent',
-                    id: result.id
-                });
-
-                console.log(`[Newsletter] ✅ Sent to: ${email}`);
-
-                // Small delay between emails to avoid rate limiting
-                await new Promise(resolve => setTimeout(resolve, 200));
-            } catch (error) {
-                const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-                results.push({
-                    email,
-                    status: 'failed',
-                    error: errorMessage
-                });
-                console.error(`[Newsletter] ❌ Failed for ${email}:`, errorMessage);
+                    content: getGenericBriefContent(siteUrl),
+                    type: 'generic' as const,
+                }));
+        } catch (error) {
+            if (!isSubscriberStoreConfigurationError(error) || strategyRecipients.length === 0) {
+                throw error;
             }
         }
 
-        const successCount = results.filter(r => r.status === 'sent').length;
-        const failedCount = results.filter(r => r.status === 'failed').length;
-
-        return NextResponse.json({
-            success: true,
-            message: `Newsletter sent to ${successCount}/${subscribers.length} subscribers`,
-            stats: {
-                total: subscribers.length,
-                sent: successCount,
-                failed: failedCount
-            },
-            details: results
-        });
-
+        return dispatchCampaign([...strategyRecipients, ...genericRecipients]);
     } catch (error) {
-        console.error('[Newsletter] Cron error:', error);
+        if (isSubscriberStoreConfigurationError(error) || isStrategyConfigurationError(error)) {
+            return NextResponse.json(
+                { error: error instanceof Error ? error.message : 'Storage is not configured.' },
+                { status: 503 }
+            );
+        }
+
         return NextResponse.json(
-            { error: 'Internal server error' },
+            { error: 'Unable to send the workspace brief campaign.' },
             { status: 500 }
         );
     }
 }
 
-// GET endpoint for health check
-export async function GET() {
-    return NextResponse.json({
-        status: 'ok',
-        message: 'Newsletter cron endpoint is active. Use POST to send newsletters.',
-        usage: 'POST with body: { "subscribers": ["email1@example.com", "email2@example.com"] }'
-    });
+export async function POST(request: Request) {
+    const body = await request.json().catch(() => ({}));
+    return handleSend(request, body);
+}
+
+export async function GET(request: Request) {
+    return handleSend(request);
 }

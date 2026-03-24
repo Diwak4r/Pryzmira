@@ -4,9 +4,14 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Send, Users, Mail, CheckCircle, XCircle, Loader2, Plus, Trash2 } from 'lucide-react';
+import { Send, Users, Mail, CheckCircle, XCircle, Loader2, Plus, Trash2, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
 
 export default function NewsletterAdmin() {
+    const [isAuthed, setIsAuthed] = useState(false);
+    const [adminSecret, setAdminSecret] = useState('');
+    const [showSecret, setShowSecret] = useState(false);
+    const [authError, setAuthError] = useState('');
+
     const [subscribers, setSubscribers] = useState<string[]>([]);
     const [newEmail, setNewEmail] = useState('');
     const [bulkEmails, setBulkEmails] = useState('');
@@ -17,6 +22,24 @@ export default function NewsletterAdmin() {
         stats?: { total: number; sent: number; failed: number };
         details?: { email: string; status: string; error?: string }[];
     } | null>(null);
+
+    const handleAuth = async (e: React.FormEvent) => {
+        e.preventDefault();
+        // Verify admin secret against subscribe GET endpoint (which requires CRON_SECRET)
+        try {
+            const res = await fetch('/api/subscribe', {
+                headers: { 'Authorization': `Bearer ${adminSecret}` },
+            });
+            if (res.ok) {
+                setIsAuthed(true);
+                setAuthError('');
+            } else {
+                setAuthError('Invalid admin secret.');
+            }
+        } catch {
+            setAuthError('Network error.');
+        }
+    };
 
     const addEmail = () => {
         const email = newEmail.trim().toLowerCase();
@@ -57,6 +80,7 @@ export default function NewsletterAdmin() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${adminSecret}`,
                 },
                 body: JSON.stringify({ subscribers }),
             });
@@ -81,6 +105,37 @@ export default function NewsletterAdmin() {
 
     return (
         <div className="container mx-auto py-8 px-4 max-w-4xl">
+            {!isAuthed ? (
+                <div className="min-h-[60vh] flex items-center justify-center">
+                    <Card className="max-w-md w-full p-8">
+                        <div className="text-center mb-6">
+                            <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                <Lock className="w-7 h-7 text-primary" />
+                            </div>
+                            <h1 className="text-2xl font-bold mb-1">Admin Access</h1>
+                            <p className="text-muted-foreground text-sm">Enter admin secret to continue</p>
+                        </div>
+                        <form onSubmit={handleAuth} className="space-y-4">
+                            <div className="relative">
+                                <Input
+                                    type={showSecret ? 'text' : 'password'}
+                                    value={adminSecret}
+                                    onChange={e => setAdminSecret(e.target.value)}
+                                    placeholder="Admin Secret"
+                                    className="text-center pr-10"
+                                    autoFocus
+                                />
+                                <button type="button" onClick={() => setShowSecret(!showSecret)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                                    {showSecret ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                </button>
+                            </div>
+                            {authError && <p className="text-destructive text-sm text-center">{authError}</p>}
+                            <Button type="submit" className="w-full">Authenticate <ArrowRight className="w-4 h-4 ml-2" /></Button>
+                        </form>
+                    </Card>
+                </div>
+            ) : (
+            <>
             <div className="mb-8">
                 <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
                     <Mail className="w-8 h-8 text-primary" />
@@ -261,6 +316,8 @@ export default function NewsletterAdmin() {
                     </CardContent>
                 </Card>
             </div>
+            </>
+            )}
         </div>
     );
 }

@@ -1,149 +1,337 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, Moon, Sun } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useTheme } from '@/context/ThemeContext';
+import {
+    getSavedCourses,
+    getSavedResources,
+    getSavedTools,
+    subscribeToPersonalDataUpdates,
+} from '@/lib/personalDesk';
+import { getRouteMeta, normalizeRoute } from '@/lib/siteNavigation';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const navItems = [
-    { name: 'Categories', path: '/categories' },
-    { name: 'AI Tools', path: '/ai-tools' },
-    { name: 'Canvas', path: '/canvas' },
-    { name: 'Resources', path: '/resources' },
+    { label: 'Home', href: '/' },
+    { label: 'Workspace', href: '/desk' },
+    { label: 'Atlas', href: '/categories' },
+    { label: 'Tools', href: '/ai-tools' },
+    { label: 'Library', href: '/resources' },
+    { label: 'Roadmap', href: '/roadmap' },
+    { label: 'Studio', href: '/canvas' },
 ];
 
+const shellEase = [0.22, 1, 0.36, 1] as const;
+
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
-    const { theme, toggleTheme } = useTheme();
     const pathname = usePathname();
+    const { theme, toggleTheme } = useTheme();
+    const shouldReduceMotion = useReducedMotion();
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [isCompressed, setIsCompressed] = useState(false);
+    const [savedCount, setSavedCount] = useState(0);
+    const currentPath = useMemo(() => normalizeRoute(pathname), [pathname]);
+    const routeMeta = useMemo(() => getRouteMeta(pathname), [pathname]);
+
+    useEffect(() => {
+        let frame = 0;
+
+        const updateCompression = () => {
+            frame = 0;
+            const nextCompressed = window.scrollY > 18;
+            setIsCompressed((current) =>
+                current === nextCompressed ? current : nextCompressed
+            );
+        };
+
+        const handleScroll = () => {
+            if (frame) {
+                return;
+            }
+
+            frame = window.requestAnimationFrame(updateCompression);
+        };
+
+        updateCompression();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            if (frame) {
+                window.cancelAnimationFrame(frame);
+            }
+
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        const syncSavedCount = () => {
+            setSavedCount(
+                getSavedCourses().length +
+                    getSavedTools().length +
+                    getSavedResources().length
+            );
+        };
+
+        syncSavedCount();
+        return subscribeToPersonalDataUpdates(syncSavedCount);
+    }, []);
+
+    const iconMotionProps = shouldReduceMotion
+        ? {}
+        : {
+              initial: { opacity: 0, rotate: 14, scale: 0.82 },
+              animate: { opacity: 1, rotate: 0, scale: 1 },
+              exit: { opacity: 0, rotate: -14, scale: 0.82 },
+          };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border transition-colors duration-300">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                {/* Logo - Minimal */}
-                <Link href="/" className="flex items-center gap-2 group">
-                    <div className="relative w-8 h-8">
+        <motion.header
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={
+                shouldReduceMotion ? { duration: 0 } : { duration: 0.34, ease: shellEase }
+            }
+            className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-5 md:pt-4"
+        >
+            <motion.div
+                animate={
+                    shouldReduceMotion
+                        ? undefined
+                        : {
+                              y: isCompressed ? 0 : 2,
+                              scale: isCompressed ? 1 : 0.995,
+                          }
+                }
+                transition={
+                    shouldReduceMotion ? { duration: 0 } : { duration: 0.26, ease: shellEase }
+                }
+                className={`shell-surface mx-auto flex w-full max-w-6xl items-center justify-between gap-3 rounded-[1.3rem] px-3 py-2.5 md:px-4 ${
+                    isCompressed
+                        ? 'shadow-[0_18px_42px_hsl(var(--foreground)/0.10)]'
+                        : 'shadow-[0_14px_32px_hsl(var(--foreground)/0.06)]'
+                }`}
+            >
+                <Link href="/" className="flex min-w-0 items-center gap-3">
+                    <div className="relative h-10 w-10 overflow-hidden rounded-[0.95rem] border border-border/80 bg-background/90">
                         <Image
                             src="/logo.png"
-                            alt="Pryzmira Logo"
+                            alt="Pryzmira"
                             fill
-                            className="object-contain"
                             priority
+                            className="object-cover"
                         />
                     </div>
-                    <span className="text-lg font-bold tracking-tight text-foreground font-heading">
-                        Pryzmira
-                    </span>
+                    <div className="min-w-0">
+                        <p className="truncate text-base font-semibold tracking-[-0.03em] text-foreground">
+                            Pryzmira
+                        </p>
+                        <p className="truncate text-[0.68rem] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                            {routeMeta.shortLabel}
+                        </p>
+                    </div>
                 </Link>
 
-                {/* Desktop Nav - Simple Text Links */}
-                <div className="hidden md:flex items-center gap-6">
+                <nav className="hidden items-center gap-1 rounded-full border border-border/70 bg-background/76 p-1 lg:flex">
                     {navItems.map((item) => {
-                        const isActive = pathname === item.path || (item.path === '/categories' && pathname === '/');
+                        const isActive =
+                            currentPath === item.href ||
+                            (item.href === '/categories' && currentPath === '/course/[id]');
+
                         return (
                             <Link
-                                key={item.name}
-                                href={item.path}
-                                className={`text-sm font-medium transition-colors relative group ${isActive
-                                    ? 'text-foreground'
-                                    : 'text-muted-foreground hover:text-foreground'
-                                    }`}
+                                key={item.href}
+                                href={item.href}
+                                aria-current={isActive ? 'page' : undefined}
+                                className="relative block"
                             >
-                                {item.name}
-                                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                                {isActive && (
+                                    <motion.span
+                                        layoutId="nav-active-pill"
+                                        className="nav-active-pill absolute inset-0 rounded-full"
+                                        transition={
+                                            shouldReduceMotion
+                                                ? { duration: 0 }
+                                                : {
+                                                      type: 'spring',
+                                                      stiffness: 420,
+                                                      damping: 34,
+                                                      mass: 0.72,
+                                                  }
+                                        }
+                                    />
+                                )}
+                                <span
+                                    className={`relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium ${
+                                        isActive
+                                            ? 'text-primary-foreground'
+                                            : 'text-muted-foreground hover:text-foreground'
+                                    }`}
+                                >
+                                    <span>{item.label}</span>
+                                    {item.href === '/desk' && savedCount > 0 && (
+                                        <span
+                                            className={`rounded-full px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] ${
+                                                isActive
+                                                    ? 'bg-primary-foreground/14 text-primary-foreground'
+                                                    : 'bg-primary/10 text-primary'
+                                            }`}
+                                        >
+                                            {savedCount}
+                                        </span>
+                                    )}
+                                </span>
                             </Link>
                         );
                     })}
-                </div>
+                </nav>
 
-                {/* Right Actions - Functional Buttons */}
-                <div className="hidden md:flex items-center gap-3">
+                <div className="hidden items-center gap-2 md:flex">
                     <Button
                         variant="ghost"
                         size="icon"
                         onClick={toggleTheme}
-                        aria-label="Toggle Theme"
+                        className="rounded-full border border-border/70 bg-background/72 text-muted-foreground hover:text-foreground"
+                        aria-label="Toggle theme"
                     >
-                        {(theme || 'dark') === 'dark' ? (
-                            <Moon className="w-4 h-4" />
-                        ) : (
-                            <Sun className="w-4 h-4" />
-                        )}
-                    </Button>
-
-                    <Button asChild>
-                        <Link href="/categories">
-                            Get Started
-                        </Link>
+                        <AnimatePresence initial={false} mode="wait">
+                            {theme === 'dark' ? (
+                                <motion.span
+                                    key="sun"
+                                    {...iconMotionProps}
+                                    transition={{ duration: 0.18, ease: 'easeOut' }}
+                                >
+                                    <Sun className="h-4 w-4" />
+                                </motion.span>
+                            ) : (
+                                <motion.span
+                                    key="moon"
+                                    {...iconMotionProps}
+                                    transition={{ duration: 0.18, ease: 'easeOut' }}
+                                >
+                                    <Moon className="h-4 w-4" />
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
                     </Button>
                 </div>
 
-                {/* Mobile Menu Button */}
-                <div className="md:hidden">
-                    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <div className="flex items-center gap-2 md:hidden">
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={toggleTheme}
+                        className="rounded-full border border-border/70 bg-background/72 text-muted-foreground hover:text-foreground"
+                        aria-label="Toggle theme"
+                    >
+                        {theme === 'dark' ? (
+                            <Sun className="h-4 w-4" />
+                        ) : (
+                            <Moon className="h-4 w-4" />
+                        )}
+                    </Button>
+
+                    <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
                         <SheetTrigger asChild>
-                            <Button variant="ghost" size="icon">
-                                <Menu className="w-6 h-6" />
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/70 bg-background/72 text-muted-foreground hover:text-foreground"
+                                aria-label="Open navigation"
+                            >
+                                <Menu className="h-5 w-5" />
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                            <div className="flex flex-col gap-6 mt-6">
-                                {/* Mobile Nav Links */}
-                                <div className="flex flex-col gap-2">
-                                    {navItems.map((item) => {
-                                        const isActive = pathname === item.path;
+                        <SheetContent
+                            side="right"
+                            className="w-[320px] border-l border-border/80 bg-background/96 px-0 sm:w-[360px]"
+                        >
+                            <motion.div
+                                initial={shouldReduceMotion ? false : { opacity: 0, x: 12 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={
+                                    shouldReduceMotion
+                                        ? { duration: 0 }
+                                        : { duration: 0.24, ease: shellEase }
+                                }
+                                className="flex h-full flex-col px-6 pb-8 pt-10"
+                            >
+                                <div className="mb-8 space-y-2">
+                                    <p className="text-[0.68rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                                        Pryzmira
+                                    </p>
+                                    <p className="text-2xl font-semibold tracking-[-0.03em] text-foreground">
+                                        {routeMeta.title}
+                                    </p>
+                                </div>
+
+                                <div className="space-y-2">
+                                    {navItems.map((item, index) => {
+                                        const isActive =
+                                            currentPath === item.href ||
+                                            (item.href === '/categories' &&
+                                                currentPath === '/course/[id]');
+
                                         return (
-                                            <Link
-                                                key={item.name}
-                                                href={item.path}
-                                                onClick={() => setIsOpen(false)}
-                                                className={`block px-4 py-3 text-base font-medium rounded-md transition-colors ${isActive
-                                                    ? 'bg-accent text-accent-foreground'
-                                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
-                                                    }`}
+                                            <motion.div
+                                                key={item.href}
+                                                initial={
+                                                    shouldReduceMotion ? false : { opacity: 0, y: 12 }
+                                                }
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={
+                                                    shouldReduceMotion
+                                                        ? { duration: 0 }
+                                                        : {
+                                                              duration: 0.2,
+                                                              delay: index * 0.03,
+                                                              ease: shellEase,
+                                                          }
+                                                }
                                             >
-                                                {item.name}
-                                            </Link>
+                                                <Link
+                                                    href={item.href}
+                                                    onClick={() => setMenuOpen(false)}
+                                                    className={`flex items-center justify-between rounded-[1.1rem] border px-4 py-3.5 text-base font-medium ${
+                                                        isActive
+                                                            ? 'border-primary/20 bg-primary text-primary-foreground'
+                                                            : 'border-border/70 bg-background/72 text-foreground'
+                                                    }`}
+                                                >
+                                                    <span className="inline-flex items-center gap-2">
+                                                        <span>{item.label}</span>
+                                                        {item.href === '/desk' && savedCount > 0 ? (
+                                                            <span
+                                                                className={`rounded-full px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] ${
+                                                                    isActive
+                                                                        ? 'bg-primary-foreground/14 text-primary-foreground'
+                                                                        : 'bg-primary/10 text-primary'
+                                                                }`}
+                                                            >
+                                                                {savedCount}
+                                                            </span>
+                                                        ) : null}
+                                                    </span>
+                                                </Link>
+                                            </motion.div>
                                         );
                                     })}
                                 </div>
 
-                                {/* Mobile Actions */}
-                                <div className="flex flex-col gap-3 pt-4 border-t">
-                                    <Button
-                                        variant="outline"
-                                        className="w-full justify-between"
-                                        onClick={() => {
-                                            toggleTheme();
-                                            // Don't close menu on theme toggle
-                                        }}
-                                    >
-                                        <span className="font-medium">Theme</span>
-                                        {(theme || 'dark') === 'dark' ? (
-                                            <Moon className="w-5 h-5" />
-                                        ) : (
-                                            <Sun className="w-5 h-5" />
-                                        )}
-                                    </Button>
-
-                                    <Button asChild className="w-full">
-                                        <Link
-                                            href="/categories"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            Get Started
-                                        </Link>
-                                    </Button>
-                                </div>
-                            </div>
+                                <p className="mt-auto pt-8 text-sm leading-6 text-muted-foreground">
+                                    {routeMeta.summary}
+                                </p>
+                            </motion.div>
                         </SheetContent>
                     </Sheet>
                 </div>
-            </div>
-        </nav>
+            </motion.div>
+        </motion.header>
     );
 }

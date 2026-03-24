@@ -4,3 +4,5 @@ node_modules/
 dist/
 build/
 .vscode/
+.vercel
+SCALING_PLAN.md
