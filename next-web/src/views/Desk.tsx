@@ -8,17 +8,26 @@ import {
     BookOpen,
     Bot,
     Clock3,
+    Copy,
     ExternalLink,
     LibraryBig,
+    LockKeyhole,
     RotateCcw,
+    Sparkles,
     Target,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { type StrategyBriefRecord, type StrategyProfileRecord } from '@/lib/strategy';
+import {
+    type StrategyProfileRecord,
+    type StrategyWorkspaceResponse,
+} from '@/lib/strategy';
 import {
     clearStrategyProfileId,
+    clearStrategyResumeToken,
     getStrategyProfileId,
+    getStrategyResumeToken,
     setStrategyProfileId,
+    setStrategyResumeToken,
 } from '@/lib/strategySession';
 import { RecentCourse, RecentTool, getRecentCourses, getRecentTools } from '@/lib/recentlyViewed';
 import {
@@ -38,11 +47,6 @@ interface DeskSnapshot {
     recentCourses: RecentCourse[];
     recentTools: RecentTool[];
     vaultUnlocked: boolean;
-}
-
-interface StrategyWorkspaceState {
-    brief: StrategyBriefRecord;
-    profile: StrategyProfileRecord;
 }
 
 interface RecommendationItem {
@@ -108,8 +112,23 @@ function getPathLabel(path: StrategyProfileRecord['monetizationPath']): string {
     }
 }
 
-async function parseWorkspaceResponse(response: Response): Promise<StrategyWorkspaceState> {
-    const payload = (await response.json()) as StrategyWorkspaceState | { error?: string };
+function getPremiumStageLabel(stage: StrategyProfileRecord['premiumStage']): string {
+    switch (stage) {
+        case 'interested':
+            return 'Interested';
+        case 'lead':
+            return 'Joined waitlist';
+        case 'contacted':
+            return 'Contacted';
+        case 'converted':
+            return 'Active';
+        default:
+            return 'Open';
+    }
+}
+
+async function parseWorkspaceResponse(response: Response): Promise<StrategyWorkspaceResponse> {
+    const payload = (await response.json()) as StrategyWorkspaceResponse | { error?: string };
 
     if (!response.ok) {
         const message =
@@ -119,7 +138,7 @@ async function parseWorkspaceResponse(response: Response): Promise<StrategyWorks
         throw new Error(message);
     }
 
-    return payload as StrategyWorkspaceState;
+    return payload as StrategyWorkspaceResponse;
 }
 
 function ActionLink({ href }: { href: string }) {
@@ -145,7 +164,13 @@ function ActionLink({ href }: { href: string }) {
     );
 }
 
-export default function Desk({ initialProfileId }: { initialProfileId?: string }) {
+export default function Desk({
+    initialProfileId,
+    initialToken,
+}: {
+    initialProfileId?: string;
+    initialToken?: string;
+}) {
     const [snapshot, setSnapshot] = useState<DeskSnapshot>({
         savedCourses: [],
         savedTools: [],
@@ -154,10 +179,13 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
         recentTools: [],
         vaultUnlocked: false,
     });
-    const [workspace, setWorkspace] = useState<StrategyWorkspaceState | null>(null);
+    const [workspace, setWorkspace] = useState<StrategyWorkspaceResponse | null>(null);
     const [workspaceError, setWorkspaceError] = useState('');
     const [isLoadingWorkspace, setIsLoadingWorkspace] = useState(true);
     const [isRefreshingWorkspace, setIsRefreshingWorkspace] = useState(false);
+    const [isCapturingPremium, setIsCapturingPremium] = useState(false);
+    const [premiumMessage, setPremiumMessage] = useState('');
+    const [resumeLinkMessage, setResumeLinkMessage] = useState('');
 
     useEffect(() => {
         const syncSnapshot = () => {
@@ -172,13 +200,23 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
         let isCancelled = false;
 
         const loadWorkspace = async () => {
+            const nextResumeToken = initialToken || getStrategyResumeToken();
             const nextProfileId = initialProfileId || getStrategyProfileId();
+            const query = nextResumeToken
+                ? `token=${encodeURIComponent(nextResumeToken)}`
+                : nextProfileId
+                  ? `profileId=${encodeURIComponent(nextProfileId)}`
+                  : null;
 
-            if (!nextProfileId) {
+            if (!query) {
                 setWorkspace(null);
                 setWorkspaceError('');
                 setIsLoadingWorkspace(false);
                 return;
+            }
+
+            if (nextResumeToken) {
+                setStrategyResumeToken(nextResumeToken);
             }
 
             if (initialProfileId) {
@@ -189,13 +227,15 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
             setWorkspaceError('');
 
             try {
-                const response = await fetch(
-                    `/api/strategy/plan?profileId=${encodeURIComponent(nextProfileId)}`,
-                    { cache: 'no-store' }
-                );
+                const response = await fetch(`/api/strategy/plan?${query}`, { cache: 'no-store' });
                 const payload = await parseWorkspaceResponse(response);
 
                 if (!isCancelled) {
+                    setStrategyProfileId(payload.profile.id);
+                    const nextToken = new URL(payload.resumeUrl).searchParams.get('token');
+                    if (nextToken) {
+                        setStrategyResumeToken(nextToken);
+                    }
                     setWorkspace(payload);
                 }
             } catch (error) {
@@ -206,8 +246,12 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
                 const message =
                     error instanceof Error ? error.message : 'Unable to load your workspace.';
 
-                if (message.toLowerCase().includes('not found')) {
+                if (
+                    message.toLowerCase().includes('not found') ||
+                    message.toLowerCase().includes('invalid or expired')
+                ) {
                     clearStrategyProfileId();
+                    clearStrategyResumeToken();
                     setWorkspace(null);
                 }
 
@@ -224,7 +268,7 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
         return () => {
             isCancelled = true;
         };
-    }, [initialProfileId]);
+    }, [initialProfileId, initialToken]);
 
     const stats = useMemo(() => {
         if (!workspace) {
@@ -249,8 +293,11 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
             },
             {
                 label: 'Premium',
-                value: workspace.profile.premiumInterest ? 'Interested' : 'Later',
-                detail: workspace.profile.email,
+                value: getPremiumStageLabel(workspace.profile.premiumStage),
+                detail:
+                    workspace.profile.premiumStage === 'lead'
+                        ? 'Priority access requested'
+                        : 'Upgrade path not claimed yet',
             },
         ];
     }, [workspace]);
@@ -268,6 +315,7 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
 
         setIsRefreshingWorkspace(true);
         setWorkspaceError('');
+        setPremiumMessage('');
 
         try {
             const response = await fetch('/api/strategy/plan', {
@@ -288,6 +336,10 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
             const payload = await parseWorkspaceResponse(response);
             setWorkspace(payload);
             setStrategyProfileId(payload.profile.id);
+            const nextToken = new URL(payload.resumeUrl).searchParams.get('token');
+            if (nextToken) {
+                setStrategyResumeToken(nextToken);
+            }
         } catch (error) {
             setWorkspaceError(
                 error instanceof Error
@@ -296,6 +348,73 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
             );
         } finally {
             setIsRefreshingWorkspace(false);
+        }
+    };
+
+    const handlePremiumCapture = async () => {
+        if (!workspace) {
+            return;
+        }
+
+        setIsCapturingPremium(true);
+        setPremiumMessage('');
+
+        try {
+            const response = await fetch('/api/strategy/premium-interest', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    profileId: workspace.profile.id,
+                    surface: 'desk',
+                    offer: 'pro_waitlist',
+                }),
+            });
+            const payload = (await response.json()) as
+                | { error?: string }
+                | { profile: StrategyProfileRecord };
+
+            if (!response.ok) {
+                throw new Error(
+                    typeof payload === 'object' && payload && 'error' in payload && payload.error
+                        ? payload.error
+                        : 'Unable to capture premium interest right now.'
+                );
+            }
+
+            if ('profile' in payload) {
+                setWorkspace((current) =>
+                    current
+                        ? {
+                              ...current,
+                              profile: payload.profile,
+                          }
+                        : current
+                );
+            }
+
+            setPremiumMessage('Priority access saved. Pryzmira will treat you as high-intent.');
+        } catch (error) {
+            setPremiumMessage(
+                error instanceof Error
+                    ? error.message
+                    : 'Unable to capture premium interest right now.'
+            );
+        } finally {
+            setIsCapturingPremium(false);
+        }
+    };
+
+    const handleCopyResumeLink = async () => {
+        if (!workspace?.resumeUrl || typeof navigator === 'undefined' || !navigator.clipboard) {
+            setResumeLinkMessage('Resume link is unavailable on this device.');
+            return;
+        }
+
+        try {
+            await navigator.clipboard.writeText(workspace.resumeUrl);
+            setResumeLinkMessage('Secure resume link copied.');
+        } catch {
+            setResumeLinkMessage('Unable to copy the resume link right now.');
         }
     };
 
@@ -488,6 +607,86 @@ export default function Desk({ initialProfileId }: { initialProfileId?: string }
 
             {workspace ? (
                 <>
+                    <section className="page-shell">
+                        <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
+                            <div className="paper-panel rounded-[1.9rem] p-6 md:p-7">
+                                <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                    <Sparkles className="h-4 w-4" />
+                                    Stay-ahead mode
+                                </div>
+                                <h2 className="mt-4 text-3xl text-display text-balance">
+                                    Turn this weekly brief into a stronger operator loop.
+                                </h2>
+                                <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">
+                                    Claim priority access if you want deeper weekly reviews, tighter
+                                    stack decisions, and a more aggressive pace than the free brief.
+                                </p>
+                                <div className="mt-6 flex flex-wrap gap-3">
+                                    <Button
+                                        type="button"
+                                        onClick={handlePremiumCapture}
+                                        disabled={
+                                            isCapturingPremium ||
+                                            workspace.profile.premiumStage === 'lead' ||
+                                            workspace.profile.premiumStage === 'contacted' ||
+                                            workspace.profile.premiumStage === 'converted'
+                                        }
+                                        className="rounded-full px-6 py-6 text-sm font-semibold"
+                                    >
+                                        {workspace.profile.premiumStage === 'lead' ||
+                                        workspace.profile.premiumStage === 'contacted' ||
+                                        workspace.profile.premiumStage === 'converted'
+                                            ? 'Priority access claimed'
+                                            : isCapturingPremium
+                                              ? 'Saving access...'
+                                              : 'Claim priority access'}
+                                    </Button>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        onClick={handleCopyResumeLink}
+                                        className="rounded-full px-6 py-6 text-sm font-semibold"
+                                    >
+                                        Copy secure resume link
+                                        <Copy className="ml-2 h-4 w-4" />
+                                    </Button>
+                                </div>
+                                {premiumMessage ? (
+                                    <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                                        {premiumMessage}
+                                    </p>
+                                ) : null}
+                                {resumeLinkMessage ? (
+                                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                        {resumeLinkMessage}
+                                    </p>
+                                ) : null}
+                            </div>
+
+                            <div className="paper-panel rounded-[1.9rem] p-6 md:p-7">
+                                <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                    <LockKeyhole className="h-4 w-4" />
+                                    Cross-device continuity
+                                </div>
+                                <h2 className="mt-4 text-3xl text-display text-balance">
+                                    Your workspace can reopen from email without rebuilding context.
+                                </h2>
+                                <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                                    Weekly briefs now carry a secure re-entry path, so your mission
+                                    room survives device changes and browser resets.
+                                </p>
+                                <div className="mt-6 rounded-[1.3rem] border border-border bg-background/74 p-4">
+                                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                        Resume link
+                                    </p>
+                                    <p className="mt-3 break-all text-sm leading-7 text-foreground/82">
+                                        {workspace.resumeUrl}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                     <section className="page-shell grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
                         <div className="paper-panel rounded-[1.9rem] p-6 md:p-7">
                             <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">

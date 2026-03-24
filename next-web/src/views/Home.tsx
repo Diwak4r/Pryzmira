@@ -14,6 +14,8 @@ import {
     Workflow,
 } from 'lucide-react';
 import {
+    buildStrategyPlan,
+    type StrategyWorkspaceResponse,
     getExperienceOptions,
     getGoalOptions,
     getMonetizationOptions,
@@ -21,7 +23,7 @@ import {
     type MonetizationPath,
     type StrategyGoal,
 } from '@/lib/strategy';
-import { setStrategyProfileId } from '@/lib/strategySession';
+import { setStrategyResumeToken } from '@/lib/strategySession';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -57,18 +59,18 @@ const defaultState: HomeFormState = {
 const promisePoints = [
     {
         icon: Workflow,
-        title: 'Starts from your goal',
-        body: 'Pryzmira converts an AI ambition into a weekly mission, a support stack, and a cleaner next move.',
+        title: 'Starts from your edge',
+        body: 'Pryzmira converts AI anxiety into one weekly mission, a support stack, and a sharper next move.',
     },
     {
         icon: Target,
-        title: 'Built for visible output',
-        body: 'Every brief is designed to produce shipping, proof of work, or sharper leverage inside your current workflow.',
+        title: 'Built for visible advantage',
+        body: 'Every brief is designed to create shipping, proof of work, or a concrete gain inside your current workflow.',
     },
     {
         icon: Compass,
         title: 'Keeps the right material close',
-        body: 'Atlas, tools, library, and roadmap become supporting surfaces around the workspace instead of separate silos.',
+        body: 'Atlas, tools, library, and roadmap become supporting surfaces around the workspace instead of noisy silos.',
     },
 ];
 
@@ -102,6 +104,20 @@ export default function Home() {
     const goals = useMemo(() => getGoalOptions(), []);
     const experienceOptions = useMemo(() => getExperienceOptions(), []);
     const monetizationOptions = useMemo(() => getMonetizationOptions(), []);
+    const previewPlan = useMemo(
+        () =>
+            buildStrategyPlan({
+                email: formState.email || 'preview@pryzmira.dev',
+                fullName: formState.fullName || 'Pryzmira Builder',
+                goal: formState.goal,
+                experienceLevel: formState.experienceLevel,
+                weeklyHours: Number(formState.weeklyHours) || 6,
+                monetizationPath: formState.monetizationPath,
+                wantsBriefs: formState.wantsBriefs,
+                premiumInterest: formState.premiumInterest,
+            }),
+        [formState]
+    );
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -120,18 +136,30 @@ export default function Home() {
                     }),
                 });
 
-                const payload = await response.json();
+                const payload = (await response.json()) as
+                    | StrategyWorkspaceResponse
+                    | { error?: string };
 
                 if (!response.ok) {
                     throw new Error(
-                        typeof payload.error === 'string'
+                        typeof payload === 'object' &&
+                            payload !== null &&
+                            'error' in payload &&
+                            typeof payload.error === 'string'
                             ? payload.error
                             : 'Unable to generate your strategy right now.'
                     );
                 }
 
-                setStrategyProfileId(payload.profile.id);
-                router.push(`/desk?profileId=${encodeURIComponent(payload.profile.id)}`);
+                const workspacePayload = payload as StrategyWorkspaceResponse;
+                const nextUrl = new URL(workspacePayload.resumeUrl);
+                const token = nextUrl.searchParams.get('token');
+
+                if (token) {
+                    setStrategyResumeToken(token);
+                }
+
+                router.push(`${nextUrl.pathname}${nextUrl.search}`);
             } catch (requestError) {
                 setError(
                     requestError instanceof Error
@@ -155,11 +183,11 @@ export default function Home() {
                         <div className="space-y-5">
                             <p className="section-kicker">Turn AI ambition into a room you can work from</p>
                             <h1 className="max-w-4xl text-5xl text-display text-balance md:text-7xl">
-                                Build your AI workspace, tool stack, and weekly brief in one move.
+                                Stay ahead of AI change with a workspace that tells you what to do next.
                             </h1>
                             <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-                                Start with a goal and leave with a working mission room: a weekly
-                                brief, the right AI tools, and the learning depth behind your next step.
+                                Start with one goal and leave with a weekly brief, the right stack,
+                                and a first-week plan built to reduce confusion before you fall behind.
                             </p>
                         </div>
 
@@ -180,22 +208,22 @@ export default function Home() {
                         </div>
 
                         <div className="grid gap-4 pt-3 md:grid-cols-3">
-                            <Metric
-                                label="Starting point"
-                                value="One brief"
-                                detail="A user enters one goal and gets a clear weekly direction back."
-                            />
-                            <Metric
-                                label="Core habit"
-                                value="Weekly"
-                                detail="The brief becomes the reason to return instead of rebrowse."
-                            />
-                            <Metric
-                                label="User value"
-                                value="Focus"
-                                detail="The product should reduce confusion before it tries to monetize."
-                            />
-                        </div>
+                                <Metric
+                                    label="Starting point"
+                                    value="One brief"
+                                    detail="A user enters one goal and gets a weekly direction they can act on immediately."
+                                />
+                                <Metric
+                                    label="Core habit"
+                                    value="Weekly"
+                                    detail="The brief becomes the reason to return instead of starting the research spiral again."
+                                />
+                                <Metric
+                                    label="User value"
+                                    value="Clarity"
+                                    detail="The product should help users protect their edge before it tries to monetize."
+                                />
+                            </div>
                     </div>
 
                     <motion.div
@@ -209,11 +237,11 @@ export default function Home() {
                             <div className="space-y-3">
                                 <p className="section-kicker">Free workspace brief</p>
                                 <h2 className="text-4xl text-display text-balance">
-                                    Tell Pryzmira what you want to become or build.
+                                    Tell Pryzmira what you do not want to fall behind on.
                                 </h2>
                                 <p className="text-sm leading-7 text-muted-foreground">
-                                    This creates your first AI workspace brief and saves it so you can
-                                    come back without rebuilding context.
+                                    This creates your first AI workspace brief, saves it, and gives you
+                                    a secure way to reopen it later without rebuilding context.
                                 </p>
                             </div>
 
@@ -341,10 +369,10 @@ export default function Home() {
                                             className="mt-1 h-4 w-4 rounded border-border text-primary"
                                         />
                                         <span>
-                                            Send me the weekly workspace brief.
+                                            Keep me ahead with the weekly workspace brief.
                                             <span className="mt-1 block text-muted-foreground">
-                                                Pryzmira will keep the mission alive with a tighter next
-                                                move each week.
+                                                Pryzmira will send one tighter next move each week so
+                                                the plan does not decay into saved tabs.
                                             </span>
                                         </span>
                                     </label>
@@ -362,10 +390,10 @@ export default function Home() {
                                             className="mt-1 h-4 w-4 rounded border-border text-primary"
                                         />
                                         <span>
-                                            I want deeper guidance when it is ready.
+                                            Reserve priority access to deeper weekly reviews.
                                             <span className="mt-1 block text-muted-foreground">
-                                                This helps Pryzmira identify people who want a stronger,
-                                                more persistent workspace later.
+                                                Join the high-intent waitlist for stronger execution
+                                                briefs, sharper stack decisions, and faster support later.
                                             </span>
                                         </span>
                                     </label>
@@ -385,6 +413,51 @@ export default function Home() {
                                     {isPending ? 'Building your workspace...' : 'Build my free workspace'}
                                     {!isPending ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
                                 </Button>
+
+                                <div className="rounded-[1.5rem] border border-border bg-background/72 p-4 md:p-5">
+                                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                                        Live preview of your first week
+                                    </p>
+                                    <h3 className="mt-3 text-2xl text-display text-balance">
+                                        {previewPlan.sprintFocus}
+                                    </h3>
+                                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                                        {previewPlan.promise}
+                                    </p>
+                                    <div className="mt-4 grid gap-3">
+                                        {previewPlan.nextActions.slice(0, 2).map((action, index) => (
+                                            <div
+                                                key={action}
+                                                className="rounded-[1.2rem] border border-border bg-background/82 px-4 py-3"
+                                            >
+                                                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                                    Move {index + 1}
+                                                </p>
+                                                <p className="mt-2 text-sm leading-7 text-foreground">
+                                                    {action}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-4 grid gap-3 md:grid-cols-2">
+                                        <div className="rounded-[1.2rem] border border-border bg-background/82 px-4 py-3">
+                                            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                                Anchor course
+                                            </p>
+                                            <p className="mt-2 text-sm leading-7 text-foreground">
+                                                {previewPlan.recommendations.courses[0]?.title}
+                                            </p>
+                                        </div>
+                                        <div className="rounded-[1.2rem] border border-border bg-background/82 px-4 py-3">
+                                            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                                Leverage tool
+                                            </p>
+                                            <p className="mt-2 text-sm leading-7 text-foreground">
+                                                {previewPlan.recommendations.tools[0]?.title}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </motion.div>

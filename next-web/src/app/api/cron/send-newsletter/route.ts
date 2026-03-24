@@ -3,10 +3,19 @@ import { getSubscribers, isSubscriberStoreConfigurationError } from '@/lib/db';
 import {
     buildStrategyBrief,
     buildStrategyPlan,
+    getStrategyWeekKey,
     type StrategyBriefRecord,
     type StrategyProfileRecord,
 } from '@/lib/strategy';
-import { listStrategyProfilesForBriefs, saveStrategyBrief } from '@/lib/strategyStore';
+import { getSiteUrl } from '@/lib/siteUrl';
+import { getStrategyResumeUrl } from '@/lib/strategyAccess';
+import {
+    getStrategyBriefByWeek,
+    listStrategyProfilesForBriefs,
+    markStrategyProfileBriefSent,
+    saveStrategyBrief,
+    updateStrategyBriefDelivery,
+} from '@/lib/strategyStore';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -16,8 +25,10 @@ interface EmailContent {
 }
 
 interface CampaignRecipient {
+    briefId?: string;
     content: EmailContent;
     email: string;
+    profileId?: string;
     type: 'generic' | 'strategy';
 }
 
@@ -74,16 +85,15 @@ function getBaseEmailLayout(title: string, body: string): string {
 
 function getGenericBriefContent(siteUrl: string): EmailContent {
     return {
-        subject: 'Pryzmira Weekly Workspace Brief',
+        subject: 'Pryzmira Weekly Edge Brief',
         html: getBaseEmailLayout(
-            'A sharper AI workspace note for this week.',
-            `<p style="margin:0 0 16px;line-height:1.7;color:#4d433a;">Pryzmira is evolving into an AI workspace platform built around clearer execution, better tool judgment, and weekly momentum.</p>
-             <p style="margin:0 0 16px;line-height:1.7;color:#4d433a;">This week, use the workspace to decide one AI outcome, tighten your stack, and spend time only where the signal is high.</p>
+            'Stay ahead of the next AI wave without drowning in noise.',
+            `<p style="margin:0 0 16px;line-height:1.7;color:#4d433a;">Pryzmira is designed to reduce AI chaos into one clearer weekly move. If you have been collecting links instead of compounding progress, start with the workspace.</p>
              <div style="margin:24px 0;padding:18px;border-radius:18px;background:#f3eadc;">
-               <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">Suggested loop</p>
-               <p style="margin:0 0 8px;line-height:1.7;">1. Open the workspace and define one AI mission.</p>
-               <p style="margin:0 0 8px;line-height:1.7;">2. Pull one course or tool from the atlas that directly supports it.</p>
-               <p style="margin:0;line-height:1.7;">3. Produce one visible output before the week ends.</p>
+               <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">This week's loop</p>
+               <p style="margin:0 0 8px;line-height:1.7;">1. Pick one AI outcome you do not want to fall behind on.</p>
+               <p style="margin:0 0 8px;line-height:1.7;">2. Let Pryzmira turn it into a short stack and action plan.</p>
+               <p style="margin:0;line-height:1.7;">3. Ship one visible output before the week ends.</p>
              </div>
              <a href="${siteUrl}" style="display:inline-block;margin-top:8px;padding:14px 22px;border-radius:999px;background:#1f1a17;color:#fff8ef;text-decoration:none;font-weight:600;">Open Pryzmira</a>`
         ),
@@ -93,7 +103,7 @@ function getGenericBriefContent(siteUrl: string): EmailContent {
 function getStrategyBriefContent(
     profile: StrategyProfileRecord,
     brief: StrategyBriefRecord,
-    siteUrl: string
+    resumeUrl: string
 ): EmailContent {
     const firstName = profile.fullName.split(' ')[0];
     const actions = brief.plan.nextActions
@@ -110,21 +120,21 @@ function getStrategyBriefContent(
     ]
         .map(
             (item) =>
-                `<p style="margin:0 0 10px;line-height:1.7;color:#4d433a;"><strong>${item.title}</strong> — ${item.reason}</p>`
+                `<p style="margin:0 0 10px;line-height:1.7;color:#4d433a;"><strong>${item.title}</strong> - ${item.reason}</p>`
         )
         .join('');
 
     return {
         subject: brief.subject,
         html: getBaseEmailLayout(
-            `${firstName}, here is your Pryzmira workspace brief.`,
+            `${firstName}, here is the AI edge you should protect this week.`,
             `<p style="margin:0 0 16px;line-height:1.7;color:#4d433a;">${brief.plan.summary}</p>
              <div style="margin:24px 0;padding:18px;border-radius:18px;background:#f3eadc;">
                <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">Sprint focus</p>
                <p style="margin:0;line-height:1.7;color:#1f1a17;">${brief.plan.sprintFocus}</p>
              </div>
              <div style="margin:24px 0;">
-               <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">Next actions</p>
+               <p style="margin:0 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7a6b5c;">Three moves</p>
                ${actions}
              </div>
              <div style="margin:24px 0;">
@@ -132,7 +142,7 @@ function getStrategyBriefContent(
                ${picks}
              </div>
              <p style="margin:0 0 18px;line-height:1.7;color:#4d433a;">${brief.plan.monetizationHook}</p>
-             <a href="${siteUrl}/desk?profileId=${encodeURIComponent(profile.id)}" style="display:inline-block;padding:14px 22px;border-radius:999px;background:#1f1a17;color:#fff8ef;text-decoration:none;font-weight:600;">Open your workspace</a>`
+             <a href="${resumeUrl}" style="display:inline-block;padding:14px 22px;border-radius:999px;background:#1f1a17;color:#fff8ef;text-decoration:none;font-weight:600;">Open your workspace</a>`
         ),
     };
 }
@@ -163,26 +173,45 @@ async function sendEmail(
         throw new Error(result.message || 'Failed to send email');
     }
 
-    return result;
+    return result as { id?: string };
 }
 
 async function buildStrategyRecipients(siteUrl: string): Promise<CampaignRecipient[]> {
     const profiles = await listStrategyProfilesForBriefs();
     const recipients: CampaignRecipient[] = [];
+    const weekKey = getStrategyWeekKey();
 
     for (const profile of profiles) {
+        const existingBrief = await getStrategyBriefByWeek(profile.id, weekKey, 'email');
+
+        if (existingBrief?.sendStatus === 'sent') {
+            continue;
+        }
+
         const plan = buildStrategyPlan(profile);
         const draft = buildStrategyBrief(profile, plan);
-        const brief = await saveStrategyBrief(
-            profile.id,
-            draft.subject,
-            draft.preview,
-            draft.plan
-        );
+        const brief =
+            existingBrief ??
+            (await saveStrategyBrief(
+                profile.id,
+                draft.subject,
+                draft.preview,
+                draft.plan,
+                {
+                    deliveryChannel: 'email',
+                    weekKey,
+                }
+            ));
 
         recipients.push({
+            briefId: brief.id,
+            content: getStrategyBriefContent(
+                profile,
+                brief,
+                getStrategyResumeUrl(profile.id, siteUrl)
+            ),
             email: profile.email,
-            content: getStrategyBriefContent(profile, brief, siteUrl),
+            profileId: profile.id,
             type: 'strategy',
         });
     }
@@ -207,27 +236,50 @@ async function dispatchCampaign(recipients: CampaignRecipient[]) {
 
     const results: Array<{
         email: string;
-        status: 'failed' | 'sent';
-        type: 'generic' | 'strategy';
         error?: string;
         id?: string;
+        status: 'failed' | 'sent';
+        type: 'generic' | 'strategy';
+        warning?: string;
     }> = [];
 
     for (const recipient of recipients) {
         try {
-            const result = await sendEmail(
-                recipient.email,
-                recipient.content,
-                apiKey,
-                fromEmail
-            );
+            const result = await sendEmail(recipient.email, recipient.content, apiKey, fromEmail);
+            let warning: string | undefined;
+
+            if (recipient.type === 'strategy' && recipient.briefId && recipient.profileId) {
+                const sentAt = new Date().toISOString();
+
+                try {
+                    await updateStrategyBriefDelivery(recipient.briefId, {
+                        sendStatus: 'sent',
+                        sentAt,
+                        emailProviderId: result.id ?? null,
+                    });
+                    await markStrategyProfileBriefSent(recipient.profileId, sentAt);
+                } catch (stateError) {
+                    warning =
+                        stateError instanceof Error
+                            ? `Email sent but state tracking failed: ${stateError.message}`
+                            : 'Email sent but state tracking failed.';
+                }
+            }
+
             results.push({
                 email: recipient.email,
                 id: result.id,
                 status: 'sent',
                 type: recipient.type,
+                warning,
             });
         } catch (error) {
+            if (recipient.type === 'strategy' && recipient.briefId) {
+                await updateStrategyBriefDelivery(recipient.briefId, {
+                    sendStatus: 'failed',
+                }).catch(() => undefined);
+            }
+
             results.push({
                 email: recipient.email,
                 error: error instanceof Error ? error.message : 'Unknown error',
@@ -258,7 +310,7 @@ async function handleSend(request: Request, body?: unknown) {
         return authError;
     }
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pryzmira.vercel.app';
+    const siteUrl = getSiteUrl();
 
     try {
         const manualSubscribers = normalizeSubscribers(

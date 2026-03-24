@@ -211,12 +211,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                                 </span>
                                 <div className="space-y-3">
                                     <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-foreground md:text-[2.4rem]">
-                                        An AI workspace that turns ambition into a weekly operating
-                                        system.
+                                        A weekly AI edge system that tells you what matters now.
                                     </h2>
                                     <p className="max-w-2xl text-sm leading-7 text-muted-foreground md:text-[0.95rem]">
                                         Pryzmira combines guidance, tools, and learning depth so users
-                                        keep returning to a workspace with a clear next move.
+                                        keep returning to a workspace that helps them stay current
+                                        without drowning in noise.
                                     </p>
                                 </div>
                             </div>
@@ -242,8 +242,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                                         Product
                                     </p>
                                     <p className="leading-6 text-muted-foreground">
-                                        Strategy first. Supporting surfaces second. The workspace is the
-                                        product, not the chrome around it.
+                                        Weekly clarity first. Supporting surfaces second. The workspace
+                                        is the product, not the chrome around it.
                                     </p>
                                 </div>
                             </div>
