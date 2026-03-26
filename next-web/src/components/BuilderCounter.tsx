@@ -28,7 +28,7 @@ export function BuilderCounter({ className = '' }: BuilderCounterProps) {
                     setCount(data.buildersThisWeek);
                     setIsLoading(false);
                 }
-            } catch (error) {
+            } catch {
                 if (!isCancelled) {
                     setCount(0);
                     setIsLoading(false);

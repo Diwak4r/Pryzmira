@@ -1,4 +1,4 @@
-import AITools from '@/views/AITools';
+import AIToolsClient from '@/components/AIToolsClient';
 import {
     filterTools,
     getToolCategories,
@@ -35,7 +35,7 @@ export default async function AIToolsPage({
     });
 
     return (
-        <AITools
+        <AIToolsClient
             categories={categories}
             displayedTools={filteredTools.slice(0, limit)}
             featuredTools={tools.filter((tool) => tool.featured).slice(0, 4)}
