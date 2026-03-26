@@ -30,11 +30,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
                     return saved;
                 }
             } catch {
-                return 'light';
+                return 'dark';
             }
         }
 
-        return 'light';
+        return 'dark';
     });
 
     useEffect(() => {

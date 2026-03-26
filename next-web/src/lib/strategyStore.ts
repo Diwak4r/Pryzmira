@@ -6,6 +6,7 @@ import {
     type StrategyBriefDeliveryChannel,
     type StrategyBriefRecord,
     type StrategyBriefSendStatus,
+    type StrategyGrowthStats,
     type StrategyLeadOffer,
     type StrategyLeadStatus,
     type StrategyLeadSurface,
@@ -14,6 +15,7 @@ import {
     type StrategyPremiumLeadRecord,
     type StrategyProfileInput,
     type StrategyProfileRecord,
+    type StrategyWaitlistStatus,
     getStrategyPremiumStage,
     getStrategyWeekKey,
     sanitizeStrategyProfileInput,
@@ -56,6 +58,19 @@ function createEmptySnapshot(): StrategyStoreSnapshot {
         profiles: [],
         updatedAt: new Date().toISOString(),
     };
+}
+
+function getCurrentWeekStart(): Date {
+    const current = new Date();
+    current.setUTCHours(0, 0, 0, 0);
+    const weekday = (current.getUTCDay() + 6) % 7;
+    current.setUTCDate(current.getUTCDate() - weekday);
+    return current;
+}
+
+function isOnOrAfter(dateValue: string, cutoff: Date): boolean {
+    const parsed = new Date(dateValue);
+    return !Number.isNaN(parsed.getTime()) && parsed >= cutoff;
 }
 
 function isProduction(): boolean {
@@ -473,6 +488,41 @@ async function listProfilesLocal(): Promise<StrategyProfileRecord[]> {
     return (await readLocalSnapshot()).profiles.filter((profile) => profile.wantsBriefs);
 }
 
+async function getGrowthStatsLocal(): Promise<StrategyGrowthStats> {
+    const snapshot = await readLocalSnapshot();
+    const weekStart = getCurrentWeekStart();
+
+    return {
+        briefsThisWeek: snapshot.briefs.filter((brief) => isOnOrAfter(brief.createdAt, weekStart))
+            .length,
+        buildersThisWeek: snapshot.profiles.filter((profile) =>
+            isOnOrAfter(profile.createdAt, weekStart)
+        ).length,
+        totalBuilders: snapshot.profiles.length,
+        waitlistCount: snapshot.premiumLeads.filter((lead) => lead.offer === 'pro_waitlist')
+            .length,
+    };
+}
+
+function getWaitlistStatusLocal(
+    leads: StrategyPremiumLeadRecord[],
+    lead: StrategyPremiumLeadRecord
+): StrategyWaitlistStatus | null {
+    if (lead.offer !== 'pro_waitlist') {
+        return null;
+    }
+
+    const waitlist = leads
+        .filter((entry) => entry.offer === 'pro_waitlist')
+        .sort((left, right) => left.createdAt.localeCompare(right.createdAt));
+    const position = waitlist.findIndex((entry) => entry.id === lead.id);
+
+    return {
+        position: position >= 0 ? position + 1 : waitlist.length,
+        total: waitlist.length,
+    };
+}
+
 async function saveBriefLocal(
     profileId: string,
     subject: string,
@@ -598,7 +648,11 @@ async function markProfileLastBriefSentLocal(
 
 async function capturePremiumLeadLocal(
     input: StrategyPremiumLeadInput
-): Promise<{ lead: StrategyPremiumLeadRecord; profile: StrategyProfileRecord }> {
+): Promise<{
+    lead: StrategyPremiumLeadRecord;
+    profile: StrategyProfileRecord;
+    waitlist: StrategyWaitlistStatus | null;
+}> {
     const snapshot = await readLocalSnapshot();
     const profile = snapshot.profiles.find((entry) => entry.id === input.profileId);
 
@@ -641,19 +695,25 @@ async function capturePremiumLeadLocal(
         updatedAt: timestamp,
     };
 
+    const premiumLeads = [
+        lead,
+        ...snapshot.premiumLeads.filter((entry) => entry.id !== lead.id),
+    ];
+
     await writeLocalSnapshot({
         ...snapshot,
-        premiumLeads: [
-            lead,
-            ...snapshot.premiumLeads.filter((entry) => entry.id !== lead.id),
-        ],
+        premiumLeads,
         profiles: snapshot.profiles.map((entry) =>
             entry.id === updatedProfile.id ? updatedProfile : entry
         ),
         updatedAt: timestamp,
     });
 
-    return { lead, profile: updatedProfile };
+    return {
+        lead,
+        profile: updatedProfile,
+        waitlist: getWaitlistStatusLocal(premiumLeads, lead),
+    };
 }
 
 type StrategyProfileRow = {
@@ -878,6 +938,84 @@ async function listProfilesPostgres(): Promise<StrategyProfileRecord[]> {
     return result.rows.map(mapProfileRow);
 }
 
+async function getGrowthStatsPostgres(): Promise<StrategyGrowthStats> {
+    await ensureSchema();
+
+    const pool = getPool();
+    const [profilesResult, briefsResult, waitlistResult] = await Promise.all([
+        pool.query<{
+            builders_this_week: string;
+            total_builders: string;
+        }>(`
+            SELECT
+                COUNT(*)::text AS total_builders,
+                COUNT(*) FILTER (
+                    WHERE created_at >= date_trunc('week', NOW())
+                )::text AS builders_this_week
+            FROM strategy_profiles
+        `),
+        pool.query<{ briefs_this_week: string }>(`
+            SELECT
+                COUNT(*) FILTER (
+                    WHERE created_at >= date_trunc('week', NOW())
+                )::text AS briefs_this_week
+            FROM strategy_briefs
+        `),
+        pool.query<{ waitlist_count: string }>(`
+            SELECT COUNT(*)::text AS waitlist_count
+            FROM strategy_premium_leads
+            WHERE offer = 'pro_waitlist'
+        `),
+    ]);
+
+    return {
+        briefsThisWeek: Number(briefsResult.rows[0]?.briefs_this_week ?? '0'),
+        buildersThisWeek: Number(profilesResult.rows[0]?.builders_this_week ?? '0'),
+        totalBuilders: Number(profilesResult.rows[0]?.total_builders ?? '0'),
+        waitlistCount: Number(waitlistResult.rows[0]?.waitlist_count ?? '0'),
+    };
+}
+
+async function getWaitlistStatusPostgres(
+    lead: StrategyPremiumLeadRecord
+): Promise<StrategyWaitlistStatus | null> {
+    if (lead.offer !== 'pro_waitlist') {
+        return null;
+    }
+
+    await ensureSchema();
+
+    const result = await getPool().query<{
+        position: string;
+        total: string;
+    }>(
+        `
+            WITH ordered AS (
+                SELECT
+                    id,
+                    ROW_NUMBER() OVER (ORDER BY created_at ASC, id ASC) AS position,
+                    COUNT(*) OVER () AS total
+                FROM strategy_premium_leads
+                WHERE offer = 'pro_waitlist'
+            )
+            SELECT position::text, total::text
+            FROM ordered
+            WHERE id = $1
+            LIMIT 1
+        `,
+        [lead.id]
+    );
+
+    if (!result.rows[0]) {
+        return null;
+    }
+
+    return {
+        position: Number(result.rows[0].position),
+        total: Number(result.rows[0].total),
+    };
+}
+
 async function saveBriefPostgres(
     profileId: string,
     subject: string,
@@ -1011,7 +1149,11 @@ async function markProfileLastBriefSentPostgres(
 
 async function capturePremiumLeadPostgres(
     input: StrategyPremiumLeadInput
-): Promise<{ lead: StrategyPremiumLeadRecord; profile: StrategyProfileRecord }> {
+): Promise<{
+    lead: StrategyPremiumLeadRecord;
+    profile: StrategyProfileRecord;
+    waitlist: StrategyWaitlistStatus | null;
+}> {
     await ensureSchema();
 
     const pool = getPool();
@@ -1119,6 +1261,7 @@ async function capturePremiumLeadPostgres(
     return {
         lead,
         profile: mapProfileRow(updatedProfileResult.rows[0]),
+        waitlist: await getWaitlistStatusPostgres(lead),
     };
 }
 
@@ -1174,6 +1317,18 @@ export async function listStrategyProfilesForBriefs(): Promise<StrategyProfileRe
     }
 
     return listProfilesLocal();
+}
+
+export async function getStrategyGrowthStats(): Promise<StrategyGrowthStats> {
+    if (isPostgresConfigured()) {
+        return getGrowthStatsPostgres();
+    }
+
+    if (isProduction()) {
+        throw createConfigurationError();
+    }
+
+    return getGrowthStatsLocal();
 }
 
 export async function saveStrategyBrief(
@@ -1256,7 +1411,11 @@ export async function markStrategyProfileBriefSent(
 
 export async function captureStrategyPremiumLead(
     input: StrategyPremiumLeadInput
-): Promise<{ lead: StrategyPremiumLeadRecord; profile: StrategyProfileRecord }> {
+): Promise<{
+    lead: StrategyPremiumLeadRecord;
+    profile: StrategyProfileRecord;
+    waitlist: StrategyWaitlistStatus | null;
+}> {
     if (isPostgresConfigured()) {
         return capturePremiumLeadPostgres(input);
     }

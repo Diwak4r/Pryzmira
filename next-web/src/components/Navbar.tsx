@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, Moon, Sun } from 'lucide-react';
+import BrandMark from '@/components/BrandMark';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useTheme } from '@/context/ThemeContext';
 import {
     getSavedCourses,
@@ -14,20 +16,40 @@ import {
     subscribeToPersonalDataUpdates,
 } from '@/lib/personalDesk';
 import { getRouteMeta, normalizeRoute } from '@/lib/siteNavigation';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+    getStrategyProfileId,
+    getStrategyResumeToken,
+    subscribeToStrategySession,
+} from '@/lib/strategySession';
 
-const navItems = [
-    { label: 'Home', href: '/' },
+const primaryNavItems = [
     { label: 'Workspace', href: '/desk' },
     { label: 'Atlas', href: '/categories' },
-    { label: 'Tools', href: '/ai-tools' },
     { label: 'Library', href: '/resources' },
+];
+
+const secondaryNavItems = [
+    { label: 'Tools', href: '/ai-tools' },
     { label: 'Roadmap', href: '/roadmap' },
     { label: 'Studio', href: '/canvas' },
 ];
 
 const shellEase = [0.22, 1, 0.36, 1] as const;
+
+function getWorkspaceHrefSnapshot(): string {
+    const resumeToken = getStrategyResumeToken();
+    const profileId = getStrategyProfileId();
+
+    if (resumeToken) {
+        return `/desk?token=${encodeURIComponent(resumeToken)}`;
+    }
+
+    if (profileId) {
+        return `/desk?profileId=${encodeURIComponent(profileId)}`;
+    }
+
+    return '/';
+}
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -38,6 +60,11 @@ export default function Navbar() {
     const [savedCount, setSavedCount] = useState(0);
     const currentPath = useMemo(() => normalizeRoute(pathname), [pathname]);
     const routeMeta = useMemo(() => getRouteMeta(pathname), [pathname]);
+    const workspaceHref = useSyncExternalStore(
+        subscribeToStrategySession,
+        getWorkspaceHrefSnapshot,
+        () => '/'
+    );
 
     useEffect(() => {
         let frame = 0;
@@ -45,9 +72,7 @@ export default function Navbar() {
         const updateCompression = () => {
             frame = 0;
             const nextCompressed = window.scrollY > 18;
-            setIsCompressed((current) =>
-                current === nextCompressed ? current : nextCompressed
-            );
+            setIsCompressed((current) => (current === nextCompressed ? current : nextCompressed));
         };
 
         const handleScroll = () => {
@@ -73,9 +98,7 @@ export default function Navbar() {
     useEffect(() => {
         const syncSavedCount = () => {
             setSavedCount(
-                getSavedCourses().length +
-                    getSavedTools().length +
-                    getSavedResources().length
+                getSavedCourses().length + getSavedTools().length + getSavedResources().length
             );
         };
 
@@ -90,14 +113,13 @@ export default function Navbar() {
               animate: { opacity: 1, rotate: 0, scale: 1 },
               exit: { opacity: 0, rotate: -14, scale: 0.82 },
           };
+    const workspaceActionLabel = workspaceHref === '/' ? 'Start workspace' : 'Open workspace';
 
     return (
         <motion.header
             initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={
-                shouldReduceMotion ? { duration: 0 } : { duration: 0.34, ease: shellEase }
-            }
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.34, ease: shellEase }}
             className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-5 md:pt-4"
         >
             <motion.div
@@ -109,9 +131,7 @@ export default function Navbar() {
                               scale: isCompressed ? 1 : 0.995,
                           }
                 }
-                transition={
-                    shouldReduceMotion ? { duration: 0 } : { duration: 0.26, ease: shellEase }
-                }
+                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.26, ease: shellEase }}
                 className={`shell-surface mx-auto flex w-full max-w-6xl items-center justify-between gap-3 rounded-[1.3rem] px-3 py-2.5 md:px-4 ${
                     isCompressed
                         ? 'shadow-[0_18px_42px_hsl(var(--foreground)/0.10)]'
@@ -119,28 +139,19 @@ export default function Navbar() {
                 }`}
             >
                 <Link href="/" className="flex min-w-0 items-center gap-3">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-[0.95rem] border border-border/80 bg-background/90">
-                        <Image
-                            src="/logo.png"
-                            alt="Pryzmira"
-                            fill
-                            priority
-                            sizes="40px"
-                            className="object-cover"
-                        />
-                    </div>
+                    <BrandMark compact />
                     <div className="min-w-0">
                         <p className="truncate text-base font-semibold tracking-[-0.03em] text-foreground">
                             Pryzmira
                         </p>
                         <p className="truncate text-[0.68rem] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                            {routeMeta.shortLabel}
+                            {pathname === '/' ? 'Daily AI workspace' : routeMeta.shortLabel}
                         </p>
                     </div>
                 </Link>
 
                 <nav className="hidden items-center gap-1 rounded-full border border-border/70 bg-background/76 p-1 lg:flex">
-                    {navItems.map((item) => {
+                    {primaryNavItems.map((item) => {
                         const isActive =
                             currentPath === item.href ||
                             (item.href === '/categories' && currentPath === '/course/[id]');
@@ -152,7 +163,7 @@ export default function Navbar() {
                                 aria-current={isActive ? 'page' : undefined}
                                 className="relative block"
                             >
-                                {isActive && (
+                                {isActive ? (
                                     <motion.span
                                         layoutId="nav-active-pill"
                                         className="nav-active-pill absolute inset-0 rounded-full"
@@ -167,7 +178,7 @@ export default function Navbar() {
                                                   }
                                         }
                                     />
-                                )}
+                                ) : null}
                                 <span
                                     className={`relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium ${
                                         isActive
@@ -176,7 +187,7 @@ export default function Navbar() {
                                     }`}
                                 >
                                     <span>{item.label}</span>
-                                    {item.href === '/desk' && savedCount > 0 && (
+                                    {item.href === '/desk' && savedCount > 0 ? (
                                         <span
                                             className={`rounded-full px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] ${
                                                 isActive
@@ -186,7 +197,7 @@ export default function Navbar() {
                                         >
                                             {savedCount}
                                         </span>
-                                    )}
+                                    ) : null}
                                 </span>
                             </Link>
                         );
@@ -194,6 +205,9 @@ export default function Navbar() {
                 </nav>
 
                 <div className="hidden items-center gap-2 md:flex">
+                    <Button asChild className="rounded-full px-4 py-2.5 text-sm font-semibold">
+                        <Link href={workspaceHref}>{workspaceActionLabel}</Link>
+                    </Button>
                     <Button
                         variant="ghost"
                         size="icon"
@@ -231,11 +245,7 @@ export default function Navbar() {
                         className="rounded-full border border-border/70 bg-background/72 text-muted-foreground hover:text-foreground"
                         aria-label="Toggle theme"
                     >
-                        {theme === 'dark' ? (
-                            <Sun className="h-4 w-4" />
-                        ) : (
-                            <Moon className="h-4 w-4" />
-                        )}
+                        {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
                     </Button>
 
                     <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
@@ -263,17 +273,22 @@ export default function Navbar() {
                                 }
                                 className="flex h-full flex-col px-6 pb-8 pt-10"
                             >
-                                <div className="mb-8 space-y-2">
-                                    <p className="text-[0.68rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
-                                        Pryzmira
-                                    </p>
-                                    <p className="text-2xl font-semibold tracking-[-0.03em] text-foreground">
-                                        {routeMeta.title}
+                                <div className="mb-8 space-y-3">
+                                    <BrandMark />
+                                    <p className="text-sm leading-7 text-muted-foreground">
+                                        Keep the workspace central. Open supporting material only when
+                                        the week calls for it.
                                     </p>
                                 </div>
 
+                                <Button asChild className="mb-6 rounded-full text-sm font-semibold">
+                                    <Link href={workspaceHref} onClick={() => setMenuOpen(false)}>
+                                        {workspaceActionLabel}
+                                    </Link>
+                                </Button>
+
                                 <div className="space-y-2">
-                                    {navItems.map((item, index) => {
+                                    {primaryNavItems.map((item, index) => {
                                         const isActive =
                                             currentPath === item.href ||
                                             (item.href === '/categories' &&
@@ -282,9 +297,7 @@ export default function Navbar() {
                                         return (
                                             <motion.div
                                                 key={item.href}
-                                                initial={
-                                                    shouldReduceMotion ? false : { opacity: 0, y: 12 }
-                                                }
+                                                initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={
                                                     shouldReduceMotion
@@ -323,6 +336,24 @@ export default function Navbar() {
                                             </motion.div>
                                         );
                                     })}
+                                </div>
+
+                                <div className="mt-8 space-y-3 border-t border-border/75 pt-6">
+                                    <p className="text-[0.68rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                                        Secondary
+                                    </p>
+                                    <div className="grid gap-2">
+                                        {secondaryNavItems.map((item) => (
+                                            <Link
+                                                key={item.href}
+                                                href={item.href}
+                                                onClick={() => setMenuOpen(false)}
+                                                className="rounded-[1rem] border border-border/70 px-4 py-3 text-sm text-muted-foreground transition-colors hover:border-primary/18 hover:bg-primary/6 hover:text-foreground"
+                                            >
+                                                {item.label}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
 
                                 <p className="mt-auto pt-8 text-sm leading-6 text-muted-foreground">
