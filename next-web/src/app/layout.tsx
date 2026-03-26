@@ -1,112 +1,112 @@
 import type { Metadata, Viewport } from 'next';
-import { Manrope, Newsreader } from 'next/font/google';
+import { JetBrains_Mono, Manrope, Sora } from 'next/font/google';
 import Script from 'next/script';
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout';
 import { Providers } from '@/components/Providers';
+import RuntimeTelemetry from '@/components/RuntimeTelemetry';
 
-const displayFont = Newsreader({
-  subsets: ['latin'],
-  variable: '--font-fraunces',
-  weight: ['400', '500', '600', '700'],
+const displayFont = Sora({
+    subsets: ['latin'],
+    variable: '--font-heading',
+    weight: ['400', '500', '600', '700'],
 });
 
 const bodyFont = Manrope({
-  subsets: ['latin'],
-  variable: '--font-plex-sans',
-  weight: ['400', '500', '600', '700', '800'],
+    subsets: ['latin'],
+    variable: '--font-body',
+    weight: ['400', '500', '600', '700', '800'],
+});
+
+const monoFont = JetBrains_Mono({
+    subsets: ['latin'],
+    variable: '--font-mono-ui',
+    weight: ['500', '600'],
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Pryzmira | Your weekly AI edge workspace',
-    template: '%s | Pryzmira',
-  },
-  description:
-    'Pryzmira turns AI anxiety into a weekly action plan: a sharper stack, a working brief, and a clearer next move for builders who do not want to fall behind.',
-  keywords: [
-    'AI workspace',
-    'AI strategy brief',
-    'AI learning plan',
-    'AI tool stack',
-    'builder workflow',
-    'AI operator',
-    'weekly AI brief',
-  ],
-  authors: [{ name: 'Diwakar Ray Yadav' }],
-  creator: 'Diwakar Ray Yadav',
-  manifest: '/manifest.json',
-  icons: {
-    icon: '/logo.png',
-    apple: '/android-chrome-192x192.png',
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://pryzmira.diwakaryadav.com.np',
-    siteName: 'Pryzmira',
-    title: 'Pryzmira | Your weekly AI edge workspace',
+    title: {
+        default: 'Pryzmira | AI operating desk',
+        template: '%s | Pryzmira',
+    },
     description:
-      'A strategy-first AI workspace that turns changing tools and trends into one weekly plan you can actually act on.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pryzmira | Your weekly AI edge workspace',
-    description:
-      'Stay ahead of AI change with a weekly brief, a sharper stack, and a workspace built for momentum.',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+        'Pryzmira is an AI operating desk that turns one goal into a weekly focus, working sessions, and an active support stack.',
+    keywords: [
+        'AI workspace',
+        'AI operating desk',
+        'AI weekly brief',
+        'AI workflow',
+        'AI builder workspace',
+        'AI strategy workspace',
+    ],
+    authors: [{ name: 'Diwakar Ray Yadav' }],
+    creator: 'Diwakar Ray Yadav',
+    manifest: '/manifest.json',
+    icons: {
+        icon: '/logo.png',
+        apple: '/android-chrome-192x192.png',
+    },
+    openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        url: 'https://pryzmira.diwakaryadav.com.np',
+        siteName: 'Pryzmira',
+        title: 'Pryzmira | AI operating desk',
+        description:
+            'One AI goal, one weekly operating brief, and one workspace that keeps the support material in reach.',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Pryzmira | AI operating desk',
+        description:
+            'Run AI work from one desk, keep the week active, and open supporting material only when it helps execution.',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f4efe5' },
-    { media: '(prefers-color-scheme: dark)', color: '#181410' },
-  ],
-  width: 'device-width',
-  initialScale: 1,
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: '#eef3f4' },
+        { media: '(prefers-color-scheme: dark)', color: '#0d1214' },
+    ],
+    width: 'device-width',
+    initialScale: 1,
 };
 
 const themeInitScript = `
   try {
     var savedTheme = localStorage.getItem('theme');
-    var theme = savedTheme === 'dark' ? 'dark' : 'light';
+    var theme = savedTheme === 'light' ? 'light' : 'dark';
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
   } catch (error) {
-    document.documentElement.classList.add('light');
+    document.documentElement.classList.add('dark');
   }
 `;
 
-const enableVercelTelemetry =
-  process.env.NODE_ENV === 'production' && process.env.VERCEL === '1';
-
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html
-      lang="en"
-      className={`${bodyFont.variable} ${displayFont.variable}`}
-      suppressHydrationWarning
-    >
-      <body suppressHydrationWarning>
-        <Script id="theme-init" strategy="beforeInteractive">
-          {themeInitScript}
-        </Script>
-        <Providers>
-          <ClientLayout>{children}</ClientLayout>
-        </Providers>
-        {enableVercelTelemetry ? <Analytics /> : null}
-        {enableVercelTelemetry ? <SpeedInsights /> : null}
-      </body>
-    </html>
-  );
+    return (
+        <html
+            lang="en"
+            className={`dark ${bodyFont.variable} ${displayFont.variable} ${monoFont.variable}`}
+            suppressHydrationWarning
+        >
+            <body suppressHydrationWarning>
+                <Script id="theme-init" strategy="beforeInteractive">
+                    {themeInitScript}
+                </Script>
+                <Providers>
+                    <ClientLayout>{children}</ClientLayout>
+                </Providers>
+                <RuntimeTelemetry />
+            </body>
+        </html>
+    );
 }

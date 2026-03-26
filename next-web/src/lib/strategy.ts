@@ -105,6 +105,18 @@ export interface StrategyPremiumLeadRecord {
     updatedAt: string;
 }
 
+export interface StrategyWaitlistStatus {
+    position: number;
+    total: number;
+}
+
+export interface StrategyGrowthStats {
+    briefsThisWeek: number;
+    buildersThisWeek: number;
+    totalBuilders: number;
+    waitlistCount: number;
+}
+
 export interface StrategyWorkspaceResponse {
     profile: StrategyProfileRecord;
     brief: StrategyBriefRecord;

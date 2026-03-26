@@ -11,9 +11,7 @@ import {
     Copy,
     ExternalLink,
     LibraryBig,
-    LockKeyhole,
     RotateCcw,
-    Sparkles,
     Target,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -277,12 +275,12 @@ export default function Desk({
 
         return [
             {
-                label: 'Mission',
+                label: 'Goal',
                 value: getGoalLabel(workspace.profile.goal),
                 detail: getExperienceLabel(workspace.profile.experienceLevel),
             },
             {
-                label: 'Capacity',
+                label: 'Hours',
                 value: `${workspace.profile.weeklyHours} hrs`,
                 detail: getPathLabel(workspace.profile.monetizationPath),
             },
@@ -292,12 +290,12 @@ export default function Desk({
                 detail: workspace.brief.plan.weekLabel,
             },
             {
-                label: 'Premium',
+                label: 'Access',
                 value: getPremiumStageLabel(workspace.profile.premiumStage),
                 detail:
                     workspace.profile.premiumStage === 'lead'
-                        ? 'Priority access requested'
-                        : 'Upgrade path not claimed yet',
+                        ? 'Priority review requested'
+                        : 'Standard desk',
             },
         ];
     }, [workspace]);
@@ -307,6 +305,46 @@ export default function Desk({
         snapshot.savedTools.length +
         snapshot.savedResources.length;
     const totalRecent = snapshot.recentCourses.length + snapshot.recentTools.length;
+
+    const supportGroups = useMemo(() => {
+        if (!workspace) {
+            return [];
+        }
+
+        return [
+            {
+                detail: 'Depth and proof of work.',
+                icon: <BookOpen className="h-4 w-4" />,
+                items: workspace.brief.plan.recommendations.courses,
+                title: 'Courses',
+            },
+            {
+                detail: 'Workflow leverage.',
+                icon: <Bot className="h-4 w-4" />,
+                items: workspace.brief.plan.recommendations.tools,
+                title: 'Tools',
+            },
+            {
+                detail: 'References and recovery docs.',
+                icon: <LibraryBig className="h-4 w-4" />,
+                items: workspace.brief.plan.recommendations.resources,
+                title: 'Resources',
+            },
+        ];
+    }, [workspace]);
+
+    const resumeDisplayUrl = useMemo(() => {
+        if (!workspace?.resumeUrl) {
+            return '';
+        }
+
+        try {
+            const parsed = new URL(workspace.resumeUrl);
+            return `${parsed.host}${parsed.pathname}${parsed.search}`;
+        } catch {
+            return workspace.resumeUrl;
+        }
+    }, [workspace]);
 
     const handleRefresh = async () => {
         if (!workspace) {
@@ -371,7 +409,10 @@ export default function Desk({
             });
             const payload = (await response.json()) as
                 | { error?: string }
-                | { profile: StrategyProfileRecord };
+                | {
+                      profile: StrategyProfileRecord;
+                      waitlist?: { position: number; total: number } | null;
+                  };
 
             if (!response.ok) {
                 throw new Error(
@@ -392,7 +433,14 @@ export default function Desk({
                 );
             }
 
-            setPremiumMessage('Priority access saved. Pryzmira will treat you as high-intent.');
+            const waitlistStatus =
+                'waitlist' in payload && payload.waitlist ? payload.waitlist : null;
+
+            setPremiumMessage(
+                waitlistStatus
+                    ? `Priority access saved. You are #${waitlistStatus.position} of ${waitlistStatus.total}.`
+                    : 'Priority access saved.'
+            );
         } catch (error) {
             setPremiumMessage(
                 error instanceof Error
@@ -419,80 +467,106 @@ export default function Desk({
     };
 
     return (
-        <div className="space-y-14 pb-16">
-            <section className="page-shell grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="space-y-10 pb-16">
+            <section className="page-shell grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.42 }}
-                    className="space-y-6"
+                    className="hero-stage overflow-hidden"
                 >
-                    <span className="brand-chip">
-                        <span className="brand-chip-dot" />
-                        AI workspace
-                    </span>
+                    <div className="space-y-6 p-7 md:p-10">
+                        <span className="brand-chip">
+                            <span className="brand-chip-dot" />
+                            Workspace
+                        </span>
 
-                    {workspace ? (
-                        <>
-                            <div className="space-y-4">
-                                <p className="section-kicker">Current brief</p>
-                                <h1 className="max-w-4xl text-5xl text-display text-balance md:text-7xl">
-                                    {workspace.brief.plan.headline}
-                                </h1>
-                                <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-                                    {workspace.brief.plan.summary}
-                                </p>
-                            </div>
+                        {workspace ? (
+                            <>
+                                <div className="space-y-4">
+                                    <p className="section-kicker">Current focus</p>
+                                    <h1 className="max-w-4xl text-5xl text-display text-balance md:text-6xl">
+                                        {workspace.brief.plan.sprintFocus}
+                                    </h1>
+                                    <p className="max-w-2xl text-base leading-8 text-muted-foreground">
+                                        {workspace.brief.plan.summary}
+                                    </p>
+                                </div>
 
-                            <div className="flex flex-wrap gap-3">
-                                <Button
-                                    type="button"
-                                    onClick={handleRefresh}
-                                    className="rounded-full px-6 py-6 text-sm font-semibold"
-                                    disabled={isRefreshingWorkspace}
-                                >
-                                    {isRefreshingWorkspace ? 'Refreshing...' : 'Refresh this brief'}
-                                    {!isRefreshingWorkspace ? (
-                                        <RotateCcw className="ml-2 h-4 w-4" />
-                                    ) : null}
-                                </Button>
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    className="rounded-full px-6 py-6 text-sm font-semibold"
-                                >
-                                    <Link href="/categories">Open the atlas</Link>
-                                </Button>
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <div className="space-y-4">
-                                <p className="section-kicker">Build the workspace first</p>
-                                <h1 className="max-w-4xl text-5xl text-display text-balance md:text-7xl">
-                                    Turn Pryzmira into a mission room instead of another bookmark pile.
-                                </h1>
-                                <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-                                    Start with the home intake. Pryzmira will convert your AI goal,
-                                    time, and outcome into a working weekly brief and the right support
-                                    stack.
-                                </p>
-                            </div>
+                                <div className="flex flex-wrap gap-3">
+                                    <Button
+                                        type="button"
+                                        onClick={handleRefresh}
+                                        className="rounded-full px-6 py-6 text-sm font-semibold"
+                                        disabled={isRefreshingWorkspace}
+                                    >
+                                        {isRefreshingWorkspace ? 'Refreshing...' : 'Refresh this week'}
+                                        {!isRefreshingWorkspace ? (
+                                            <RotateCcw className="ml-2 h-4 w-4" />
+                                        ) : null}
+                                    </Button>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        onClick={handleCopyResumeLink}
+                                        className="rounded-full px-6 py-6 text-sm font-semibold"
+                                    >
+                                        Copy resume link
+                                        <Copy className="ml-2 h-4 w-4" />
+                                    </Button>
+                                    <Button
+                                        asChild
+                                        variant="outline"
+                                        className="rounded-full px-6 py-6 text-sm font-semibold"
+                                    >
+                                        <Link href="/categories">Open atlas</Link>
+                                    </Button>
+                                </div>
 
-                            <div className="flex flex-wrap gap-3">
-                                <Button asChild className="rounded-full px-6 py-6 text-sm font-semibold">
-                                    <Link href="/">Build my workspace</Link>
-                                </Button>
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    className="rounded-full px-6 py-6 text-sm font-semibold"
-                                >
-                                    <Link href="/categories">Browse the atlas</Link>
-                                </Button>
-                            </div>
-                        </>
-                    )}
+                                <div className="grid gap-3">
+                                    {workspace.brief.plan.nextActions.map((action, index) => (
+                                        <div
+                                            key={action}
+                                            className="rounded-[1.25rem] border border-border/80 bg-background/72 px-4 py-4"
+                                        >
+                                            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                                Move {index + 1}
+                                            </p>
+                                            <p className="mt-2 text-sm leading-7 text-foreground">
+                                                {action}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className="space-y-4">
+                                    <p className="section-kicker">No active workspace</p>
+                                    <h1 className="max-w-4xl text-5xl text-display text-balance md:text-6xl">
+                                        Build the desk first, then let the rest of the product support it.
+                                    </h1>
+                                    <p className="max-w-2xl text-base leading-8 text-muted-foreground">
+                                        Start from the home intake. Pryzmira will turn the current goal,
+                                        weekly hours, and outcome path into one working brief.
+                                    </p>
+                                </div>
+
+                                <div className="flex flex-wrap gap-3">
+                                    <Button asChild className="rounded-full px-6 py-6 text-sm font-semibold">
+                                        <Link href="/">Build my workspace</Link>
+                                    </Button>
+                                    <Button
+                                        asChild
+                                        variant="outline"
+                                        className="rounded-full px-6 py-6 text-sm font-semibold"
+                                    >
+                                        <Link href="/categories">Open atlas</Link>
+                                    </Button>
+                                </div>
+                            </>
+                        )}
+                    </div>
                 </motion.div>
 
                 <motion.aside
@@ -504,10 +578,9 @@ export default function Desk({
                     {workspace ? (
                         <div className="space-y-6">
                             <div className="space-y-3">
-                                <p className="section-kicker">Workspace signal</p>
+                                <p className="section-kicker">Desk snapshot</p>
                                 <h2 className="text-3xl text-display text-balance">
-                                    {workspace.profile.fullName.split(' ')[0]}, your next week is no
-                                    longer vague.
+                                    {workspace.profile.fullName.split(' ')[0]}&apos;s current workspace
                                 </h2>
                                 <p className="text-sm leading-7 text-muted-foreground">
                                     {workspace.brief.preview}
@@ -529,52 +602,113 @@ export default function Desk({
                                     </div>
                                 ))}
                             </div>
+
+                            <div className="rounded-[1.5rem] border border-border bg-background/72 p-5">
+                                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                    Resume
+                                </p>
+                                <p className="mt-2 break-all text-sm leading-7 text-foreground/82">
+                                    {resumeDisplayUrl}
+                                </p>
+                                <div className="mt-5 flex flex-wrap gap-3">
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        onClick={handleCopyResumeLink}
+                                        className="rounded-full px-5 text-sm font-semibold"
+                                    >
+                                        Copy link
+                                    </Button>
+                                    <Button
+                                        type="button"
+                                        onClick={handlePremiumCapture}
+                                        disabled={
+                                            isCapturingPremium ||
+                                            workspace.profile.premiumStage === 'lead' ||
+                                            workspace.profile.premiumStage === 'contacted' ||
+                                            workspace.profile.premiumStage === 'converted'
+                                        }
+                                        className="rounded-full px-5 text-sm font-semibold"
+                                    >
+                                        {workspace.profile.premiumStage === 'lead' ||
+                                        workspace.profile.premiumStage === 'contacted' ||
+                                        workspace.profile.premiumStage === 'converted'
+                                            ? 'Priority access saved'
+                                            : isCapturingPremium
+                                              ? 'Saving...'
+                                              : 'Join priority access'}
+                                    </Button>
+                                </div>
+                                {resumeLinkMessage ? (
+                                    <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                                        {resumeLinkMessage}
+                                    </p>
+                                ) : null}
+                                {premiumMessage ? (
+                                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                        {premiumMessage}
+                                    </p>
+                                ) : null}
+                            </div>
                         </div>
                     ) : (
-                        <div className="grid gap-4 md:grid-cols-2">
-                            <div className="paper-soft rounded-[1.4rem] p-5">
-                                <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                                    Saved items
-                                </p>
-                                <p className="mt-3 text-2xl font-semibold text-foreground">
-                                    {totalSaved}
-                                </p>
-                                <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                                    Good support material, but not a working plan yet.
-                                </p>
-                            </div>
-                            <div className="paper-soft rounded-[1.4rem] p-5">
-                                <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                                    Recent opens
-                                </p>
-                                <p className="mt-3 text-2xl font-semibold text-foreground">
-                                    {totalRecent}
-                                </p>
-                                <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                                    What you touched last is still here.
+                        <div className="space-y-6">
+                            <div className="space-y-3">
+                                <p className="section-kicker">Support snapshot</p>
+                                <h2 className="text-3xl text-display text-balance">
+                                    The support material is already here. The brief is not.
+                                </h2>
+                                <p className="text-sm leading-7 text-muted-foreground">
+                                    Build the workspace first so these saved items stop behaving like
+                                    an unstructured pile.
                                 </p>
                             </div>
-                            <div className="paper-soft rounded-[1.4rem] p-5">
-                                <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                                    Vault
-                                </p>
-                                <p className="mt-3 text-2xl font-semibold text-foreground">
-                                    {snapshot.vaultUnlocked ? 'Open' : 'Locked'}
-                                </p>
-                                <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                                    Reference access for deeper sessions.
-                                </p>
-                            </div>
-                            <div className="paper-soft rounded-[1.4rem] p-5">
-                                <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                                    Next move
-                                </p>
-                                <p className="mt-3 text-2xl font-semibold text-foreground">
-                                    Build brief
-                                </p>
-                                <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                                    Give this desk a mission before adding more noise.
-                                </p>
+
+                            <div className="grid gap-4 md:grid-cols-2">
+                                <div className="paper-soft rounded-[1.4rem] p-5">
+                                    <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                        Saved items
+                                    </p>
+                                    <p className="mt-3 text-2xl font-semibold text-foreground">
+                                        {totalSaved}
+                                    </p>
+                                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                        Material worth revisiting.
+                                    </p>
+                                </div>
+                                <div className="paper-soft rounded-[1.4rem] p-5">
+                                    <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                        Recent opens
+                                    </p>
+                                    <p className="mt-3 text-2xl font-semibold text-foreground">
+                                        {totalRecent}
+                                    </p>
+                                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                        Recent activity is still available.
+                                    </p>
+                                </div>
+                                <div className="paper-soft rounded-[1.4rem] p-5">
+                                    <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                        Vault
+                                    </p>
+                                    <p className="mt-3 text-2xl font-semibold text-foreground">
+                                        {snapshot.vaultUnlocked ? 'Open' : 'Locked'}
+                                    </p>
+                                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                        Deeper references and saved access.
+                                    </p>
+                                </div>
+                                <div className="paper-soft rounded-[1.4rem] p-5">
+                                    <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                        Next move
+                                    </p>
+                                    <p className="mt-3 text-2xl font-semibold text-foreground">
+                                        Build brief
+                                    </p>
+                                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                        Give the desk one active mission.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     )}
@@ -607,113 +741,7 @@ export default function Desk({
 
             {workspace ? (
                 <>
-                    <section className="page-shell">
-                        <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
-                            <div className="paper-panel rounded-[1.9rem] p-6 md:p-7">
-                                <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                                    <Sparkles className="h-4 w-4" />
-                                    Stay-ahead mode
-                                </div>
-                                <h2 className="mt-4 text-3xl text-display text-balance">
-                                    Turn this weekly brief into a stronger operator loop.
-                                </h2>
-                                <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">
-                                    Claim priority access if you want deeper weekly reviews, tighter
-                                    stack decisions, and a more aggressive pace than the free brief.
-                                </p>
-                                <div className="mt-6 flex flex-wrap gap-3">
-                                    <Button
-                                        type="button"
-                                        onClick={handlePremiumCapture}
-                                        disabled={
-                                            isCapturingPremium ||
-                                            workspace.profile.premiumStage === 'lead' ||
-                                            workspace.profile.premiumStage === 'contacted' ||
-                                            workspace.profile.premiumStage === 'converted'
-                                        }
-                                        className="rounded-full px-6 py-6 text-sm font-semibold"
-                                    >
-                                        {workspace.profile.premiumStage === 'lead' ||
-                                        workspace.profile.premiumStage === 'contacted' ||
-                                        workspace.profile.premiumStage === 'converted'
-                                            ? 'Priority access claimed'
-                                            : isCapturingPremium
-                                              ? 'Saving access...'
-                                              : 'Claim priority access'}
-                                    </Button>
-                                    <Button
-                                        type="button"
-                                        variant="outline"
-                                        onClick={handleCopyResumeLink}
-                                        className="rounded-full px-6 py-6 text-sm font-semibold"
-                                    >
-                                        Copy secure resume link
-                                        <Copy className="ml-2 h-4 w-4" />
-                                    </Button>
-                                </div>
-                                {premiumMessage ? (
-                                    <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                                        {premiumMessage}
-                                    </p>
-                                ) : null}
-                                {resumeLinkMessage ? (
-                                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                                        {resumeLinkMessage}
-                                    </p>
-                                ) : null}
-                            </div>
-
-                            <div className="paper-panel rounded-[1.9rem] p-6 md:p-7">
-                                <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                                    <LockKeyhole className="h-4 w-4" />
-                                    Cross-device continuity
-                                </div>
-                                <h2 className="mt-4 text-3xl text-display text-balance">
-                                    Your workspace can reopen from email without rebuilding context.
-                                </h2>
-                                <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                                    Weekly briefs now carry a secure re-entry path, so your mission
-                                    room survives device changes and browser resets.
-                                </p>
-                                <div className="mt-6 rounded-[1.3rem] border border-border bg-background/74 p-4">
-                                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                                        Resume link
-                                    </p>
-                                    <p className="mt-3 break-all text-sm leading-7 text-foreground/82">
-                                        {workspace.resumeUrl}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section className="page-shell grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
-                        <div className="paper-panel rounded-[1.9rem] p-6 md:p-7">
-                            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                                <Target className="h-4 w-4" />
-                                This week&apos;s sprint
-                            </div>
-                            <h2 className="mt-4 text-4xl text-display">
-                                {workspace.brief.plan.sprintFocus}
-                            </h2>
-                            <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">
-                                {workspace.brief.plan.promise}
-                            </p>
-                            <div className="mt-6 grid gap-3">
-                                {workspace.brief.plan.nextActions.map((action, index) => (
-                                    <div
-                                        key={action}
-                                        className="rounded-[1.3rem] border border-border bg-background/74 px-4 py-4"
-                                    >
-                                        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                                            Action {index + 1}
-                                        </p>
-                                        <p className="mt-2 text-sm leading-7 text-foreground">{action}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
+                    <section className="page-shell grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
                         <div className="paper-panel rounded-[1.9rem] p-6 md:p-7">
                             <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                                 <Clock3 className="h-4 w-4" />
@@ -745,74 +773,89 @@ export default function Desk({
                                 ))}
                             </div>
                         </div>
+
+                        <div className="paper-panel rounded-[1.9rem] p-6 md:p-7">
+                            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                <Target className="h-4 w-4" />
+                                Support stack
+                            </div>
+                            <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
+                                Open these only when the active sprint needs them. The desk stays first.
+                            </p>
+                            <div className="mt-5 grid gap-4 xl:grid-cols-3">
+                                {supportGroups.map((group) => (
+                                    <div
+                                        key={group.title}
+                                        className="rounded-[1.5rem] border border-border bg-background/72 p-4"
+                                    >
+                                        <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                            {group.icon}
+                                            {group.title}
+                                        </div>
+                                        <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                                            {group.detail}
+                                        </p>
+                                        <div className="mt-4 space-y-4">
+                                            {(group.items as RecommendationItem[]).map((item) => (
+                                                <div
+                                                    key={`${group.title}-${item.id}`}
+                                                    className="rounded-[1.2rem] border border-border/80 bg-background/84 p-4"
+                                                >
+                                                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                                        {item.category}
+                                                    </p>
+                                                    <h3 className="mt-2 text-base font-semibold text-foreground">
+                                                        {item.title}
+                                                    </h3>
+                                                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                                        {item.reason}
+                                                    </p>
+                                                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                                        {item.label}
+                                                    </p>
+                                                    <ActionLink href={item.href} />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </section>
 
-                    <section className="page-shell space-y-5">
-                        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-                            <div>
-                                <p className="section-kicker">Recommended stack</p>
-                                <h2 className="mt-2 max-w-3xl text-4xl text-display text-balance">
-                                    Use the brief first, then move into the right surfaces.
-                                </h2>
-                            </div>
-                            <p className="max-w-xl text-sm leading-7 text-muted-foreground">
-                                These picks should shorten the path between your AI goal and visible
-                                output.
+                    <section className="page-shell grid gap-5 md:grid-cols-3">
+                        <div className="paper-soft rounded-[1.6rem] p-5">
+                            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                Saved items
+                            </p>
+                            <p className="mt-3 text-3xl font-semibold text-foreground">
+                                {totalSaved}
+                            </p>
+                            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                Material pinned for later use.
                             </p>
                         </div>
-                        <div className="grid gap-4 xl:grid-cols-3">
-                            {[
-                                {
-                                    detail: 'Depth and proof of work.',
-                                    icon: <BookOpen className="h-4 w-4" />,
-                                    items: workspace.brief.plan.recommendations.courses,
-                                    title: 'Courses',
-                                },
-                                {
-                                    detail: 'Workflow leverage.',
-                                    icon: <Bot className="h-4 w-4" />,
-                                    items: workspace.brief.plan.recommendations.tools,
-                                    title: 'Tools',
-                                },
-                                {
-                                    detail: 'References and recovery docs.',
-                                    icon: <LibraryBig className="h-4 w-4" />,
-                                    items: workspace.brief.plan.recommendations.resources,
-                                    title: 'Resources',
-                                },
-                            ].map((group) => (
-                                <div key={group.title} className="paper-panel rounded-[1.8rem] p-5 md:p-6">
-                                    <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                                        {group.icon}
-                                        {group.title}
-                                    </div>
-                                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                                        {group.detail}
-                                    </p>
-                                    <div className="mt-5 space-y-4">
-                                        {(group.items as RecommendationItem[]).map((item) => (
-                                            <div
-                                                key={`${group.title}-${item.id}`}
-                                                className="rounded-[1.3rem] border border-border bg-background/74 p-4"
-                                            >
-                                                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                                                    {item.category}
-                                                </p>
-                                                <h3 className="mt-2 text-lg font-semibold text-foreground">
-                                                    {item.title}
-                                                </h3>
-                                                <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                                                    {item.reason}
-                                                </p>
-                                                <p className="mt-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                                                    {item.label}
-                                                </p>
-                                                <ActionLink href={item.href} />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
+                        <div className="paper-soft rounded-[1.6rem] p-5">
+                            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                Recent opens
+                            </p>
+                            <p className="mt-3 text-3xl font-semibold text-foreground">
+                                {totalRecent}
+                            </p>
+                            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                Quick return path into current work.
+                            </p>
+                        </div>
+                        <div className="paper-soft rounded-[1.6rem] p-5">
+                            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                Vault
+                            </p>
+                            <p className="mt-3 text-3xl font-semibold text-foreground">
+                                {snapshot.vaultUnlocked ? 'Open' : 'Locked'}
+                            </p>
+                            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                Deeper references available when needed.
+                            </p>
                         </div>
                     </section>
                 </>

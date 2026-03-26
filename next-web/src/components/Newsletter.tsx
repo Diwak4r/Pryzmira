@@ -47,32 +47,30 @@ export default function Newsletter() {
             setEmail('');
         } catch (error) {
             setStatus('error');
-            setMessage(
-                error instanceof Error ? error.message : 'Subscription failed. Try again.'
-            );
+            setMessage(error instanceof Error ? error.message : 'Subscription failed. Try again.');
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <section className="border-t border-border/70 py-20">
+        <section className="border-t border-border/70 py-16">
             <div className="page-shell">
                 <motion.div
-                    initial={{ opacity: 0, y: 28 }}
+                    initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-120px' }}
-                    transition={{ duration: 0.5 }}
-                    className="paper-panel poster-shadow grid gap-10 rounded-[2rem] px-6 py-8 md:grid-cols-[1.25fr_1fr] md:px-10 md:py-10"
+                    transition={{ duration: 0.4 }}
+                    className="paper-panel poster-shadow grid gap-8 rounded-[1.8rem] px-6 py-7 md:grid-cols-[1.2fr_0.8fr] md:px-8 md:py-8"
                 >
                     <div className="space-y-5">
                         <p className="section-kicker">Weekly workspace brief</p>
-                        <h2 className="max-w-2xl text-4xl text-display text-balance md:text-6xl">
-                            One clear AI brief each week, built to keep people moving.
+                        <h2 className="max-w-2xl text-4xl text-display text-balance md:text-5xl">
+                            Get the weekly reset.
                         </h2>
                         <p className="max-w-xl text-base leading-8 text-muted-foreground">
-                            Pryzmira sends a compact operator note with sharper next steps, useful AI
-                            tools, and learning depth worth reopening.
+                            One short email with the current focus, tool shifts worth noticing, and
+                            the next move back inside the workspace.
                         </p>
                     </div>
 
@@ -108,14 +106,14 @@ export default function Newsletter() {
                                     disabled={isLoading}
                                     className="w-full rounded-full text-sm font-semibold"
                                 >
-                                    {isLoading ? 'Joining...' : 'Get the weekly brief'}
-                                    {!isLoading && <ArrowUpRight className="ml-2 h-4 w-4" />}
+                                    {isLoading ? 'Joining...' : 'Join the briefing list'}
+                                    {!isLoading ? <ArrowUpRight className="ml-2 h-4 w-4" /> : null}
                                 </Button>
                             </form>
                         )}
 
                         <AnimatePresence mode="wait">
-                            {status === 'error' && (
+                            {status === 'error' ? (
                                 <motion.div
                                     key="newsletter-error"
                                     initial={{ opacity: 0, y: 6 }}
@@ -126,11 +124,11 @@ export default function Newsletter() {
                                     <AlertCircle className="h-4 w-4" />
                                     <span>{message}</span>
                                 </motion.div>
-                            )}
+                            ) : null}
                         </AnimatePresence>
 
                         <p className="text-sm leading-6 text-muted-foreground">
-                            Less noise, better direction, and a cadence people can actually keep.
+                            No product blast. Just the weekly reset.
                         </p>
                     </div>
                 </motion.div>
