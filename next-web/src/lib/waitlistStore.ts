@@ -55,8 +55,11 @@ function getPool(): Pool {
     }
 
     if (!globalThis.__pryzmiraWaitlistPool) {
+        // Remove any SSL mode from connection string and force our SSL config
+        const cleanConnectionString = POSTGRES_CONNECTION_STRING.replace(/[?&]sslmode=[^&]*/g, '');
+
         globalThis.__pryzmiraWaitlistPool = new Pool({
-            connectionString: POSTGRES_CONNECTION_STRING,
+            connectionString: cleanConnectionString,
             max: 1,
             ssl: {
                 rejectUnauthorized: false,
