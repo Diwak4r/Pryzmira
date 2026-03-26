@@ -96,9 +96,9 @@ function getPool(): Pool {
         globalThis.__pryzmiraStrategyPool = new Pool({
             connectionString: POSTGRES_CONNECTION_STRING,
             max: 1,
-            ssl: POSTGRES_CONNECTION_STRING.includes('sslmode=require')
-                ? { rejectUnauthorized: false }
-                : undefined,
+            ssl: {
+                rejectUnauthorized: false,
+            },
         });
     }
 
