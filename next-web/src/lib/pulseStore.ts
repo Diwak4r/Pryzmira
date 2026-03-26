@@ -177,8 +177,7 @@ export async function createPulseItem(item: Omit<PulseItem, 'id' | 'createdAt'>)
         `INSERT INTO pulse_items (title, summary, url, source, category, published_at, heat, tags)
          VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
          ON CONFLICT (url) DO UPDATE SET
-           heat = EXCLUDED.heat,
-           updated_at = NOW()
+           heat = GREATEST(pulse_items.heat, EXCLUDED.heat)
          RETURNING id, title, summary, url, source, category, published_at, heat, tags, created_at`,
         [
           item.title,

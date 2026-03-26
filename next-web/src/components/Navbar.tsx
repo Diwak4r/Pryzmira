@@ -24,12 +24,13 @@ import {
 } from '@/lib/strategySession';
 
 const primaryNavItems = [
+    { label: 'Home', href: '/' },
     { label: 'Workspace', href: '/desk' },
-    { label: 'Atlas', href: '/categories' },
     { label: 'Library', href: '/resources' },
 ];
 
 const secondaryNavItems = [
+    { label: 'Atlas', href: '/categories' },
     { label: 'Tools', href: '/ai-tools' },
     { label: 'Roadmap', href: '/roadmap' },
     { label: 'Studio', href: '/canvas' },
@@ -151,7 +152,7 @@ export default function Navbar() {
                     </div>
                 </Link>
 
-                <nav className="hidden items-center gap-1 rounded-full border border-border/70 bg-background/76 p-1 lg:flex">
+                <nav className="hidden items-center gap-1 rounded-full border border-border/70 bg-background/82 p-1 lg:flex">
                     {primaryNavItems.map((item) => {
                         const isActive =
                             currentPath === item.href ||
@@ -206,6 +207,14 @@ export default function Navbar() {
                 </nav>
 
                 <div className="hidden items-center gap-2 md:flex">
+                    <div className="hidden xl:block text-right mr-2">
+                        <p className="text-[0.62rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                            {routeMeta.eyebrow}
+                        </p>
+                        <p className="max-w-[16rem] truncate text-xs text-muted-foreground/88">
+                            {routeMeta.focus}
+                        </p>
+                    </div>
                     <Button asChild className="rounded-full px-4 py-2.5 text-sm font-semibold">
                         <Link href={workspaceHref}>{workspaceActionLabel}</Link>
                     </Button>
