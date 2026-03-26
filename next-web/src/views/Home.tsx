@@ -2,9 +2,11 @@
 
 import { useEffect, useMemo, useState, useTransition } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowRight, Radar, ShieldCheck, Workflow } from 'lucide-react';
+import { BuilderCounter } from '@/components/BuilderCounter';
+import { WaitlistModal } from '@/components/WaitlistModal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -119,10 +121,13 @@ function buildStatusLine(growthStats: StrategyGrowthStats | null): { label: stri
 
 export default function Home() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [isPending, startTransition] = useTransition();
     const [formState, setFormState] = useState<HomeFormState>(defaultState);
     const [error, setError] = useState('');
     const [growthStats, setGrowthStats] = useState<StrategyGrowthStats | null>(null);
+    const [waitlistModalOpen, setWaitlistModalOpen] = useState(false);
+    const referralCode = searchParams.get('ref') || undefined;
 
     const goals = useMemo(() => getGoalOptions(), []);
     const experienceOptions = useMemo(() => getExperienceOptions(), []);
@@ -219,8 +224,14 @@ export default function Home() {
     };
 
     return (
-        <div className="space-y-12 pb-20">
-            <section className="page-shell">
+        <>
+            <WaitlistModal
+                open={waitlistModalOpen}
+                onOpenChange={setWaitlistModalOpen}
+                referralCode={referralCode}
+            />
+            <div className="space-y-12 pb-20">
+                <section className="page-shell">
                 <div className="hero-stage">
                     <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
                         <div className="space-y-8 p-7 md:p-10 lg:p-12">
@@ -237,6 +248,10 @@ export default function Home() {
                                 </p>
                             </div>
 
+                            <div className="control-frame p-5">
+                                <BuilderCounter />
+                            </div>
+
                             <div className="flex flex-wrap gap-3">
                                 <Button asChild className="rounded-full px-6 py-6 text-sm font-semibold">
                                     <Link href="#strategy-form" className="editorial-link">
@@ -250,6 +265,13 @@ export default function Home() {
                                     className="rounded-full px-6 py-6 text-sm font-semibold"
                                 >
                                     <Link href="/desk">Open workspace</Link>
+                                </Button>
+                                <Button
+                                    onClick={() => setWaitlistModalOpen(true)}
+                                    variant="outline"
+                                    className="rounded-full border-primary/30 bg-primary/5 px-6 py-6 text-sm font-semibold text-primary hover:bg-primary/10"
+                                >
+                                    Join Pro Waitlist
                                 </Button>
                             </div>
 
@@ -613,5 +635,6 @@ export default function Home() {
                 </div>
             </section>
         </div>
+        </>
     );
 }

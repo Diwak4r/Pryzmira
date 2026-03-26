@@ -204,6 +204,29 @@ async function ensureSchema(): Promise<void> {
                 CREATE INDEX IF NOT EXISTS strategy_premium_leads_profile_offer_idx
                 ON strategy_premium_leads(profile_id, offer, created_at DESC)
             `);
+
+            await pool.query(`
+                CREATE TABLE IF NOT EXISTS waitlist (
+                    id TEXT PRIMARY KEY,
+                    email TEXT UNIQUE NOT NULL,
+                    name TEXT,
+                    position INTEGER NOT NULL,
+                    referral_code TEXT UNIQUE NOT NULL,
+                    referred_by TEXT,
+                    joined_at TIMESTAMPTZ DEFAULT NOW(),
+                    status TEXT DEFAULT 'waiting'
+                )
+            `);
+
+            await pool.query(`
+                CREATE INDEX IF NOT EXISTS waitlist_position_idx
+                ON waitlist(position ASC)
+            `);
+
+            await pool.query(`
+                CREATE INDEX IF NOT EXISTS waitlist_referral_code_idx
+                ON waitlist(referral_code)
+            `);
         })().catch((error) => {
             globalThis.__pryzmiraStrategySchemaPromise = undefined;
             throw error;
@@ -492,6 +515,16 @@ async function getGrowthStatsLocal(): Promise<StrategyGrowthStats> {
     const snapshot = await readLocalSnapshot();
     const weekStart = getCurrentWeekStart();
 
+    const waitlistPath = path.join(process.cwd(), 'data', 'waitlist-store.json');
+    let waitlistCount = 0;
+    try {
+        const waitlistRaw = await readFile(waitlistPath, 'utf8');
+        const waitlistData = JSON.parse(waitlistRaw);
+        waitlistCount = Array.isArray(waitlistData.entries) ? waitlistData.entries.length : 0;
+    } catch {
+        waitlistCount = 0;
+    }
+
     return {
         briefsThisWeek: snapshot.briefs.filter((brief) => isOnOrAfter(brief.createdAt, weekStart))
             .length,
@@ -499,8 +532,7 @@ async function getGrowthStatsLocal(): Promise<StrategyGrowthStats> {
             isOnOrAfter(profile.createdAt, weekStart)
         ).length,
         totalBuilders: snapshot.profiles.length,
-        waitlistCount: snapshot.premiumLeads.filter((lead) => lead.offer === 'pro_waitlist')
-            .length,
+        waitlistCount,
     };
 }
 
@@ -963,8 +995,7 @@ async function getGrowthStatsPostgres(): Promise<StrategyGrowthStats> {
         `),
         pool.query<{ waitlist_count: string }>(`
             SELECT COUNT(*)::text AS waitlist_count
-            FROM strategy_premium_leads
-            WHERE offer = 'pro_waitlist'
+            FROM waitlist
         `),
     ]);
 

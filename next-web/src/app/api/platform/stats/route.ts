@@ -13,10 +13,16 @@ function isConfigurationError(error: unknown): boolean {
     return error instanceof Error && error.message.toLowerCase().includes('not configured');
 }
 
+export const revalidate = 300;
+
 export async function GET() {
     try {
         const stats = await getStrategyGrowthStats();
-        return NextResponse.json(stats);
+        return NextResponse.json(stats, {
+            headers: {
+                'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+            },
+        });
     } catch (error) {
         if (isConfigurationError(error)) {
             return NextResponse.json(emptyStats);

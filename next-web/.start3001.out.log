@@ -1,0 +1,10 @@
+
+> next-web@0.1.0 start
+> next start --port 3001
+
+   ▲ Next.js 16.0.7
+   - Local:         http://localhost:3001
+   - Network:       http://172.26.80.1:3001
+
+ ✓ Starting...
+ ✓ Ready in 795ms
