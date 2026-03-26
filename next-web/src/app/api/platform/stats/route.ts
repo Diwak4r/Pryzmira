@@ -13,7 +13,8 @@ function isConfigurationError(error: unknown): boolean {
     return error instanceof Error && error.message.toLowerCase().includes('not configured');
 }
 
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
     try {
