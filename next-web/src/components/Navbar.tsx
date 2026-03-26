@@ -140,14 +140,14 @@ export default function Navbar() {
                         : 'shadow-[0_14px_32px_hsl(var(--foreground)/0.06)]'
                 }`}
             >
-                <Link href="/" className="flex min-w-0 items-center gap-3">
+                <Link href="/" aria-label="Pryzmira home" className="flex min-w-0 items-center gap-3">
                     <BrandMark compact />
                     <div className="min-w-0">
                         <p className="truncate text-base font-semibold tracking-[-0.03em] text-foreground">
                             Pryzmira
                         </p>
                         <p className="truncate text-[0.68rem] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                            {pathname === '/' ? 'Daily AI workspace' : routeMeta.shortLabel}
+                            {pathname === '/' ? 'AI operating desk' : routeMeta.shortLabel}
                         </p>
                     </div>
                 </Link>

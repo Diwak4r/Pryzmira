@@ -277,7 +277,7 @@ export default function Home() {
 
                             <div className="flex flex-wrap gap-3">
                                 <Button asChild className="rounded-full px-6 py-6 text-sm font-semibold">
-                                    <Link href="#strategy-form" className="editorial-link">
+                                    <Link href="#strategy-form" aria-label="Build workspace" className="editorial-link">
                                         Build workspace
                                         <ArrowRight className="h-4 w-4" />
                                     </Link>
@@ -287,7 +287,7 @@ export default function Home() {
                                     variant="outline"
                                     className="rounded-full px-6 py-6 text-sm font-semibold"
                                 >
-                                    <Link href="/desk">Open workspace</Link>
+                                    <Link href="/desk" aria-label="Open workspace">Open workspace</Link>
                                 </Button>
                                 <Button
                                     onClick={() => setWaitlistModalOpen(true)}
