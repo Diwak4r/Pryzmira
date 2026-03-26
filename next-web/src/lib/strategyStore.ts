@@ -93,12 +93,22 @@ function getPool(): Pool {
     }
 
     if (!globalThis.__pryzmiraStrategyPool) {
+        console.log('[StrategyStore] Creating new Pool with SSL config:', {
+            hasConnectionString: Boolean(POSTGRES_CONNECTION_STRING),
+            connectionStringStart: POSTGRES_CONNECTION_STRING.substring(0, 30),
+            sslConfig: { rejectUnauthorized: false },
+        });
+
         globalThis.__pryzmiraStrategyPool = new Pool({
             connectionString: POSTGRES_CONNECTION_STRING,
             max: 1,
             ssl: {
                 rejectUnauthorized: false,
             },
+        });
+
+        globalThis.__pryzmiraStrategyPool.on('error', (error) => {
+            console.error('[StrategyStore] Pool error:', error);
         });
     }
 
