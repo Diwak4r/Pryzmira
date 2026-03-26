@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, Moon, Sun } from 'lucide-react';
 import BrandMark from '@/components/BrandMark';
 import { Button } from '@/components/ui/button';
+import { AuthButton } from '@/components/AuthButton';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useTheme } from '@/context/ThemeContext';
 import {
@@ -208,6 +209,7 @@ export default function Navbar() {
                     <Button asChild className="rounded-full px-4 py-2.5 text-sm font-semibold">
                         <Link href={workspaceHref}>{workspaceActionLabel}</Link>
                     </Button>
+                    <AuthButton />
                     <Button
                         variant="ghost"
                         size="icon"

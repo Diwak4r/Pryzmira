@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Check, Copy, X } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
     Dialog,
@@ -150,10 +150,10 @@ export function WaitlistModal({ open, onOpenChange, referralCode }: WaitlistModa
                                 <Check className="h-8 w-8 text-primary" />
                             </div>
                             <DialogTitle className="text-center text-2xl">
-                                You're on the list!
+                                You&apos;re on the list!
                             </DialogTitle>
                             <DialogDescription className="text-center text-base">
-                                You're #{success.position} in line for Pryzmira Pro
+                                You&apos;re #{success.position} in line for Pryzmira Pro
                             </DialogDescription>
                         </DialogHeader>
 

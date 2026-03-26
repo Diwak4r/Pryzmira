@@ -7,6 +7,9 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Radar, ShieldCheck, Workflow } from 'lucide-react';
 import { BuilderCounter } from '@/components/BuilderCounter';
 import { WaitlistModal } from '@/components/WaitlistModal';
+import { StackScoreCard } from '@/components/StackScoreCard';
+import { StackLeaderboard } from '@/components/StackLeaderboard';
+import { PulseFeed } from '@/components/PulseFeed';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -284,6 +287,15 @@ export default function Home() {
                                         </p>
                                     </div>
                                 ))}
+                            </div>
+
+                            <div className="grid gap-4 border-t border-border/70 pt-6 lg:grid-cols-2">
+                                <StackScoreCard />
+                                <StackLeaderboard />
+                            </div>
+
+                            <div className="border-t border-border/70 pt-6">
+                                <PulseFeed />
                             </div>
 
                             <div className="space-y-4 border-t border-border/70 pt-6">
