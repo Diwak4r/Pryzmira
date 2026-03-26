@@ -493,6 +493,50 @@ export default function Desk({
                                     </p>
                                 </div>
 
+                                <div className="rounded-[1.4rem] border border-border/80 bg-background/72 px-5 py-5">
+                                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                        This week at a glance
+                                    </p>
+                                    <div className="mt-4 grid gap-3 md:grid-cols-3">
+                                        <div>
+                                            <p className="text-sm font-semibold text-foreground">Mission</p>
+                                            <p className="mt-1 text-sm leading-7 text-muted-foreground">{workspace.brief.plan.headline}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-semibold text-foreground">Promise</p>
+                                            <p className="mt-1 text-sm leading-7 text-muted-foreground">{workspace.brief.plan.promise}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-semibold text-foreground">Week label</p>
+                                            <p className="mt-1 text-sm leading-7 text-muted-foreground">{workspace.brief.plan.weekLabel}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="rounded-[1.4rem] border border-border/80 bg-background/72 px-5 py-5">
+                                    <div className="flex items-center justify-between gap-3">
+                                        <div>
+                                            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Next actions</p>
+                                            <p className="mt-1 text-sm leading-7 text-muted-foreground">Do these before opening more tools or courses.</p>
+                                        </div>
+                                    </div>
+                                    <div className="mt-4 grid gap-3">
+                                        {workspace.brief.plan.nextActions.map((action, index) => (
+                                            <div
+                                                key={action}
+                                                className="rounded-[1.25rem] border border-border/80 bg-background/82 px-4 py-4"
+                                            >
+                                                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                                    Move {index + 1}
+                                                </p>
+                                                <p className="mt-2 text-sm leading-7 text-foreground">
+                                                    {action}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
                                 <div className="flex flex-wrap gap-3">
                                     <Button
                                         type="button"
@@ -523,21 +567,38 @@ export default function Desk({
                                     </Button>
                                 </div>
 
-                                <div className="grid gap-3">
-                                    {workspace.brief.plan.nextActions.map((action, index) => (
-                                        <div
-                                            key={action}
-                                            className="rounded-[1.25rem] border border-border/80 bg-background/72 px-4 py-4"
-                                        >
-                                            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                                                Move {index + 1}
+                                {resumeLinkMessage ? (
+                                    <p className="text-sm leading-7 text-muted-foreground">{resumeLinkMessage}</p>
+                                ) : null}
+                                {premiumMessage ? (
+                                    <p className="text-sm leading-7 text-muted-foreground">{premiumMessage}</p>
+                                ) : null}
+
+                                <div className="grid gap-4 md:grid-cols-2">
+                                    {stats.map((item) => (
+                                        <div key={item.label} className="paper-soft rounded-[1.4rem] p-5">
+                                            <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                                                {item.label}
                                             </p>
-                                            <p className="mt-2 text-sm leading-7 text-foreground">
-                                                {action}
+                                            <p className="mt-3 text-2xl font-semibold text-foreground">
+                                                {item.value}
+                                            </p>
+                                            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                                                {item.detail}
                                             </p>
                                         </div>
                                     ))}
                                 </div>
+
+                                <div className="rounded-[1.5rem] border border-border bg-background/72 p-5">
+                                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                        Resume link
+                                    </p>
+                                    <p className="mt-2 break-all text-sm leading-7 text-foreground/82">
+                                        {resumeDisplayUrl}
+                                    </p>
+                                </div>
+
                             </>
                         ) : (
                             <>
@@ -741,7 +802,7 @@ export default function Desk({
 
             {workspace ? (
                 <>
-                    <section className="page-shell grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
+                    <section className="page-shell grid gap-5 xl:grid-cols-[0.84fr_1.16fr]">
                         <div className="paper-panel rounded-[1.9rem] p-6 md:p-7">
                             <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                                 <Clock3 className="h-4 w-4" />

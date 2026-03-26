@@ -8,8 +8,9 @@ export async function GET() {
     const leaderboard = await getStackScoreLeaderboard(10);
     return NextResponse.json({ leaderboard });
   } catch (error) {
+    console.error('[Stack Leaderboard API] Error:', error);
     return NextResponse.json(
-      { error: 'Failed to load leaderboard', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Failed to load leaderboard' },
       { status: 500 }
     );
   }

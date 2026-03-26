@@ -8,8 +8,9 @@ export async function GET() {
     const score = await getStackScoreForUser();
     return NextResponse.json(score);
   } catch (error) {
+    console.error('[Stack Score API] Error:', error);
     return NextResponse.json(
-      { error: 'Failed to load stack score', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Failed to load stack score' },
       { status: 500 }
     );
   }

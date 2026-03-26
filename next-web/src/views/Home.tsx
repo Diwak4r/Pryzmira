@@ -243,12 +243,32 @@ export default function Home() {
                             <div className="space-y-5">
                                 <p className="utility-kicker">Daily AI operating desk</p>
                                 <h1 className="max-w-4xl text-5xl text-display md:text-7xl">
-                                    Stay current. Stay useful. Do not lose the week.
+                                    Turn one AI goal into a clear week of execution.
                                 </h1>
                                 <p className="max-w-2xl text-base leading-8 text-muted-foreground md:text-lg">
-                                    Pryzmira turns one AI goal into an active weekly desk so users know
-                                    what matters now, what to do next, and what can be ignored.
+                                    Pryzmira gives users one active workspace, one weekly brief, and one
+                                    support stack so they stop browsing endlessly and start moving.
                                 </p>
+                            </div>
+
+                            <div className="rounded-[1.4rem] border border-border/80 bg-background/72 px-5 py-5">
+                                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                    What this product does
+                                </p>
+                                <div className="mt-4 grid gap-3 md:grid-cols-3">
+                                    <div>
+                                        <p className="text-sm font-semibold text-foreground">1. Capture the goal</p>
+                                        <p className="mt-1 text-sm leading-7 text-muted-foreground">Start with one useful ambition instead of a vague pile of tabs.</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-semibold text-foreground">2. Build the brief</p>
+                                        <p className="mt-1 text-sm leading-7 text-muted-foreground">Generate a weekly route with actions, sessions, and key support picks.</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-semibold text-foreground">3. Reopen the desk</p>
+                                        <p className="mt-1 text-sm leading-7 text-muted-foreground">Come back to the same workspace instead of restarting every session.</p>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="control-frame p-5">

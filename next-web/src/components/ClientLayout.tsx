@@ -123,17 +123,16 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
                 <div className="page-shell">
                     <div className="shell-surface rounded-[1.75rem] p-6 md:p-8">
-                        <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr]">
+                        <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
                             <div className="space-y-4">
                                 <BrandMark />
                                 <div className="space-y-3">
                                     <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-foreground md:text-[2.4rem]">
-                                        One desk for the AI work that actually matters this week.
+                                        Pryzmira is becoming a real AI operating desk, not another directory.
                                     </h2>
                                     <p className="max-w-2xl text-sm leading-7 text-muted-foreground md:text-[0.95rem]">
-                                        The product is being narrowed into a serious operating surface:
-                                        current focus, ordered action, and support material that stays in
-                                        the background until execution needs it.
+                                        Start with one goal, keep one weekly brief active, and let the rest of
+                                        the product support execution instead of competing for attention.
                                     </p>
                                 </div>
                             </div>
@@ -141,7 +140,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                             <div className="grid gap-8 text-sm md:grid-cols-2">
                                 <div className="space-y-3">
                                     <p className="font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                                        Primary
+                                        Start here
                                     </p>
                                     {footerPrimaryLinks.map((link) => (
                                         <Link
