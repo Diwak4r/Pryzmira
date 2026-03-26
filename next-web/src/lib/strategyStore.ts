@@ -971,40 +971,45 @@ async function listProfilesPostgres(): Promise<StrategyProfileRecord[]> {
 }
 
 async function getGrowthStatsPostgres(): Promise<StrategyGrowthStats> {
-    await ensureSchema();
+    try {
+        await ensureSchema();
 
-    const pool = getPool();
-    const [profilesResult, briefsResult, waitlistResult] = await Promise.all([
-        pool.query<{
-            builders_this_week: string;
-            total_builders: string;
-        }>(`
-            SELECT
-                COUNT(*)::text AS total_builders,
-                COUNT(*) FILTER (
-                    WHERE created_at >= date_trunc('week', NOW())
-                )::text AS builders_this_week
-            FROM strategy_profiles
-        `),
-        pool.query<{ briefs_this_week: string }>(`
-            SELECT
-                COUNT(*) FILTER (
-                    WHERE created_at >= date_trunc('week', NOW())
-                )::text AS briefs_this_week
-            FROM strategy_briefs
-        `),
-        pool.query<{ waitlist_count: string }>(`
-            SELECT COUNT(*)::text AS waitlist_count
-            FROM waitlist
-        `),
-    ]);
+        const pool = getPool();
+        const [profilesResult, briefsResult, waitlistResult] = await Promise.all([
+            pool.query<{
+                builders_this_week: string;
+                total_builders: string;
+            }>(`
+                SELECT
+                    COUNT(*)::text AS total_builders,
+                    COUNT(*) FILTER (
+                        WHERE created_at >= date_trunc('week', NOW())
+                    )::text AS builders_this_week
+                FROM strategy_profiles
+            `),
+            pool.query<{ briefs_this_week: string }>(`
+                SELECT
+                    COUNT(*) FILTER (
+                        WHERE created_at >= date_trunc('week', NOW())
+                    )::text AS briefs_this_week
+                FROM strategy_briefs
+            `),
+            pool.query<{ waitlist_count: string }>(`
+                SELECT COUNT(*)::text AS waitlist_count
+                FROM waitlist
+            `),
+        ]);
 
-    return {
-        briefsThisWeek: Number(briefsResult.rows[0]?.briefs_this_week ?? '0'),
-        buildersThisWeek: Number(profilesResult.rows[0]?.builders_this_week ?? '0'),
-        totalBuilders: Number(profilesResult.rows[0]?.total_builders ?? '0'),
-        waitlistCount: Number(waitlistResult.rows[0]?.waitlist_count ?? '0'),
-    };
+        return {
+            briefsThisWeek: Number(briefsResult.rows[0]?.briefs_this_week ?? '0'),
+            buildersThisWeek: Number(profilesResult.rows[0]?.builders_this_week ?? '0'),
+            totalBuilders: Number(profilesResult.rows[0]?.total_builders ?? '0'),
+            waitlistCount: Number(waitlistResult.rows[0]?.waitlist_count ?? '0'),
+        };
+    } catch (error) {
+        console.error('[StrategyStore] Failed to get growth stats from Postgres:', error);
+        throw error;
+    }
 }
 
 async function getWaitlistStatusPostgres(

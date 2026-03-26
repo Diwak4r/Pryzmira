@@ -24,7 +24,18 @@ export async function GET() {
             },
         });
     } catch (error) {
+        console.error('[Platform Stats API] Error loading stats:', error);
+        console.error('[Platform Stats API] Error details:', {
+            message: error instanceof Error ? error.message : 'Unknown error',
+            name: error instanceof Error ? error.name : 'Unknown',
+            stack: error instanceof Error ? error.stack : undefined,
+            postgresUrl: process.env.POSTGRES_URL ? 'configured' : 'missing',
+            postgresUrlNonPooling: process.env.POSTGRES_URL_NON_POOLING ? 'configured' : 'missing',
+            nodeEnv: process.env.NODE_ENV,
+        });
+
         if (isConfigurationError(error)) {
+            console.log('[Platform Stats API] Configuration error detected, returning empty stats');
             return NextResponse.json(emptyStats);
         }
 
