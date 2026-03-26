@@ -16,13 +16,13 @@ type PulseItem = {
 
 type PulseResponse = {
   items: PulseItem[];
-  stats: {
+  stats?: {
     total: number;
     last24h: number;
     last7d: number;
     byCategory: Record<string, number>;
   };
-  lastUpdated: string;
+  lastUpdated?: string;
 };
 
 const categoryStyles: Record<PulseItem['category'], string> = {
@@ -48,13 +48,20 @@ export function PulseFeed() {
 
   useEffect(() => {
     fetch('/api/pulse')
-      .then((res) => res.json())
+      .then(async (res) => {
+        const json = await res.json();
+        if (!res.ok || !json || !Array.isArray(json.items)) {
+          return null;
+        }
+        return json as PulseResponse;
+      })
       .then((json) => setData(json))
       .catch(() => setData(null))
       .finally(() => setLoading(false));
   }, []);
 
   const items = useMemo(() => data?.items ?? [], [data]);
+  const stats = data?.stats;
 
   return (
     <div className="control-frame p-5">
@@ -64,7 +71,7 @@ export function PulseFeed() {
           <h3 className="mt-2 text-xl font-semibold text-foreground">What moved in AI this cycle</h3>
         </div>
         <div className="text-right">
-          <p className="mono-value text-xl text-foreground">{data?.stats.last24h ?? 0}</p>
+          <p className="mono-value text-xl text-foreground">{stats?.last24h ?? 0}</p>
           <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">last 24h</p>
         </div>
       </div>
@@ -99,7 +106,7 @@ export function PulseFeed() {
       </div>
 
       <div className="mt-5 flex items-center justify-between border-t border-border/70 pt-4 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-        <span>{data?.stats.total ?? 0} tracked items</span>
+        <span>{stats?.total ?? 0} tracked items</span>
         <span>{data?.lastUpdated ? `updated ${timeAgo(data.lastUpdated)}` : 'live feed'}</span>
       </div>
     </div>
