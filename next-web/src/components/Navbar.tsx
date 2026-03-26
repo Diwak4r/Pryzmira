@@ -49,7 +49,7 @@ function getWorkspaceHrefSnapshot(): string {
         return `/desk?profileId=${encodeURIComponent(profileId)}`;
     }
 
-    return '/';
+    return '/desk';
 }
 
 export default function Navbar() {
@@ -64,7 +64,7 @@ export default function Navbar() {
     const workspaceHref = useSyncExternalStore(
         subscribeToStrategySession,
         getWorkspaceHrefSnapshot,
-        () => '/'
+        () => '/desk'
     );
 
     useEffect(() => {
@@ -114,7 +114,7 @@ export default function Navbar() {
               animate: { opacity: 1, rotate: 0, scale: 1 },
               exit: { opacity: 0, rotate: -14, scale: 0.82 },
           };
-    const workspaceActionLabel = workspaceHref === '/' ? 'Start workspace' : 'Open workspace';
+    const workspaceActionLabel = workspaceHref === '/desk' ? 'Start workspace' : 'Open workspace';
 
     return (
         <motion.header
