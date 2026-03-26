@@ -93,6 +93,9 @@ function getPool(): Pool {
     }
 
     if (!globalThis.__pryzmiraStrategyPool) {
+        // Remove any SSL mode from connection string and force our SSL config
+        const cleanConnectionString = POSTGRES_CONNECTION_STRING.replace(/[?&]sslmode=[^&]*/g, '');
+
         console.log('[StrategyStore] Creating new Pool with SSL config:', {
             hasConnectionString: Boolean(POSTGRES_CONNECTION_STRING),
             connectionStringStart: POSTGRES_CONNECTION_STRING.substring(0, 30),
@@ -100,7 +103,7 @@ function getPool(): Pool {
         });
 
         globalThis.__pryzmiraStrategyPool = new Pool({
-            connectionString: POSTGRES_CONNECTION_STRING,
+            connectionString: cleanConnectionString,
             max: 1,
             ssl: {
                 rejectUnauthorized: false,
