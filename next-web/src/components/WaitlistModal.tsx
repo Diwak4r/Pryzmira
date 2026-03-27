@@ -196,8 +196,8 @@ export function WaitlistModal({ open, onOpenChange, referralCode }: WaitlistModa
                                             size="icon"
                                             className="h-10 w-10 shrink-0"
                                             onClick={handleCopy}
-                                            aria-label="Copy referral link"
-                                            title="Copy referral link"
+                                            aria-label={copied ? 'Link copied' : 'Copy referral link'}
+                                            title={copied ? 'Link copied' : 'Copy referral link'}
                                         >
                                             {copied ? (
                                                 <Check className="h-4 w-4" />
