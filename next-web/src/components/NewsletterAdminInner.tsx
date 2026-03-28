@@ -116,7 +116,7 @@ export default function NewsletterAdminInner() {
                                     className="pr-10 text-center"
                                     autoFocus
                                 />
-                                <button type="button" onClick={() => setShowSecret(!showSecret)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                                <button type="button" onClick={() => setShowSecret(!showSecret)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground" aria-label={showSecret ? 'Hide admin secret' : 'Show admin secret'}>
                                     {showSecret ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                                 </button>
                             </div>
