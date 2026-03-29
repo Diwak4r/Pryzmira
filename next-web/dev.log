@@ -336,3 +336,8 @@ NotAllowedError: Failed to execute 'writeText' on 'Clipboard': Write permission 
 [browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
 [browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
  POST /api/waitlist/join 200 in 23ms (next.js: 3ms, application-code: 20ms)
+⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 1570ms
