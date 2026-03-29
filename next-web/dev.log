@@ -1,0 +1,338 @@
+
+> next-web@0.1.0 dev /app/next-web
+> next dev
+
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 590ms
+
+○ Compiling /resources ...
+ GET /resources 200 in 8.4s (next.js: 7.3s, application-code: 1019ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 3.1s (next.js: 3.0s, application-code: 40ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 41ms (next.js: 32ms, application-code: 9ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:5330:262)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at listOnTimeout (node:internal/timers:547:9)
+    at process.processTimers (node:internal/timers:521:7)
+ GET /admin/newsletter 307 in 1978ms (next.js: 1733ms, application-code: 244ms)
+ GET /?signin=true 200 in 1936ms (next.js: 1449ms, application-code: 486ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 65ms (next.js: 49ms, application-code: 16ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 31ms (next.js: 8ms, application-code: 23ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+ GET /api/stack-score/leaderboard 200 in 966ms (next.js: 953ms, application-code: 14ms)
+ GET /api/stack-score 200 in 1035ms (next.js: 1027ms, application-code: 9ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+ GET /api/platform/stats 200 in 1328ms (next.js: 1163ms, application-code: 165ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 1316ms (next.js: 1258ms, application-code: 58ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 1331ms (next.js: 1236ms, application-code: 95ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:5330:262)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at listOnTimeout (node:internal/timers:547:9)
+    at process.processTimers (node:internal/timers:521:7)
+ GET /admin/newsletter 307 in 278ms (next.js: 5ms, application-code: 273ms)
+ GET /?signin=true 200 in 151ms (next.js: 3ms, application-code: 148ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 88ms (next.js: 61ms, application-code: 27ms)
+ GET /api/stack-score 200 in 18ms (next.js: 9ms, application-code: 10ms)
+ GET /api/stack-score/leaderboard 200 in 26ms (next.js: 20ms, application-code: 6ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+ GET /api/platform/stats 200 in 89ms (next.js: 5ms, application-code: 84ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 57ms (next.js: 33ms, application-code: 23ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 67ms (next.js: 28ms, application-code: 38ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 19ms (next.js: 7ms, application-code: 11ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+ GET /resources 200 in 226ms (next.js: 9ms, application-code: 216ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 45ms (next.js: 36ms, application-code: 9ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 9ms (next.js: 3ms, application-code: 6ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:5330:262)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at listOnTimeout (node:internal/timers:547:9)
+    at process.processTimers (node:internal/timers:521:7)
+ GET /admin/newsletter 307 in 241ms (next.js: 3ms, application-code: 238ms)
+ GET /?signin=true 200 in 130ms (next.js: 3ms, application-code: 127ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 97ms (next.js: 86ms, application-code: 12ms)
+ GET /api/stack-score 200 in 12ms (next.js: 6ms, application-code: 6ms)
+ GET /api/stack-score/leaderboard 200 in 24ms (next.js: 14ms, application-code: 10ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+ GET /api/platform/stats 200 in 59ms (next.js: 3ms, application-code: 56ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 39ms (next.js: 9ms, application-code: 30ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 45ms (next.js: 5ms, application-code: 39ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 18ms (next.js: 12ms, application-code: 7ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:5330:262)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at listOnTimeout (node:internal/timers:547:9)
+    at process.processTimers (node:internal/timers:521:7)
+ GET /admin/newsletter 307 in 298ms (next.js: 5ms, application-code: 293ms)
+ GET /?signin=true 200 in 165ms (next.js: 4ms, application-code: 162ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 71ms (next.js: 62ms, application-code: 9ms)
+ GET /api/stack-score 200 in 22ms (next.js: 17ms, application-code: 5ms)
+ GET /api/stack-score/leaderboard 200 in 33ms (next.js: 25ms, application-code: 8ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 55ms (next.js: 11ms, application-code: 44ms)
+ GET /api/platform/stats 200 in 31ms (next.js: 21ms, application-code: 10ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 56ms (next.js: 34ms, application-code: 23ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 27ms (next.js: 17ms, application-code: 9ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:5330:262)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at listOnTimeout (node:internal/timers:547:9)
+    at process.processTimers (node:internal/timers:521:7)
+ GET /admin/newsletter 307 in 253ms (next.js: 4ms, application-code: 249ms)
+ GET /?signin=true 200 in 136ms (next.js: 3ms, application-code: 133ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 55ms (next.js: 44ms, application-code: 11ms)
+ GET /api/stack-score 200 in 23ms (next.js: 19ms, application-code: 4ms)
+ GET /api/stack-score/leaderboard 200 in 39ms (next.js: 25ms, application-code: 15ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 68ms (next.js: 3ms, application-code: 65ms)
+ GET /api/platform/stats 200 in 77ms (next.js: 15ms, application-code: 63ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 84ms (next.js: 42ms, application-code: 42ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 9ms (next.js: 3ms, application-code: 6ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+ GET /resources 200 in 82ms (next.js: 3ms, application-code: 78ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 47ms (next.js: 37ms, application-code: 11ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 13ms (next.js: 4ms, application-code: 9ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+ GET /?waitlist=true 200 in 122ms (next.js: 3ms, application-code: 118ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 45ms (next.js: 38ms, application-code: 7ms)
+ GET /api/stack-score 200 in 29ms (next.js: 25ms, application-code: 4ms)
+ GET /api/stack-score/leaderboard 200 in 23ms (next.js: 20ms, application-code: 4ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 66ms (next.js: 10ms, application-code: 55ms)
+ GET /api/platform/stats 200 in 31ms (next.js: 17ms, application-code: 14ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 63ms (next.js: 25ms, application-code: 39ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 14ms (next.js: 8ms, application-code: 6ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+ GET / 200 in 129ms (next.js: 4ms, application-code: 125ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 96ms (next.js: 73ms, application-code: 23ms)
+ GET /api/stack-score 200 in 21ms (next.js: 12ms, application-code: 9ms)
+ GET /api/stack-score/leaderboard 200 in 28ms (next.js: 23ms, application-code: 5ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+ GET /api/platform/stats 200 in 72ms (next.js: 8ms, application-code: 64ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 55ms (next.js: 38ms, application-code: 17ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 65ms (next.js: 31ms, application-code: 34ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 12ms (next.js: 5ms, application-code: 7ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+ GET / 200 in 142ms (next.js: 3ms, application-code: 139ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 80ms (next.js: 65ms, application-code: 15ms)
+ GET /api/stack-score 200 in 11ms (next.js: 6ms, application-code: 6ms)
+ GET /api/stack-score/leaderboard 200 in 23ms (next.js: 15ms, application-code: 8ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+ GET /api/platform/stats 200 in 65ms (next.js: 5ms, application-code: 60ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 47ms (next.js: 27ms, application-code: 20ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 53ms (next.js: 23ms, application-code: 30ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 21ms (next.js: 6ms, application-code: 15ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/ssr/0i2c_@auth_core_0-drybr._.js:5330:262)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at listOnTimeout (node:internal/timers:547:9)
+    at process.processTimers (node:internal/timers:521:7)
+ GET /admin/newsletter 307 in 242ms (next.js: 3ms, application-code: 238ms)
+ GET /?signin=true 200 in 131ms (next.js: 4ms, application-code: 127ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 56ms (next.js: 45ms, application-code: 11ms)
+ GET /api/stack-score 200 in 19ms (next.js: 13ms, application-code: 6ms)
+ GET /api/stack-score/leaderboard 200 in 28ms (next.js: 21ms, application-code: 7ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 69ms (next.js: 16ms, application-code: 53ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 19ms (next.js: 4ms, application-code: 15ms)
+ GET /api/pulse 200 in 59ms (next.js: 31ms, application-code: 28ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 8ms (next.js: 2ms, application-code: 6ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+ GET / 200 in 114ms (next.js: 3ms, application-code: 111ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 78ms (next.js: 68ms, application-code: 10ms)
+ GET /api/stack-score 200 in 14ms (next.js: 9ms, application-code: 4ms)
+ GET /api/stack-score/leaderboard 200 in 23ms (next.js: 14ms, application-code: 9ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+ GET /api/platform/stats 200 in 62ms (next.js: 8ms, application-code: 54ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 47ms (next.js: 33ms, application-code: 14ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 55ms (next.js: 24ms, application-code: 31ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 11ms (next.js: 5ms, application-code: 7ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+ POST /api/waitlist/join 200 in 822ms (next.js: 803ms, application-code: 19ms)
+[browser] Failed to copy: NotAllowedError: Failed to execute 'writeText' on 'Clipboard': Write permission denied.
+NotAllowedError: Failed to execute 'writeText' on 'Clipboard': Write permission denied. (src/components/WaitlistModal.tsx:73:21)
+ GET / 200 in 152ms (next.js: 5ms, application-code: 147ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 90ms (next.js: 75ms, application-code: 15ms)
+ GET /api/stack-score 200 in 13ms (next.js: 6ms, application-code: 7ms)
+ GET /api/stack-score/leaderboard 200 in 11ms (next.js: 5ms, application-code: 6ms)
+ GET /api/platform/stats 200 in 42ms (next.js: 4ms, application-code: 38ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+[PulseStore] Using JSON fallback — initializing pulse data file
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/platform/stats 200 in 16ms (next.js: 8ms, application-code: 8ms)
+[PulseStore] No POSTGRES_URL found — using JSON fallback
+ GET /api/pulse 200 in 32ms (next.js: 15ms, application-code: 17ms)
+[31m[auth][error][0m MissingSecret: Please define a `secret`. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:513:16)
+    at Auth (/app/next-web/.next/dev/server/chunks/0i2c_@auth_core_01x38-5._.js:5330:264)
+    at async AppRouteRouteModule.do (/app/next-web/node_modules/.pnpm/next@16.2.1_@babel+core@7.29.0_@opentelemetry+api@1.9.1_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)
+ GET /api/auth/session 500 in 25ms (next.js: 8ms, application-code: 17ms)
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+[browser] ClientFetchError: There was a problem with the server configuration. Check the server logs for more information.. Read more at https://errors.authjs.dev#autherror
+ POST /api/waitlist/join 200 in 23ms (next.js: 3ms, application-code: 20ms)

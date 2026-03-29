@@ -159,6 +159,7 @@ export default function Resources() {
                                     type="button"
                                     onClick={() => setShowPassword((value) => !value)}
                                     className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+                                    aria-label={showPassword ? 'Hide clearance code' : 'Show clearance code'}
                                 >
                                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                                 </button>
