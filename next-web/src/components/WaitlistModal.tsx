@@ -111,6 +111,8 @@ export function WaitlistModal({ open, onOpenChange, referralCode }: WaitlistModa
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
                                     className="h-11"
+                                    aria-invalid={!!error}
+                                    aria-describedby={error ? "waitlist-error" : undefined}
                                 />
                             </div>
 
@@ -129,7 +131,11 @@ export function WaitlistModal({ open, onOpenChange, referralCode }: WaitlistModa
                             </div>
 
                             {error && (
-                                <div className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                                <div
+                                    id="waitlist-error"
+                                    className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+                                    aria-live="polite"
+                                >
                                     {error}
                                 </div>
                             )}
@@ -196,6 +202,7 @@ export function WaitlistModal({ open, onOpenChange, referralCode }: WaitlistModa
                                             size="icon"
                                             className="h-10 w-10 shrink-0"
                                             onClick={handleCopy}
+                                            aria-label="Copy referral link"
                                         >
                                             {copied ? (
                                                 <Check className="h-4 w-4" />
