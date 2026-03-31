@@ -27,7 +27,11 @@ export function AuthButton() {
 
   if (status === "loading") {
     return (
-      <div className="flex items-center justify-center w-9 h-9">
+      <div
+        className="flex items-center justify-center w-9 h-9"
+        role="status"
+        aria-label="Loading authentication state"
+      >
         <div className="w-4 h-4 border-2 border-[var(--color-slate-600)] border-t-emerald-500 rounded-full animate-spin" />
       </div>
     );

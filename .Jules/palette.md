@@ -1,0 +1,3 @@
+## 2024-05-18 - AuthButton Loading State and Newsletter ARIA Labels
+**Learning:** Loading states without text (e.g. spinner `div`s) and visually apparent inputs (like the Newsletter email field) often lack `aria-label`, `role="status"`, or `aria-live` which breaks accessibility. Adding an `aria-label` to visually obvious inputs and a live region to error message popups dramatically improves the screen reader experience without affecting visual UI.
+**Action:** Always check loading states for `role="status"` and `aria-label`, and verify that single-input forms have a proper `aria-label` or hidden `<label>` when the context is only visually conveyed.

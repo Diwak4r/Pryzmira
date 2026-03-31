@@ -92,6 +92,7 @@ export default function Newsletter() {
                                 <Input
                                     type="email"
                                     placeholder="name@email.com"
+                                    aria-label="Email address for newsletter"
                                     value={email}
                                     onChange={(event) => {
                                         setEmail(event.target.value);
@@ -120,6 +121,8 @@ export default function Newsletter() {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -6 }}
                                     className="flex items-center gap-2 text-sm text-destructive"
+                                    role="alert"
+                                    aria-live="polite"
                                 >
                                     <AlertCircle className="h-4 w-4" />
                                     <span>{message}</span>
