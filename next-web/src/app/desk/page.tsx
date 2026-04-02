@@ -1,11 +1,12 @@
-import Desk from '@/views/Desk';
+import { Suspense } from 'react';
+import VoiceDesk from '@/views/VoiceDesk';
 
-export default async function DeskPage({
-    searchParams,
-}: {
-    searchParams: Promise<{ profileId?: string; token?: string }>;
-}) {
-    const params = await searchParams;
+export const dynamic = 'force-dynamic';
 
-    return <Desk initialProfileId={params.profileId} initialToken={params.token} />;
+export default function DeskPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <VoiceDesk />
+        </Suspense>
+    );
 }

@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-import Home from '@/views/Home';
+import VoiceHome from '@/views/VoiceHome';
 
 export default function HomePage() {
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <Home />
+            <VoiceHome />
         </Suspense>
     );
 }

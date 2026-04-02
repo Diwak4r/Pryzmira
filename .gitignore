@@ -9,3 +9,4 @@ SCALING_PLAN.md
 next-web/.next-*.log
 next-web/.next-*.pid
 next-web/data/strategy-store.json
+next-web/data/voice-store.json
