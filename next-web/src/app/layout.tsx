@@ -8,12 +8,18 @@ const bodyFont = Manrope({
     subsets: ['latin'],
     variable: '--font-body',
     weight: ['400', '500', '600', '700', '800'],
+    display: 'swap',
+    preload: true,
+    fallback: ['system-ui', 'sans-serif'],
 });
 
 const monoFont = JetBrains_Mono({
     subsets: ['latin'],
     variable: '--font-mono-ui',
     weight: ['500', '600'],
+    display: 'swap',
+    preload: true,
+    fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
 });
 
 export const metadata: Metadata = {
@@ -34,7 +40,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`dark ${bodyFont.variable} ${monoFont.variable}`}>
+        <html lang="en" suppressHydrationWarning className={`dark ${bodyFont.variable} ${monoFont.variable}`}>
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}}catch(e){}})()`,
+                    }}
+                />
+            </head>
             <body>
                 <Providers>
                     <ClientLayout>{children}</ClientLayout>

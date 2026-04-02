@@ -24,9 +24,9 @@
     --input: 0 0% 90%;
     --ring: 172 66% 50%;
     --radius: 0.5rem;
-    --font-sans: var(--font-body), system-ui, sans-serif;
-    --font-display: var(--font-heading), system-ui, sans-serif;
-    --font-mono: var(--font-mono-ui), ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font-sans: var(--font-body);
+    --font-display: var(--font-body);
+    --font-mono: var(--font-mono-ui);
   }
 
   .dark {

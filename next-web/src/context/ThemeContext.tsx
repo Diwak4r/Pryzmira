@@ -54,8 +54,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         const root = window.document.documentElement;
-        root.classList.remove('light', 'dark');
-        root.classList.add(theme);
+
+        // Only mutate the DOM if the class doesn't already match.
+        // The inline script in <head> already sets the correct class before
+        // hydration, so this avoids a redundant remove+add reflow cycle.
+        if (!root.classList.contains(theme)) {
+            root.classList.remove('light', 'dark');
+            root.classList.add(theme);
+        }
 
         try {
             localStorage.setItem('theme', theme);
