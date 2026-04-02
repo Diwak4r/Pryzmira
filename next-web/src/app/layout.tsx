@@ -7,7 +7,7 @@ import { Providers } from '@/components/Providers';
 const bodyFont = Manrope({
     subsets: ['latin'],
     variable: '--font-body',
-    weight: ['400', '500', '600', '700', '800'],
+    weight: ['400', '500', '600', '700'],
     display: 'swap',
     preload: true,
     fallback: ['system-ui', 'sans-serif'],
