@@ -52,7 +52,7 @@ export default function BrandMark({
                         Pryzmira
                     </span>
                     <span className="truncate font-mono text-[0.66rem] uppercase tracking-[0.24em] text-muted-foreground">
-                        AI operating desk
+                        Personal Writing Voice AI
                     </span>
                 </span>
             ) : null}

@@ -1,57 +1,22 @@
 'use client';
 
-import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, Moon, Sun } from 'lucide-react';
 import BrandMark from '@/components/BrandMark';
 import { Button } from '@/components/ui/button';
-import { AuthButton } from '@/components/AuthButton';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useTheme } from '@/context/ThemeContext';
-import {
-    getSavedCourses,
-    getSavedResources,
-    getSavedTools,
-    subscribeToPersonalDataUpdates,
-} from '@/lib/personalDesk';
 import { getRouteMeta, normalizeRoute } from '@/lib/siteNavigation';
-import {
-    getStrategyProfileId,
-    getStrategyResumeToken,
-    subscribeToStrategySession,
-} from '@/lib/strategySession';
 
 const primaryNavItems = [
     { label: 'Home', href: '/' },
-    { label: 'Workspace', href: '/desk' },
-    { label: 'Library', href: '/resources' },
-];
-
-const secondaryNavItems = [
-    { label: 'Atlas', href: '/categories' },
-    { label: 'Tools', href: '/ai-tools' },
-    { label: 'Roadmap', href: '/roadmap' },
-    { label: 'Studio', href: '/canvas' },
+    { label: 'Desk', href: '/desk' },
 ];
 
 const shellEase = [0.22, 1, 0.36, 1] as const;
-
-function getWorkspaceHrefSnapshot(): string {
-    const resumeToken = getStrategyResumeToken();
-    const profileId = getStrategyProfileId();
-
-    if (resumeToken) {
-        return `/desk?token=${encodeURIComponent(resumeToken)}`;
-    }
-
-    if (profileId) {
-        return `/desk?profileId=${encodeURIComponent(profileId)}`;
-    }
-
-    return '/desk';
-}
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -59,14 +24,8 @@ export default function Navbar() {
     const shouldReduceMotion = useReducedMotion();
     const [menuOpen, setMenuOpen] = useState(false);
     const [isCompressed, setIsCompressed] = useState(false);
-    const [savedCount, setSavedCount] = useState(0);
     const currentPath = useMemo(() => normalizeRoute(pathname), [pathname]);
     const routeMeta = useMemo(() => getRouteMeta(pathname), [pathname]);
-    const workspaceHref = useSyncExternalStore(
-        subscribeToStrategySession,
-        getWorkspaceHrefSnapshot,
-        () => '/desk'
-    );
 
     useEffect(() => {
         let frame = 0;
@@ -97,17 +56,6 @@ export default function Navbar() {
         };
     }, []);
 
-    useEffect(() => {
-        const syncSavedCount = () => {
-            setSavedCount(
-                getSavedCourses().length + getSavedTools().length + getSavedResources().length
-            );
-        };
-
-        syncSavedCount();
-        return subscribeToPersonalDataUpdates(syncSavedCount);
-    }, []);
-
     const iconMotionProps = shouldReduceMotion
         ? {}
         : {
@@ -115,7 +63,6 @@ export default function Navbar() {
               animate: { opacity: 1, rotate: 0, scale: 1 },
               exit: { opacity: 0, rotate: -14, scale: 0.82 },
           };
-    const workspaceActionLabel = workspaceHref === '/desk' ? 'Start workspace' : 'Open workspace';
 
     return (
         <motion.header
@@ -147,16 +94,14 @@ export default function Navbar() {
                             Pryzmira
                         </p>
                         <p className="truncate text-[0.68rem] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                            {pathname === '/' ? 'AI operating desk' : routeMeta.shortLabel}
+                            {routeMeta.eyebrow}
                         </p>
                     </div>
                 </Link>
 
                 <nav className="hidden items-center gap-1 rounded-full border border-border/70 bg-background/82 p-1 lg:flex">
                     {primaryNavItems.map((item) => {
-                        const isActive =
-                            currentPath === item.href ||
-                            (item.href === '/categories' && currentPath === '/course/[id]');
+                        const isActive = currentPath === item.href;
 
                         return (
                             <Link
@@ -188,18 +133,7 @@ export default function Navbar() {
                                             : 'text-muted-foreground hover:text-foreground'
                                     }`}
                                 >
-                                    <span>{item.label}</span>
-                                    {item.href === '/desk' && savedCount > 0 ? (
-                                        <span
-                                            className={`rounded-full px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] ${
-                                                isActive
-                                                    ? 'bg-primary-foreground/14 text-primary-foreground'
-                                                    : 'bg-primary/10 text-primary'
-                                            }`}
-                                        >
-                                            {savedCount}
-                                        </span>
-                                    ) : null}
+                                    {item.label}
                                 </span>
                             </Link>
                         );
@@ -216,9 +150,8 @@ export default function Navbar() {
                         </p>
                     </div>
                     <Button asChild className="rounded-full px-4 py-2.5 text-sm font-semibold">
-                        <Link href={workspaceHref}>{workspaceActionLabel}</Link>
+                        <Link href="/desk">Open desk</Link>
                     </Button>
-                    <AuthButton />
                     <Button
                         variant="ghost"
                         size="icon"
@@ -287,23 +220,19 @@ export default function Navbar() {
                                 <div className="mb-8 space-y-3">
                                     <BrandMark />
                                     <p className="text-sm leading-7 text-muted-foreground">
-                                        Keep the workspace central. Open supporting material only when
-                                        the week calls for it.
+                                        Write anything — exactly like you. Paste a sample, get output in your voice.
                                     </p>
                                 </div>
 
                                 <Button asChild className="mb-6 rounded-full text-sm font-semibold">
-                                    <Link href={workspaceHref} onClick={() => setMenuOpen(false)}>
-                                        {workspaceActionLabel}
+                                    <Link href="/desk" onClick={() => setMenuOpen(false)}>
+                                        Open desk
                                     </Link>
                                 </Button>
 
                                 <div className="space-y-2">
                                     {primaryNavItems.map((item, index) => {
-                                        const isActive =
-                                            currentPath === item.href ||
-                                            (item.href === '/categories' &&
-                                                currentPath === '/course/[id]');
+                                        const isActive = currentPath === item.href;
 
                                         return (
                                             <motion.div
@@ -329,42 +258,11 @@ export default function Navbar() {
                                                             : 'border-border/70 bg-background/72 text-foreground'
                                                     }`}
                                                 >
-                                                    <span className="inline-flex items-center gap-2">
-                                                        <span>{item.label}</span>
-                                                        {item.href === '/desk' && savedCount > 0 ? (
-                                                            <span
-                                                                className={`rounded-full px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] ${
-                                                                    isActive
-                                                                        ? 'bg-primary-foreground/14 text-primary-foreground'
-                                                                        : 'bg-primary/10 text-primary'
-                                                                }`}
-                                                            >
-                                                                {savedCount}
-                                                            </span>
-                                                        ) : null}
-                                                    </span>
+                                                    <span>{item.label}</span>
                                                 </Link>
                                             </motion.div>
                                         );
                                     })}
-                                </div>
-
-                                <div className="mt-8 space-y-3 border-t border-border/75 pt-6">
-                                    <p className="text-[0.68rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
-                                        Secondary
-                                    </p>
-                                    <div className="grid gap-2">
-                                        {secondaryNavItems.map((item) => (
-                                            <Link
-                                                key={item.href}
-                                                href={item.href}
-                                                onClick={() => setMenuOpen(false)}
-                                                className="rounded-[1rem] border border-border/70 px-4 py-3 text-sm text-muted-foreground transition-colors hover:border-primary/18 hover:bg-primary/6 hover:text-foreground"
-                                            >
-                                                {item.label}
-                                            </Link>
-                                        ))}
-                                    </div>
                                 </div>
 
                                 <p className="mt-auto pt-8 text-sm leading-6 text-muted-foreground">
