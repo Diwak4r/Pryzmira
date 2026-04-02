@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Moon, Sun } from 'lucide-react';
+import { Github, Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
 export default function Navbar() {
@@ -31,13 +31,24 @@ export default function Navbar() {
                         </Link>
                     </nav>
                 </div>
-                <button
-                    onClick={toggleTheme}
-                    className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground hover:text-foreground"
-                    aria-label="Toggle theme"
-                >
-                    {theme === 'dark' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
-                </button>
+                <div className="flex items-center gap-1">
+                    <a
+                        href="https://github.com/Diwak4r/Pryzmira"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground hover:text-foreground"
+                        aria-label="GitHub"
+                    >
+                        <Github className="h-3.5 w-3.5" />
+                    </a>
+                    <button
+                        onClick={toggleTheme}
+                        className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground hover:text-foreground"
+                        aria-label="Toggle theme"
+                    >
+                        {theme === 'dark' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+                    </button>
+                </div>
             </div>
         </header>
     );
