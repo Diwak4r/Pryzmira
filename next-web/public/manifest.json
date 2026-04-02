@@ -1,11 +1,11 @@
 {
   "name": "Pryzmira",
   "short_name": "Pryzmira",
-  "description": "A curated atlas of AI tools, courses, and field notes for builders.",
+  "description": "Personal Writing Voice AI. Paste a writing sample, describe what you need, get output that sounds like you.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f4efe5",
-  "theme_color": "#f4efe5",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

@@ -92,14 +92,19 @@ export default function VoiceDesk() {
         let c = false;
         const load = async () => {
             try {
-                const r = await fetch('/api/voice/auth/session', { cache: 'no-store' });
-                const s = (await r.json()) as AuthSession;
+                const [authRes, historyRes] = await Promise.all([
+                    fetch('/api/voice/auth/session', { cache: 'no-store' }),
+                    fetch('/api/voice/history', { cache: 'no-store' }),
+                ]);
+                const s = (await authRes.json()) as AuthSession;
                 if (c) return;
                 setAuth(s);
-                if (!s.authenticated) { setSavedHistory([]); return; }
-                const h = await fetch('/api/voice/history', { cache: 'no-store' });
-                const p = (await h.json()) as { history?: VoiceSavedGeneration[] };
-                if (!c) setSavedHistory(Array.isArray(p.history) ? p.history : []);
+                if (s.authenticated) {
+                    const p = (await historyRes.json()) as { history?: VoiceSavedGeneration[] };
+                    if (!c) setSavedHistory(Array.isArray(p.history) ? p.history : []);
+                } else {
+                    setSavedHistory([]);
+                }
             } catch {
                 if (!c) { setSavedHistory([]); setAuth({ authenticated: false, user: null }); }
             }
@@ -149,7 +154,7 @@ export default function VoiceDesk() {
         return Array.from(map.values()).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     }, [savedHistory, sessionHistory]);
 
-    const handleRefine = (instruction: string) => {
+    const handleRefine = useCallback((instruction: string) => {
         if (!gen || !instruction.trim()) return;
         setError('');
         startTransition(async () => {
@@ -186,7 +191,7 @@ export default function VoiceDesk() {
                 setError(normalizeVoiceRequestError(e, 'Unable to refine.'));
             }
         });
-    };
+    }, [gen]);
 
     const handleCopy = async () => {
         if (!gen) return;

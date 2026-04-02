@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useMemo, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,7 +24,7 @@ export default function VoiceHome() {
     const [extraInstructions, setExtraInstructions] = useState('');
     const [error, setError] = useState('');
 
-    const wordCount = countWords(sampleText);
+    const wordCount = useMemo(() => countWords(sampleText), [sampleText]);
     const sampleReady = wordCount >= MIN_SAMPLE_WORDS;
     const canSubmit = sampleReady && writingTask.trim().length > 0;
 
