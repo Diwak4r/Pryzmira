@@ -19,7 +19,7 @@ function VoiceDeskSkeleton() {
             </div>
 
             {/* Voice analysis grid */}
-            <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-3 lg:grid-cols-6">
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-3 lg:grid-cols-6">
                 {Array.from({ length: 6 }).map((_, i) => (
                     <div key={i} className="bg-card px-3 py-2.5">
                         <div className="h-2.5 w-12 animate-pulse rounded bg-muted" />

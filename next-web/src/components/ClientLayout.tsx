@@ -10,7 +10,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                 {children}
             </main>
             <footer className="border-t border-border py-6">
-                <div className="mx-auto flex max-w-[960px] items-center justify-between px-4">
+                <div className="mx-auto flex flex-col items-center gap-2 max-w-[960px] px-4 sm:flex-row sm:justify-between">
                     <p className="text-xs text-muted-foreground">
                         &copy; {new Date().getFullYear()} Pryzmira
                     </p>
@@ -19,7 +19,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                             href="https://github.com/Diwak4r"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-foreground"
+                            className="py-1 hover:text-foreground"
                         >
                             @Diwak4r
                         </a>
@@ -28,7 +28,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                             href="https://github.com/Diwak4r/Pryzmira"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-foreground"
+                            className="py-1 hover:text-foreground"
                         >
                             Source
                         </a>

@@ -195,13 +195,23 @@ function normalizeAnalysisPayload(raw: string): AnalyzeResult {
 
 export async function analyzeVoice(sampleText: string): Promise<AnalyzeResult> {
     const systemPrompt = [
-        'You analyze a real writing sample and extract specific voice traits.',
-        'Study only the sample.',
-        'Do not invent biography, intent, or facts outside the sample.',
-        'If the sample mixes Nepali and English, describe that precisely. If it does not, say so.',
-        'Return strict JSON with these keys only: tone, sentenceRhythm, vocabularyHabits, transitions, languageMixing, closingStyle, voiceInsights, insightBullets.',
-        'insightBullets must contain 5 to 7 concrete observations.',
-    ].join(' ');
+        'You are an expert linguist and voice analyst.',
+        'Your task is to analyze a real writing sample and extract the writer\'s unique voice fingerprint.',
+        'Study ONLY what is present in the sample. Do not infer biography, intent, or facts not in the text.',
+        '',
+        'Analyze these dimensions precisely:',
+        '- tone: The emotional register (e.g., "warm but direct", "sarcastically playful", "professionally casual"). Avoid generic labels.',
+        '- sentenceRhythm: How sentences flow — length variation, fragments, run-ons, pacing patterns.',
+        '- vocabularyHabits: Specific word choices, jargon, slang, repeated phrases, formality level.',
+        '- transitions: How ideas connect — abrupt cuts, smooth segues, conjunctions, paragraph breaks.',
+        '- languageMixing: Code-switching patterns (e.g., "Nepali words mid-sentence for emphasis"), or "English only" if none.',
+        '- closingStyle: How the writer ends messages/paragraphs — trailing off, strong conclusions, calls to action, casual sign-offs.',
+        '',
+        'For voiceInsights: Write a 2-3 sentence narrative summary of what makes this writer\'s voice distinctive. Be specific, not generic.',
+        'For insightBullets: List 5-7 concrete, actionable observations that a ghostwriter would need to replicate this voice. Each bullet should be specific enough to distinguish this writer from others.',
+        '',
+        'Return strict JSON: { tone, sentenceRhythm, vocabularyHabits, transitions, languageMixing, closingStyle, voiceInsights, insightBullets }',
+    ].join('\n');
 
     const userPrompt = `Analyze this writing sample:\n\n${sampleText}`;
     const raw = await chatCompletion(
@@ -225,15 +235,27 @@ export async function generateInVoice(input: {
     refineInstruction?: string;
 }): Promise<string> {
     const systemPrompt = [
-        'You are a personal writing voice model.',
-        'Write the requested text so it sounds like the user who wrote the sample.',
-        'Preserve tone, rhythm, vocabulary, and code-switching only when the sample actually shows it.',
-        'Do not invent facts, claims, experience, or details not implied by the task or sample.',
-        'Do not produce generic AI phrasing.',
-        'Do not copy the sample verbatim unless the task clearly requires a phrase from it.',
-        'Do not reproduce accidental typos or broken grammar unless they are clearly part of the writer style.',
-        'Return only the requested final text.',
-    ].join(' ');
+        'You are a personal voice model — a ghostwriter who has deeply studied the writer\'s style.',
+        'Your job: write the requested text so it is indistinguishable from what the original writer would produce.',
+        '',
+        'Voice replication rules:',
+        '- Match the exact tone, sentence rhythm, and vocabulary level from the analysis.',
+        '- If the writer uses short punchy sentences, you use short punchy sentences. If they write long flowing paragraphs, you do too.',
+        '- Replicate their specific word choices and formality level, not a sanitized version.',
+        '- Preserve code-switching patterns ONLY if the analysis shows them. Do not add language mixing that isn\'t in the sample.',
+        '- Match their transition style — if they jump between ideas, you jump. If they use smooth connectors, you do too.',
+        '- Match their closing style precisely.',
+        '',
+        'Absolute prohibitions:',
+        '- Never produce generic AI phrasing ("I hope this email finds you well", "In conclusion", "I wanted to reach out").',
+        '- Never add formality the writer doesn\'t use.',
+        '- Never remove informality the writer does use.',
+        '- Never invent facts, credentials, experiences, or claims not implied by the task.',
+        '- Never copy the sample verbatim unless the task explicitly requires it.',
+        '- Never add emoji unless the sample shows emoji usage.',
+        '',
+        'Output ONLY the requested text. No meta-commentary, no "Here\'s the text:", no labels.',
+    ].join('\n');
 
     const analysisBlock = JSON.stringify(input.analysis, null, 2);
     const refineBlock =

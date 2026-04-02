@@ -82,7 +82,7 @@ export default function VoiceHome() {
                     Write in your voice
                 </h1>
                 <p className="mt-3 text-[0.95rem] leading-relaxed text-muted-foreground">
-                    Paste a writing sample. Describe what you need. Get output that sounds like you.
+                    Paste something you&apos;ve actually written — an email, a message, notes. Then tell us what you need, and we&apos;ll write it in your voice.
                 </p>
             </div>
 
@@ -104,7 +104,7 @@ export default function VoiceHome() {
                         id="sample-text"
                         value={sampleText}
                         onChange={(e) => setSampleText(e.target.value)}
-                        placeholder="Paste at least 50 words of your real writing — emails, notes, messages, anything."
+                        placeholder="Paste something you wrote recently — a text message, an email, class notes, a social media post. The more natural, the better. At least 50 words."
                         rows={7}
                         className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-ring"
                         required
@@ -124,7 +124,7 @@ export default function VoiceHome() {
                         id="writing-task"
                         value={writingTask}
                         onChange={(e) => setWritingTask(e.target.value)}
-                        placeholder="Example: Write an email asking my professor for a deadline extension."
+                        placeholder='What should we write? e.g., "An email asking my professor for more time on my assignment"'
                         rows={3}
                         className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-ring"
                         required
@@ -139,13 +139,13 @@ export default function VoiceHome() {
                         id="extra-instructions"
                         value={extraInstructions}
                         onChange={(e) => setExtraInstructions(e.target.value)}
-                        placeholder="Length, tone, or constraints."
+                        placeholder='Any preferences? e.g., "Keep it short", "Sound professional but not stiff"'
                         rows={2}
                         className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-ring"
                     />
                 </div>
 
-                <div className="flex items-center justify-between gap-4 pt-2">
+                <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-xs text-muted-foreground/60">
                         Nothing stored unless you sign in.
                     </p>
@@ -169,8 +169,11 @@ export default function VoiceHome() {
                 </div>
 
                 {error && (
-                    <div className="rounded-md border border-destructive/30 bg-destructive/5 px-3 py-2.5 text-sm text-destructive">
-                        {error}
+                    <div className="flex items-start gap-2 rounded-md border border-destructive/30 bg-destructive/5 px-3 py-2.5 text-sm text-destructive">
+                        <span className="flex-1">{error}</span>
+                        <button type="button" onClick={() => setError('')} className="shrink-0 text-destructive/60 hover:text-destructive" aria-label="Dismiss">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                        </button>
                     </div>
                 )}
             </form>
