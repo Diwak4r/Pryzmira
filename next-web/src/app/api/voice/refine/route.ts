@@ -1,6 +1,10 @@
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { getAuthenticatedVoiceUser } from '@/lib/voiceAuth';
+import {
+    isVoiceEngineFailure,
+    VOICE_ENGINE_UNAVAILABLE_MESSAGE,
+} from '@/lib/voiceRequestError';
 import { buildRefinedVoiceResponse, createTransientGenerationId } from '@/lib/voiceService';
 import { enforceVoiceQuota, hashAnonymousSubject } from '@/lib/voiceStorage';
 import { validateRefineInput } from '@/lib/voice';
@@ -36,12 +40,19 @@ export async function POST(request: Request) {
         });
     } catch (error) {
         const message = error instanceof Error ? error.message : 'Unable to refine voice output.';
+        const clientMessage =
+            message.toLowerCase().includes('configured') || isVoiceEngineFailure(message)
+                ? VOICE_ENGINE_UNAVAILABLE_MESSAGE
+                : message;
         const normalized = message.toLowerCase();
+        console.error('Voice refine failed', error);
         const status = normalized.includes('quota')
             ? 429
             : normalized.includes('configured')
               ? 500
+              : isVoiceEngineFailure(message)
+                ? 502
               : 400;
-        return NextResponse.json({ error: message }, { status });
+        return NextResponse.json({ error: clientMessage }, { status });
     }
 }

@@ -5,6 +5,7 @@ import {
     type VoiceContext,
     type VoiceResponsePayload,
 } from '@/lib/voice';
+import { VOICE_ENGINE_UNAVAILABLE_MESSAGE } from '@/lib/voiceRequestError';
 
 interface GroqMessage {
     role: 'system' | 'user' | 'assistant';
@@ -37,19 +38,29 @@ function getGroqModel(name: 'analyze' | 'generate'): string {
 }
 
 async function groqChatCompletion(messages: GroqMessage[], model: string, temperature: number): Promise<string> {
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${getGroqApiKey()}`,
-        },
-        body: JSON.stringify({
+    let response: Response;
+
+    try {
+        response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${getGroqApiKey()}`,
+            },
+            body: JSON.stringify({
+                model,
+                temperature,
+                messages,
+            }),
+            cache: 'no-store',
+        });
+    } catch (error) {
+        console.error('Groq chat completion transport failure', {
             model,
-            temperature,
-            messages,
-        }),
-        cache: 'no-store',
-    });
+            error,
+        });
+        throw new Error(VOICE_ENGINE_UNAVAILABLE_MESSAGE);
+    }
 
     const payload = (await response.json().catch(() => ({}))) as {
         choices?: Array<{ message?: { content?: string } }>;
