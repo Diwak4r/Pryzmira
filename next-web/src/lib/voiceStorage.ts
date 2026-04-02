@@ -161,73 +161,80 @@ export async function enforceVoiceQuota(input: {
     const windowKey = buildWindowKey(input.subjectType);
 
     if (hasSupabaseRestConfig()) {
-        const params = new URLSearchParams();
-        params.set('subject_key', `eq.${input.subjectKey}`);
-        params.set('window_key', `eq.${windowKey}`);
-        params.set('select', 'id,usage_count,limit_count');
+        try {
+            const params = new URLSearchParams();
+            params.set('subject_key', `eq.${input.subjectKey}`);
+            params.set('window_key', `eq.${windowKey}`);
+            params.set('select', 'id,usage_count,limit_count');
 
-        const existing = await supabaseRestRequest<
-            Array<{ id: string; usage_count: number; limit_count: number }>
-        >('voice_usage', { method: 'GET' }, params);
+            const existing = await supabaseRestRequest<
+                Array<{ id: string; usage_count: number; limit_count: number }>
+            >('voice_usage', { method: 'GET' }, params);
 
-        if (existing[0]) {
-            if (existing[0].usage_count >= quotaLimit) {
-                throw new Error(
-                    input.subjectType === 'anonymous'
-                        ? 'Anonymous quota reached. Try again in the next hour or sign in to save more generations.'
-                        : 'Signed-in quota reached for today.'
+            if (existing[0]) {
+                if (existing[0].usage_count >= quotaLimit) {
+                    throw new Error(
+                        input.subjectType === 'anonymous'
+                            ? 'Anonymous quota reached. Try again in the next hour or sign in to save more generations.'
+                            : 'Signed-in quota reached for today.'
+                    );
+                }
+
+                const nextCount = existing[0].usage_count + 1;
+                const patchParams = new URLSearchParams();
+                patchParams.set('id', `eq.${existing[0].id}`);
+                await supabaseRestRequest(
+                    'voice_usage',
+                    {
+                        method: 'PATCH',
+                        headers: {
+                            Prefer: 'return=representation',
+                        },
+                        body: JSON.stringify({
+                            usage_count: nextCount,
+                            limit_count: quotaLimit,
+                            updated_at: now,
+                        }),
+                    },
+                    patchParams
                 );
+
+                return {
+                    remainingQuota: Math.max(quotaLimit - nextCount, 0),
+                    quotaLimit,
+                };
             }
 
-            const nextCount = existing[0].usage_count + 1;
-            const patchParams = new URLSearchParams();
-            patchParams.set('id', `eq.${existing[0].id}`);
             await supabaseRestRequest(
                 'voice_usage',
                 {
-                    method: 'PATCH',
+                    method: 'POST',
                     headers: {
                         Prefer: 'return=representation',
                     },
                     body: JSON.stringify({
-                        usage_count: nextCount,
+                        id: randomUUID(),
+                        subject_key: input.subjectKey,
+                        subject_type: input.subjectType,
+                        window_key: windowKey,
+                        usage_count: 1,
                         limit_count: quotaLimit,
+                        created_at: now,
                         updated_at: now,
                     }),
-                },
-                patchParams
+                }
             );
 
             return {
-                remainingQuota: Math.max(quotaLimit - nextCount, 0),
+                remainingQuota: quotaLimit - 1,
                 quotaLimit,
             };
+        } catch (quotaError) {
+            const msg = quotaError instanceof Error ? quotaError.message : '';
+            if (msg.includes('quota reached')) throw quotaError;
+            console.error('Quota enforcement failed, allowing request:', quotaError);
+            return { remainingQuota: quotaLimit - 1, quotaLimit };
         }
-
-        await supabaseRestRequest(
-            'voice_usage',
-            {
-                method: 'POST',
-                headers: {
-                    Prefer: 'return=representation',
-                },
-                body: JSON.stringify({
-                    id: randomUUID(),
-                    subject_key: input.subjectKey,
-                    subject_type: input.subjectType,
-                    window_key: windowKey,
-                    usage_count: 1,
-                    limit_count: quotaLimit,
-                    created_at: now,
-                    updated_at: now,
-                }),
-            }
-        );
-
-        return {
-            remainingQuota: quotaLimit - 1,
-            quotaLimit,
-        };
     }
 
     const store = await readJsonStore();

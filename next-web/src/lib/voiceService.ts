@@ -19,6 +19,7 @@ interface AnalyzeResult {
 }
 
 const DEFAULT_GROQ_MODEL = 'llama-3.3-70b-versatile';
+const DEFAULT_OPENROUTER_MODEL = 'meta-llama/llama-3.3-70b-instruct:free';
 
 function getGroqApiKey(): string {
     const apiKey = process.env.GROQ_API_KEY;
@@ -27,6 +28,10 @@ function getGroqApiKey(): string {
     }
 
     return apiKey;
+}
+
+function getOpenRouterApiKey(): string | null {
+    return process.env.OPENROUTER_API_KEY || null;
 }
 
 function getGroqModel(name: 'analyze' | 'generate'): string {
@@ -77,6 +82,62 @@ async function groqChatCompletion(messages: GroqMessage[], model: string, temper
     }
 
     return content;
+}
+
+async function openRouterChatCompletion(messages: GroqMessage[], temperature: number): Promise<string> {
+    const apiKey = getOpenRouterApiKey();
+    if (!apiKey) throw new Error('OPENROUTER_API_KEY is not configured.');
+
+    let response: Response;
+
+    try {
+        response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${apiKey}`,
+                'HTTP-Referer': 'https://pryzmira.diwakaryadav.com.np',
+                'X-Title': 'Pryzmira',
+            },
+            body: JSON.stringify({
+                model: DEFAULT_OPENROUTER_MODEL,
+                temperature,
+                messages,
+            }),
+            cache: 'no-store',
+        });
+    } catch (error) {
+        console.error('OpenRouter transport failure', error);
+        throw new Error(VOICE_ENGINE_UNAVAILABLE_MESSAGE);
+    }
+
+    const payload = (await response.json().catch(() => ({}))) as {
+        choices?: Array<{ message?: { content?: string } }>;
+        error?: { message?: string };
+    };
+
+    if (!response.ok) {
+        throw new Error(payload.error?.message || 'OpenRouter request failed.');
+    }
+
+    const content = payload.choices?.[0]?.message?.content?.trim();
+    if (!content) {
+        throw new Error('OpenRouter returned an empty response.');
+    }
+
+    return content;
+}
+
+async function chatCompletion(messages: GroqMessage[], model: string, temperature: number): Promise<string> {
+    try {
+        return await groqChatCompletion(messages, model, temperature);
+    } catch (groqError) {
+        const openRouterKey = getOpenRouterApiKey();
+        if (!openRouterKey) throw groqError;
+
+        console.warn('Groq failed, falling back to OpenRouter:', groqError instanceof Error ? groqError.message : groqError);
+        return openRouterChatCompletion(messages, temperature);
+    }
 }
 
 function extractJsonObject(raw: string): Record<string, unknown> {
@@ -143,7 +204,7 @@ export async function analyzeVoice(sampleText: string): Promise<AnalyzeResult> {
     ].join(' ');
 
     const userPrompt = `Analyze this writing sample:\n\n${sampleText}`;
-    const raw = await groqChatCompletion(
+    const raw = await chatCompletion(
         [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userPrompt },
@@ -193,7 +254,7 @@ export async function generateInVoice(input: {
         .filter(Boolean)
         .join('\n\n');
 
-    return groqChatCompletion(
+    return chatCompletion(
         [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userPrompt },
