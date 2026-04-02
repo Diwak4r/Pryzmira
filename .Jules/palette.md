@@ -1,0 +1,4 @@
+## 2024-04-02 - Custom Collapsible ARIA States
+
+**Learning:** Custom interactive elements (like the "Voice insights" and "History" dropdown toggles in `VoiceDesk.tsx`) often lack native semantic attributes indicating state. When building custom accordions or toggles instead of using standard UI library components, attributes like `aria-expanded` and `aria-controls` are easily overlooked but are critical for screen reader users to understand the current state of the UI.
+**Action:** When creating or modifying custom interactive buttons that reveal/hide content, always ensure `aria-expanded` is bound to the state controlling visibility, and `aria-controls` targets the `id` of the collapsible container.
