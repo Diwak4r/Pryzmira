@@ -1,0 +1,3 @@
+## 2025-02-23 - Custom Accordions and Focus Styles
+**Learning:** Custom interactive elements (like the insights and history toggles) lack default accessibility attributes present in native semantic HTML elements. Without `aria-expanded` and explicit `focus-visible` styles, screen reader users can't determine the element's state, and keyboard users lack a visual focus indicator.
+**Action:** Always add `aria-expanded` to custom collapsibles/accordions to communicate state. For all custom interactive controls and icon-only buttons, explicitly apply `focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none` (with `focus-visible:ring-offset-1` if appropriate) to ensure clear keyboard navigability.
