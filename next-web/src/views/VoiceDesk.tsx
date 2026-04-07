@@ -345,7 +345,8 @@ export default function VoiceDesk() {
                         <button
                             type="button"
                             onClick={() => setInsightsOpen(!insightsOpen)}
-                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground"
+                            aria-expanded={insightsOpen}
+                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         >
                             Voice insights
                             <ChevronDown className={`h-3.5 w-3.5 transition-transform ${insightsOpen ? 'rotate-180' : ''}`} />
@@ -388,7 +389,7 @@ export default function VoiceDesk() {
                             type="button"
                             onClick={() => handleRefine(action)}
                             disabled={isPending}
-                            className="rounded-md border border-border bg-card px-2.5 py-2 text-xs text-muted-foreground hover:border-primary/30 hover:text-foreground disabled:opacity-40"
+                            className="rounded-md border border-border bg-card px-2.5 py-2 text-xs text-muted-foreground hover:border-primary/30 hover:text-foreground disabled:opacity-40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         >
                             {action.replace('.', '')}
                         </button>
@@ -397,7 +398,7 @@ export default function VoiceDesk() {
                         type="button"
                         onClick={() => handleRefine('Regenerate the same task from scratch while keeping the same voice.')}
                         disabled={isPending}
-                        className="flex items-center gap-1 rounded-md border border-border bg-card px-2.5 py-2 text-xs text-muted-foreground hover:border-primary/30 hover:text-foreground disabled:opacity-40"
+                        className="flex items-center gap-1 rounded-md border border-border bg-card px-2.5 py-2 text-xs text-muted-foreground hover:border-primary/30 hover:text-foreground disabled:opacity-40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                     >
                         <RefreshCw className="h-3 w-3" />
                         Regenerate
@@ -411,6 +412,7 @@ export default function VoiceDesk() {
                         onChange={(e) => setCustomRefine(e.target.value)}
                         onKeyDown={(e) => { if (e.key === 'Enter' && customRefine.trim()) handleRefine(customRefine); }}
                         placeholder="Custom refine..."
+                        aria-label="Custom refine instruction"
                         className="min-h-[44px] flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-ring"
                     />
                     <Button
@@ -448,7 +450,8 @@ export default function VoiceDesk() {
                         <button
                             type="button"
                             onClick={() => setHistoryOpen(!historyOpen)}
-                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground"
+                            aria-expanded={historyOpen}
+                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         >
                             History ({history.length})
                             <ChevronDown className={`h-3.5 w-3.5 transition-transform ${historyOpen ? 'rotate-180' : ''}`} />
@@ -460,7 +463,7 @@ export default function VoiceDesk() {
                                         key={entry.id}
                                         type="button"
                                         onClick={() => { setCurrentVoiceGeneration(entry); setGen(entry); }}
-                                        className={`block w-full border-b border-border px-3 py-2.5 text-left last:border-b-0 hover:bg-accent ${
+                                        className={`block w-full border-b border-border px-3 py-2.5 text-left last:border-b-0 hover:bg-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring ${
                                             entry.id === gen.id ? 'bg-accent' : ''
                                         }`}
                                     >
