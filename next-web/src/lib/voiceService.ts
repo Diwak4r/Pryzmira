@@ -20,6 +20,96 @@ interface AnalyzeResult {
 
 const DEFAULT_GROQ_MODEL = 'llama-3.3-70b-versatile';
 const DEFAULT_OPENROUTER_MODEL = 'meta-llama/llama-3.3-70b-instruct:free';
+const MAX_ANCHORS = 6;
+
+const GENERIC_PHRASES = [
+    'i hope this email finds you well',
+    'i hope this message finds you well',
+    'i wanted to reach out',
+    'in conclusion',
+    'furthermore',
+    'moreover',
+    'it is important to note',
+    'please do not hesitate to',
+    'if you have any questions, feel free',
+    'in today\'s fast-paced world',
+    'thank you for your time and consideration',
+];
+
+const STOP_WORDS = new Set([
+    'a',
+    'an',
+    'and',
+    'are',
+    'as',
+    'at',
+    'be',
+    'been',
+    'but',
+    'by',
+    'for',
+    'from',
+    'had',
+    'has',
+    'have',
+    'he',
+    'her',
+    'here',
+    'him',
+    'his',
+    'i',
+    'if',
+    'in',
+    'is',
+    'it',
+    'its',
+    'just',
+    'me',
+    'my',
+    'no',
+    'not',
+    'of',
+    'on',
+    'or',
+    'our',
+    'ours',
+    'she',
+    'so',
+    'that',
+    'the',
+    'their',
+    'them',
+    'there',
+    'they',
+    'this',
+    'to',
+    'too',
+    'us',
+    'was',
+    'we',
+    'were',
+    'what',
+    'when',
+    'where',
+    'which',
+    'who',
+    'will',
+    'with',
+    'you',
+    'your',
+]);
+
+interface VoiceSignals {
+    averageSentenceWords: number;
+    shortSentenceRatio: number;
+    longSentenceRatio: number;
+    contractionRate: number;
+    usesContractions: boolean;
+    questionRate: number;
+    exclamationRate: number;
+    lexicalAnchors: string[];
+    phraseAnchors: string[];
+}
 
 function getGroqApiKey(): string {
     const apiKey = process.env.GROQ_API_KEY;
@@ -140,6 +230,216 @@ async function chatCompletion(messages: GroqMessage[], model: string, temperatur
     }
 }
 
+function normalizePromptText(value: string): string {
+    return value.replace(/\r\n/g, '\n').replace(/\s+/g, ' ').trim();
+}
+
+function splitSentences(value: string): string[] {
+    return value
+        .replace(/\r\n/g, '\n')
+        .split(/(?<=[.!?])\s+|\n+/)
+        .map((part) => part.trim())
+        .filter(Boolean);
+}
+
+function countWordsInText(value: string): number {
+    const words = value.match(/\b[\p{L}\p{N}'-]+\b/gu);
+    return words?.length || 0;
+}
+
+function extractTopLexicalAnchors(sampleText: string, maxItems = MAX_ANCHORS): string[] {
+    const words = sampleText.toLowerCase().match(/[a-z][a-z'-]{2,}/g) || [];
+    const counts = new Map<string, number>();
+
+    for (const word of words) {
+        const normalized = word.replace(/^'+|'+$/g, '');
+        if (normalized.length < 4 || STOP_WORDS.has(normalized)) {
+            continue;
+        }
+
+        counts.set(normalized, (counts.get(normalized) || 0) + 1);
+    }
+
+    return Array.from(counts.entries())
+        .sort((a, b) => {
+            if (b[1] !== a[1]) return b[1] - a[1];
+            return b[0].length - a[0].length;
+        })
+        .slice(0, maxItems)
+        .map(([token]) => token);
+}
+
+function extractTopPhraseAnchors(sampleText: string, maxItems = 4): string[] {
+    const words = sampleText.toLowerCase().match(/[a-z][a-z'-]{1,}/g) || [];
+    const counts = new Map<string, number>();
+
+    for (let index = 0; index < words.length - 1; index += 1) {
+        const first = words[index];
+        const second = words[index + 1];
+
+        if (STOP_WORDS.has(first) && STOP_WORDS.has(second)) {
+            continue;
+        }
+
+        const phrase = `${first} ${second}`.trim();
+        if (phrase.length < 8) {
+            continue;
+        }
+
+        counts.set(phrase, (counts.get(phrase) || 0) + 1);
+    }
+
+    return Array.from(counts.entries())
+        .sort((a, b) => {
+            if (b[1] !== a[1]) return b[1] - a[1];
+            return b[0].length - a[0].length;
+        })
+        .slice(0, maxItems)
+        .map(([phrase]) => phrase);
+}
+
+function buildVoiceSignals(sampleText: string): VoiceSignals {
+    const normalized = normalizePromptText(sampleText);
+    const sentences = splitSentences(normalized);
+    const sentenceWordCounts = sentences.map((sentence) => countWordsInText(sentence));
+    const totalWords = countWordsInText(normalized);
+    const shortSentenceCount = sentenceWordCounts.filter((count) => count > 0 && count <= 10).length;
+    const longSentenceCount = sentenceWordCounts.filter((count) => count >= 22).length;
+    const contractionCount =
+        normalized.match(/\b[\w]+(?:'ll|'re|'ve|n't|'m|'d|'s)\b/gi)?.length || 0;
+    const questionCount = sentences.filter((sentence) => sentence.includes('?')).length;
+    const exclamationCount = sentences.filter((sentence) => sentence.includes('!')).length;
+    const sentenceCount = Math.max(sentences.length, 1);
+    const averageSentenceWords =
+        sentenceWordCounts.length > 0
+            ? Math.round(
+                  (sentenceWordCounts.reduce((sum, count) => sum + count, 0) / sentenceWordCounts.length) *
+                      10
+              ) / 10
+            : 12;
+
+    return {
+        averageSentenceWords: Math.max(6, averageSentenceWords),
+        shortSentenceRatio: shortSentenceCount / sentenceCount,
+        longSentenceRatio: longSentenceCount / sentenceCount,
+        contractionRate: totalWords > 0 ? contractionCount / totalWords : 0,
+        usesContractions: contractionCount > 0,
+        questionRate: questionCount / sentenceCount,
+        exclamationRate: exclamationCount / sentenceCount,
+        lexicalAnchors: extractTopLexicalAnchors(normalized),
+        phraseAnchors: extractTopPhraseAnchors(normalized),
+    };
+}
+
+function buildVoiceContractLines(input: {
+    analysis: VoiceAnalysis;
+    voiceInsights?: string;
+    insightBullets?: string[];
+    signals: VoiceSignals;
+}): string[] {
+    const { analysis, voiceInsights, insightBullets, signals } = input;
+    const sentencePacingLine =
+        signals.shortSentenceRatio >= 0.5
+            ? `The writer favors short lines. Keep sentence length near ${signals.averageSentenceWords} words.`
+            : signals.longSentenceRatio >= 0.35
+              ? `The writer tolerates longer flow. Keep sentence length near ${signals.averageSentenceWords} words with controlled variety.`
+              : `Use mixed sentence length centered around ${signals.averageSentenceWords} words.`;
+    const contractionLine = signals.usesContractions
+        ? `Contractions are normal in this voice (rate ~${Math.round(signals.contractionRate * 100)}%). Keep them natural.`
+        : 'Contractions are rare in this voice. Use them sparingly.';
+    const punctuationLine =
+        signals.questionRate > 0.2
+            ? 'Questions are part of this writer style. Use direct questions when relevant.'
+            : signals.exclamationRate > 0.12
+              ? 'Exclamation marks appear in this voice. Keep them minimal and intentional.'
+              : 'Punctuation style is calm and controlled. Avoid dramatic punctuation.';
+
+    const lines = [
+        sentencePacingLine,
+        contractionLine,
+        punctuationLine,
+        `Tone target: ${analysis.tone}`,
+        `Rhythm target: ${analysis.sentenceRhythm}`,
+        `Vocabulary habits: ${analysis.vocabularyHabits}`,
+        `Transitions: ${analysis.transitions}`,
+        `Language mixing: ${analysis.languageMixing}`,
+        `Closing style: ${analysis.closingStyle}`,
+    ];
+
+    if (voiceInsights) {
+        lines.push(`Voice summary: ${voiceInsights}`);
+    }
+
+    if (insightBullets && insightBullets.length > 0) {
+        lines.push(`Critical style markers: ${insightBullets.slice(0, 5).join(' | ')}`);
+    }
+
+    if (signals.lexicalAnchors.length > 0) {
+        lines.push(`Lexical anchors from sample: ${signals.lexicalAnchors.join(', ')}`);
+    }
+
+    if (signals.phraseAnchors.length > 0) {
+        lines.push(`Phrase anchors from sample: ${signals.phraseAnchors.join(' | ')}`);
+    }
+
+    return lines;
+}
+
+function escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function countGenericPhraseHits(outputText: string): number {
+    const normalized = outputText.toLowerCase();
+    return GENERIC_PHRASES.filter((phrase) => normalized.includes(phrase)).length;
+}
+
+function shouldRetryForGenericness(outputText: string, signals: VoiceSignals): boolean {
+    const normalized = normalizePromptText(outputText);
+    if (!normalized) return true;
+
+    const genericHits = countGenericPhraseHits(normalized);
+    if (genericHits > 0) {
+        return true;
+    }
+
+    const sentences = splitSentences(normalized);
+    const sentenceCount = Math.max(sentences.length, 1);
+    const totalWords = countWordsInText(normalized);
+    const averageSentenceWords = totalWords / sentenceCount;
+    const shortSentenceRatio =
+        sentences.filter((sentence) => {
+            const wordCount = countWordsInText(sentence);
+            return wordCount > 0 && wordCount <= 10;
+        }).length / sentenceCount;
+    const contractionCount =
+        normalized.match(/\b[\w]+(?:'ll|'re|'ve|n't|'m|'d|'s)\b/gi)?.length || 0;
+
+    if (signals.shortSentenceRatio > 0.45 && shortSentenceRatio < 0.2) {
+        return true;
+    }
+
+    if (averageSentenceWords > signals.averageSentenceWords + 7) {
+        return true;
+    }
+
+    if (signals.usesContractions && contractionCount === 0 && totalWords > 45) {
+        return true;
+    }
+
+    if (signals.lexicalAnchors.length > 0 && totalWords > 60) {
+        const anchorHit = signals.lexicalAnchors.some((anchor) =>
+            new RegExp(`\\b${escapeRegExp(anchor)}\\b`, 'i').test(normalized)
+        );
+
+        if (!anchorHit) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 function extractJsonObject(raw: string): Record<string, unknown> {
     const start = raw.indexOf('{');
     const end = raw.lastIndexOf('}');
@@ -201,11 +501,11 @@ export async function analyzeVoice(sampleText: string): Promise<AnalyzeResult> {
         '',
         'Analyze these dimensions precisely:',
         '- tone: The emotional register (e.g., "warm but direct", "sarcastically playful", "professionally casual"). Avoid generic labels.',
-        '- sentenceRhythm: How sentences flow — length variation, fragments, run-ons, pacing patterns.',
+        '- sentenceRhythm: How sentences flow - length variation, fragments, run-ons, pacing patterns.',
         '- vocabularyHabits: Specific word choices, jargon, slang, repeated phrases, formality level.',
-        '- transitions: How ideas connect — abrupt cuts, smooth segues, conjunctions, paragraph breaks.',
+        '- transitions: How ideas connect - abrupt cuts, smooth segues, conjunctions, paragraph breaks.',
         '- languageMixing: Code-switching patterns (e.g., "Nepali words mid-sentence for emphasis"), or "English only" if none.',
-        '- closingStyle: How the writer ends messages/paragraphs — trailing off, strong conclusions, calls to action, casual sign-offs.',
+        '- closingStyle: How the writer ends messages/paragraphs - trailing off, strong conclusions, calls to action, casual sign-offs.',
         '',
         'For voiceInsights: Write a 2-3 sentence narrative summary of what makes this writer\'s voice distinctive. Be specific, not generic.',
         'For insightBullets: List 5-7 concrete, actionable observations that a ghostwriter would need to replicate this voice. Each bullet should be specific enough to distinguish this writer from others.',
@@ -229,35 +529,43 @@ export async function analyzeVoice(sampleText: string): Promise<AnalyzeResult> {
 export async function generateInVoice(input: {
     sampleText: string;
     analysis: VoiceAnalysis;
+    voiceInsights?: string;
+    insightBullets?: string[];
     writingTask: string;
     extraInstructions?: string;
     previousOutput?: string;
     refineInstruction?: string;
 }): Promise<string> {
+    const signals = buildVoiceSignals(input.sampleText);
+    const voiceContract = buildVoiceContractLines({
+        analysis: input.analysis,
+        voiceInsights: input.voiceInsights,
+        insightBullets: input.insightBullets,
+        signals,
+    });
     const systemPrompt = [
-        'You are a personal voice model — a ghostwriter who has deeply studied the writer\'s style.',
-        'Your job: write the requested text so it is indistinguishable from what the original writer would produce.',
+        'You are Pryzmira Voice Engine, a high-fidelity ghostwriter.',
+        'Your output must read like this exact person wrote it.',
         '',
-        'Voice replication rules:',
-        '- Match the exact tone, sentence rhythm, and vocabulary level from the analysis.',
-        '- If the writer uses short punchy sentences, you use short punchy sentences. If they write long flowing paragraphs, you do too.',
-        '- Replicate their specific word choices and formality level, not a sanitized version.',
-        '- Preserve code-switching patterns ONLY if the analysis shows them. Do not add language mixing that isn\'t in the sample.',
-        '- Match their transition style — if they jump between ideas, you jump. If they use smooth connectors, you do too.',
-        '- Match their closing style precisely.',
+        'Non-negotiable writing rules:',
+        '- Use simple English: short, familiar words and direct sentence construction.',
+        '- Match this person voice exactly using the dynamic contract below.',
+        '- Keep wording concrete and human.',
+        '- Preserve their tone, rhythm, vocabulary habits, transitions, and closing style.',
+        '- Follow language mixing only when analysis says it is present.',
+        '- Never output generic assistant/corporate phrases.',
+        '- Never add facts, claims, or biography not requested.',
+        '- Never output prefaces, labels, or explanations. Output only the final draft text.',
         '',
-        'Absolute prohibitions:',
-        '- Never produce generic AI phrasing ("I hope this email finds you well", "In conclusion", "I wanted to reach out").',
-        '- Never add formality the writer doesn\'t use.',
-        '- Never remove informality the writer does use.',
-        '- Never invent facts, credentials, experiences, or claims not implied by the task.',
-        '- Never copy the sample verbatim unless the task explicitly requires it.',
-        '- Never add emoji unless the sample shows emoji usage.',
-        '',
-        'Output ONLY the requested text. No meta-commentary, no "Here\'s the text:", no labels.',
+        'Dynamic voice contract:',
+        ...voiceContract.map((line) => `- ${line}`),
     ].join('\n');
 
     const analysisBlock = JSON.stringify(input.analysis, null, 2);
+    const insightsBlock =
+        input.insightBullets && input.insightBullets.length > 0
+            ? input.insightBullets.map((entry, index) => `${index + 1}. ${entry}`).join('\n')
+            : 'No extra insight bullets available.';
     const refineBlock =
         input.previousOutput && input.refineInstruction
             ? `Previous output:\n${input.previousOutput}\n\nRefine instruction:\n${input.refineInstruction}\n\n`
@@ -269,21 +577,50 @@ export async function generateInVoice(input: {
     const userPrompt = [
         `Writing sample:\n${input.sampleText}`,
         `Voice analysis:\n${analysisBlock}`,
+        `Voice insight bullets:\n${insightsBlock}`,
         `Writing task:\n${input.writingTask}`,
         extraBlock.trim(),
         refineBlock.trim(),
     ]
         .filter(Boolean)
         .join('\n\n');
-
-    return chatCompletion(
+    const model = getGroqModel('generate');
+    const firstDraft = await chatCompletion(
         [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userPrompt },
         ],
-        getGroqModel('generate'),
-        0.65
+        model,
+        0.55
     );
+
+    if (!shouldRetryForGenericness(firstDraft, signals)) {
+        return firstDraft;
+    }
+
+    const retryInstruction = [
+        'The previous draft is too generic, too formal, or not close enough to the writer style.',
+        'Rewrite it now with higher fidelity to the voice contract.',
+        'Keep simple English and avoid boilerplate phrasing.',
+        'Keep the same task and intent.',
+        'Output only the rewritten text.',
+    ].join('\n');
+
+    try {
+        return await chatCompletion(
+            [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: userPrompt },
+                { role: 'assistant', content: firstDraft },
+                { role: 'user', content: retryInstruction },
+            ],
+            model,
+            0.45
+        );
+    } catch (retryError) {
+        console.warn('Genericness retry failed, using first draft', retryError);
+        return firstDraft;
+    }
 }
 
 export async function buildVoiceResponse(input: {
@@ -298,6 +635,8 @@ export async function buildVoiceResponse(input: {
     const outputText = await generateInVoice({
         sampleText: input.sampleText,
         analysis: analyzed.analysis,
+        voiceInsights: analyzed.voiceInsights,
+        insightBullets: analyzed.insightBullets,
         writingTask: input.writingTask,
         extraInstructions: input.extraInstructions,
     });
@@ -334,6 +673,8 @@ export async function buildRefinedVoiceResponse(input: {
     const outputText = await generateInVoice({
         sampleText: input.voiceContext.sampleText,
         analysis: input.voiceContext.analysis,
+        voiceInsights: input.voiceContext.voiceInsights,
+        insightBullets: input.voiceContext.insightBullets,
         writingTask: input.voiceContext.latestTask || 'Refine the existing draft.',
         extraInstructions: input.voiceContext.latestInstructions,
         previousOutput: input.previousOutput,

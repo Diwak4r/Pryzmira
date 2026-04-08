@@ -12,9 +12,9 @@ import { validateGenerateInput } from '@/lib/voice';
 export async function POST(request: Request) {
     try {
         const body = (await request.json()) as {
-            sampleText: string;
-            writingTask: string;
-            extraInstructions?: string;
+            sampleText?: unknown;
+            writingTask?: unknown;
+            extraInstructions?: unknown;
         };
         const input = validateGenerateInput(body);
         const user = await getAuthenticatedVoiceUser();
@@ -40,13 +40,16 @@ export async function POST(request: Request) {
         });
     } catch (error) {
         const message = error instanceof Error ? error.message : 'Unable to generate voice output.';
+        const normalized = message.toLowerCase();
+        const quotaServiceUnavailable = normalized.includes('quota service is temporarily unavailable');
         const clientMessage =
-            message.toLowerCase().includes('configured') || isVoiceEngineFailure(message)
+            normalized.includes('configured') || isVoiceEngineFailure(message)
                 ? VOICE_ENGINE_UNAVAILABLE_MESSAGE
                 : message;
-        const normalized = message.toLowerCase();
         console.error('Voice generate failed', error);
-        const status = normalized.includes('quota')
+        const status = quotaServiceUnavailable
+            ? 503
+            : normalized.includes('quota')
             ? 429
             : normalized.includes('configured')
               ? 500

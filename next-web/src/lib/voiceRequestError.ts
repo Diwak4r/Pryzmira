@@ -11,7 +11,9 @@ export function isVoiceEngineFailure(message: string): boolean {
         normalized.includes('writing engine is unreachable') ||
         normalized.includes('writing engine is unavailable') ||
         normalized.includes('groq request failed') ||
-        normalized.includes('groq returned an empty response')
+        normalized.includes('groq returned an empty response') ||
+        normalized.includes('openrouter request failed') ||
+        normalized.includes('openrouter returned an empty response')
     );
 }
 

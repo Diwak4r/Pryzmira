@@ -1,9 +1,12 @@
+import { randomBytes, createHash } from 'node:crypto';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 const ACCESS_COOKIE = 'pryzmira_voice_access_token';
 const REFRESH_COOKIE = 'pryzmira_voice_refresh_token';
+const PKCE_COOKIE = 'pryzmira_pkce_verifier';
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
+const PKCE_MAX_AGE = 60 * 10; // 10 minutes
 const APP_URL_ENV_KEYS = [
     'NEXTAUTH_URL',
     'NEXT_PUBLIC_APP_URL',
@@ -29,7 +32,7 @@ function getSupabaseUrl(): string {
         throw new Error('NEXT_PUBLIC_SUPABASE_URL is not configured.');
     }
 
-    return url.replace(/\/$/, '');
+    return url.trim().replace(/\/$/, '');
 }
 
 function getSupabaseAnonKey(): string {
@@ -45,8 +48,16 @@ function getTrustedAppOrigin(requestUrl?: string): string {
     for (const key of APP_URL_ENV_KEYS) {
         const value = process.env[key];
         if (value) {
-            return new URL(value).origin;
+            try {
+                return new URL(value).origin;
+            } catch {
+                continue;
+            }
         }
+    }
+
+    if (process.env.NODE_ENV === 'production') {
+        throw new Error('A trusted application URL is required in production.');
     }
 
     if (requestUrl) {
@@ -70,12 +81,6 @@ export function sanitizeVoiceRedirectPath(
     }
 
     return normalized;
-}
-
-export function buildVoiceCallbackUrl(requestUrl: string, nextPath = '/desk'): string {
-    const callbackUrl = new URL('/auth/callback', getTrustedAppOrigin(requestUrl));
-    callbackUrl.searchParams.set('next', sanitizeVoiceRedirectPath(nextPath));
-    return callbackUrl.toString();
 }
 
 export function buildVoiceRedirectUrl(
@@ -117,26 +122,73 @@ async function supabaseAuthRequest<T>(path: string, init: RequestInit): Promise<
     return payload as T;
 }
 
-export async function sendMagicLinkEmail(email: string, redirectTo: string): Promise<void> {
-    await supabaseAuthRequest('/otp', {
+// --- Email + Password auth ---
+
+export async function signUpWithPassword(
+    email: string,
+    password: string
+): Promise<SupabaseSessionPayload> {
+    return supabaseAuthRequest<SupabaseSessionPayload>('/signup', {
         method: 'POST',
-        body: JSON.stringify({
-            email,
-            create_user: true,
-            email_redirect_to: redirectTo,
-        }),
+        body: JSON.stringify({ email, password }),
     });
 }
 
-export async function verifyMagicLinkToken(tokenHash: string, type: string): Promise<SupabaseSessionPayload> {
-    return supabaseAuthRequest<SupabaseSessionPayload>('/verify', {
-        method: 'POST',
-        body: JSON.stringify({
-            token_hash: tokenHash,
-            type,
-        }),
-    });
+export async function signInWithPassword(
+    email: string,
+    password: string
+): Promise<SupabaseSessionPayload> {
+    return supabaseAuthRequest<SupabaseSessionPayload>(
+        '/token?grant_type=password',
+        {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+        }
+    );
 }
+
+// --- Google OAuth (PKCE) ---
+
+function base64url(buffer: Buffer): string {
+    return buffer.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+export function generatePkce(): { codeVerifier: string; codeChallenge: string } {
+    const codeVerifier = base64url(randomBytes(48));
+    const codeChallenge = base64url(createHash('sha256').update(codeVerifier).digest());
+    return { codeVerifier, codeChallenge };
+}
+
+export function buildGoogleOAuthUrl(codeChallenge: string, redirectTo: string): string {
+    const params = new URLSearchParams({
+        provider: 'google',
+        redirect_to: redirectTo,
+        code_challenge: codeChallenge,
+        code_challenge_method: 's256',
+    });
+    return `${getSupabaseUrl()}/auth/v1/authorize?${params.toString()}`;
+}
+
+export function buildOAuthCallbackUrl(requestUrl: string, nextPath = '/desk'): string {
+    const callbackUrl = new URL('/auth/callback', getTrustedAppOrigin(requestUrl));
+    callbackUrl.searchParams.set('next', sanitizeVoiceRedirectPath(nextPath));
+    return callbackUrl.toString();
+}
+
+export async function exchangeOAuthCode(
+    code: string,
+    codeVerifier: string
+): Promise<SupabaseSessionPayload> {
+    return supabaseAuthRequest<SupabaseSessionPayload>(
+        '/token?grant_type=pkce',
+        {
+            method: 'POST',
+            body: JSON.stringify({ auth_code: code, code_verifier: codeVerifier }),
+        }
+    );
+}
+
+// --- Session management ---
 
 async function refreshSession(refreshToken: string): Promise<SupabaseSessionPayload> {
     const response = await fetch(`${getSupabaseUrl()}/auth/v1/token?grant_type=refresh_token`, {
@@ -198,6 +250,25 @@ export async function applySupabaseSessionToResponse(
         path: '/',
         maxAge: COOKIE_MAX_AGE,
     });
+}
+
+export function setPkceCookie(response: NextResponse, codeVerifier: string): void {
+    response.cookies.set(PKCE_COOKIE, codeVerifier, {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        path: '/',
+        maxAge: PKCE_MAX_AGE,
+    });
+}
+
+export function clearPkceCookie(response: NextResponse): void {
+    response.cookies.delete(PKCE_COOKIE);
+}
+
+export async function getPkceVerifier(): Promise<string | null> {
+    const cookieStore = await cookies();
+    return cookieStore.get(PKCE_COOKIE)?.value || null;
 }
 
 export function clearSupabaseSessionFromResponse(response: NextResponse): void {

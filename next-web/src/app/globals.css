@@ -82,6 +82,22 @@
   }
 }
 
+@keyframes voice-scan {
+  0% {
+    transform: translateX(-120%);
+  }
+  50% {
+    transform: translateX(60%);
+  }
+  100% {
+    transform: translateX(240%);
+  }
+}
+
+.voice-scan-bar {
+  animation: voice-scan 1.5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

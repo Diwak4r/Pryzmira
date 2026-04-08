@@ -52,7 +52,7 @@ function buildVoiceContextFromProfile(
 }
 
 function getSupabaseUrl(): string | null {
-    return process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, '') || null;
+    return process.env.NEXT_PUBLIC_SUPABASE_URL?.trim().replace(/\/$/, '') || null;
 }
 
 function getSupabaseServiceKey(): string | null {
@@ -162,78 +162,104 @@ export async function enforceVoiceQuota(input: {
 
     if (hasSupabaseRestConfig()) {
         try {
-            const params = new URLSearchParams();
-            params.set('subject_key', `eq.${input.subjectKey}`);
-            params.set('window_key', `eq.${windowKey}`);
-            params.set('select', 'id,usage_count,limit_count');
+            const maxRetryAttempts = 4;
 
-            const existing = await supabaseRestRequest<
-                Array<{ id: string; usage_count: number; limit_count: number }>
-            >('voice_usage', { method: 'GET' }, params);
+            for (let attempt = 0; attempt < maxRetryAttempts; attempt += 1) {
+                const params = new URLSearchParams();
+                params.set('subject_key', `eq.${input.subjectKey}`);
+                params.set('window_key', `eq.${windowKey}`);
+                params.set('select', 'id,usage_count,limit_count');
 
-            if (existing[0]) {
-                if (existing[0].usage_count >= quotaLimit) {
-                    throw new Error(
-                        input.subjectType === 'anonymous'
-                            ? 'Anonymous quota reached. Try again in the next hour or sign in to save more generations.'
-                            : 'Signed-in quota reached for today.'
+                const existing = await supabaseRestRequest<
+                    Array<{ id: string; usage_count: number; limit_count: number }>
+                >('voice_usage', { method: 'GET' }, params);
+
+                if (existing[0]) {
+                    if (existing[0].usage_count >= quotaLimit) {
+                        throw new Error(
+                            input.subjectType === 'anonymous'
+                                ? 'Anonymous quota reached. Try again in the next hour or sign in to save more generations.'
+                                : 'Signed-in quota reached for today.'
+                        );
+                    }
+
+                    const nextCount = existing[0].usage_count + 1;
+                    const patchParams = new URLSearchParams();
+                    patchParams.set('id', `eq.${existing[0].id}`);
+                    patchParams.set('usage_count', `eq.${existing[0].usage_count}`);
+                    const updatedRows = await supabaseRestRequest<
+                        Array<{ id: string; usage_count: number; limit_count: number }>
+                    >(
+                        'voice_usage',
+                        {
+                            method: 'PATCH',
+                            headers: {
+                                Prefer: 'return=representation',
+                            },
+                            body: JSON.stringify({
+                                usage_count: nextCount,
+                                limit_count: quotaLimit,
+                                updated_at: now,
+                            }),
+                        },
+                        patchParams
                     );
+
+                    if (!updatedRows[0]) {
+                        continue;
+                    }
+
+                    return {
+                        remainingQuota: Math.max(quotaLimit - nextCount, 0),
+                        quotaLimit,
+                    };
                 }
 
-                const nextCount = existing[0].usage_count + 1;
-                const patchParams = new URLSearchParams();
-                patchParams.set('id', `eq.${existing[0].id}`);
-                await supabaseRestRequest(
-                    'voice_usage',
-                    {
-                        method: 'PATCH',
-                        headers: {
-                            Prefer: 'return=representation',
-                        },
-                        body: JSON.stringify({
-                            usage_count: nextCount,
-                            limit_count: quotaLimit,
-                            updated_at: now,
-                        }),
-                    },
-                    patchParams
-                );
+                try {
+                    await supabaseRestRequest(
+                        'voice_usage',
+                        {
+                            method: 'POST',
+                            headers: {
+                                Prefer: 'return=representation',
+                            },
+                            body: JSON.stringify({
+                                id: randomUUID(),
+                                subject_key: input.subjectKey,
+                                subject_type: input.subjectType,
+                                window_key: windowKey,
+                                usage_count: 1,
+                                limit_count: quotaLimit,
+                                created_at: now,
+                                updated_at: now,
+                            }),
+                        }
+                    );
 
-                return {
-                    remainingQuota: Math.max(quotaLimit - nextCount, 0),
-                    quotaLimit,
-                };
+                    return {
+                        remainingQuota: quotaLimit - 1,
+                        quotaLimit,
+                    };
+                } catch (insertError) {
+                    const insertMessage =
+                        insertError instanceof Error ? insertError.message.toLowerCase() : '';
+                    if (
+                        insertMessage.includes('duplicate key') ||
+                        insertMessage.includes('already exists') ||
+                        insertMessage.includes('conflict')
+                    ) {
+                        continue;
+                    }
+                    throw insertError;
+                }
             }
 
-            await supabaseRestRequest(
-                'voice_usage',
-                {
-                    method: 'POST',
-                    headers: {
-                        Prefer: 'return=representation',
-                    },
-                    body: JSON.stringify({
-                        id: randomUUID(),
-                        subject_key: input.subjectKey,
-                        subject_type: input.subjectType,
-                        window_key: windowKey,
-                        usage_count: 1,
-                        limit_count: quotaLimit,
-                        created_at: now,
-                        updated_at: now,
-                    }),
-                }
-            );
-
-            return {
-                remainingQuota: quotaLimit - 1,
-                quotaLimit,
-            };
+            throw new Error('Voice quota service is temporarily unavailable. Please retry in a moment.');
         } catch (quotaError) {
             const msg = quotaError instanceof Error ? quotaError.message : '';
             if (msg.includes('quota reached')) throw quotaError;
-            console.error('Quota enforcement failed, allowing request:', quotaError);
-            return { remainingQuota: quotaLimit - 1, quotaLimit };
+            console.error('Quota enforcement failed, denying request:', quotaError);
+            throw new Error('Voice quota service is temporarily unavailable. Please retry in a moment.');
         }
     }
 

@@ -103,13 +103,15 @@ export function createPreview(outputText: string): string {
 }
 
 export function validateGenerateInput(input: {
-    sampleText: string;
-    writingTask: string;
-    extraInstructions?: string | null;
+    sampleText?: unknown;
+    writingTask?: unknown;
+    extraInstructions?: unknown;
 }): { sampleText: string; writingTask: string; extraInstructions: string } {
-    const sampleText = sanitizeSampleText(input.sampleText);
-    const writingTask = sanitizeWritingTask(input.writingTask);
-    const extraInstructions = sanitizeExtraInstructions(input.extraInstructions);
+    const sampleText = sanitizeSampleText(typeof input.sampleText === 'string' ? input.sampleText : '');
+    const writingTask = sanitizeWritingTask(typeof input.writingTask === 'string' ? input.writingTask : '');
+    const extraInstructions = sanitizeExtraInstructions(
+        typeof input.extraInstructions === 'string' ? input.extraInstructions : ''
+    );
 
     if (countWords(sampleText) < MIN_SAMPLE_WORDS) {
         throw new Error(
@@ -129,16 +131,18 @@ export function validateGenerateInput(input: {
 }
 
 export function validateRefineInput(input: {
-    voiceContext: VoiceContext | null | undefined;
-    previousOutput: string;
-    refineInstruction: string;
+    voiceContext?: unknown;
+    previousOutput?: unknown;
+    refineInstruction?: unknown;
 }): { voiceContext: VoiceContext; previousOutput: string; refineInstruction: string } {
     if (!input.voiceContext) {
         throw new Error('Voice context is missing. Generate once before refining.');
     }
 
-    const previousOutput = normalizeMultilineInput(input.previousOutput);
-    const refineInstruction = sanitizeWritingTask(input.refineInstruction);
+    const previousOutput = normalizeMultilineInput(typeof input.previousOutput === 'string' ? input.previousOutput : '');
+    const refineInstruction = sanitizeWritingTask(
+        typeof input.refineInstruction === 'string' ? input.refineInstruction : ''
+    );
 
     if (!previousOutput) {
         throw new Error('Previous output is missing. Generate once before refining.');
@@ -149,7 +153,7 @@ export function validateRefineInput(input: {
     }
 
     return {
-        voiceContext: input.voiceContext,
+        voiceContext: input.voiceContext as VoiceContext,
         previousOutput,
         refineInstruction,
     };
