@@ -16,16 +16,16 @@ type RateLimitStore = Map<string, number[]>;
 
 const RATE_LIMIT_STORE_KEY = '__pryzmiraVoiceRateLimitStore';
 
-const MAGIC_LINK_EMAIL_WINDOW: RateLimitWindow = {
-    maxAttempts: 3,
+const SIGN_IN_EMAIL_WINDOW: RateLimitWindow = {
+    maxAttempts: 5,
     windowMs: 15 * 60 * 1000,
-    message: 'Too many magic-link requests. Please wait a few minutes and try again.',
+    message: 'Too many sign-in attempts. Please wait a few minutes and try again.',
 };
 
-const MAGIC_LINK_IP_WINDOW: RateLimitWindow = {
-    maxAttempts: 10,
+const SIGN_IN_IP_WINDOW: RateLimitWindow = {
+    maxAttempts: 15,
     windowMs: 60 * 60 * 1000,
-    message: 'Too many magic-link requests. Please wait a little while and try again.',
+    message: 'Too many sign-in attempts. Please wait a little while and try again.',
 };
 
 function getRateLimitStore(): RateLimitStore {
@@ -87,14 +87,14 @@ function applyRateLimit(key: string, window: RateLimitWindow, now: number): Rate
     };
 }
 
-export function checkMagicLinkRateLimit(input: {
+export function checkSignInRateLimit(input: {
     email: string;
     ipAddress: string;
 }): RateLimitDecision {
     const now = Date.now();
     const emailDecision = applyRateLimit(
-        buildBucketKey('magic-link-email', input.email),
-        MAGIC_LINK_EMAIL_WINDOW,
+        buildBucketKey('sign-in-email', input.email),
+        SIGN_IN_EMAIL_WINDOW,
         now
     );
     if (!emailDecision.allowed) {
@@ -102,8 +102,8 @@ export function checkMagicLinkRateLimit(input: {
     }
 
     return applyRateLimit(
-        buildBucketKey('magic-link-ip', input.ipAddress),
-        MAGIC_LINK_IP_WINDOW,
+        buildBucketKey('sign-in-ip', input.ipAddress),
+        SIGN_IN_IP_WINDOW,
         now
     );
 }

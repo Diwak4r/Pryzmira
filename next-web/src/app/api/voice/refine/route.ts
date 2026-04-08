@@ -12,11 +12,11 @@ import { validateRefineInput } from '@/lib/voice';
 export async function POST(request: Request) {
     try {
         const body = (await request.json()) as {
-            voiceContext: unknown;
-            previousOutput: string;
-            refineInstruction: string;
+            voiceContext?: unknown;
+            previousOutput?: unknown;
+            refineInstruction?: unknown;
         };
-        const input = validateRefineInput(body as never);
+        const input = validateRefineInput(body);
         const user = await getAuthenticatedVoiceUser();
         const requestHeaders = await headers();
         const forwardedFor = requestHeaders.get('x-forwarded-for') || requestHeaders.get('x-real-ip') || 'unknown';
@@ -40,13 +40,16 @@ export async function POST(request: Request) {
         });
     } catch (error) {
         const message = error instanceof Error ? error.message : 'Unable to refine voice output.';
+        const normalized = message.toLowerCase();
+        const quotaServiceUnavailable = normalized.includes('quota service is temporarily unavailable');
         const clientMessage =
-            message.toLowerCase().includes('configured') || isVoiceEngineFailure(message)
+            normalized.includes('configured') || isVoiceEngineFailure(message)
                 ? VOICE_ENGINE_UNAVAILABLE_MESSAGE
                 : message;
-        const normalized = message.toLowerCase();
         console.error('Voice refine failed', error);
-        const status = normalized.includes('quota')
+        const status = quotaServiceUnavailable
+            ? 503
+            : normalized.includes('quota')
             ? 429
             : normalized.includes('configured')
               ? 500

@@ -5,7 +5,11 @@ dist/
 build/
 .vscode/
 .vercel
+.playwright-cli/
+research/
+.planning/
 SCALING_PLAN.md
+next-web/.vercel/
 next-web/.next-*.log
 next-web/.next-*.pid
 next-web/data/strategy-store.json

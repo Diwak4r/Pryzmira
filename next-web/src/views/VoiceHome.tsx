@@ -4,6 +4,7 @@ import { useMemo, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import VoiceThinkingIndicator from '@/components/VoiceThinkingIndicator';
 import {
     MIN_SAMPLE_WORDS,
     countWords,
@@ -82,7 +83,7 @@ export default function VoiceHome() {
                     Write in your voice
                 </h1>
                 <p className="mt-3 text-[0.95rem] leading-relaxed text-muted-foreground">
-                    Paste something you&apos;ve actually written — an email, a message, notes. Then tell us what you need, and we&apos;ll write it in your voice.
+                    Paste something you&apos;ve actually written - an email, a message, notes. Then tell us what you need, and we&apos;ll write it in your voice.
                 </p>
             </div>
 
@@ -104,7 +105,7 @@ export default function VoiceHome() {
                         id="sample-text"
                         value={sampleText}
                         onChange={(e) => setSampleText(e.target.value)}
-                        placeholder="Paste something you wrote recently — a text message, an email, class notes, a social media post. The more natural, the better. At least 50 words."
+                        placeholder="Paste something you wrote recently - a text message, an email, class notes, a social media post. The more natural, the better. At least 50 words."
                         rows={7}
                         className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-ring"
                         required
@@ -167,6 +168,8 @@ export default function VoiceHome() {
                         )}
                     </Button>
                 </div>
+
+                {isPending && <VoiceThinkingIndicator mode="generate" />}
 
                 {error && (
                     <div className="flex items-start gap-2 rounded-md border border-destructive/30 bg-destructive/5 px-3 py-2.5 text-sm text-destructive">

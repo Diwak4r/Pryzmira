@@ -2,7 +2,7 @@
 
 Personal Writing Voice AI.
 
-Paste one real writing sample, describe what you need written, and get output that sounds like you — not like AI.
+Paste one real writing sample, describe what you need written, and get output that sounds like you, not like AI.
 
 ## Stack
 
@@ -10,6 +10,7 @@ Paste one real writing sample, describe what you need written, and get output th
 - React 19
 - Tailwind CSS
 - Groq AI (voice analysis + generation)
+- OpenRouter fallback
 - Supabase (auth + storage)
 
 ## Development
@@ -20,7 +21,21 @@ npm install
 npm run dev
 ```
 
-Requires `.env.local` with `GROQ_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY`.
+Required `.env.local` values:
+
+- `GROQ_API_KEY`
+- `OPENROUTER_API_KEY` (optional but recommended fallback)
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+## Deployment
+
+Deploy from repo root (Vercel project rootDirectory is `next-web`):
+
+```bash
+vercel deploy --prod --yes
+```
 
 ## Author
 

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import { JetBrains_Mono, Manrope } from 'next/font/google';
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout';
@@ -44,14 +45,8 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning className={`dark ${bodyFont.variable} ${monoFont.variable}`}>
-            <head>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}}catch(e){}})()`,
-                    }}
-                />
-            </head>
             <body>
+                <Script src="/theme-init.js" strategy="beforeInteractive" />
                 <Providers>
                     <ClientLayout>{children}</ClientLayout>
                 </Providers>
