@@ -1,0 +1,3 @@
+## 2024-04-09 - Missing ARIA attributes and focus styles on custom toggles
+**Learning:** Custom interactive elements (like the Voice Insights and History toggles in `VoiceDesk.tsx`) frequently lack `aria-expanded` and keyboard focus styles (`focus-visible:ring-1`) when built from raw generic HTML elements rather than UI component libraries, severely limiting accessibility.
+**Action:** When working on custom interactive elements (buttons, accordions), proactively check and add proper `aria-*` attributes representing their state and ensure robust `focus-visible` ring styling to maintain accessibility for keyboard and screen reader users.
