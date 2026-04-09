@@ -489,7 +489,8 @@ export default function VoiceDesk() {
                         <button
                             type="button"
                             onClick={() => setInsightsOpen(!insightsOpen)}
-                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground"
+                            aria-expanded={insightsOpen}
+                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         >
                             Voice insights
                             <ChevronDown className={`h-3.5 w-3.5 transition-transform ${insightsOpen ? 'rotate-180' : ''}`} />
@@ -594,7 +595,8 @@ export default function VoiceDesk() {
                         <button
                             type="button"
                             onClick={() => setHistoryOpen(!historyOpen)}
-                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground"
+                            aria-expanded={historyOpen}
+                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         >
                             History ({history.length})
                             <ChevronDown className={`h-3.5 w-3.5 transition-transform ${historyOpen ? 'rotate-180' : ''}`} />
