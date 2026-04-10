@@ -1,0 +1,3 @@
+## 2025-04-10 - Adding missing a11y attributes to custom interactive elements
+**Learning:** Custom interactive elements in this codebase (like plain `<button>` tags acting as accordions and icon-only anchors/buttons in the Navbar) frequently lack `aria-expanded` attributes for conveying state to screen readers and `focus-visible` styles (`focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring`) for keyboard navigation support.
+**Action:** Always verify that custom interactive elements and icon-only buttons include the necessary ARIA attributes (e.g., `aria-expanded`, `aria-label`) and appropriate focus-visible utility classes when adding or modifying them.
