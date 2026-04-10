@@ -36,14 +36,14 @@ export default function Navbar() {
                         href="https://github.com/Diwak4r/Pryzmira"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:text-foreground"
+                        className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         aria-label="GitHub"
                     >
                         <Github className="h-3.5 w-3.5" />
                     </a>
                     <button
                         onClick={toggleTheme}
-                        className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:text-foreground"
+                        className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         aria-label="Toggle theme"
                     >
                         {theme === 'dark' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
