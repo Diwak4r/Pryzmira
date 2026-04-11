@@ -1,0 +1,4 @@
+## 2024-04-11 - Custom Accordion Accessibility
+
+**Learning:** Custom interactive elements (like the Insights and History toggle buttons in VoiceDesk) in this project frequently miss out on critical keyboard accessibility (`focus-visible` styling) and necessary ARIA attributes (`aria-expanded`, `aria-controls`) when not using standard Radix/UI components. This causes silent failures for keyboard and screen reader users navigating dynamically shown content.
+**Action:** When implementing or modifying custom toggle/accordion buttons that reveal content, always ensure `focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring` is applied for keyboard focus, and semantically link the toggle to its content using `aria-controls` with dynamic `aria-expanded` attributes. Decorative icons (like chevrons) must have `aria-hidden="true"`.

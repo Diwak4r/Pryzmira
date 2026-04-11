@@ -283,9 +283,9 @@ export default function VoiceDesk() {
                     <button
                         type="button"
                         onClick={handleGoogleSignIn}
-                        className="flex w-full items-center justify-center gap-2 rounded-md border border-border bg-card px-3 py-2.5 text-sm font-medium text-foreground hover:bg-accent"
+                        className="flex w-full items-center justify-center gap-2 rounded-md border border-border bg-card px-3 py-2.5 text-sm font-medium text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                     >
-                        <svg width="18" height="18" viewBox="0 0 24 24">
+                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
                             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
                             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
@@ -409,7 +409,7 @@ export default function VoiceDesk() {
                                         key={entry.id}
                                         type="button"
                                         onClick={() => { setCurrentVoiceGeneration(entry); setGen(entry); }}
-                                        className="block w-full border-b border-border px-4 py-3 text-left last:border-b-0 hover:bg-accent"
+                                        className="block w-full border-b border-border px-4 py-3 text-left last:border-b-0 hover:bg-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:z-10 relative"
                                     >
                                         <p className="text-sm font-medium text-foreground">{entry.writingTask}</p>
                                         <p className="mt-1 line-clamp-1 text-xs text-muted-foreground">{entry.outputText}</p>
@@ -489,13 +489,15 @@ export default function VoiceDesk() {
                         <button
                             type="button"
                             onClick={() => setInsightsOpen(!insightsOpen)}
-                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground"
+                            aria-expanded={insightsOpen}
+                            aria-controls="voice-insights-content"
+                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         >
                             Voice insights
-                            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${insightsOpen ? 'rotate-180' : ''}`} />
+                            <ChevronDown aria-hidden="true" className={`h-3.5 w-3.5 transition-transform ${insightsOpen ? 'rotate-180' : ''}`} />
                         </button>
                         {insightsOpen && (
-                            <div className="rounded-b-md border border-t-0 border-border bg-card px-3 py-3">
+                            <div id="voice-insights-content" className="rounded-b-md border border-t-0 border-border bg-card px-3 py-3">
                                 <p className="text-sm leading-relaxed text-muted-foreground">{gen.voiceInsights}</p>
                                 {gen.insightBullets.length > 0 && (
                                     <ul className="mt-2 space-y-1">
@@ -534,7 +536,7 @@ export default function VoiceDesk() {
                             type="button"
                             onClick={() => handleRefine(action)}
                             disabled={isPending}
-                            className="rounded-md border border-border bg-card px-2.5 py-2 text-xs text-muted-foreground hover:border-primary/30 hover:text-foreground disabled:opacity-40"
+                            className="rounded-md border border-border bg-card px-2.5 py-2 text-xs text-muted-foreground hover:border-primary/30 hover:text-foreground disabled:opacity-40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         >
                             {action.replace('.', '')}
                         </button>
@@ -543,7 +545,7 @@ export default function VoiceDesk() {
                         type="button"
                         onClick={() => handleRefine('Regenerate the same task from scratch while keeping the same voice.')}
                         disabled={isPending}
-                        className="flex items-center gap-1 rounded-md border border-border bg-card px-2.5 py-2 text-xs text-muted-foreground hover:border-primary/30 hover:text-foreground disabled:opacity-40"
+                        className="flex items-center gap-1 rounded-md border border-border bg-card px-2.5 py-2 text-xs text-muted-foreground hover:border-primary/30 hover:text-foreground disabled:opacity-40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                     >
                         <RefreshCw className="h-3 w-3" />
                         Regenerate
@@ -594,19 +596,21 @@ export default function VoiceDesk() {
                         <button
                             type="button"
                             onClick={() => setHistoryOpen(!historyOpen)}
-                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground"
+                            aria-expanded={historyOpen}
+                            aria-controls="voice-history-content"
+                            className="flex w-full items-center justify-between rounded-md border border-border bg-card px-3 py-2.5 text-left text-xs font-medium text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         >
                             History ({history.length})
-                            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${historyOpen ? 'rotate-180' : ''}`} />
+                            <ChevronDown aria-hidden="true" className={`h-3.5 w-3.5 transition-transform ${historyOpen ? 'rotate-180' : ''}`} />
                         </button>
                         {historyOpen && (
-                            <div className="max-h-64 overflow-y-auto rounded-b-md border border-t-0 border-border">
+                            <div id="voice-history-content" className="max-h-64 overflow-y-auto rounded-b-md border border-t-0 border-border">
                                 {history.map((entry) => (
                                     <button
                                         key={entry.id}
                                         type="button"
                                         onClick={() => { setCurrentVoiceGeneration(entry); setGen(entry); }}
-                                        className={`block w-full border-b border-border px-3 py-2.5 text-left last:border-b-0 hover:bg-accent ${
+                                        className={`block w-full border-b border-border px-3 py-2.5 text-left last:border-b-0 hover:bg-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:z-10 relative ${
                                             entry.id === gen.id ? 'bg-accent' : ''
                                         }`}
                                     >
