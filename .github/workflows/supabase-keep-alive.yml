@@ -1,0 +1,23 @@
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    - cron: '0 0 */3 * *' # Runs every 3 days at midnight
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Database
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          # Use curl to query the database through PostgREST
+          # This counts as active database traffic and prevents pausing
+          curl -X GET "${SUPABASE_URL}/rest/v1/voice_profiles?select=id&limit=1" \
+          -H "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
+          -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}"
+          
+          echo "Supabase project pinged successfully."
