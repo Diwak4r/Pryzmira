@@ -218,14 +218,68 @@ async function openRouterChatCompletion(messages: GroqMessage[], temperature: nu
     return content;
 }
 
+async function dashscopeChatCompletion(messages: GroqMessage[], temperature: number): Promise<string> {
+    const apiKey = process.env.DASHSCOPE_API_KEY;
+    if (!apiKey) throw new Error('DASHSCOPE_API_KEY is not configured.');
+
+    const model = process.env.DASHSCOPE_MODEL || 'qwen-long';
+    let response: Response;
+
+    try {
+        response = await fetch('https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({
+                model,
+                temperature,
+                messages,
+            }),
+            cache: 'no-store',
+        });
+    } catch (error) {
+        console.error('DashScope transport failure', error);
+        throw new Error(VOICE_ENGINE_UNAVAILABLE_MESSAGE);
+    }
+
+    const payload = (await response.json().catch(() => ({}))) as {
+        choices?: Array<{ message?: { content?: string } }>;
+        error?: { message?: string };
+    };
+
+    if (!response.ok) {
+        throw new Error(payload.error?.message || 'DashScope request failed.');
+    }
+
+    const content = payload.choices?.[0]?.message?.content?.trim();
+    if (!content) {
+        throw new Error('DashScope returned an empty response.');
+    }
+
+    return content;
+}
+
 async function chatCompletion(messages: GroqMessage[], model: string, temperature: number): Promise<string> {
     try {
         return await groqChatCompletion(messages, model, temperature);
     } catch (groqError) {
+        console.warn('Groq failed, trying DashScope:', groqError instanceof Error ? groqError.message : groqError);
+
+        const dashscopeKey = process.env.DASHSCOPE_API_KEY;
+        if (dashscopeKey) {
+            try {
+                return await dashscopeChatCompletion(messages, temperature);
+            } catch (dashscopeError) {
+                console.warn('DashScope failed, falling back to OpenRouter:', dashscopeError instanceof Error ? dashscopeError.message : dashscopeError);
+            }
+        }
+
         const openRouterKey = getOpenRouterApiKey();
         if (!openRouterKey) throw groqError;
 
-        console.warn('Groq failed, falling back to OpenRouter:', groqError instanceof Error ? groqError.message : groqError);
+        console.warn('Groq & DashScope failed, falling back to OpenRouter:', groqError instanceof Error ? groqError.message : groqError);
         return openRouterChatCompletion(messages, temperature);
     }
 }
