@@ -16,13 +16,18 @@ jobs:
     steps:
       - name: Ping Supabase Database
         env:
+          # Prefer the same env name used by the Next.js app.
+          # SUPABASE_URL is kept as a backward-compatible fallback.
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           set -euo pipefail
 
-          if [ -z "${SUPABASE_URL:-}" ]; then
-            echo "::error::SUPABASE_URL secret is missing. Set it to https://<project-ref>.supabase.co"
+          RAW_SUPABASE_URL="${NEXT_PUBLIC_SUPABASE_URL:-${SUPABASE_URL:-}}"
+
+          if [ -z "${RAW_SUPABASE_URL}" ]; then
+            echo "::error::Missing Supabase URL secret. Add NEXT_PUBLIC_SUPABASE_URL in GitHub Actions secrets. SUPABASE_URL is also supported as a fallback."
             exit 1
           fi
 
@@ -31,14 +36,19 @@ jobs:
             exit 1
           fi
 
-          SUPABASE_URL="${SUPABASE_URL%/}"
+          SUPABASE_URL="${RAW_SUPABASE_URL%/}"
           SUPABASE_HOST="${SUPABASE_URL#https://}"
           SUPABASE_HOST="${SUPABASE_HOST#http://}"
           SUPABASE_HOST="${SUPABASE_HOST%%/*}"
 
+          if [ -z "${SUPABASE_HOST}" ] || [ "${SUPABASE_HOST}" = "${SUPABASE_URL}" ]; then
+            echo "::error::Invalid Supabase URL format. Expected https://<project-ref>.supabase.co"
+            exit 1
+          fi
+
           echo "Checking DNS for ${SUPABASE_HOST}..."
           if ! getent hosts "${SUPABASE_HOST}" >/dev/null; then
-            echo "::error::Could not resolve ${SUPABASE_HOST}. The Supabase project may be paused/inactive, deleted, or SUPABASE_URL may contain the wrong project ref."
+            echo "::error::Could not resolve ${SUPABASE_HOST}. The saved Supabase URL secret points to a project ref that DNS cannot find. Update GitHub secret NEXT_PUBLIC_SUPABASE_URL to the exact Project URL from Supabase Settings > Data API."
             exit 1
           fi
 
