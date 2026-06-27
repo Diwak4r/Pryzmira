@@ -2,22 +2,55 @@ name: Supabase Keep Alive
 
 on:
   schedule:
-    - cron: '0 0 */3 * *' # Runs every 3 days at midnight
-  workflow_dispatch: # Allows manual trigger
+    - cron: '0 0 */3 * *' # Runs every 3 days at midnight UTC
+  workflow_dispatch:
+
+concurrency:
+  group: supabase-keep-alive
+  cancel-in-progress: false
 
 jobs:
   keep-alive:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Ping Supabase Database
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
-          # Use curl to query the database through PostgREST
-          # This counts as active database traffic and prevents pausing
-          curl -X GET "${SUPABASE_URL}/rest/v1/voice_profiles?select=id&limit=1" \
-          -H "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
-          -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}"
-          
+          set -euo pipefail
+
+          if [ -z "${SUPABASE_URL:-}" ]; then
+            echo "::error::SUPABASE_URL secret is missing. Set it to https://<project-ref>.supabase.co"
+            exit 1
+          fi
+
+          if [ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            echo "::error::SUPABASE_SERVICE_ROLE_KEY secret is missing. Set it from Supabase Project Settings > API."
+            exit 1
+          fi
+
+          SUPABASE_URL="${SUPABASE_URL%/}"
+          SUPABASE_HOST="${SUPABASE_URL#https://}"
+          SUPABASE_HOST="${SUPABASE_HOST#http://}"
+          SUPABASE_HOST="${SUPABASE_HOST%%/*}"
+
+          echo "Checking DNS for ${SUPABASE_HOST}..."
+          if ! getent hosts "${SUPABASE_HOST}" >/dev/null; then
+            echo "::error::Could not resolve ${SUPABASE_HOST}. The Supabase project may be paused/inactive, deleted, or SUPABASE_URL may contain the wrong project ref."
+            exit 1
+          fi
+
+          echo "Pinging Supabase REST endpoint..."
+          curl --fail --show-error --silent \
+            --retry 5 \
+            --retry-delay 10 \
+            --retry-all-errors \
+            -X GET "${SUPABASE_URL}/rest/v1/voice_profiles?select=id&limit=1" \
+            -H "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}" \
+            -H "Accept: application/json" \
+            -o /tmp/supabase-keep-alive-response.json
+
           echo "Supabase project pinged successfully."
