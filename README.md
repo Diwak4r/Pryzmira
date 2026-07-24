@@ -1,42 +1,36 @@
 # Pryzmira
 
-Personal Writing Voice AI.
+AI that sounds like you.
 
-Paste one real writing sample, describe what you need written, and get output that sounds like you, not like AI.
+// Overview
+AI output is historically identifiable. It speaks in patterns, not rhythms. 
+Pryzmira captures your syntactic fingerprint. 
+Supply one authentic sample. State your objective. Receive text that passes as human. 
+Your human.
 
-## Stack
+// Infrastructure
+— Framework: Next.js 16 (App Router) / React 19
+— Styling: Tailwind CSS
+— Intelligence: Groq AI (voice analysis + generation)
+— Fallback: OpenRouter
+— Persistence: Supabase (auth + storage)
 
-- Next.js 16 (App Router)
-- React 19
-- Tailwind CSS
-- Groq AI (voice analysis + generation)
-- OpenRouter fallback
-- Supabase (auth + storage)
+// Development Protocol
+> cd next-web
+> npm install
+> npm run dev
 
-## Development
+// Environment Variables
+Required in .env.local:
+GROQ_API_KEY
+OPENROUTER_API_KEY (optional)
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+SUPABASE_SERVICE_ROLE_KEY
 
-```bash
-cd next-web
-npm install
-npm run dev
-```
+// Deployment
+Execute from repository root (Vercel target: next-web)
+> vercel deploy --prod --yes
 
-Required `.env.local` values:
-
-- `GROQ_API_KEY`
-- `OPENROUTER_API_KEY` (optional but recommended fallback)
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY`
-
-## Deployment
-
-Deploy from repo root (Vercel project rootDirectory is `next-web`):
-
-```bash
-vercel deploy --prod --yes
-```
-
-## Author
-
-[@Diwak4r](https://github.com/Diwak4r)
+// Author
+Diwakar.
