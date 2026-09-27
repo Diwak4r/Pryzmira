@@ -1,0 +1,122 @@
+import type { Artifact, Release } from './types';
+
+/**
+ * Local fallback data used when Supabase isn't configured (e.g. local dev
+ * without env vars). All handles/URLs below are fictional placeholders, not
+ * captured real posts — real content only enters via submissions or the
+ * ingestion pollers in `src/app/api/cron/*`.
+ */
+
+const now = Date.now();
+const hoursAgo = (h: number) => new Date(now - h * 60 * 60 * 1000).toISOString();
+
+export const seedReleases: Release[] = [
+    { id: 'r1', slug: 'orion-7', name: 'Orion-7', company: 'Frontier Labs', category: 'llm', releasedAt: hoursAgo(30) },
+    { id: 'r2', slug: 'lumen-video-2', name: 'Lumen Video 2', company: 'Nova AI', category: 'video', releasedAt: hoursAgo(52) },
+    { id: 'r3', slug: 'sable-image-xl', name: 'Sable Image XL', company: 'Dawn Systems', category: 'image', releasedAt: hoursAgo(90) },
+    { id: 'r4', slug: 'agentkit-3', name: 'AgentKit 3', company: 'Mesh', category: 'agent', releasedAt: hoursAgo(8) },
+];
+
+export const seedArtifacts: Artifact[] = [
+    {
+        id: 'a1',
+        releaseId: 'r1',
+        releaseSlug: 'orion-7',
+        releaseName: 'Orion-7',
+        platform: 'x',
+        mediaKind: 'video',
+        sourceUrl: 'https://x.com/example/status/0000000000',
+        thumbnailUrl: '',
+        title: 'Built a full landing page from one screenshot in one shot',
+        promptText: 'Recreate this landing page screenshot as a responsive React component, match spacing exactly.',
+        creatorHandle: '@demo_builder',
+        creatorName: 'Demo Builder',
+        postedAt: hoursAgo(3),
+        firstSeenAt: hoursAgo(2.5),
+        engagementScore: 480,
+        tags: ['coding', 'demo'],
+    },
+    {
+        id: 'a2',
+        releaseId: 'r1',
+        releaseSlug: 'orion-7',
+        releaseName: 'Orion-7',
+        platform: 'reddit',
+        mediaKind: 'image',
+        sourceUrl: 'https://reddit.com/r/localllama/comments/example',
+        thumbnailUrl: '',
+        title: 'Ran it locally on a single 4090, quantized to 4-bit',
+        creatorHandle: 'u/example_tinkerer',
+        postedAt: hoursAgo(5),
+        firstSeenAt: hoursAgo(4),
+        engagementScore: 210,
+        tags: ['open-source', 'benchmark'],
+    },
+    {
+        id: 'a3',
+        releaseId: 'r2',
+        releaseSlug: 'lumen-video-2',
+        releaseName: 'Lumen Video 2',
+        platform: 'x',
+        mediaKind: 'video',
+        sourceUrl: 'https://x.com/example/status/0000000001',
+        thumbnailUrl: '',
+        title: 'Consistent character across a 40-second shot, no drift',
+        promptText: 'A red fox walking through a snowy forest at dawn, cinematic tracking shot, volumetric light.',
+        creatorHandle: '@example_filmmaker',
+        creatorName: 'Example Filmmaker',
+        postedAt: hoursAgo(9),
+        firstSeenAt: hoursAgo(8),
+        engagementScore: 920,
+        tags: ['video-gen', 'demo'],
+    },
+    {
+        id: 'a4',
+        releaseId: 'r3',
+        releaseSlug: 'sable-image-xl',
+        releaseName: 'Sable Image XL',
+        platform: 'youtube',
+        mediaKind: 'video',
+        sourceUrl: 'https://youtube.com/watch?v=example',
+        thumbnailUrl: '',
+        title: 'Comparing prompt adherence against three other image models',
+        creatorHandle: '@example_channel',
+        postedAt: hoursAgo(20),
+        firstSeenAt: hoursAgo(18),
+        engagementScore: 340,
+        tags: ['image-gen', 'comparison'],
+    },
+    {
+        id: 'a5',
+        releaseId: 'r4',
+        releaseSlug: 'agentkit-3',
+        releaseName: 'AgentKit 3',
+        platform: 'github',
+        mediaKind: 'code',
+        sourceUrl: 'https://github.com/example/agentkit-demo',
+        thumbnailUrl: '',
+        title: 'Open-sourced a working browser agent in under 200 lines',
+        creatorHandle: '@example_dev',
+        postedAt: hoursAgo(2),
+        firstSeenAt: hoursAgo(1),
+        engagementScore: 150,
+        tags: ['agents', 'open-source'],
+    },
+    {
+        id: 'a6',
+        releaseId: 'r4',
+        releaseSlug: 'agentkit-3',
+        releaseName: 'AgentKit 3',
+        platform: 'x',
+        mediaKind: 'video',
+        sourceUrl: 'https://x.com/example/status/0000000002',
+        thumbnailUrl: '',
+        title: 'Watched it book a flight end-to-end without any human step-in',
+        promptText: 'Book me a one-way flight from SFO to JFK next Friday, cheapest under $300, confirm before paying.',
+        creatorHandle: '@example_operator',
+        postedAt: hoursAgo(1),
+        firstSeenAt: hoursAgo(0.5),
+        engagementScore: 610,
+        tags: ['agents', 'demo'],
+    },
+];

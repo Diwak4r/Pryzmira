@@ -5,6 +5,13 @@ import { usePathname } from 'next/navigation';
 import { Github, Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
+const NAV_LINKS = [
+    { href: '/', label: 'Feed' },
+    { href: '/explore', label: 'Explore' },
+    { href: '/submit', label: 'Submit' },
+    { href: '/about', label: 'About' },
+];
+
 export default function Navbar() {
     const pathname = usePathname();
     const { theme, toggleTheme } = useTheme();
@@ -17,18 +24,15 @@ export default function Navbar() {
                         Pryzmira
                     </Link>
                     <nav className="flex items-center gap-4">
-                        <Link
-                            href="/"
-                            className={`py-2 text-xs ${pathname === '/' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/desk"
-                            className={`py-2 text-xs ${pathname === '/desk' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-                        >
-                            Desk
-                        </Link>
+                        {NAV_LINKS.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`py-2 text-xs ${pathname === link.href ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
                     </nav>
                 </div>
                 <div className="flex items-center gap-1">

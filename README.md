@@ -2,11 +2,11 @@
 
 # Pryzmira
 
-**Syntactic Voice Cloning & Personal Writing AI Engine**
+**Every AI build, the moment it drops.**
 
 [![Next.js](https://img.shields.io/badge/Next.js-16_App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
-[![Groq](https://img.shields.io/badge/Groq-AI_Inference-F04E23?style=for-the-badge&logo=fastapi&logoColor=white)](https://groq.com)
-[![Supabase](https://img.shields.io/badge/Supabase-Auth_%26_Storage-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
+[![Supabase](https://img.shields.io/badge/Supabase-Postgres-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
+[![Vercel](https://img.shields.io/badge/Vercel-Cron_%2B_Hosting-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 [![Author](https://img.shields.io/badge/Author-Diwakar_Yadav-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Diwak4r)
 
 </div>
@@ -15,53 +15,76 @@
 
 ### Overview
 
-**Pryzmira** is a specialized voice synthesis platform designed to eliminate robotic AI writing signatures. By analyzing a single writing sample provided by the user, Pryzmira extracts unique syntactic patterns, cadence, and vocabulary choices to generate text that authentically sounds like the author—not an LLM template.
+Within hours of a new AI model shipping, the internet fills with proof of what it can actually do — demo videos, the
+exact prompt someone used, a repo someone shipped overnight. It's scattered across X, Reddit, and YouTube, and
+unfindable within a couple of days.
 
-### Voice Synthesis Pipeline
+**Pryzmira** is a no-login, mobile-first, always-updating feed of that content — organized by model release, filterable
+by platform/tag, and built to surface the prompt, the creator, and how fresh a build is (FOMO on purpose).
 
-```mermaid
-graph TD
-    UserSample[User Writing Sample] --> Encoder[Groq Voice Analysis Engine]
-    PromptReq[Target Topic / Prompt] --> Encoder
-    
-    Encoder --> SyntacticProfile[Extracted Cadence & Pattern Profile]
-    SyntacticProfile --> Generator[LLM Generation Engine - Groq / OpenRouter]
-    
-    Generator --> OutputText[Human-Authentic Output]
-```
+### How content gets in — with zero API budget
 
-### Stack Architecture
+| Source | Method | Cost |
+| :--- | :--- | :--- |
+| Reddit | Official free-tier JSON listing, polled every 30 min | Free |
+| Hacker News | Algolia HN Search API | Free |
+| YouTube | Data API v3 search (free daily quota) | Free, optional key |
+| X / Twitter | No free polling API exists — covered by the public **Submit** flow, which resolves a pasted link via the same free, unauthenticated tweet-resolution trick "paste a tweet" sites use | Free |
+
+Every source — automated or user-submitted — lands in a moderation queue (`submissions` table) before it becomes a
+public `artifact`. Nothing goes live unreviewed.
+
+### Stack
 
 | Layer | Technology |
 | :--- | :--- |
 | **Frontend & Routing** | Next.js 16 (App Router), React 19, Tailwind CSS |
-| **Primary AI Engine** | Groq Llama 3 / Mixtral Inference API |
-| **Fallback AI Engine** | OpenRouter Gateway |
-| **Database & Auth** | Supabase (User Sessions & Storage) |
+| **Feed UX** | CSS scroll-snap + IntersectionObserver-driven video autoplay (TikTok/Reels-style, mobile-first) |
+| **Database** | Supabase (Postgres) — see `next-web/supabase/prismira_schema.sql` |
+| **Ingestion** | Vercel Cron hitting `/api/cron/{reddit,hn,youtube}` |
+| **Analytics** | Cookie-consent-gated, loads only after accept — no accounts, no ad tracking |
+
+Runs with **zero configuration** using in-memory seed data (`src/lib/seed-data.ts`) if Supabase env vars aren't set —
+useful for local dev.
 
 ### Development Setup
 
 ```bash
-# Clone & install dependencies
 cd next-web
 npm install
-
-# Run local development server
 npm run dev
 ```
 
-#### Required Environment Variables (`.env.local`)
+Apply the schema once you have a Supabase project:
+
+```bash
+# in the Supabase SQL editor, or via the CLI
+psql < next-web/supabase/prismira_schema.sql
+```
+
+#### Environment Variables (`.env.local`)
 
 ```env
-GROQ_API_KEY=your_groq_api_key
-OPENROUTER_API_KEY=your_openrouter_api_key
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+# Optional — enables the YouTube ingestion cron
+YOUTUBE_API_KEY=
+
+# Optional — protects the /api/cron/* routes; Vercel Cron sends this as a Bearer token automatically
+CRON_SECRET=
+
+# Optional — self-hosted Umami/Plausible-style analytics, only loads after cookie consent
+NEXT_PUBLIC_ANALYTICS_SRC=
+NEXT_PUBLIC_ANALYTICS_WEBSITE_ID=
 ```
+
+> Vercel's Hobby plan throttles cron jobs to roughly once a day regardless of the schedule in `vercel.json` — the
+> schedules there assume a Pro plan. On Hobby, expect ingestion to run daily rather than every 30 minutes.
 
 ---
 
 <div align="center">
-  <sub>Developed by <a href="https://github.com/Diwak4r">Diwakar Yadav</a></sub>
+  <sub>A side project by <a href="https://github.com/Diwak4r">Diwakar</a></sub>
 </div>

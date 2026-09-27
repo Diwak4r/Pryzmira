@@ -4,6 +4,8 @@ import { JetBrains_Mono, Manrope } from 'next/font/google';
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout';
 import { Providers } from '@/components/Providers';
+import CookieConsentBanner from '@/components/CookieConsentBanner';
+import Analytics from '@/components/Analytics';
 
 const bodyFont = Manrope({
     subsets: ['latin'],
@@ -24,9 +26,9 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-    title: 'Pryzmira',
+    title: 'Pryzmira — every AI build, the moment it drops',
     description:
-        'Personal Writing Voice AI. Paste a writing sample, describe what you need, get output that sounds like you.',
+        'A live, no-login feed of demos, prompts, and builds people are sharing about the newest AI model releases — before they disappear into the timeline.',
 };
 
 export const viewport: Viewport = {
@@ -50,6 +52,8 @@ export default function RootLayout({
                 <Providers>
                     <ClientLayout>{children}</ClientLayout>
                 </Providers>
+                <CookieConsentBanner />
+                <Analytics />
             </body>
         </html>
     );

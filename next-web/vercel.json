@@ -1,0 +1,7 @@
+{
+  "crons": [
+    { "path": "/api/cron/reddit", "schedule": "*/30 * * * *" },
+    { "path": "/api/cron/hn", "schedule": "*/30 * * * *" },
+    { "path": "/api/cron/youtube", "schedule": "0 */4 * * *" }
+  ]
+}

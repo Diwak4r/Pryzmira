@@ -57,7 +57,7 @@ jobs:
             --retry 5 \
             --retry-delay 10 \
             --retry-all-errors \
-            -X GET "${SUPABASE_URL}/rest/v1/voice_profiles?select=id&limit=1" \
+            -X GET "${SUPABASE_URL}/rest/v1/releases?select=id&limit=1" \
             -H "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
             -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}" \
             -H "Accept: application/json" \

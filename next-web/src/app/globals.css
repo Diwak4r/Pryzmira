@@ -82,6 +82,14 @@
   }
 }
 
+.feed-scroller {
+  scrollbar-width: none;
+}
+
+.feed-scroller::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes voice-scan {
   0% {
     transform: translateX(-120%);

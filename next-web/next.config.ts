@@ -10,6 +10,7 @@ const contentSecurityPolicy = [
   scriptSrc,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' blob: data: https:",
+  "media-src 'self' blob: https:",
   "font-src 'self' https://fonts.gstatic.com",
   "connect-src 'self' https: wss:",
   "frame-ancestors 'self'",
