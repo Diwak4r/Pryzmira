@@ -80,8 +80,8 @@ NEXT_PUBLIC_ANALYTICS_SRC=
 NEXT_PUBLIC_ANALYTICS_WEBSITE_ID=
 ```
 
-> Vercel's Hobby plan throttles cron jobs to roughly once a day regardless of the schedule in `vercel.json` — the
-> schedules there assume a Pro plan. On Hobby, expect ingestion to run daily rather than every 30 minutes.
+> Vercel's Hobby plan rejects any cron schedule that runs more than once a day, so `vercel.json` runs each ingestion
+> source once daily (staggered by an hour). Upgrade to Pro to tighten these to every 30 minutes for faster freshness.
 
 ---
 
