@@ -171,6 +171,12 @@ describe('applyDemoRefine', () => {
         expect(applyDemoRefine(draft, 'Add more detail.')).toContain('one more concrete detail');
     });
 
+    it('does not pretend a no-op formal pass changed anything', () => {
+        const result = applyDemoRefine('No contractions live here at all.', 'Make it more formal.');
+
+        expect(result).toContain('not applied');
+    });
+
     it('says so when it cannot apply the instruction', () => {
         const result = applyDemoRefine(draft, 'Rewrite this as a haiku.');
 

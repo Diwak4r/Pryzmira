@@ -299,7 +299,12 @@ export function applyDemoRefine(previousOutput: string, instruction: string): st
         for (const [pattern, replacement] of FORMAL_MAP) {
             formal = formal.replace(pattern, replacement);
         }
-        return formal;
+
+        if (formal !== previousOutput) {
+            return formal;
+        }
+        // Nothing to expand: fall through to the honest "not applied" note
+        // instead of returning an unchanged draft as if it were refined.
     }
 
     if (/warm|friendly|softer/.test(normalized)) {
