@@ -11,24 +11,34 @@ export default function Navbar() {
 
     return (
         <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
-            <div className="mx-auto flex h-12 max-w-[960px] items-center justify-between px-4">
-                <div className="flex items-center gap-4">
+            <div className="mx-auto flex h-12 max-w-[960px] items-center justify-between gap-2 px-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                     <Link href="/" className="text-sm font-semibold tracking-tight text-foreground">
                         Pryzmira
                     </Link>
-                    <nav className="flex items-center gap-4">
-                        <Link
-                            href="/"
-                            className={`py-2 text-xs ${pathname === '/' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/desk"
-                            className={`py-2 text-xs ${pathname === '/desk' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-                        >
-                            Desk
-                        </Link>
+                    <nav className="flex items-center gap-3 sm:gap-4">
+                        {[
+                            { href: '/', label: 'Home' },
+                            { href: '/desk', label: 'Desk' },
+                            { href: '/builds', label: 'Builds' },
+                            { href: '/guide', label: 'Guide' },
+                        ].map((item) => {
+                            const active =
+                                item.href === '/'
+                                    ? pathname === '/'
+                                    : pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+                            return (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    aria-current={active ? 'page' : undefined}
+                                    className={`py-2 text-xs ${active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                                >
+                                    {item.label}
+                                </Link>
+                            );
+                        })}
                     </nav>
                 </div>
                 <div className="flex items-center gap-1">
