@@ -476,6 +476,26 @@ export function platformLabel(platform: BuildPlatform): string {
     }
 }
 
+/** Label for the card's primary link, so "Open source" never implies OSS. */
+export function buildActionLabel(build: Pick<AiBuild, 'source' | 'buildUrl'>): string {
+    if (build.buildUrl && build.buildUrl !== build.source.url) {
+        return 'Open build';
+    }
+
+    switch (build.source.platform) {
+        case 'x':
+            return 'Open post';
+        case 'github':
+            return 'Open repo';
+        case 'huggingface':
+            return 'Open space';
+        case 'product-hunt':
+            return 'Open launch';
+        default:
+            return 'Open site';
+    }
+}
+
 export function buildSourceLabel(platform: BuildPlatform): string {
     switch (platform) {
         case 'x':

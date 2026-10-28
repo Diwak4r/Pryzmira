@@ -13,6 +13,7 @@ import {
 import CopyButton from '@/components/CopyButton';
 import { modelLabel, toolLabel, vendorOfModel } from '@/lib/builds/catalog';
 import {
+    buildActionLabel,
     buildToWritingTask,
     categoryLabel,
     formatCompactNumber,
@@ -52,9 +53,8 @@ function Metric({
 
 export default function BuildCard({ build }: { build: AiBuild }) {
     const task = buildToWritingTask(build);
-    const postLabel = build.source.platform === 'x' ? 'Open post' : 'Open source';
     const primaryHref = build.buildUrl || build.source.url;
-    const primaryLabel = build.buildUrl ? (build.source.platform === 'x' ? 'Open build' : 'Open repo') : postLabel;
+    const primaryLabel = buildActionLabel(build);
 
     return (
         <article className="group flex h-full flex-col rounded-md border border-border bg-card p-4 transition-colors hover:border-primary/30">
@@ -165,9 +165,9 @@ export default function BuildCard({ build }: { build: AiBuild }) {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex h-7 items-center rounded-md px-1.5 text-[0.7rem] text-muted-foreground hover:text-foreground"
-                            title="Original post"
+                            title="Original source"
                         >
-                            Post
+                            {build.source.platform === 'x' ? 'Post' : 'Source'}
                         </a>
                     )}
                     <Link

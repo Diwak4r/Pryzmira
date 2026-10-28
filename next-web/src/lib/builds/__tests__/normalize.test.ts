@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+    buildActionLabel,
     buildPublishedAt,
     buildSourceLabel,
     buildToWritingTask,
@@ -196,6 +197,27 @@ describe('format helpers', () => {
         expect(formatRelativeTime('2026-08-28T12:00:00.000Z', NOW)).toBe('2mo ago');
         expect(formatRelativeTime('not a date', NOW)).toBe('unknown date');
         expect(formatRelativeTime('2026-10-29T12:00:00.000Z', NOW)).toBe('scheduled');
+    });
+
+    it('labels the card action without implying open source', () => {
+        expect(buildActionLabel({ source: { platform: 'github', url: 'https://github.com/a/b' } })).toBe(
+            'Open repo'
+        );
+        expect(buildActionLabel({ source: { platform: 'web', url: 'https://example.com' } })).toBe(
+            'Open site'
+        );
+        expect(buildActionLabel({ source: { platform: 'x', url: 'https://x.com/a/status/1' } })).toBe(
+            'Open post'
+        );
+        expect(buildActionLabel({ source: { platform: 'huggingface', url: 'https://hf.co/x' } })).toBe(
+            'Open space'
+        );
+        expect(
+            buildActionLabel({
+                source: { platform: 'x', url: 'https://x.com/a/status/1' },
+                buildUrl: 'https://example.com/build',
+            })
+        ).toBe('Open build');
     });
 
     it('labels sources', () => {

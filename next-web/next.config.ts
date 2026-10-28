@@ -1,11 +1,10 @@
 import type { NextConfig } from "next";
 
 const isProduction = process.env.NODE_ENV === "production";
-// Dev previews are embedded in an iframe on a different origin, so framing has
-// to be allowed while developing. Production keeps the strict same-origin rules.
-const frameAncestors = isProduction
-  ? "frame-ancestors 'self'"
-  : "frame-ancestors 'self' https://*.e2b.app http://localhost:*";
+// Dev previews are embedded in an iframe by a hosting origin we cannot pin
+// ahead of time, so framing stays open while developing. Production keeps the
+// strict same-origin rule and the X-Frame-Options header.
+const frameAncestors = isProduction ? "frame-ancestors 'self'" : "frame-ancestors *";
 // Next.js App Router emits required inline bootstrap scripts; blocking them breaks hydration/runtime.
 const scriptSrc = isProduction
   ? "script-src 'self' 'unsafe-inline'"

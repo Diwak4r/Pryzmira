@@ -7,7 +7,7 @@
 [![Next.js](https://img.shields.io/badge/Next.js-16_App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
 [![Groq](https://img.shields.io/badge/Groq-AI_Inference-F04E23?style=for-the-badge&logo=fastapi&logoColor=white)](https://groq.com)
 [![Supabase](https://img.shields.io/badge/Supabase-Auth_%26_Storage-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
-[![Vitest](https://img.shields.io/badge/Tests-221_passing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev)
+[![Vitest](https://img.shields.io/badge/Tests-222_passing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev)
 [![Author](https://img.shields.io/badge/Author-Diwakar_Yadav-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Diwak4r)
 
 </div>
@@ -69,7 +69,7 @@ graph LR
 | Live X feed (v2 recent search, 5 min cache) | Needs key | `src/lib/builds/sources/x.ts` | `X_BEARER_TOKEN` |
 | Live GitHub feed (repo search, 10 min cache) | Beta | `src/lib/builds/sources/github.ts` | Optional `GITHUB_TOKEN` |
 | Demo mode (local, clearly labelled scaffold) | New | `src/lib/demoEngine.ts` | Automatic |
-| Unit test suite (221 tests, 13 files) | New | `src/lib/**/__tests__` | `npm test` |
+| Unit test suite (222 tests, 13 files) | New | `src/lib/**/__tests__` | `npm test` |
 | In-app guide with docs-sync tests | New | `/guide` | Nothing |
 
 ## Quickstart
@@ -108,7 +108,7 @@ Open <http://localhost:3000>. Without any model key the app starts in **demo mod
 The suite runs on Vitest with no network access - provider calls, X, and GitHub are mocked at the `fetch` boundary.
 
 ```bash
-npm test          # 221 unit tests across 13 files
+npm test          # 222 unit tests across 13 files
 npm run typecheck # tsc --noEmit
 npm run lint      # eslint
 npm run verify    # all three, in order
