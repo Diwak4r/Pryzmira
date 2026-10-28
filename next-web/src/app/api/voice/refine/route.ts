@@ -5,6 +5,7 @@ import {
     isVoiceEngineFailure,
     VOICE_ENGINE_UNAVAILABLE_MESSAGE,
 } from '@/lib/voiceRequestError';
+import { buildDemoRefineResponse, isDemoModeEnabled } from '@/lib/demoEngine';
 import { buildRefinedVoiceResponse, createTransientGenerationId } from '@/lib/voiceService';
 import { enforceVoiceQuota, hashAnonymousSubject } from '@/lib/voiceStorage';
 import { validateRefineInput } from '@/lib/voice';
@@ -28,11 +29,17 @@ export async function POST(request: Request) {
             subjectKey,
             subjectType: user ? 'user' : 'anonymous',
         });
-        const payload = await buildRefinedVoiceResponse({
-            ...input,
-            ...quota,
-            isAuthenticated: Boolean(user),
-        });
+        const payload = isDemoModeEnabled()
+            ? buildDemoRefineResponse({
+                  ...input,
+                  ...quota,
+                  isAuthenticated: Boolean(user),
+              })
+            : await buildRefinedVoiceResponse({
+                  ...input,
+                  ...quota,
+                  isAuthenticated: Boolean(user),
+              });
 
         return NextResponse.json({
             ...payload,

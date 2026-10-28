@@ -186,6 +186,9 @@ export default function VoiceDesk() {
                     voiceInsights: p.voiceInsights,
                     insightBullets: p.insightBullets,
                     voiceContext: p.voiceContext,
+                    demo: p.demo,
+                    remainingQuota: p.remainingQuota,
+                    quotaLimit: p.quotaLimit,
                 };
                 setCurrentVoiceGeneration(next);
                 setGen(next);
@@ -397,6 +400,12 @@ export default function VoiceDesk() {
                                 Sign in
                             </Button>
                         )}
+                        <Button asChild variant="outline" size="sm">
+                            <Link href="/builds">Browse builds</Link>
+                        </Button>
+                        <Button asChild variant="outline" size="sm">
+                            <Link href="/guide">Guide</Link>
+                        </Button>
                     </div>
 
                     {/* Show History in empty state if they have any saved items */}
@@ -442,12 +451,20 @@ export default function VoiceDesk() {
                 {/* Header */}
                 <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                             <span>Voice desk</span>
                             {auth.authenticated && (
                                 <>
                                     <span className="text-border">/</span>
                                     <span>{auth.user?.email || 'Signed in'}</span>
+                                </>
+                            )}
+                            {typeof gen.remainingQuota === 'number' && typeof gen.quotaLimit === 'number' && (
+                                <>
+                                    <span className="text-border">/</span>
+                                    <span className="tabular-nums">
+                                        {gen.remainingQuota} of {gen.quotaLimit} left
+                                    </span>
                                 </>
                             )}
                         </div>
@@ -466,6 +483,19 @@ export default function VoiceDesk() {
                         </Button>
                     </div>
                 </div>
+
+                {gen.demo && (
+                    <div className="mt-3 flex flex-wrap items-center gap-x-2 rounded-md border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-xs leading-relaxed text-amber-700 dark:text-amber-300">
+                        <span className="font-medium">Demo draft.</span>
+                        <span>
+                            Composed locally from your sample - no model was called. Bracketed parts are
+                            placeholders for you to fill.
+                        </span>
+                        <Link href="/guide#environment" className="underline underline-offset-2">
+                            Connect a model key
+                        </Link>
+                    </div>
+                )}
 
                 {/* Voice analysis */}
                 {analysis && (
@@ -516,8 +546,13 @@ export default function VoiceDesk() {
                 {isPending && <VoiceThinkingIndicator mode="refine" className="mt-6" />}
 
                 <div className={`${isPending ? 'mt-4' : 'mt-6'} rounded-md border border-border bg-card`}>
-                    <div className="border-b border-border px-4 py-2">
+                    <div className="flex items-center justify-between border-b border-border px-4 py-2">
                         <p className="text-xs font-medium text-muted-foreground">Output</p>
+                        {gen.demo && (
+                            <span className="rounded-sm border border-amber-500/30 bg-amber-500/5 px-1.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-wider text-amber-700 dark:text-amber-300">
+                                local demo
+                            </span>
+                        )}
                     </div>
                     <div className="px-4 py-5">
                         <div className="whitespace-pre-wrap text-sm leading-[1.8] text-foreground">

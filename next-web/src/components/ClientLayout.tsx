@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -11,6 +12,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                 <div className="mx-auto flex max-w-[960px] flex-col items-center gap-2 px-4 sm:flex-row sm:justify-between">
                     <p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} Pryzmira</p>
                     <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <Link href="/builds" className="py-1 hover:text-foreground">
+                            Builds
+                        </Link>
+                        <Link href="/guide" className="py-1 hover:text-foreground">
+                            Guide
+                        </Link>
                         <a
                             href="https://github.com/Diwak4r"
                             target="_blank"

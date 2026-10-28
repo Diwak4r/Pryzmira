@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const isProduction = process.env.NODE_ENV === "production";
+// Dev previews are embedded in an iframe by a hosting origin we cannot pin
+// ahead of time, so framing stays open while developing. Production keeps the
+// strict same-origin rule and the X-Frame-Options header.
+const frameAncestors = isProduction ? "frame-ancestors 'self'" : "frame-ancestors *";
 // Next.js App Router emits required inline bootstrap scripts; blocking them breaks hydration/runtime.
 const scriptSrc = isProduction
   ? "script-src 'self' 'unsafe-inline'"
@@ -8,11 +12,11 @@ const scriptSrc = isProduction
 const contentSecurityPolicy = [
   "default-src 'self'",
   scriptSrc,
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "style-src 'self' 'unsafe-inline'",
   "img-src 'self' blob: data: https:",
-  "font-src 'self' https://fonts.gstatic.com",
+  "font-src 'self'",
   "connect-src 'self' https: wss:",
-  "frame-ancestors 'self'",
+  frameAncestors,
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'"
@@ -20,6 +24,7 @@ const contentSecurityPolicy = [
 
 const nextConfig: NextConfig = {
   compress: true,
+  allowedDevOrigins: ['*.e2b.app'],
   poweredByHeader: false,
   async headers() {
     return [
@@ -38,10 +43,14 @@ const nextConfig: NextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block'
           },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
+          ...(isProduction
+            ? [
+                {
+                  key: 'X-Frame-Options',
+                  value: 'SAMEORIGIN'
+                }
+              ]
+            : []),
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff'

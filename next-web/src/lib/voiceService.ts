@@ -133,6 +133,9 @@ function getGroqModel(name: 'analyze' | 'generate'): string {
 }
 
 async function groqChatCompletion(messages: GroqMessage[], model: string, temperature: number): Promise<string> {
+    // Resolve config outside the transport try/catch so a missing key surfaces as a
+    // configuration error instead of being masked as a network outage.
+    const apiKey = getGroqApiKey();
     let response: Response;
 
     try {
@@ -140,7 +143,7 @@ async function groqChatCompletion(messages: GroqMessage[], model: string, temper
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${getGroqApiKey()}`,
+                Authorization: `Bearer ${apiKey}`,
             },
             body: JSON.stringify({
                 model,
@@ -163,7 +166,9 @@ async function groqChatCompletion(messages: GroqMessage[], model: string, temper
     };
 
     if (!response.ok) {
-        throw new Error(payload.error?.message || 'Groq request failed.');
+        throw new Error(
+            payload.error?.message ? `Groq request failed: ${payload.error.message}` : 'Groq request failed.'
+        );
     }
 
     const content = payload.choices?.[0]?.message?.content?.trim();
@@ -207,7 +212,11 @@ async function openRouterChatCompletion(messages: GroqMessage[], temperature: nu
     };
 
     if (!response.ok) {
-        throw new Error(payload.error?.message || 'OpenRouter request failed.');
+        throw new Error(
+            payload.error?.message
+                ? `OpenRouter request failed: ${payload.error.message}`
+                : 'OpenRouter request failed.'
+        );
     }
 
     const content = payload.choices?.[0]?.message?.content?.trim();
@@ -250,7 +259,11 @@ async function dashscopeChatCompletion(messages: GroqMessage[], temperature: num
     };
 
     if (!response.ok) {
-        throw new Error(payload.error?.message || 'DashScope request failed.');
+        throw new Error(
+            payload.error?.message
+                ? `DashScope request failed: ${payload.error.message}`
+                : 'DashScope request failed.'
+        );
     }
 
     const content = payload.choices?.[0]?.message?.content?.trim();

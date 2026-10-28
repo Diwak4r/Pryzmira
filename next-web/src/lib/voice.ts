@@ -29,6 +29,8 @@ export interface VoiceResponsePayload {
     quotaLimit: number;
     isAuthenticated: boolean;
     createdAt: string;
+    /** True when the draft came from the local demo engine, not a model. */
+    demo?: boolean;
 }
 
 export interface VoiceHistoryItem {
@@ -40,6 +42,11 @@ export interface VoiceHistoryItem {
     preview: string;
     createdAt: string;
     persisted: boolean;
+    /** Present on generations produced or refined in demo mode. */
+    demo?: boolean;
+    /** Quota snapshot at generation time, used by the desk header. */
+    remainingQuota?: number;
+    quotaLimit?: number;
 }
 
 export interface VoiceSavedGeneration extends VoiceHistoryItem {
